@@ -5,6 +5,7 @@
 #include <vector>
 #include <algorithm> 
 #include "personne.h"
+#include  "scores.h"
 
 using namespace std;
 

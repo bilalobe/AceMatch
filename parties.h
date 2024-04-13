@@ -144,6 +144,19 @@ int vector<Joueur> getWinnersFromPreviousRound() {
 
     // Retrieve the list of played matches from the previous round
     vector<Partie> previousRoundMatches = gestionParties.getPreviousRoundMatches(); 
+    // Inside PlanificationParties class (PlanificationParties.h)
+    Partie retrievePartie(const string& nomJoueur1, const string& nomJoueur2) {
+        for (Partie& partie : gestionParties.getParties()) { // Assuming you have an instance of 'gestionParties' to access the matches
+            if (partie.getNomJoueur1() == nomJoueur1 && partie.getNomJoueur2() == nomJoueur2) {
+                return partie; 
+            }
+        }
+        // If the match is not found, you could either:
+        //   1. Return an empty/null Partie object and handle it where you call this function
+        //   2. Create a new Partie object based on the player names and return it
+        //   3. Throw an exception to indicate an error
+        throw runtime_error("Match not found."); // Example of throwing an exception
+    }
 
     // Iterate through the matches to determine the winners
     for (Partie partie : previousRoundMatches) {
@@ -199,6 +212,16 @@ void attribuerJoueursParties() {
         // Assign the first two players to the match
         partie.setNomJoueur1(joueursInscrits[0].getNom());
         partie.setNomJoueur2(joueursInscrits[1].getNom());
+    }
+}
+// Inside PlanificationParties class (PlanificationParties.h)
+void setResultatPartie(Partie& partie, string nomJoueur, ResultatPartie resultat) {
+    if (nomJoueur == partie.getNomJoueur1()) {
+        partie.resultat1 = resultat;
+    } else if (nomJoueur == partie.getNomJoueur2()) {
+        partie.resultat2 = resultat;
+    } else {
+       // Handle the case where the player isn't in the match (error handling)
     }
 }
 

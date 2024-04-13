@@ -23,20 +23,6 @@ public:
 class GestionScores {
 public:
     vector<pair<string, int>> scores; 
-    
-    int calculateScore(const Partie& partie) {
-    int score = 0;
-
-    // Rules: 5 points per game, 3 games per set, 1 set per match
-    if (partie.getResultat1() == VICTOIRE) {
-        score += 15;  // 5 points/game * 3 games/set 
-    } else if (partie.getResultat2() == VICTOIRE) {
-        // Note: You might give less points for a loss 
-        score += 10; // Example: Reduced points for the losing player
-    } 
-
-    return score;
-}
 
     void ajouterScore(string nomJoueur, int score) {
         scores.push_back(make_pair(nomJoueur, score));

@@ -10,6 +10,7 @@
 #include "scores.h"
 
 
+
 using namespace std;
 
 
@@ -179,6 +180,23 @@ void displayChampionnatsMenu() {
       // Retour au menu des parties
       displayPartiesMenu();
       break;
+      // Inside your menu loop (modify the menu structure as needed)
+case 5: // Update Scores
+    // Get player names or match ID to identify the partie
+    Partie partie = retrievePartie(nomJoueur1, nomJoueur2); // Using the function we created
+    // Get match results
+    gestionScores.updateScore(partie.getNomJoueur1(), calculateScore(partie));
+    gestionScores.updateScore(partie.getNomJoueur2(), calculateScore(partie));
+    cout << "Scores updated!" << endl;
+    break;
+
+case 6: // Display Top Scorers
+    vector<Score> topScores = gestionScores.getTopScorers(3); // Get top 3
+    for (Score score : topScores) {
+        score.afficher();
+    } 
+    break;
+
     default:
       cout << "Choix invalide" << endl;
       break;
