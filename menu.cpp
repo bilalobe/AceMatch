@@ -7,6 +7,7 @@
 #include "menu.h"
 #include "championnats.h"
 #include "tickets.h"
+#include "scores.h"
 
 
 using namespace std;
