@@ -1,6 +1,13 @@
 #include <iostream>
 #include <vector>
 #include "joueurs.h"
+#include "terrains.h"
+#include "parties.h"
+#include "reservations.h"
+#include "menu.h"
+#include "championnats.h"
+#include "tickets.h"
+
 
 using namespace std;
 
@@ -13,7 +20,7 @@ public:
     for (int i = 0; i < options.size(); i++) {
       cout << i + 1 << ". " << options[i] << endl;
     }
-    cout << "Your choice: ";
+    cout << "Choix: ";
   }
 
   int getSelection() {
@@ -28,7 +35,7 @@ private:
 
 void displayJoueursMenu() {
   // Create the joueurs menu
-  vector<string> joueursMenuOptions = {"Afficher la liste des joueurs", "Rechercher un joueur", "Modifier un joueur", "Supprimer un joueur", "Retour au menu principal"};
+  vector<string> joueursMenuOptions = {"Afficher la liste des joueurs", "Rechercher un joueur", "Modifier un joueur", "Supprimer un joueur","Trier les joueurs par classement","Retour au menu principal"};
   Menu joueursMenu(joueursMenuOptions);
 
   // Display the joueurs menu
@@ -40,21 +47,24 @@ void displayJoueursMenu() {
   // Handle the user's selection
   switch (selection) {
     case 1:
-      afficherJoueurs();
+      void afficherJoueurs();
       break;
     case 2:
-      rechercherJoueur();
+      void rechercherJoueur();
       break;
     case 3:
-      modifierJoueur();
+      void modifierJoueur();
       break;
     case 4:
-      supprimerJoueur();
+      void supprimerJoueur();
       break;
     case 5:
-      displayJoueursMenu();
+       void trierJoueursParClassement();
       break;
     case 6:
+      displayJoueursMenu();
+      break;
+    case 7:
       exit(0); // Quitter le programme
       break;
     default:
@@ -62,6 +72,7 @@ void displayJoueursMenu() {
       break;
   }
 }
+
 
 void displayTerrainsMenu() {
   // Create the terrains menu
@@ -77,16 +88,16 @@ void displayTerrainsMenu() {
   // Handle the user's selection
   switch (selection) {
     case 1:
-      afficherTerrains();
+      void afficherTerrains();
       break;
     case 2:
-      rechercherTerrain();
+      void rechercherTerrain();
       break;
     case 3:
-      modifierTerrain();
+      void modifierTerrain();
       break;
     case 4:
-      supprimerTerrain();
+      void supprimerTerrain();
       break;
     case 5:
       displayTerrainsMenu();
@@ -102,7 +113,7 @@ void displayTerrainsMenu() {
 
 void displayPartiesMenu() {
   // Create the parties menu
-  vector<string> partiesMenuOptions = {"Afficher la liste des parties", "Rechercher une partie", "Modifier une partie", "Supprimer une partie", "Retour au menu principal"};
+  vector<string> partiesMenuOptions = {"Afficher la liste des parties", "Rechercher une partie", "Modifier une partie", "Supprimer une partie", "Gestion des championnats", "Retour au menu principal"};
   Menu partiesMenu(partiesMenuOptions);
 
   // Display the parties menu
@@ -114,22 +125,58 @@ void displayPartiesMenu() {
   // Handle the user's selection
   switch (selection) {
     case 1:
-      afficherParties();
+      // Afficher la liste des parties
       break;
     case 2:
-      rechercherPartie();
+      // Rechercher une partie
       break;
     case 3:
-      modifierPartie();
+      // Modifier une partie
       break;
     case 4:
-      supprimerPartie();
+      // Supprimer une partie
       break;
     case 5:
-      displayPartiesMenu();
+      // Gestion des championnats
+      displayChampionnatsMenu();
       break;
     case 6:
-      exit(0); // Quitter le programme
+      // Retour au menu principal
+      break;
+    default:
+      cout << "Choix invalide" << endl;
+      break;
+  }
+}
+
+void displayChampionnatsMenu() {
+  // Create the championnats menu
+  vector<string> championnatsMenuOptions = {"Afficher la liste des championnats", "Rechercher un championnat", "Modifier un championnat", "Supprimer un championnat", "Retour au menu des parties"};
+  Menu championnatsMenu(championnatsMenuOptions);
+
+  // Display the championnats menu
+  championnatsMenu.display();
+
+  // Get the user's selection
+  int selection = championnatsMenu.getSelection();
+
+  // Handle the user's selection
+  switch (selection) {
+    case 1:
+      // Afficher la liste des championnats
+      break;
+    case 2:
+      // Rechercher un championnat
+      break;
+    case 3:
+      // Modifier un championnat
+      break;
+    case 4:
+      // Supprimer un championnat
+      break;
+    case 5:
+      // Retour au menu des parties
+      displayPartiesMenu();
       break;
     default:
       cout << "Choix invalide" << endl;
@@ -151,22 +198,19 @@ void displayReservationsMenu() {
   // Handle the user's selection
   switch (selection) {
     case 1:
-      afficherReservations();
+      // Afficher la liste des réservations
       break;
     case 2:
-      rechercherReservation();
+      // Rechercher une réservation
       break;
     case 3:
-      modifierReservation();
+      // Modifier une réservation
       break;
     case 4:
-      supprimerReservation();
+      // Supprimer une réservation
       break;
     case 5:
-      displayReservationsMenu();
-      break;
-    case 6:
-      exit(0); // Quitter le programme
+      // Retour au menu principal
       break;
     default:
       cout << "Choix invalide" << endl;

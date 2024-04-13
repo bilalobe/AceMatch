@@ -1,132 +1,71 @@
-#ifndef GESTIONSCORES_H
-#define GESTIONSCORES_H
-
-#include <vector>
-#include <random>
-#include <algorithm> 
+#ifndef SCORES_H
+#define SCORES_H
 #include <iostream>
-
+#include <vector>
+#include <string>
+#include <algorithm> // for sort() function
 using namespace std;
 
-enum Phase {
-  ELIMINATOIRES,
-  HUITIEMES_DE_FINALE,
-  QUARTS_DE_FINALE,
-  DEMI_FINALES,
-  MATCH_TROISIEME_PLACE,
-  FINALE
-};
-
-class Joueur {
+class Score {
 public:
-  string nom;
-  int classement;
+  string nomJoueur;
   int score;
 
 public:
-  Joueur(string nom, int classement) : nom(nom), classement(classement), score(0) {}
+  Score(string nomJoueur, int score) : nomJoueur(nomJoueur), score(score) {}
 
   void afficher() const {
-    cout << "Nom: " << nom << endl;
-    cout << "Classement: " << classement << endl;
+    cout << "Nom: " << nomJoueur << endl;
     cout << "Score: " << score << endl;
   }
-
-  void calculerClassement(const vector<Partie>& parties) {
-    for (const Partie& partie : parties) {
-      if (partie.joueurs[0] == this) {
-        score += partie.phase;
-      } else if (partie.joueurs[1] == this) {
-        score += partie.phase;
-      }
-    }
-    classement = score;
-  }
 };
 
-class Partie {
+class GestionScores {
 public:
-  vector<Joueur*> joueurs;
-  Phase phase;
+    vector<pair<string, int>> scores; 
 
-public:
-  Partie(Phase phase, Joueur* joueur1, Joueur* joueur2) : phase(phase) {
-    joueurs.push_back(joueur1);
-    joueurs.push_back(joueur2);
+    void ajouterScore(string nomJoueur, int score) {
+        scores.push_back(make_pair(nomJoueur, score));
+    }
+
+    void updateScore(string nomJoueur, int newScore) {
+        for (auto &scorePair : scores) {
+            if (scorePair.first == nomJoueur) {
+                scorePair.second = newScore;
+                return; 
+            }
+        }
+    
+vector<Score> getTopScorers(int count) {
+    vector<Score> topScores(scores); // Make a copy of scores 
+    std::sort(topScores.begin(), topScores.end(), 
+        [](const Score& score1, const Score& score2) {
+            return score1.score > score2.score; 
+        });  // Sort in descending order of score
+
+    if (count < topScores.size()) {
+        topScores.resize(count); // Return only the top 'count' scores
+    }
+
+    return topScores;
+}
+void supprimerScore(string nomJoueur) {
+    Score* score = findScore(nomJoueur);
+    if (score != nullptr) {
+        scores.erase(remove(scores.begin(), scores.end(), *score), scores.end());
+    }
   }
 
-  void afficher() const {
-    cout << "Phase: " << phase << endl;
-    for (Joueur* joueur : joueurs) {
-      joueur->afficher();
+
+private:
+  Score* findScore(string nomJoueur) {
+    for (Score& score : scores) {
+        if (score.nomJoueur == nomJoueur) {
+            return &score;
+        }
     }
+    return nullptr;
   }
 };
-
-class Championnat {
-public:
-  vector<Joueur*> joueurs;
-  vector<Partie> parties;
-
-  void ajouterJoueur(const Joueur& joueur) {
-    bool joueurExiste = false;
-    for (Joueur* j : joueurs) {
-      if (j->nom == joueur.nom) {
-        joueurExiste = true;
-        break;
-      }
-    }
-
-    if (!joueurExiste) {
-      joueurs.push_back(new Joueur(joueur));
-      cout << "Joueur ajouté avec succès!" << endl;
-    } else {
-      cout << "Le joueur " << joueur.nom << " existe déjà." << endl;
-    }
-  }
-
-  void selectionnerJoueurs(Phase phaseSuivante) {
-    // Déterminer le classement minimum requis
-    int classementMinimum = 100; // Exemple
-
-    // Calculer le classement des joueurs
-    for (Joueur* joueur : joueurs) {
-      joueur->calculerClassement(parties);
-    }
-
-    // Afficher les joueurs sélectionnés
-    cout << "Joueurs sélectionnés pour " << phaseSuivante << " :" << endl;
-    for (Joueur* joueur : joueurs) {
-      if (joueur->classement >= classementMinimum) {
-        joueur->afficher();
-      }
-    }
-  }
-
-  void creerParties(Phase phase) {
-    if (joueurs.size() % 2 != 0) {
-      cout << "Nombre de joueurs impair. Gestion à implémenter." << endl;
-      return;
-    }
-
-    vector<Joueur*> joueurs_temp(joueurs.begin(), joueurs.end()); // Crée une copie temporaire
-    shuffle(joueurs_temp.begin(), joueurs_temp.end(), std::default_random_engine(random_device{}()));
-
-    for (int i = 0; i < joueurs_temp.size() / 2; i++) {
-      parties.push_back(Partie(phase, joueurs_temp[2 * i], joueurs_temp[2 * i + 1]));
-    }
-  }
-
-  void afficherParties() {
-    for (const Partie& partie : parties) {
-      partie.afficher();
-      cout << endl;
-      for (Joueur* joueur : partie.joueurs) {
-        joueur->afficher();
-        cout << "Classement: " << joueur->classement << endl;
-      }
-    }
-  }
 };
-
 #endif

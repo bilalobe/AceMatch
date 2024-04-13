@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm> 
+#include "personne.h"
 
 using namespace std;
 
@@ -21,11 +22,19 @@ class Joueur {
       this->nbDefaites = 0;
     }
 
-    void afficher() {
-      cout << "Nom: " << nom << endl;
-      cout << "Classement: " << classement << endl;
-      cout << "Victoires: " << nbVictoires << endl;
-      cout << "Défaites: " << nbDefaites << endl;
+    // Getters
+    string getNom() const; 
+    int getClassement() const;
+
+    // Setters
+    void setNom(string nom);
+    void setClassement(int classement);
+
+    void afficher(Joueur* joueur) {
+      cout << "Nom: " << joueur->nom << endl;
+      cout << "Classement: " << joueur->classement << endl;
+      cout << "Victoires: " << joueur->nbVictoires << endl;
+      cout << "Défaites: " << joueur->nbDefaites << endl;
     }
 
     void incrementerVictoire() {
@@ -44,6 +53,12 @@ class Joueur {
 class GestionJoueurs {
   public:
     vector<Joueur> joueurs;
+    
+    void afficherJoueurs() const {
+      for (Joueur joueur : joueurs) {
+        joueur.afficher(&joueur);
+      }
+    }
 
     void ajouterJoueur(Joueur joueur) {
       joueurs.push_back(joueur);
@@ -57,14 +72,6 @@ class GestionJoueurs {
         }
       }
     }
-
-    void afficherJoueurs() {
-      for (Joueur joueur : joueurs) {
-        joueur.afficher();
-        cout << endl;
-      }
-    }
-
     Joueur* rechercherJoueur(string nom) {
       for (Joueur joueur : joueurs) {
         if (joueur.nom == nom) {
@@ -79,7 +86,15 @@ class GestionJoueurs {
       return joueur1.classement > joueur2.classement;
     });
   }
-    
+    void modifierJoueur(Joueur& joueur){
+      for (int i = 0; i < joueurs.size(); i++) {
+        if (joueurs[i].nom == joueur.nom) {
+          joueurs[i].nom = joueur.nom;
+          joueurs[i].classement = joueur.classement;
+          break;
+        }
+      }
+    }
 };
 
 #endif
