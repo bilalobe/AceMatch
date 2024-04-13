@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "joueurs.h"
-
+#include "scores.h"
 using namespace std;
 
 
