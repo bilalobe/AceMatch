@@ -1,9 +1,14 @@
 #ifndef SCORES_H
 #define SCORES_H
+
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm> // for sort() function
+#include <algorithm> 
+#include <map>
+#include "joueurs.h"
+#include "championnats.h"
+
 using namespace std;
 
 class Score {
@@ -22,50 +27,46 @@ public:
 
 class GestionScores {
 public:
-    vector<pair<string, int>> scores; 
+    std::map<std::string, int> scoresMap; 
 
     void ajouterScore(string nomJoueur, int score) {
-        scores.push_back(make_pair(nomJoueur, score));
+        scoresMap[nomJoueur] = score; 
     }
 
     void updateScore(string nomJoueur, int newScore) {
-        for (auto &scorePair : scores) {
-            if (scorePair.first == nomJoueur) {
-                scorePair.second = newScore;
-                return; 
-            }
+        scoresMap[nomJoueur] = newScore; 
+    }
+
+    vector<Score> getTopScores(int count) {
+        vector<Score> topScores;
+        for (const auto& pair : scoresMap) {
+            topScores.emplace_back(pair.first, pair.second);
         }
-    
-vector<Score> getTopScorers(int count) {
-    vector<Score> topScores(scores); // Make a copy of scores 
-    std::sort(topScores.begin(), topScores.end(), 
-        [](const Score& score1, const Score& score2) {
-            return score1.score > score2.score; 
-        });  // Sort in descending order of score
-
-    if (count < topScores.size()) {
-        topScores.resize(count); // Return only the top 'count' scores
+        std::sort(topScores.begin(), topScores.end(), 
+                  [](const Score& score1, const Score& score2) {
+                      return score1.score > score2.score; 
+                  });
+        if (count < topScores.size()) {
+            topScores.resize(count);
+        }
+        return topScores;
     }
 
-    return topScores;
-}
-void supprimerScore(string nomJoueur) {
-    Score* score = findScore(nomJoueur);
-    if (score != nullptr) {
-        scores.erase(remove(scores.begin(), scores.end(), *score), scores.end());
-    }
-  }
-
-
-private:
-  Score* findScore(string nomJoueur) {
-    for (Score& score : scores) {
-        if (score.nomJoueur == nomJoueur) {
-            return &score;
+    void supprimerScore(string nomJoueur) {
+        auto it = scoresMap.find(nomJoueur);
+        if (it != scoresMap.end()) {
+            scoresMap.erase(it);
         }
     }
-    return nullptr;
-  }
+
+    void afficherScores() {
+        for (const auto& pair : scoresMap) {
+            cout << "Nom: " << pair.first << endl;
+            cout << "Score: " << pair.second << endl;
+        }
+    }
 };
-};
+
+
+
 #endif

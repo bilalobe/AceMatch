@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "joueurs.h"
+#include "parties.h"
 
 using namespace std;
 

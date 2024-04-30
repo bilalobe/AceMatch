@@ -2,6 +2,7 @@
 #define PERSONNE_H
 #include<iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -40,9 +41,9 @@ public:
   const vector<Client>& getClients() const;
   void trierClientsParNom();
 
-private:
-  vector<Client> clients;
-};
+  private:
+    vector<Client> clients;
+  };
 };
 
 class Joueur : public Personne {
