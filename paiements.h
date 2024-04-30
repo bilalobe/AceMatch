@@ -18,6 +18,7 @@ public:
   double montant;
 
 public:
+Paiement(){}
   Paiement(MethodePaiement methode, double montant) {
     this->methode = methode;
     this->montant = montant;

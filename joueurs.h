@@ -11,6 +11,7 @@ using namespace std;
 
 class Joueur {
 public:
+  Joueur(){}
   std::string nom;
   int classement;
   int nbVictoires;
@@ -32,13 +33,6 @@ public:
 
   void Joueur::setClassement(int classement) { this->classement = classement; }
 
-  void afficher(const Joueur* joueur) {
-    cout << "Nom: " << joueur->nom << endl;
-    cout << "Classement: " << joueur->classement << endl;
-    cout << "Victoires: " << joueur->nbVictoires << endl;
-    cout << "Défaites: " << joueur->nbDefaites << endl;
-  }
-
   void incrementerVictoire() { nbVictoires++; }
 
   void incrementerDefaite() { nbDefaites++; }
@@ -49,7 +43,7 @@ public:
 class GestionJoueurs {
 public:
   vector<Joueur> joueurs;
-
+  GestionJoueurs() {}
   void afficherJoueurs() {
     if (joueurs.empty()) {
       cout << "No players found." << endl;
@@ -88,22 +82,22 @@ public:
       }
     }
   }
-  void rechercherJoueur() {
-    cout << "Enter player name (or part of name) to search: ";
-    string searchTerm;
-    cin >> searchTerm;
+  // In GestionJoueurs class
 
-    bool found = false;
-    for (Joueur& joueur : joueurs) {
-      if (joueur.getNom().find(searchTerm) != string::npos) {  // Case-insensitive partial match
-        joueur.afficher(const_cast<Joueur*>(&joueur));  // Customize how you display the player
-        found = true;
-      }
+void rechercherJoueur(const std::string& searchTerm) const {
+    auto it = std::find_if(joueurs.begin(), joueurs.end(),
+                           [&searchTerm](const Joueur& joueur) {
+                               return joueur.getNom().find(searchTerm) != std::string::npos;
+                           });
+    if (it != joueurs.end()) {
+        std::cout << "Player found:" << std::endl;
+        std::cout << "Nom: " << it->nom << std::endl; // Access member directly
+        std::cout << "Classement: " << it->classement << std::endl;
+    } else {
+        std::cout << "Player not found." << std::endl;
     }
-    if (!found) {
-      cout << "Player not found." << endl;
-    }
-  }
+}
+
 
   void trierJoueursParClassement() {
     std::sort(joueurs.begin(), joueurs.end(), [](Joueur joueur1, Joueur joueur2) {

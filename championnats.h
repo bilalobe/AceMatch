@@ -12,6 +12,8 @@ using namespace std;
 
 class Championnat {
 public:
+    Championnat() {} // Default constructor
+    
   std::string nom; // Tournament name
   int annee; // Tournament year
   int nbTours; // Number of rounds in the tournament (e.g., 4 for quarterfinals)
@@ -22,6 +24,8 @@ public:
   // Constructor
   Championnat(const std::string& nom, int annee, int nbTours) : nom(nom), annee(annee), nbTours(nbTours) {}
 
+  
+  
   // Method to add players to the tournament
   void inscrireJoueur(const Joueur& joueur) {
     joueursInscrits.push_back(joueur);
@@ -91,9 +95,11 @@ public:
     cout << "Annee: " << annee << endl;
     cout << "Joueurs: " << endl;
     for (Joueur joueur : joueurs) {
-      joueur.afficher(&joueur);
+      cout << "Name: " << joueur.getNom() << endl;
+      cout << "Ranking: " << joueur.getClassement() << endl;
+      cout << "Wins: " << joueur.nbVictoires << endl;
+      cout << "Losses: " << joueur.nbDefaites << endl;
     }
-    cout << "Parties: " << endl;
     for (Partie partie : parties) {
       partie.afficher();
     }
