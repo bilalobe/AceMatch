@@ -23,7 +23,6 @@ public:
 
   // Constructor
   Championnat(const std::string& nom, int annee, int nbTours) : nom(nom), annee(annee), nbTours(nbTours) {}
-
   
   
   // Method to add players to the tournament

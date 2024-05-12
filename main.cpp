@@ -103,7 +103,7 @@ void displayJoueursMenu(GestionJoueurs& gestionJoueurs) {
                 break;
             }
             std::cout << "Enter new player name: ";
-            std::cin >> joueur.setNom();
+            std::cin >>nom; joueur.setNom(nom);
             std::cout << "Enter new player ranking: ";
             std::cin >> joueur.setClassement();
             gestionJoueurs.modifierJoueur(joueur); // Update player
