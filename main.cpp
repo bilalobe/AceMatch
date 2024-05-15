@@ -16,8 +16,32 @@
 #include <iostream>
 using namespace std;
 
+<<<<<<< Updated upstream
 void clearScreen() {
     system("cls"); // For Windows
+=======
+// Global Management Objects 
+GestionJoueurs gestionJoueurs;
+GestionTerrains gestionTerrains;
+GestionReservations gestionReservations;
+GestionScores gestionScores; 
+GestionParties gestionParties;
+ChampionnatSimple championnat; 
+PlanificationParties planificateur;
+Championnat championnat;  
+// Helper Functions 
+Partie retrievePartie(const string& nomJoueur1, const string& nomJoueur2) {
+    // Implement logic to find the Partie based on player names
+    // (You may need to iterate through your parties vector or use a more efficient search method)
+    // ... 
+    for (Partie& partie : gestionParties.getParties()) {
+      if ((partie.nomJoueur1 == nomJoueur1 && partie.nomJoueur2 == nomJoueur2) || 
+          (partie.nomJoueur1 == nomJoueur2 && partie.nomJoueur2 == nomJoueur1)) {
+        return partie; 
+      }
+    }
+    return Partie(SIMPLE, "unknown", "unknown"); // Return a default if not found
+>>>>>>> Stashed changes
 }
 
 
@@ -472,6 +496,7 @@ int main() {
             case 1: 
                 displayJoueursMenu();
 
+<<<<<<< Updated upstream
                 break; 
             case 2:
                 displayChampionnatsMenu();
@@ -496,3 +521,7 @@ int main() {
 
     return 0; 
 }
+=======
+  return 0;
+}
+>>>>>>> Stashed changes

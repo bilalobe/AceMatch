@@ -26,6 +26,7 @@ class Ticket {
 };
 
 class GestionTickets {
+<<<<<<< Updated upstream
   public:
     vector<Ticket> tickets;
 
@@ -47,6 +48,14 @@ class GestionTickets {
         ticket.afficher();
       }
     }
+=======
+public:
+  vector<Ticket> tickets;
+  
+  void ajouterTicket(Ticket ticket);
+  void afficherTickets();
+  void supprimerTicket(int numeroTicket);
+>>>>>>> Stashed changes
 };
 
 #endif

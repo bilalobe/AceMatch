@@ -18,28 +18,10 @@ public:
   double montant;
 
 public:
-Paiement(){}
-  Paiement(MethodePaiement methode, double montant) {
-    this->methode = methode;
-    this->montant = montant;
-  }
+  Paiement();
+  Paiement(MethodePaiement methode, double montant);
 
-  void afficher() const {
-    cout << "Méthode de paiement: ";
-    switch (methode) {
-      case CARTE_BANCAIRE:
-        cout << "Carte bancaire";
-        break;
-      case ESPECES:
-        cout << "Espèces";
-        break;
-      case CHEQUE:
-        cout << "Chèque";
-        break;
-    }
-    cout << endl;
-    cout << "Montant: " << montant << endl;
-  }
+  void afficher() const; 
 };
 
 #endif
