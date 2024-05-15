@@ -7,13 +7,13 @@
 
 class Client {
 public:
-    Client(std::string nom, int numero) : nom(nom), numero(numero) {} // Member initialization list
+    Client(std::string nom, int numero); // Member initialization list
 
-    std::string getNom() const { return nom; }
-    int getNumero() const { return numero; }
+    std::string getNom() const;
+    int getNumero() const;
 
-    void setNom(const std::string& nom) { this->nom = nom; }
-    void setNumero(int numero) { this->numero = numero; }
+    void setNom(const std::string& nom);
+    void setNumero(int numero);
 
 private:
     std::string nom;
@@ -22,37 +22,11 @@ private:
 
 class GestionClients {
 public:
-    void ajouterClient(const Client& client) {
-        clients.push_back(client);
-    }
-
-    void supprimerClient(const std::string& nom) {
-        auto it = std::find_if(clients.begin(), clients.end(),
-                               [&nom](const Client& client) {
-                                   return client.getNom() == nom;
-                               });
-        if (it != clients.end()) {
-            clients.erase(it);
-        }
-    }
-
-    Client* rechercherClient(const std::string& nom) const {
-    for (const Client& client : clients) {
-        if (client.getNom().find(nom) != std::string::npos) {
-            return const_cast<Client*>(&client); // Remove const to return a Client*
-        }
-    }
-    return nullptr;
-    }
-
-    const std::vector<Client>& getClients() const { return clients; }
-
-    void trierClientsParNom() {
-        std::sort(clients.begin(), clients.end(),
-                  [](const Client& a, const Client& b) {
-                      return a.getNom() < b.getNom();
-                  });
-    }
+    void ajouterClient(const Client& client);
+    void supprimerClient(const std::string& nom);
+    Client* rechercherClient(const std::string& nom) const;
+    const std::vector<Client>& getClients() const;
+    void trierClientsParNom();
 
 private:
     std::vector<Client> clients;

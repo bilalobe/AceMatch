@@ -12,12 +12,9 @@ public:
   int age;
 
 public:
-  Personne(string nom, int age) : nom(nom), age(age) {}
+  Personne(string nom, int age);
 
-  void afficher() const {
-    cout << "Nom: " << nom << endl;
-    cout << "Age: " << age << endl;
-  }
+  void afficher() const;
 };
 
 class Client : public Personne {
@@ -26,14 +23,9 @@ public:
   string telephone;
 
 public:
-  Client(string nom, int age, string adresse, string telephone)
-      : Personne(nom, age), adresse(adresse), telephone(telephone) {}
+  Client(string nom, int age, string adresse, string telephone);
 
-  void afficher() const {
-    Personne::afficher();
-    cout << "Adresse: " << adresse << endl;
-    cout << "Telephone: " << telephone << endl;
-  }
+  void afficher() const;
   class GestionClients {
   void ajouterClient(Client client);
   void supprimerClient(string nom);
@@ -51,13 +43,9 @@ public:
   int classement;
 
 public:
-  Joueur(string nom, int age, int classement)
-      : Personne(nom, age), classement(classement) {}
+  Joueur(string nom, int age, int classement);
 
-  void afficher() const {
-    Personne::afficher();
-    cout << "Classement: " << classement << endl;
-  }
+  void afficher() const;
   class GestionJoueurs {
   void ajouterJoueur(Joueur joueur);
   void supprimerJoueur(string nom);

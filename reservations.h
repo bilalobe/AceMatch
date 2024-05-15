@@ -1,6 +1,9 @@
 #ifndef RESERVATIONS_H
 #define RESERVATIONS_H
 #include "places.h"
+#include "championnats.h"
+#include "parties.h"
+#include "joueurs.h"
 #include <string>
 #include <vector>
 

@@ -20,38 +20,16 @@ public:
   int largeur;
 
 public:
-  Terrain(TypeTerrain type, int longueur, int largeur) : type(type), longueur(longueur), largeur(largeur) {}
-
-  void afficher() {
-    cout << "Type: " << (type == DUR ? "Dur" : type == TERRE_BATTUE ? "Terre battue" : "Gazon") << endl;
-    cout << "Longueur: " << longueur << endl;
-    cout << "Largeur: " << largeur << endl;
-  }
+  Terrain(TypeTerrain type, int longueur, int largeur);
+  void afficher(); 
 };
 
 class GestionTerrains {
 public:
   vector<Terrain> terrains;
-
-  void ajouterTerrain(Terrain terrain) {
-    terrains.push_back(terrain);
-  }
-
-  void afficherTerrains() {
-    for (Terrain terrain : terrains) {
-      terrain.afficher();
-      cout << endl;
-    }
-  }
-
-  void supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
-    for (int i = 0; i < terrains.size(); i++) {
-      if (terrains[i].type == type && terrains[i].longueur == longueur && terrains[i].largeur == largeur) {
-        terrains.erase(terrains.begin() + i);
-        break;
-      }
-    }
-  }
+  void ajouterTerrain(Terrain terrain);
+  void afficherTerrains();
+  void supprimerTerrain(TypeTerrain type, int longueur, int largeur);
 };
 
 #endif
