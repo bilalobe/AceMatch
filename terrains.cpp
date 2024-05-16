@@ -1,64 +1,54 @@
-#include "scores.h"
+#include "terrains.h"
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm> 
-#include <map>
-#include "joueurs.h"
-#include "championnats.h"
 
 using namespace std;
 
-// Constructor for Score
-Score::Score(string nomJoueur, int score) : nomJoueur(nomJoueur), score(score) {}
+// Constructor for Terrain
+Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
+    : type(type), longueur(longueur), largeur(largeur) {}
 
-// Display a score's details
-void Score::afficher() const {
-  cout << "Nom: " << nomJoueur << endl;
-  cout << "Score: " << score << endl;
+// Display a terrain's details
+void Terrain::afficher() {
+  cout << "Type: " << (type == DUR ? "Dur" : type == TERRE_BATTUE ? "Terre battue" : "Gazon") << endl;
+  cout << "Longueur: " << longueur << endl;
+  cout << "Largeur: " << largeur << endl;
 }
 
-// GestionScores implementation
-GestionScores::GestionScores() {}
+// GestionTerrains implementation
+GestionTerrains::GestionTerrains() {}
 
-// Add a score to the map
-void GestionScores::ajouterScore(string nomJoueur, int score) {
-  scoresMap[nomJoueur] = score;
+// Add a terrain
+void GestionTerrains::ajouterTerrain(Terrain terrain) {
+  terrains.push_back(terrain);
 }
 
-// Update an existing score in the map
-void GestionScores::updateScore(string nomJoueur, int newScore) {
-  scoresMap[nomJoueur] = newScore;
-}
-
-// Get the top scores (sorted by score)
-vector<Score> GestionScores::getTopScores(int count) {
-  vector<Score> topScores;
-  for (const auto& pair : scoresMap) {
-    topScores.emplace_back(pair.first, pair.second);
-  }
-  std::sort(topScores.begin(), topScores.end(),
-            [](const Score& score1, const Score& score2) {
-              return score1.score > score2.score;
-            });
-  if (count < topScores.size()) {
-    topScores.resize(count);
-  }
-  return topScores;
-}
-
-// Remove a score from the map
-void GestionScores::supprimerScore(string nomJoueur) {
-  auto it = scoresMap.find(nomJoueur);
-  if (it != scoresMap.end()) {
-    scoresMap.erase(it);
+// Display all terrains
+void GestionTerrains::afficherTerrains() {
+  for (Terrain terrain : terrains) {
+    terrain.afficher();
+    cout << endl;
   }
 }
 
-// Display all scores
-void GestionScores::afficherScores() {
-  for (const auto& pair : scoresMap) {
-    cout << "Nom: " << pair.first << endl;
-    cout << "Score: " << pair.second << endl;
+// Remove a terrain
+bool GestionTerrains::supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
+  for (int i = 0; i < terrains.size(); i++) {
+    if (terrains[i].type == type && terrains[i].longueur == longueur && terrains[i].largeur == largeur) {
+      terrains.erase(terrains.begin() + i);
+      return true; // Terrain found and deleted
+    }
   }
+  return false; // Terrain not found
+}
+
+// Search for a terrain
+Terrain* GestionTerrains::rechercherTerrain(TypeTerrain type, int longueur, int largeur) const {
+  for (int i = 0; i < terrains.size(); i++) {
+    if (terrains[i].type == type && terrains[i].longueur == longueur && terrains[i].largeur == largeur) {
+      return const_cast<Terrain*>(&terrains[i]);
+    }
+  }
+  return nullptr; 
 }

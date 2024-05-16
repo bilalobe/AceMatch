@@ -4,7 +4,6 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "personne.h"
 #include "scores.h"
 
 using namespace std;
@@ -39,7 +38,7 @@ public:
 
   void afficherJoueurs();
   void ajouterJoueur(const Joueur& joueur);
-  void supprimerJoueur(const std::string& nom);
+  bool supprimerJoueur(const std::string& nom);
   void rechercherJoueur(const std::string& searchTerm) const;
   void trierJoueursParClassement();
   void modifierJoueur(Joueur& joueur); 

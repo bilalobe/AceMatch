@@ -79,13 +79,14 @@ void GestionJoueurs::ajouterJoueur(const Joueur& joueur) {
 }
 
 // Remove a player from GestionJoueurs
-void GestionJoueurs::supprimerJoueur(const std::string& nom) {
+bool GestionJoueurs::supprimerJoueur(const std::string& nom) {
   for (int i = 0; i < joueurs.size(); i++) {
     if (joueurs[i].nom == nom) {
       joueurs.erase(joueurs.begin() + i);
-      break;
+      return true; // Player found and deleted
     }
   }
+  return false; // Player not found
 }
 
 // Search for a player in GestionJoueurs
@@ -116,7 +117,7 @@ void GestionJoueurs::modifierJoueur(Joueur& joueur) {
     if (joueurs[i].nom == joueur.nom) {
       joueurs[i].nom = joueur.nom;
       joueurs[i].classement = joueur.classement;
-      break;
+      return; // Player found and modified
     }
   }
 }

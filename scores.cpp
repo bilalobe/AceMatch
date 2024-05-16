@@ -21,15 +21,7 @@ void Score::afficher() const {
 // GestionScores implementation
 GestionScores::GestionScores() {}
 
-// Add a score to the map
-void GestionScores::ajouterScore(string nomJoueur, int score) {
-  scoresMap[nomJoueur] = score;
-}
 
-// Update an existing score in the map
-void GestionScores::updateScore(string nomJoueur, int newScore) {
-  scoresMap[nomJoueur] = newScore;
-}
 
 // Get the top scores (sorted by score)
 vector<Score> GestionScores::getTopScores(int count) {
@@ -61,4 +53,25 @@ void GestionScores::afficherScores() {
     cout << "Nom: " << pair.first << endl;
     cout << "Score: " << pair.second << endl;
   }
+}
+
+void GestionScores::updateScoreMatchWin(string nomJoueur) {
+  if (scoresMap.find(nomJoueur) != scoresMap.end()) { // Check if the player exists
+    scoresMap[nomJoueur] += 3; // Add 3 points for a win
+  } else {
+    scoresMap[nomJoueur] = 3;  // Initialize the player's score if they are new
+  }
+}
+
+// Update a player's score for a match loss
+void GestionScores::updateScoreMatchLoss(string nomJoueur) {
+  if (scoresMap.find(nomJoueur) != scoresMap.end()) { // Check if the player exists
+    scoresMap[nomJoueur] += 1; // Add 1 point for a loss
+  } else {
+    scoresMap[nomJoueur] = 1;  // Initialize the player's score if they are new
+  }
+}
+
+void GestionScores::updateScoreForPlayer(string nomJoueur, int newScore) {
+    scoresMap[nomJoueur] = newScore;
 }

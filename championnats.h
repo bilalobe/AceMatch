@@ -13,7 +13,7 @@ using namespace std;
 class Championnat {
 public:
     Championnat(); // Default constructor
-    
+
     std::string nom; // Tournament name
     int annee; // Tournament year
     int nbTours; // Number of rounds in the tournament (e.g., 4 for quarterfinals)
@@ -28,7 +28,7 @@ public:
     void inscrireJoueur(const Joueur& joueur);
 
     // Method to get the list of enrolled players
-    const std::vector<Joueur>& getJoueursInscrits() const; 
+    const std::vector<Joueur>& getJoueursInscrits() const;
 };
 
 class ChampionnatSimple : public Championnat {
@@ -57,7 +57,7 @@ public:
     void supprimerTicket(int numero);
 
     // Method to display the tournament information
-    void afficherChampionnat(); 
+    void afficherChampionnat();
 };
 
 #endif // CHAMPIONNATS_H

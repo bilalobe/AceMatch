@@ -4,8 +4,6 @@
 #include <string>
 #include <random>
 #include <algorithm>
-
-#include "personne.h" 
 #include "joueurs.h" 
 #include "championnats.h" 
 #include "scores.h" 
@@ -133,6 +131,7 @@ void GestionParties::setParties(vector<Partie> parties) {
 // Add a match
 void GestionParties::ajouterPartie(Partie partie) {
   parties.push_back(partie);
+  partiesMap[make_pair(partie.nomJoueur1, partie.nomJoueur2)] = &partie; 
 }
 
 // Display all matches
@@ -152,6 +151,15 @@ void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string 
       break;
     }
   }
+}
+
+// Function to retrieve a Partie by player names
+Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string& nomJoueur2) {
+  auto it = partiesMap.find(make_pair(nomJoueur1, nomJoueur2));
+  if (it != partiesMap.end()) {
+    return it->second; 
+  }
+  return nullptr; 
 }
 
 // PlanificationParties implementation

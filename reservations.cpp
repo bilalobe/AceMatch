@@ -3,37 +3,29 @@
 #include <vector>
 #include <string>
 #include <algorithm>
-#include "joueurs.h" 
-#include "parties.h" 
-#include "places.h" 
 
 using namespace std;
 
 // Constructor for Reservation
-Reservation::Reservation(Joueur* joueur, Partie* partie, Place* place)
-    : joueur(joueur), partie(partie), place(place) {}
+Reservation::Reservation(Client* client, Partie* partie)
+    : client(client), partie(partie){}
 
 // Getters for Reservation
-Joueur* Reservation::getJoueur() const {
-  return joueur;
+Client* Reservation::getClient() const {
+  return client;
 }
 Partie* Reservation::getPartie() const {
   return partie;
 }
-Place* Reservation::getPlace() const {
-  return place;
-}
 
 // Setters for Reservation
-void Reservation::setJoueur(Joueur* joueur) {
-  this->joueur = joueur;
+void Reservation::setClient(Client* client) {
+  this->client = client;
 }
 void Reservation::setPartie(Partie* partie) {
   this->partie = partie;
 }
-void Reservation::setPlace(Place* place) {
-  this->place = place;
-}
+
 
 // GestionReservations implementation
 GestionReservations::GestionReservations() {}
@@ -44,10 +36,9 @@ void GestionReservations::ajouterReservation(Reservation reservation) {
 }
 
 // Remove a reservation
-void GestionReservations::supprimerReservation(Joueur* joueur, Partie* partie, Place* place) {
+void GestionReservations::supprimerReservation(Client* client, Partie* partie) {
   for (int i = 0; i < reservations.size(); i++) {
-    if (reservations[i].getJoueur() == joueur && reservations[i].getPartie() == partie &&
-        reservations[i].getPlace() == place) {
+    if (reservations[i].getClient() == client && reservations[i].getPartie() == partie) {
       reservations.erase(reservations.begin() + i);
       break;
     }
@@ -55,10 +46,9 @@ void GestionReservations::supprimerReservation(Joueur* joueur, Partie* partie, P
 }
 
 // Search for a reservation
-Reservation* GestionReservations::rechercherReservation(Joueur* joueur, Partie* partie, Place* place) {
+Reservation* GestionReservations::rechercherReservation(Client* client, Partie* partie) {
   for (int i = 0; i < reservations.size(); i++) {
-    if (reservations[i].getJoueur() == joueur && reservations[i].getPartie() == partie &&
-        reservations[i].getPlace() == place) {
+    if (reservations[i].getClient() == client && reservations[i].getPartie() == partie ){
       return &reservations[i];
     }
   }
@@ -70,9 +60,9 @@ const vector<Reservation>& GestionReservations::getReservations() const {
   return reservations;
 }
 
-// Sort reservations by player name
-void GestionReservations::trierReservationsParJoueur() {
+// Sort reservations by client name
+void GestionReservations::trierReservationsParClient() {
   sort(reservations.begin(), reservations.end(), [](const Reservation& a, const Reservation& b) {
-    return a.getJoueur()->getNom() < b.getJoueur()->getNom();
+    return a.getClient()->nom < b.getClient()->nom;
   });
 }

@@ -6,12 +6,10 @@
 #include <string>
 #include <random>
 #include <algorithm>
+#include <map> // Include for the map
 
-#include "personne.h"
 #include "joueurs.h"
 #include "championnats.h"
-#include "scores.h"
-#include "reservations.h"
 
 using namespace std;
 
@@ -52,6 +50,8 @@ public:
 class GestionParties {
 private:
   int previousRoundMaxMatchNumber;
+  // Use a map to store matches for efficient retrieval
+  std::map<std::pair<std::string, std::string>, Partie*> partiesMap;
 
 public:
   vector<Partie> parties;
@@ -64,6 +64,9 @@ public:
   void ajouterPartie(Partie partie);
   void afficherParties();
   void supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2);
+
+  // Function to retrieve a Partie by player names
+  Partie* rechercherPartie(const string& nomJoueur1, const string& nomJoueur2);
 };
 
 class PlanificationParties {

@@ -27,6 +27,9 @@ public:
   void ajouterTicket(Ticket ticket);
   void afficherTickets();
   void supprimerTicket(int numeroTicket);
+  Ticket* rechercherTicket(int numeroTicket) const;
+  Ticket genererTicket(string type, double prix, string nomMatch);
+  bool vendreTicket(GestionClients& gestionClients, int numeroTicket);
 };
 
 #endif // TICKETS_H

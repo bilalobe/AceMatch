@@ -1,6 +1,7 @@
 #include "championnats.h"
 #include <iostream>
 #include <algorithm>
+#include "tickets.h"
 
 using namespace std;
 

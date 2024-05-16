@@ -29,7 +29,8 @@ public:
   vector<Terrain> terrains;
   void ajouterTerrain(Terrain terrain);
   void afficherTerrains();
-  void supprimerTerrain(TypeTerrain type, int longueur, int largeur);
+  bool supprimerTerrain(TypeTerrain type, int longueur, int largeur);
+  Terrain* rechercherTerrain(TypeTerrain type, int longueur, int largeur) const; 
 };
 
 #endif
