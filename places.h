@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
@@ -41,6 +42,25 @@ public:
 
 private:
   int numero;
+};
+
+// GestionPlaces class (Now in places.h)
+class GestionPlaces {
+public:
+    // Add a place
+    void ajouterPlace(Place* place);
+    
+    // Get the list of places
+    const vector<Place*>& getPlaces() const;
+
+    // Search for a place (example: search by type)
+    Place* rechercherPlace(const string& type) const;
+
+    // Display all places
+    void afficherPlaces() const;
+
+private:
+    vector<Place*> places; 
 };
 
 #endif 

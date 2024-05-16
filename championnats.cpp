@@ -60,7 +60,7 @@ void ChampionnatSimple::ajouterTicket(const Ticket& ticket) {
 // Method to remove tickets from the tournament
 void ChampionnatSimple::supprimerTicket(int numero) {
   for (int i = 0; i < tickets.size(); i++) {
-    if (tickets[i].numero == numero) {
+    if (tickets[i].numeroTicket == numero) {
       tickets.erase(tickets.begin() + i);
       break;
     }
