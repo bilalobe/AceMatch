@@ -34,7 +34,7 @@ public:
 class ChampionnatSimple : public Championnat {
 public:
     std::vector<Joueur> joueurs; // Players in the tournament
-
+    ChampionnatSimple() = default; 
     // Constructor
     ChampionnatSimple(const std::string& nom, int annee, int nbTours);
 

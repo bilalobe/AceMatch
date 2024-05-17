@@ -1,26 +1,24 @@
 #ifndef RESERVATIONS_H
 #define RESERVATIONS_H
-
-#include "clients.h"
-#include "parties.h"
-
 #include <string>
 #include <vector>
-
+#include "clients.h"
+#include "parties.h"
 using namespace std;
 
 class Reservation {
 public:
   Reservation();
+  void afficher() const;
   Reservation(Client* client, Partie* partie);
   Client* getClient() const;
   Partie* getPartie() const;
-  void setClient(Client* client);
-  void setPartie(Partie* partie);
+  // Remove Place: void setPlace(Place* place);
 
 private:
   Client* client;
   Partie* partie;
+  // Remove Place: Place* place;
 };
 
 class GestionReservations {

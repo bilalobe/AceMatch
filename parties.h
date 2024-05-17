@@ -6,17 +6,15 @@
 #include <string>
 #include <random>
 #include <algorithm>
-#include <map> // Include for the map
+#include <map>
 
 #include "joueurs.h"
 #include "championnats.h"
 
 using namespace std;
 
-enum TypePartie {
-  SIMPLE,
-  DOUBLE,
-};
+// No longer an enum, now an int
+int TypePartie; 
 
 enum ResultatPartie {
   VICTOIRE,
@@ -28,13 +26,13 @@ class Partie {
 public:
   static int nextMatchNumber;
   int numero;
-  TypePartie type;
+  int type; // Use int for the type 
   string nomJoueur1;
   string nomJoueur2;
   ResultatPartie resultat1;
   ResultatPartie resultat2;
 
-  Partie(TypePartie type, string nomJoueur1, string nomJoueur2);
+  Partie(int type, string nomJoueur1, string nomJoueur2);
 
   void afficher() const;
   void setResultat(const std::string& nomJoueur, int resultatAsInt);
@@ -63,10 +61,10 @@ public:
   void setParties(vector<Partie> parties);
   void ajouterPartie(Partie partie);
   void afficherParties();
-  void supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2);
+  void supprimerPartie(int type, string nomJoueur1, string nomJoueur2); // Adjust parameter type
 
-  // Function to retrieve a Partie by player names
-  Partie* rechercherPartie(const string& nomJoueur1, const string& nomJoueur2);
+  // Function to retrieve a Partie by match name
+  Partie* rechercherPartie(const string& matchName);
 };
 
 class PlanificationParties {

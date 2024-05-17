@@ -8,7 +8,7 @@ using namespace std;
 
 // Constructor for Reservation
 Reservation::Reservation(Client* client, Partie* partie)
-    : client(client), partie(partie){}
+    : client(client), partie(partie) {}
 
 // Getters for Reservation
 Client* Reservation::getClient() const {
@@ -16,14 +16,6 @@ Client* Reservation::getClient() const {
 }
 Partie* Reservation::getPartie() const {
   return partie;
-}
-
-// Setters for Reservation
-void Reservation::setClient(Client* client) {
-  this->client = client;
-}
-void Reservation::setPartie(Partie* partie) {
-  this->partie = partie;
 }
 
 
@@ -48,7 +40,7 @@ void GestionReservations::supprimerReservation(Client* client, Partie* partie) {
 // Search for a reservation
 Reservation* GestionReservations::rechercherReservation(Client* client, Partie* partie) {
   for (int i = 0; i < reservations.size(); i++) {
-    if (reservations[i].getClient() == client && reservations[i].getPartie() == partie ){
+    if (reservations[i].getClient() == client && reservations[i].getPartie() == partie) {
       return &reservations[i];
     }
   }

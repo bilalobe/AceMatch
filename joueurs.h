@@ -41,7 +41,7 @@ public:
   bool supprimerJoueur(const std::string& nom);
   void rechercherJoueur(const std::string& searchTerm) const;
   void trierJoueursParClassement();
-  void modifierJoueur(Joueur& joueur); 
+  void modifierJoueur(Joueur& joueur);
 };
 
-#endif
+#endif 

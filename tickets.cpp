@@ -66,26 +66,26 @@ public:
   }
 
   // Sell a ticket to a client (using GestionClients)
-  bool vendreTicket(GestionClients& gestionClients, int numeroTicket) {
+  bool GestionTickets::vendreTicket(GestionClients& gestionClients, int numeroTicket) {
     Ticket* ticketToSell = rechercherTicket(numeroTicket);
     if (ticketToSell != nullptr) {
       // 1. Remove the ticket from the inventory
-      supprimerTicket(numeroTicket); 
+      supprimerTicket(numeroTicket);
 
       // 2. Get the client from the GestionClients object
       cout << "Enter client name: ";
       string clientName;
       cin >> clientName;
 
-      Client* client = gestionClients.rechercherClient(clientName); 
+      Client* client = gestionClients.rechercherClient(clientName);
       if (client != nullptr) {
         // 3. Associate the ticket with the client
-        client->tickets.push_back(*ticketToSell); 
+        client->tickets.push_back(*ticketToSell);
         cout << "Ticket purchased successfully!" << endl;
         return true;
       } else {
         cout << "Client not found." << endl;
-        return false; 
+        return false;
       }
     } else {
       cout << "Ticket not found." << endl;

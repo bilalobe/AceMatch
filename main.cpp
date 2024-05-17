@@ -1,329 +1,320 @@
+#include "parties.h"
 #include <iostream>
 #include <vector>
-#include <limits>
+#include <string>
+#include <random>
+#include <algorithm>
+#include "personne.h"
 #include "joueurs.h"
-#include "terrains.h"
-#include "parties.h"
-#include "reservations.h"
 #include "championnats.h"
-#include "tickets.h"
 #include "scores.h"
-#include "clients.h" // You'll need to add this for GestionClients
+#include "type_partie.hpp" 
 
 using namespace std;
 
-// ... (Other global objects)
+// Static member initialization for next match number
+int Partie::nextMatchNumber = 1;
 
-// --- Tennis Championship Application ---
-
-class TennisChampionship {
-public:
-    GestionJoueurs gestionJoueurs;
-    GestionTerrains gestionTerrains;
-    GestionReservations gestionReservations;
-    GestionScores gestionScores;
-    GestionParties gestionParties;
-    ChampionnatSimple championnat;
-    PlanificationParties planificateur;
-    GestionClients gestionClients; // Add GestionClients to TennisChampionship
-
-    // Constructor
-    TennisChampionship() {
-        // Initialize the championship (load data from a file if needed)
-        championnat = ChampionnatSimple("Grand Slam", 2023, 4); 
-    }
-    
-    // Menu functions (members of the TennisChampionship class)
-    void displayMainMenu();
-    void displayJoueursMenu();
-    void displayTerrainsMenu();
-    void displayPartiesMenu();
-    void displayChampionnatsMenu();
-    void displayReservationsMenu();
-    void displayScoreManagementMenu();
-    void displayClientsMenu(); // Add displayClientsMenu
-    void displayTicketsMenu(); 
-
-private:
-    int getUserChoice(); // Helper function for menu selection
-
-    // ... (Other helper functions you may need)
-};
-
-
-// --- Menu Display Functions ---
-void TennisChampionship::displayMainMenu() {
-  cout << "Tennis Championship Application" << endl;
-  cout << "------------------------------" << endl;
-  cout << "1. Gestion des Joueurs" << endl;
-  cout << "2. Gestion des Terrains" << endl;
-  cout << "3. Gestion des Parties" << endl;
-  cout << "4. Gestion des Championnats" << endl;
-  cout << "5. Gestion des Réservations" << endl;
-  cout << "6. Gestion des Scores" << endl;
-  cout << "7. Gestion des Clients" << endl;
-  cout << "8. Gestion des Tickets" << endl;
-  cout << "9. Quitter" << endl;
-  cout << "------------------------------" << endl;
-  cout << "Enter your choice: ";
+// Constructor for Partie
+Partie::Partie(TypePartie type, string nomJoueur1, string nomJoueur2) {
+  this->type = type;
+  this->nomJoueur1 = nomJoueur1;
+  this->nomJoueur2 = nomJoueur2;
+  resultat1 = MATCH_NUL;
+  resultat2 = MATCH_NUL;
+  numero = nextMatchNumber++;
 }
 
-// --- Menu Selection Validation ---
-int TennisChampionship::getUserChoice() {
-    int choice;
-    while (!(cin >> choice) || choice < 1 || choice > 9) {
-        cout << "Invalid input. Please enter a number between 1 and 9: ";
-        cin.clear(); // Clear the error flag
-        cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard remaining input
-    }
-    return choice;
+// Display a match's details
+void Partie::afficher() const {
+  cout << "Type: " << (type == SIMPLE ? "Simple" : "Double") << endl;
+  cout << "Joueur 1: " << nomJoueur1 << endl;
+  cout << "Joueur 2: " << nomJoueur2 << endl;
+  cout << "Résultat 1: " << (resultat1 == VICTOIRE ? "Victoire" : "Défaite") << endl;
+  cout << "Résultat 2: " << (resultat2 == VICTOIRE ? "Victoire" : "Défaite") << endl;
 }
 
-// --- Menu Functions for Each Section ---
-
-void TennisChampionship::displayJoueursMenu() {
-  // ... (Implementation of displayJoueursMenu) ...
-}
-
-void TennisChampionship::displayTerrainsMenu() {
-  // ... (Implementation of displayTerrainsMenu) ...
-}
-
-void TennisChampionship::displayPartiesMenu() {
-  // ... (Implementation of displayPartiesMenu) ...
-}
-
-void TennisChampionship::displayChampionnatsMenu() {
-  // ... (Implementation of displayChampionnatsMenu) ...
-}
-
-void TennisChampionship::displayReservationsMenu() {
-  // ... (Implementation of displayReservationsMenu) ...
-}
-
-void TennisChampionship::displayScoreManagementMenu() {
-  // ... (Implementation of displayScoreManagementMenu) ...
-}
-
-void TennisChampionship::displayClientsMenu() {
-  cout << "Client Management Menu" << endl;
-  cout << "---------------------" << endl;
-  cout << "1. Add a client" << endl;
-  cout << "2. Remove a client" << endl;
-  cout << "3. Update a client's information" << endl;
-  cout << "4. Search for a client" << endl;
-  cout << "5. Display all clients" << endl;
-  cout << "6. Exit" << endl;
-  cout << "Enter your choice: ";
-  int choice = getUserChoice();
-
-  switch (choice) {
-    case 1: { // Add a client
-      string nom;
-      int age;
-      string adresse;
-      string telephone;
-
-      cout << "Enter client name: ";
-      cin >> nom;
-
-      cout << "Enter client age: ";
-      cin >> age;
-
-      cout << "Enter client address: ";
-      cin >> adresse;
-
-      cout << "Enter client phone number: ";
-      cin >> telephone;
-
-      Client client(nom, age, adresse, telephone);
-      this->gestionClients.ajouterClient(client);
-      cout << "Client added successfully." << endl;
+// Set the result of a match
+void Partie::setResultat(const string& nomJoueur, int resultatAsInt) {
+  if (resultatAsInt < 0 || resultatAsInt > 2) {
+    throw std::invalid_argument("Invalid result value. Must be between 0 and 2.");
+  }
+  ResultatPartie actualResultat = static_cast<ResultatPartie>(resultatAsInt);
+  switch (resultatAsInt) {
+    case 0:
+      actualResultat = MATCH_NUL;
       break;
-    }
-    case 2: { // Remove a client
-      string nom;
-      cout << "Enter client name: ";
-      cin >> nom;
-      if (!this->gestionClients.supprimerClient(nom)) {
-        cout << "Client not found." << endl;
-      } else {
-        cout << "Client removed successfully." << endl;
-      }
+    case 1:
+      actualResultat = VICTOIRE;
       break;
-    }
-    case 3: { // Update a client's information
-      string nom;
-      cout << "Enter client name: ";
-      cin >> nom;
-      Client* clientToUpdate = this->gestionClients.rechercherClient(nom);
-      if (clientToUpdate != nullptr) {
-        cout << "Enter new client name: ";
-        cin >> clientToUpdate->nom;
-
-        cout << "Enter new client age: ";
-        cin >> clientToUpdate->age;
-
-        cout << "Enter new client address: ";
-        cin >> clientToUpdate->adresse;
-
-        cout << "Enter new client phone number: ";
-        cin >> clientToUpdate->telephone;
-
-        cout << "Client updated successfully." << endl;
-      } else {
-        cout << "Client not found." << endl;
-      }
-      break;
-    }
-    case 4: { // Search for a client
-      string nom;
-      cout << "Enter client name: ";
-      cin >> nom;
-      Client* client = this->gestionClients.rechercherClient(nom);
-      if (client != nullptr) {
-        client->afficher();
-      } else {
-        cout << "Client not found." << endl;
-      }
-      break;
-    }
-    case 5: { // Display all clients
-      this->gestionClients.trierClientsParNom(); 
-      for (const Client& client : this->gestionClients.getClients()) {
-        client.afficher();
-      }
-      break;
-    }
-    case 6:
+    case 2:
+      actualResultat = DEFAITE;
       break;
     default:
-      cout << "Invalid choice. Please try again." << endl;
+      break;
+  }
+
+  if (nomJoueur == nomJoueur1) {
+    resultat1 = actualResultat;
+  } else if (nomJoueur == nomJoueur2) {
+    resultat2 = actualResultat;
   }
 }
 
-void TennisChampionship::displayTicketsMenu() {
-    cout << "Ticket Management Menu" << endl;
-    cout << "---------------------" << endl;
-    cout << "1. Generate a ticket" << endl;
-    cout << "2. Sell a ticket" << endl;
-    cout << "3. Display all tickets" << endl;
-    cout << "4. Search for a ticket" << endl;
-    cout << "5. Remove a ticket" << endl;
-    cout << "6. Exit" << endl;
-    cout << "Enter your choice: ";
-    int choice = getUserChoice();
-    
-    switch (choice) {
-      case 1: { // Generate a ticket
-        cout << "Enter ticket type (Standard or VIP): ";
-        string type;
-        cin >> type;
-
-        cout << "Enter ticket price: ";
-        double prix;
-        cin >> prix;
-
-        cout << "Enter match name (Player 1 vs. Player 2): ";
-        string matchName;
-        cin >> matchName;
-
-        Ticket ticket = this->gestionTickets.genererTicket(type, prix, matchName); 
-        this->gestionTickets.ajouterTicket(ticket);
-        cout << "Ticket generated successfully!" << endl;
-        break;
-      }
-      case 2: { // Sell a ticket
-        cout << "Enter ticket number: ";
-        int ticketNumber;
-        cin >> ticketNumber;
-
-        bool success = this->gestionTickets.vendreTicket(this->gestionClients, ticketNumber); 
-        if (success) {
-          cout << "Ticket sold successfully." << endl;
-        }
-        break;
-      }
-      case 3: { // Display all tickets
-        this->gestionTickets.afficherTickets();
-        break;
-      }
-      case 4: { // Search for a ticket
-        cout << "Enter ticket number: ";
-        int ticketNumber;
-        cin >> ticketNumber;
-
-        Ticket* ticket = this->gestionTickets.rechercherTicket(ticketNumber);
-        if (ticket != nullptr) {
-          ticket->afficher();
-        } else {
-          cout << "Ticket not found." << endl;
-        }
-        break;
-      }
-      case 5: { // Remove a ticket
-        cout << "Enter ticket number: ";
-        int ticketNumber;
-        cin >> ticketNumber;
-
-        this->gestionTickets.supprimerTicket(ticketNumber);
-        cout << "Ticket removed successfully." << endl;
-        break;
-      }
-      case 6:
-        break; // Exit the Tickets menu
-      default:
-        cout << "Invalid choice. Please try again." << endl;
-    }
+// Get the result for player 1
+ResultatPartie Partie::getResultat1() const {
+  return resultat1;
 }
 
-// ... (Implementations of other functions) ...
-
-// Helper function to choose a place
-
-
-int main() {
-  // ... (You'll likely want to initialize your data here, perhaps by loading it from a file)
-  TennisChampionship tennisChampionship; // Create an instance
-
-  int selection;
-  do {
-    tennisChampionship.displayMainMenu();
-    selection = tennisChampionship.getUserChoice();
-
-    switch (selection) {
-      case 1:
-        tennisChampionship.displayJoueursMenu();
-        break;
-      case 2:
-        tennisChampionship.displayTerrainsMenu();
-        break;
-      case 3:
-        tennisChampionship.displayPartiesMenu();
-        break;
-      case 4:
-        tennisChampionship.displayChampionnatsMenu();
-        break;
-      case 5:
-        tennisChampionship.displayReservationsMenu();
-        break;
-      case 6:
-        tennisChampionship.displayScoreManagementMenu();
-        break;
-      case 7:
-        tennisChampionship.displayClientsMenu();
-        break;
-      case 8:
-        tennisChampionship.displayTicketsMenu();
-        break;
-      case 9:
-        cout << "Au revoir!" << endl;
-        break;
-      default:
-        cout << "Choix invalide" << endl;
-        break;
-    }
-  } while (selection != 9);
-
-  return 0;
+// Get the result for player 2
+ResultatPartie Partie::getResultat2() const {
+  return resultat2;
 }
+
+// Get the name of player 1
+string Partie::getNomJoueur1() const {
+  return nomJoueur1;
+}
+
+// Get the name of player 2
+string Partie::getNomJoueur2() const {
+  return nomJoueur2;
+}
+
+// Set the name of player 1
+void Partie::setNomJoueur1(string nomJoueur1) {
+  this->nomJoueur1 = nomJoueur1;
+}
+
+// Set the name of player 2
+void Partie::setNomJoueur2(string nomJoueur2) {
+  this->nomJoueur2 = nomJoueur2;
+}
+
+// GestionParties implementation
+GestionParties::GestionParties() {}
+
+// Get the list of matches
+vector<Partie> GestionParties::getParties() {
+  return parties;
+}
+
+// Get the list of matches from the previous round
+vector<Partie> GestionParties::getPreviousRoundMatches() {
+  vector<Partie> previousRoundMatches;
+  for (const Partie& partie : parties) {
+    if (partie.numero <= previousRoundMaxMatchNumber) {
+      previousRoundMatches.push_back(partie);
+    }
+  }
+  return previousRoundMatches;
+}
+
+// Check if a match is from the previous round
+bool GestionParties::isPartieFromPreviousRound(Partie partie) {
+  return partie.numero <= previousRoundMaxMatchNumber;
+}
+
+// Get the maximum match number from the previous round
+int GestionParties::getPreviousRoundMaxMatchNumber() const {
+  return previousRoundMaxMatchNumber;
+}
+
+// Set the maximum match number from the previous round
+void GestionParties::setPreviousRoundMaxMatchNumber(int newMax) {
+  previousRoundMaxMatchNumber = newMax;
+}
+
+// Set the list of matches
+void GestionParties::setParties(vector<Partie> parties) {
+  this->parties = parties;
+}
+
+// Add a match
+void GestionParties::ajouterPartie(Partie partie) {
+  parties.push_back(partie);
+  partiesMap[make_pair(partie.nomJoueur1, partie.nomJoueur2)] = &partie;
+}
+
+// Display all matches
+void GestionParties::afficherParties() {
+  for (Partie partie : parties) {
+    partie.afficher();
+    cout << endl;
+  }
+}
+
+// Remove a match
+void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2) {
+  for (int i = 0; i < parties.size(); i++) {
+    if (parties[i].type == type && parties[i].nomJoueur1 == nomJoueur1 &&
+        parties[i].nomJoueur2 == nomJoueur2) {
+      parties.erase(parties.begin() + i);
+      break;
+    }
+  }
+}
+
+// Function to retrieve a Partie by player names
+Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string& nomJoueur2) {
+  auto it = partiesMap.find(make_pair(nomJoueur1, nomJoueur2));
+  if (it != partiesMap.end()) {
+    return it->second;
+  }
+  return nullptr;
+}
+
+// Function to retrieve a Partie by match name
+Partie* GestionParties::rechercherPartie(const string& matchName) {
+  for (Partie& partie : parties) {
+    // Check if the match name matches the names of the players in the match
+    if ((partie.nomJoueur1 + " vs. " + partie.nomJoueur2 == matchName) ||
+        (partie.nomJoueur2 + " vs. " + partie.nomJoueur1 == matchName)) {
+      return &partie; // Return a pointer to the found match
+    }
+  }
+  return nullptr; // Match not found
+}
+
+// PlanificationParties implementation
+class PlanificationParties {
+private:
+  TennisChampionship* tennisChampionship;
+
+public:
+  // Constructor (take TennisChampionship as an argument)
+  PlanificationParties(TennisChampionship* tennisChampionship) : tennisChampionship(tennisChampionship) {} 
+
+  vector<Joueur> getWinnersFromPreviousRound() {
+    vector<Joueur> winners;
+
+    // Retrieve the list of played matches from the previous round
+    vector<Partie> previousRoundMatches = tennisChampionship->gestionParties.getPreviousRoundMatches();
+
+    // Iterate through matches and identify winners
+    for (Partie partie : previousRoundMatches) {
+      if (partie.getResultat1() == VICTOIRE) {
+        winners.push_back(Joueur(partie.getNomJoueur1()));
+      } else if (partie.getResultat2() == VICTOIRE) {
+        winners.push_back(Joueur(partie.getNomJoueur2()));
+      } else {
+        // Handle draws (optional, logic not provided)
+        // You can throw an exception or implement logic to handle draws here
+        // For example, if you want both players to advance:
+        // winners.push_back(Joueur(partie.getNomJoueur1()));
+        // winners.push_back(Joueur(partie.getNomJoueur2()));
+      }
+    }
+    return winners;
+  }
+
+  void creerPartiesEliminatoires() {
+    // Retrieve the list of enrolled players from the championnat object
+    vector<Joueur> joueursInscrits = tennisChampionship->championnat.getJoueursInscrits();
+
+    // Create a new match for each pair of players
+    for (int i = 0; i < joueursInscrits.size(); i++) {
+      for (int j = i + 1; j < joueursInscrits.size(); j++) {
+        TypePartie type = getMatchTypeFromUser();
+        Partie partie(type, joueursInscrits[i].getNom(), joueursInscrits[j].getNom());
+        tennisChampionship->gestionParties.ajouterPartie(partie);
+      }
+    }
+  }
+
+  void attribuerJoueursParties() {
+    // Retrieve the list of matches from the gestionParties object
+    vector<Partie> matches = tennisChampionship->gestionParties.getParties();
+
+    // Retrieve the list of enrolled players from the championnat object
+    vector<Joueur> joueursInscrits = tennisChampionship->championnat.getJoueursInscrits();
+
+    // Randomly assign players to matches
+    for (Partie& partie : matches) {
+      std::random_device rd;
+      std::mt19937 g(rd());
+      std::shuffle(joueursInscrits.begin(), joueursInscrits.end(), g);
+      // Assign the first two players to the match
+      partie.setNomJoueur1(joueursInscrits[0].getNom());
+      partie.setNomJoueur2(joueursInscrits[1].getNom());
+    }
+  }
+
+  void creerParties16emes() {
+    // Get sorted players based on rankings (assuming you have a ranking system)
+    std::vector<Joueur> joueurs = tennisChampionship->championnat.getJoueursInscrits();
+    std::sort(joueurs.begin(), joueurs.end(), [](const Joueur& a, const Joueur& b) {
+      return a.getClassement() > b.getClassement(); // Sort by descending ranking
+    });
+
+    // Pair players based on rankings
+    for (int i = 0; i < joueurs.size() / 2; ++i) {
+      TypePartie type = getMatchTypeFromUser();
+      Partie partie(type, joueurs[i].getNom(), joueurs[joueurs.size() - 1 - i].getNom());
+      tennisChampionship->gestionParties.ajouterPartie(partie);
+    }
+  }
+
+  void creerPartiesHuitiemesDeFinale() {
+    std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound(); // Get winners from previous round
+
+    // (Optional) Update rankings if you have a dynamic ranking system
+    // ... (your ranking update logic here)
+
+    // Sort winners based on rankings
+    std::sort(vainqueurs.begin(), vainqueurs.end(), [](const Joueur& j1, const Joueur& j2) {
+      return j1.getClassement() > j2.getClassement();
+    });
+
+    // Pair and create matches
+    for (int i = 0; i < vainqueurs.size(); i += 2) { // Increment by 2 to pair players
+      TypePartie type = getMatchTypeFromUser();
+      Partie partie(type, vainqueurs[i].getNom(), vainqueurs[i + 1].getNom());
+      tennisChampionship->gestionParties.ajouterPartie(partie);
+    }
+  }
+
+  void creerPartiesQuartsDeFinale() {
+    std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
+
+    std::sort(vainqueurs.begin(), vainqueurs.end(), [](const Joueur& j1, const Joueur& j2) {
+      return j1.getClassement() > j2.getClassement();
+    });
+
+    // Pair and create matches
+    for (int i = 0; i < vainqueurs.size(); i += 2) { // Assuming even number of players (adjust logic for odd numbers if needed)
+      TypePartie type = getMatchTypeFromUser();
+      Partie partie(type, vainqueurs[i].getNom(), vainqueurs[i + 1].getNom());
+      tennisChampionship->gestionParties.ajouterPartie(partie);
+    }
+  }
+
+  void creerPartiesDemiFinales() {
+    // Retrieve the list of winners from the previous round (e.g., round of 8)
+    vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
+
+    // Create a new match for each pair of winners
+    for (int i = 0; i < vainqueurs.size(); i++) {
+      for (int j = i + 1; j < vainqueurs.size(); j++) {
+        TypePartie type = getMatchTypeFromUser();
+        Partie partie(type, vainqueurs[i].getNom(), vainqueurs[j].getNom());
+        tennisChampionship->gestionParties.ajouterPartie(partie);
+      }
+    }
+  }
+
+  void creerPartieFinale() {
+    // Retrieve the list of winners from the previous round (e.g., round of 4)
+    vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
+
+    // Check if there are exactly two winners (assuming semifinals)
+    if (vainqueurs.size() != 2) {
+      throw runtime_error("Unexpected number of winners in semifinals.");
+    }
+
+    // Create a new match for the two winners
+    TypePartie type = getMatchTypeFromUser();
+    Partie partie(type, vainqueurs[0].getNom(), vainqueurs[1].getNom());
+    tennisChampionship->gestionParties.ajouterPartie(partie);
+  }
+};
