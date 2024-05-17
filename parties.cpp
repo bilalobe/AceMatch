@@ -15,8 +15,8 @@ using namespace std;
 int Partie::nextMatchNumber = 1;
 
 // Constructor for Partie
-Partie::Partie(int type, string nomJoueur1, string nomJoueur2) {
-  this->type = type; 
+Partie::Partie(TypePartie type, string nomJoueur1, string nomJoueur2) {
+  this->type = type;
   this->nomJoueur1 = nomJoueur1;
   this->nomJoueur2 = nomJoueur2;
   resultat1 = MATCH_NUL;
@@ -154,6 +154,14 @@ void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string 
   }
 }
 
+// Function to retrieve a Partie by player names
+Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string& nomJoueur2) {
+  auto it = partiesMap.find(make_pair(nomJoueur1, nomJoueur2));
+  if (it != partiesMap.end()) {
+    return it->second;
+  }
+  return nullptr;
+}
 
 // Function to retrieve a Partie by match name
 Partie* GestionParties::rechercherPartie(const string& matchName) {
@@ -170,11 +178,11 @@ Partie* GestionParties::rechercherPartie(const string& matchName) {
 // PlanificationParties implementation
 class PlanificationParties {
 private:
-    TennisChampionship* tennisChampionship; 
+  TennisChampionship* tennisChampionship;
 
 public:
-    // Constructor
-    PlanificationParties(TennisChampionship* tennisChampionship) : tennisChampionship(tennisChampionship) {} // 
+  // Constructor (take TennisChampionship as an argument)
+  PlanificationParties(TennisChampionship* tennisChampionship) : tennisChampionship(tennisChampionship) {} 
 
   vector<Joueur> getWinnersFromPreviousRound() {
     vector<Joueur> winners;
