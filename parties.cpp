@@ -80,12 +80,12 @@ string Partie::getNomJoueur2() const {
 }
 
 // Set the name of player 1
-void Partie::setNomJoueur1(string nomJoueur1) {
+void Partie::setNomJoueur1(string nomJoueur1) const {
   this->nomJoueur1 = nomJoueur1;
 }
 
 // Set the name of player 2
-void Partie::setNomJoueur2(string nomJoueur2) {
+void Partie::setNomJoueur2(string nomJoueur2) const {
   this->nomJoueur2 = nomJoueur2;
 }
 

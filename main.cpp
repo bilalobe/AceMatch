@@ -374,8 +374,7 @@ void displayPartiesMenu()
 }
 
 // Function to display the reservations menu
-void displayReservationsMenu()
-{
+void displayReservationsMenu() {
   cout << "Reservation Management Menu" << endl;
   cout << "---------------------" << endl;
   cout << "1. Add a reservation" << endl;
@@ -387,215 +386,176 @@ void displayReservationsMenu()
   cout << "Enter your choice: ";
   int choice = getUserChoice();
 
-  switch (choice)
-  {
-  case 1:
-  { // Add reservation
-    // Implement add reservation functionality
-    cout << "Enter Client Name: ";
-    string nomClient;
-    cin >> nomClient;
+  switch (choice) {
+    // ... 
+    case 1: { // Add reservation
+      // Implement add reservation functionality
+      cout << "Enter Client Name: ";
+      string nomClient;
+      cin >> nomClient;
 
-    Client *client = tennisChampionship.gestionClients.rechercherClient(nomClient);
-    if (client != nullptr)
-    {
-      cout << "Enter Match Name (Player 1 vs. Player 2): ";
-      string matchName;
-      cin >> matchName;
+      Client* client = tennisChampionship.gestionClients.rechercherClient(nomClient);
+      if (client != nullptr) {
+        cout << "Enter Match Name (Player 1 vs. Player 2): ";
+        string matchName;
+        cin >> matchName;
 
-      Partie *partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
-      if (partie != nullptr)
-      {
-        // Place Selection Logic (You'll need to replace this placeholder with your new logic)
-        // ...
-
-        cout << "Enter Length: ";
-        int longueur;
-        cin >> longueur;
-
-        cout << "Enter Width: ";
-        int largeur;
-        cin >> largeur;
-
-        cout << "Enter terrain type (Dur, Terre battue, Gazon): "; // Change the prompt
-        string terrainType;
-        cin >> terrainType;
-
-        TypeTerrain type = stringToTypeTerrain(terrainType); // Convert the string
-
-        // ... (Rest of your code) ...
-
-        Terrain *terrain = tennisChampionship.gestionTerrains.rechercherTerrain(type, longueur, largeur);
-        if (terrain == nullptr)
-        {
-          cout << "No available terrains for this match. Cannot create reservation." << endl;
-          break;
-        }
-
-        // Select a seat on the terrain (you'll need to prompt the user)
-        // ...
-        int row, col;
-        cout << "Enter the row number: ";
-        cin >> row;
-        cout << "Enter the column number: ";
-        cin >> col;
-
-        if (terrain->isSeatAvailable(row, col))
-        {
-          terrain->reserveSeat(row, col);
-          Reservation reservation(client, partie); // Create Reservation
-          reservation.setTerrain(terrain);         // Assign the selected terrain
-          tennisChampionship.gestionReservations.ajouterReservation(reservation);
-          cout << "Reservation added successfully." << endl;
-        }
-        else
-        {
-          cout << "Seat is not available. Please choose another seat." << endl;
-        }
-      }
-      else
-      {
-        cout << "Match not found." << endl;
-      }
-    }
-    else
-    {
-      cout << "Client not found." << endl;
-    }
-    break;
-  }
-  case 2:
-  { // Remove reservation
-    // Implement remove reservation functionality
-    cout << "Enter Client Name: ";
-    string nomClient;
-    cin >> nomClient;
-
-    Client *client = tennisChampionship.gestionClients.rechercherClient(nomClient);
-    if (client != nullptr)
-    {
-      cout << "Enter Match Name (Player 1 vs. Player 2): ";
-      string matchName;
-      cin >> matchName;
-
-      Partie *partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
-      if (partie != nullptr)
-      {
-        // Place Selection Logic
-        // ...
-
-        tennisChampionship.gestionReservations.supprimerReservation(client, partie);
-        cout << "Reservation removed successfully." << endl;
-      }
-      else
-      {
-        cout << "Match not found." << endl;
-      }
-    }
-    else
-    {
-      cout << "Client not found." << endl;
-    }
-    break;
-  }
-  case 3:
-  { // Update reservation's information
-    // Implement update reservation functionality
-    cout << "Enter Client Name: ";
-    string nomClient;
-    cin >> nomClient;
-
-    Client *client = tennisChampionship.gestionClients.rechercherClient(nomClient);
-    if (client != nullptr)
-    {
-      cout << "Enter Match Name (Player 1 vs. Player 2): ";
-      string matchName;
-      cin >> matchName;
-
-      Partie *partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
-      if (partie != nullptr)
-      {
-        // Place Selection Logic
-        // ...
-
-        Reservation *reservation = tennisChampionship.gestionReservations.rechercherReservation(client, partie);
-        if (reservation != nullptr)
-        {
-          // Update reservation details (e.g., change the place)
+        Partie* partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
+        if (partie != nullptr) {
+          // Place Selection Logic (You'll need to replace this placeholder with your new logic)
           // ...
-          cout << "Reservation updated successfully." << endl;
-        }
-        else
-        {
-          cout << "Reservation not found." << endl;
-        }
-      }
-      else
-      {
-        cout << "Match not found." << endl;
-      }
-    }
-    else
-    {
-      cout << "Client not found." << endl;
-    }
-    break;
-  }
-  case 4:
-  { // Search for reservation
-    // Implement search functionality
-    cout << "Enter Client Name: ";
-    string nomClient;
-    cin >> nomClient;
 
-    Client *client = tennisChampionship.gestionClients.rechercherClient(nomClient);
-    if (client != nullptr)
-    {
-      cout << "Enter Match Name (Player 1 vs. Player 2): ";
-      string matchName;
-      cin >> matchName;
+          // Select a terrain (you'll need to prompt the user)
+          // ...
+          TypeTerrain type;
+          int longueur, largeur;
 
-      Partie *partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
-      if (partie != nullptr)
-      {
-        // Place Selection Logic
-        // ...
+          cout << "Enter terrain type (0 - Dur, 1 - Terre battue, 2 - Gazon): ";
+          cin >> type; 
 
-        Reservation *reservation = tennisChampionship.gestionReservations.rechercherReservation(client, partie);
-        if (reservation != nullptr)
-        {
-          reservation->afficher(); // Call afficher() on the Reservation object
+          cout << "Enter terrain length: ";
+          cin >> longueur;
+
+          cout << "Enter terrain width: ";
+          cin >> largeur;
+
+          Terrain* terrain = tennisChampionship.gestionTerrains.rechercherTerrain(type, longueur, largeur); // Find the terrain
+
+          if (terrain == nullptr) {
+            cout << "No available terrains for this match. Cannot create reservation." << endl;
+            break;
+          }
+
+          // Select a seat on the terrain (you'll need to prompt the user)
+          // ...
+          int row, col;
+          cout << "Enter the row number: ";
+          cin >> row;
+          cout << "Enter the column number: ";
+          cin >> col;
+
+          if (terrain->isSeatAvailable(row, col)) {
+            terrain->reserveSeat(row, col); 
+            Reservation reservation(client, partie, terrain); // Create Reservation with terrain
+            tennisChampionship.gestionReservations.ajouterReservation(reservation);
+            cout << "Reservation added successfully." << endl;
+          } else {
+            cout << "Seat is not available. Please choose another seat." << endl;
+          }
+
+        } else {
+          cout << "Match not found." << endl;
         }
-        else
-        {
-          cout << "Reservation not found." << endl;
+      } else {
+        cout << "Client not found." << endl;
+      }
+      break;
+    }
+
+    case 2: { // Remove reservation
+      // Implement remove reservation functionality
+      cout << "Enter Client Name: ";
+      string nomClient;
+      cin >> nomClient;
+
+      Client* client = tennisChampionship.gestionClients.rechercherClient(nomClient);
+      if (client != nullptr) {
+        cout << "Enter Match Name (Player 1 vs. Player 2): ";
+        string matchName;
+        cin >> matchName;
+
+        Partie* partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
+        if (partie != nullptr) {
+          // Place Selection Logic
+          // ...
+
+          tennisChampionship.gestionReservations.supprimerReservation(client, partie);
+          cout << "Reservation removed successfully." << endl;
+        } else {
+          cout << "Match not found." << endl;
         }
+      } else {
+        cout << "Client not found." << endl;
       }
-      else
-      {
-        cout << "Match not found." << endl;
+      break;
+    }
+    case 3: { // Update reservation's information
+      // Implement update reservation functionality
+      cout << "Enter Client Name: ";
+      string nomClient;
+      cin >> nomClient;
+
+      Client* client = tennisChampionship.gestionClients.rechercherClient(nomClient);
+      if (client != nullptr) {
+        cout << "Enter Match Name (Player 1 vs. Player 2): ";
+        string matchName;
+        cin >> matchName;
+
+        Partie* partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
+        if (partie != nullptr) {
+          // Place Selection Logic
+          // ...
+
+          Reservation* reservation = tennisChampionship.gestionReservations.rechercherReservation(client, partie);
+          if (reservation != nullptr) {
+            // Update reservation details (e.g., change the place)
+            // ...
+            cout << "Reservation updated successfully." << endl;
+          } else {
+            cout << "Reservation not found." << endl;
+          }
+        } else {
+          cout << "Match not found." << endl;
+        }
+      } else {
+        cout << "Client not found." << endl;
       }
+      break;
     }
-    else
-    {
-      cout << "Client not found." << endl;
+    case 4: { // Search for reservation
+      // Implement search functionality
+      cout << "Enter Client Name: ";
+      string nomClient;
+      cin >> nomClient;
+
+      Client* client = tennisChampionship.gestionClients.rechercherClient(nomClient);
+      if (client != nullptr) {
+        cout << "Enter Match Name (Player 1 vs. Player 2): ";
+        string matchName;
+        cin >> matchName;
+
+        Partie* partie = tennisChampionship.gestionParties.rechercherPartie(matchName);
+        if (partie != nullptr) {
+          // Place Selection Logic
+          // ...
+
+          Reservation* reservation = tennisChampionship.gestionReservations.rechercherReservation(client, partie);
+          if (reservation != nullptr) {
+            reservation->afficher(); // Call afficher() on the Reservation object
+          } else {
+            cout << "Reservation not found." << endl;
+          }
+        } else {
+          cout << "Match not found." << endl;
+        }
+      } else {
+        cout << "Client not found." << endl;
+      }
+      break;
     }
-    break;
-  }
-  case 5:
-  { // Display all reservations
-    for (const Reservation &reservation : tennisChampionship.gestionReservations.getReservations())
-    {
-      cout << "Client: " << reservation.getClient()->getNom() << endl;
-      cout << "Match: " << reservation.getPartie()->getNomJoueur1() << " vs. " << reservation.getPartie()->getNomJoueur2() << endl;
-      cout << endl;
+    case 5: { // Display all reservations
+      for (const Reservation& reservation : tennisChampionship.gestionReservations.getReservations()) {
+        cout << "Client: " << reservation.getClient()->getNom() << endl;
+        cout << "Match: " << reservation.getPartie()->getNomJoueur1() << " vs. " << reservation.getPartie()->getNomJoueur2() << endl;
+        cout << "Terrain: " << reservation.getTerrain()->getType() << endl;
+        cout << endl;
+      }
+      break;
     }
-    break;
-  }
-  case 6:
-    break; // Exit the reservations menu
-  default:
-    cout << "Invalid choice. Please try again." << endl;
+    case 6:
+      break; // Exit the reservations menu
+    default:
+      cout << "Invalid choice. Please try again." << endl;
   }
 }
 

@@ -65,13 +65,7 @@ void Terrain::setTerrain(TypeTerrain type, int longueur, int largeur, int nbPlac
   initializeSeatingPlan(longueur, largeur); // Reinitialize seating plan
 }
 
-// Display methods
-void Terrain::afficher(int longueur, int largeur, int nbPlacesReservees) const {
-  cout << "Type de terrain: " << (type == DUR ? "Dur" : (type == TERRE_BATTUE ? "Terre battue" : "Gazon")) << endl;
-  cout << "Longueur: " << longueur << endl;
-  cout << "Largeur: " << largeur << endl;
-  cout << "Nombre de places réservées: " << nbPlacesReservees << endl;
-}
+
 
 void Terrain::afficher() const {
   cout << "Type de terrain: " << (type == DUR ? "Dur" : (type == TERRE_BATTUE ? "Terre battue" : "Gazon")) << endl;
@@ -98,12 +92,14 @@ bool Terrain::isSeatAvailable(int row, int col) const {
 void Terrain::reserveSeat(int row, int col) {
   if (isSeatAvailable(row, col)) {
     seatingPlan[row][col] = true;
+    ++nbPlacesReservees;
   }
 }
 
 void Terrain::releaseSeat(int row, int col) {
   if (!isSeatAvailable(row, col)) {
     seatingPlan[row][col] = false; 
+    --nbPlacesReservees;
   }
 }
 

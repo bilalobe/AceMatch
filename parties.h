@@ -30,8 +30,8 @@ public:
   ResultatPartie getResultat2() const;
   std::string getNomJoueur1() const;
   std::string getNomJoueur2() const;
-  void setNomJoueur1(std::string nomJoueur1);
-  void setNomJoueur2(std::string nomJoueur2);
+  void setNomJoueur1(std::string nomJoueur1) const;
+  void setNomJoueur2(std::string nomJoueur2) const;
 
   // Declare the operator>> as a friend function of the Partie class
   friend std::istream& operator>>(std::istream& is, TypePartie& tp); 

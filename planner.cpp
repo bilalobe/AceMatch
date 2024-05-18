@@ -121,57 +121,69 @@ public:
             return getMatchTypeFromUser();
         }
     }
-
-    void creerPartiesHuitiemesDeFinale()
+    void PlanificationParties::creerTournoi(int nbRounds)
     {
-        std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
+        // Get sorted players based on rankings (assuming you have a ranking system)
+        std::vector<Joueur> joueurs = tennisChampionship->gestionJoueurs.getJoueurs();
+        std::sort(joueurs.begin(), joueurs.end(), [](const Joueur &a, const Joueur &b)
+                  {
+                      return a.getClassement() > b.getClassement(); // Sort by descending ranking
+                  });
+
+        // Check for minimum number of players
+        if (joueurs.size() < 2)
+        {
+            cout << "Not enough players to start a tournament." << endl;
+            return;
+        }
+
+        // Create the Round of 16 matches
+        creerParties16emes();
+
+        // Create the rest of the rounds
+        for (int round = 1; round < nbRounds; round++)
+        {
+            creerRound(round);
+        }
+    }
+
+    void PlanificationParties::creerParties16emes()
+    {
+        std::vector<Joueur> joueurs = tennisChampionship->gestionJoueurs.getJoueurs();
+        // (Get the players based on how you add them to the tournament)
+
+        // Sort players based on rankings
+        std::sort(joueurs.begin(), joueurs.end(), [](const Joueur &j1, const Joueur &j2)
+                  { return j1.getClassement() > j2.getClassement(); });
+
+        // Pair players based on rankings
+        for (int i = 0; i < joueurs.size() / 2; ++i)
+        {
+            TypePartie type = getMatchTypeFromUser();
+            Partie partie(type, joueurs[i].getNom(), joueurs[joueurs.size() - 1 - i].getNom());
+            tennisChampionship->gestionParties.ajouterPartie(partie);
+        }
+    }
+
+    void PlanificationParties::creerRound(int round)
+    {
+        // Get the winners from the previous round
+        std::vector<Joueur> winners = getWinnersFromPreviousRound();
 
         // Sort winners based on rankings
-        std::sort(vainqueurs.begin(), vainqueurs.end(), [](const Joueur &j1, const Joueur &j2)
+        std::sort(winners.begin(), winners.end(), [](const Joueur &j1, const Joueur &j2)
                   { return j1.getClassement() > j2.getClassement(); });
 
-        // Pair and create matches
-        for (int i = 0; i < vainqueurs.size(); i += 2)
+        // Create matches for the round
+        for (int i = 0; i < winners.size(); i += 2)
         {
             TypePartie type = getMatchTypeFromUser();
-            Partie partie(type, vainqueurs[i].getNom(), vainqueurs[i + 1].getNom());
+            Partie partie(type, winners[i].getNom(), winners[i + 1].getNom());
             tennisChampionship->gestionParties.ajouterPartie(partie);
         }
     }
 
-    void creerPartiesQuartsDeFinale()
-    {
-        std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
-
-        std::sort(vainqueurs.begin(), vainqueurs.end(), [](const Joueur &j1, const Joueur &j2)
-                  { return j1.getClassement() > j2.getClassement(); });
-
-        // Pair and create matches (Handling both winners advancing)
-        for (int i = 0; i < vainqueurs.size(); i += 2)
-        {
-            TypePartie type = getMatchTypeFromUser();
-            Partie partie(type, vainqueurs[i].getNom(), vainqueurs[i + 1].getNom());
-            tennisChampionship->gestionParties.ajouterPartie(partie);
-        }
-    }
-
-    void creerPartiesDemiFinales()
-    {
-        std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
-
-        std::sort(vainqueurs.begin(), vainqueurs.end(), [](const Joueur &j1, const Joueur &j2)
-                  { return j1.getClassement() > j2.getClassement(); });
-
-        // Pair and create matches (Handling both winners advancing)
-        for (int i = 0; i < vainqueurs.size(); i += 2)
-        {
-            TypePartie type = getMatchTypeFromUser();
-            Partie partie(type, vainqueurs[i].getNom(), vainqueurs[i + 1].getNom());
-            tennisChampionship->gestionParties.ajouterPartie(partie);
-        }
-    }
-
-    void creerPartieFinale()
+    void PlanificationParties::creerPartieFinale()
     {
         std::vector<Joueur> vainqueurs = getWinnersFromPreviousRound();
 
@@ -187,24 +199,31 @@ public:
         tennisChampionship->gestionParties.ajouterPartie(partie);
     }
 
-    TypePartie getMatchTypeFromUser()
+    vector<Joueur> PlanificationParties::getWinnersFromPreviousRound()
     {
-        int input;
-        cout << "Enter match type (0 - Simple, 1 - Double): ";
-        cin >> input;
+        vector<Joueur> winners;
 
-        if (input == 0)
+        // Retrieve the list of played matches from the previous round
+        vector<Partie> previousRoundMatches = tennisChampionship->gestionParties.getPreviousRoundMatches();
+
+        // Iterate through matches and identify winners
+        for (Partie partie : previousRoundMatches)
         {
-            return SIMPLE;
+            if (partie.getResultat1() == VICTOIRE)
+            {
+                winners.push_back(Joueur(partie.getNomJoueur1()));
+            }
+            else if (partie.getResultat2() == VICTOIRE)
+            {
+                winners.push_back(Joueur(partie.getNomJoueur2()));
+            }
+            else
+            {
+
+                winners.push_back(Joueur(partie.getNomJoueur1()));
+                winners.push_back(Joueur(partie.getNomJoueur2()));
+            }
         }
-        else if (input == 1)
-        {
-            return DOUBLE;
-        }
-        else
-        {
-            cout << "Invalid input. Please enter 0 for Simple or 1 for Double: ";
-            return getMatchTypeFromUser();
-        }
+        return winners;
     }
 };
