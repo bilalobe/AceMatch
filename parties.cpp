@@ -7,7 +7,6 @@
 #include "joueurs.h"
 #include "championnats.h"
 #include "scores.h"
-#include "type_partie.hpp" 
 
 using namespace std;
 

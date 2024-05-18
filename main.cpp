@@ -9,7 +9,6 @@
 #include "tickets.h"
 #include "scores.h"
 #include "clients.h"
-#include "type_partie.hpp" // Include the header for TypePartie 
 
 using namespace std;
 
