@@ -1,82 +1,70 @@
 #ifndef PARTIES_H
 #define PARTIES_H
 
-#include <iostream>
-#include <vector>
 #include <string>
-#include <random>
-#include <algorithm>
+#include <vector>
 #include <map>
 
-#include "joueurs.h"
-#include "championnats.h"
-
-using namespace std;
-
-// No longer an enum, now an int
-int TypePartie; 
+enum TypePartie {
+  SIMPLE,
+  DOUBLE
+};
 
 enum ResultatPartie {
-  VICTOIRE,
-  DEFAITE,
   MATCH_NUL,
+  VICTOIRE,
+  DEFAITE
 };
 
 class Partie {
 public:
-  static int nextMatchNumber;
-  int numero;
-  int type; // Use int for the type 
-  string nomJoueur1;
-  string nomJoueur2;
-  ResultatPartie resultat1;
-  ResultatPartie resultat2;
-
-  Partie(int type, string nomJoueur1, string nomJoueur2);
-
+  Partie(TypePartie type, std::string nomJoueur1, std::string nomJoueur2);
   void afficher() const;
+  int getNumero() const { return numero; } 
+  string getNomJoueur1() const { return nomJoueur1; } 
+  string getNomJoueur2() const { return nomJoueur2; }
+  TypePartie getType() const { return type; }
+  void setNumero(int numero) { this->numero = numero; }
   void setResultat(const std::string& nomJoueur, int resultatAsInt);
-
   ResultatPartie getResultat1() const;
   ResultatPartie getResultat2() const;
-  string getNomJoueur1() const;
-  string getNomJoueur2() const;
-  void setNomJoueur1(string nomJoueur1);
-  void setNomJoueur2(string nomJoueur2);
+  std::string getNomJoueur1() const;
+  std::string getNomJoueur2() const;
+  void setNomJoueur1(std::string nomJoueur1);
+  void setNomJoueur2(std::string nomJoueur2);
+
+  // Declare the operator>> as a friend function of the Partie class
+  friend std::istream& operator>>(std::istream& is, TypePartie& tp); 
+
+private:
+  TypePartie type;
+  std::string nomJoueur1;
+  std::string nomJoueur2;
+  ResultatPartie resultat1;
+  ResultatPartie resultat2;
+  int numero;
+  static int nextMatchNumber;
 };
 
 class GestionParties {
-private:
-  int previousRoundMaxMatchNumber;
-  // Use a map to store matches for efficient retrieval
-  std::map<std::pair<std::string, std::string>, Partie*> partiesMap;
-
 public:
-  vector<Partie> parties;
-  vector<Partie> getParties();
-  vector<Partie> getPreviousRoundMatches();
+  GestionParties();
+  std::vector<Partie> getParties();
+  std::vector<Partie> getPreviousRoundMatches();
   bool isPartieFromPreviousRound(Partie partie);
   int getPreviousRoundMaxMatchNumber() const;
   void setPreviousRoundMaxMatchNumber(int newMax);
-  void setParties(vector<Partie> parties);
+  void setParties(std::vector<Partie> parties);
   void ajouterPartie(Partie partie);
   void afficherParties();
-  void supprimerPartie(int type, string nomJoueur1, string nomJoueur2); // Adjust parameter type
+  void supprimerPartie(TypePartie type, std::string nomJoueur1, std::string nomJoueur2);
+  Partie* rechercherPartie(const std::string& nomJoueur1, const std::string& nomJoueur2);
+  Partie* rechercherPartie(const std::string& matchName);
 
-  // Function to retrieve a Partie by match name
-  Partie* rechercherPartie(const string& matchName);
+private:
+  std::vector<Partie> parties;
+  std::map<std::pair<std::string, std::string>, Partie*> partiesMap;
+  int previousRoundMaxMatchNumber;
 };
 
-class PlanificationParties {
-public:
-  vector<Joueur> getWinnersFromPreviousRound();
-  void creerPartiesEliminatoires();
-  void attribuerJoueursParties();
-  void creerParties16emes();
-  void creerPartiesHuitiemesDeFinale();
-  void creerPartiesQuartsDeFinale();
-  void creerPartiesDemiFinales();
-  void creerPartieFinale();
-};
-
-#endif
+#endif // PARTIES_H

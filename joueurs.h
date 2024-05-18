@@ -10,7 +10,8 @@ using namespace std;
 
 class Joueur {
 public:
-  Joueur();
+    Joueur(const std::string& nom) : nom(nom) {}
+    std::string getNom() const { return nom; }
   std::string nom;
   int classement;
   int nbVictoires;

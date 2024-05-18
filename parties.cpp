@@ -101,7 +101,7 @@ vector<Partie> GestionParties::getParties() {
 vector<Partie> GestionParties::getPreviousRoundMatches() {
   vector<Partie> previousRoundMatches;
   for (const Partie& partie : parties) {
-    if (partie.numero <= previousRoundMaxMatchNumber) {
+    if (partie.getNumero() <= previousRoundMaxMatchNumber) {
       previousRoundMatches.push_back(partie);
     }
   }
@@ -110,7 +110,7 @@ vector<Partie> GestionParties::getPreviousRoundMatches() {
 
 // Check if a match is from the previous round
 bool GestionParties::isPartieFromPreviousRound(Partie partie) {
-  return partie.numero <= previousRoundMaxMatchNumber;
+  return partie.getNumero() <= previousRoundMaxMatchNumber;
 }
 
 // Get the maximum match number from the previous round
@@ -131,7 +131,8 @@ void GestionParties::setParties(vector<Partie> parties) {
 // Add a match
 void GestionParties::ajouterPartie(Partie partie) {
   parties.push_back(partie);
-  partiesMap[make_pair(partie.nomJoueur1, partie.nomJoueur2)] = &partie;
+  partiesMap[make_pair(partie.getNomJoueur1(), partie.getNomJoueur2())] = &partie;
+  partiesMap[make_pair(partie.getNomJoueur2(), partie.getNomJoueur1())] = &partie;
 }
 
 // Display all matches
@@ -145,8 +146,8 @@ void GestionParties::afficherParties() {
 // Remove a match
 void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2) {
   for (int i = 0; i < parties.size(); i++) {
-    if (parties[i].type == type && parties[i].nomJoueur1 == nomJoueur1 &&
-        parties[i].nomJoueur2 == nomJoueur2) {
+    if (parties[i].getType() == type && parties[i].getNomJoueur1() == nomJoueur1 &&
+        parties[i].getNomJoueur2() == nomJoueur2) {
       parties.erase(parties.begin() + i);
       break;
     }
@@ -162,18 +163,31 @@ Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string&
   return nullptr;
 }
 
-// Function to retrieve a Partie by match name
-Partie* GestionParties::rechercherPartie(const string& matchName) {
-  for (Partie& partie : parties) {
-    // Check if the match name matches the names of the players in the match
-    if ((partie.nomJoueur1 + " vs. " + partie.nomJoueur2 == matchName) ||
-        (partie.nomJoueur2 + " vs. " + partie.nomJoueur1 == matchName)) {
-      return &partie; // Return a pointer to the found match
+Partie* GestionParties::rechercherPartie(const std::string& matchName) {
+  // Add logic to search for a match by its name
+  // Example: Assuming matchName is in the format "Player1 vs. Player2"
+  for (auto& partie : parties) {
+    // Use getNomJoueur1() and getNomJoueur2() here 
+    if ((partie.getNomJoueur1() + " vs. " + partie.getNomJoueur2() == matchName) || // Use getNomJoueur1()
+        (partie.getNomJoueur2() + " vs. " + partie.getNomJoueur1() == matchName)) { // Use getNomJoueur2()
+      return &partie; 
     }
   }
   return nullptr; // Match not found
 }
 
+std::istream& operator>>(std::istream& is, TypePartie& tp) {
+  int input;
+  is >> input; // Read the input as an integer
+  if (input == 0) {
+    tp = SIMPLE;
+  } else if (input == 1) {
+    tp = DOUBLE;
+  } else {
+    is.setstate(ios_base::failbit); // Set the error state if the input is invalid
+  }
+  return is;
+}
 // PlanificationParties implementation
 class PlanificationParties {
 private:
@@ -181,7 +195,7 @@ private:
 
 public:
   // Constructor (take TennisChampionship as an argument)
-  PlanificationParties(TennisChampionship* tennisChampionship) : tennisChampionship(tennisChampionship) {} 
+  PlanificationParties(TennisChampionship* tennisChampionship) : tennisChampionship(tennisChampionship) {}
 
   vector<Joueur> getWinnersFromPreviousRound() {
     vector<Joueur> winners;
@@ -199,8 +213,8 @@ public:
         // Handle draws (optional, logic not provided)
         // You can throw an exception or implement logic to handle draws here
         // For example, if you want both players to advance:
-        // winners.push_back(Joueur(partie.getNomJoueur1()));
-        // winners.push_back(Joueur(partie.getNomJoueur2()));
+        winners.push_back(Joueur(partie.getNomJoueur1()));
+        winners.push_back(Joueur(partie.getNomJoueur2()));
       }
     }
     return winners;
@@ -315,4 +329,21 @@ public:
     Partie partie(type, vainqueurs[0].getNom(), vainqueurs[1].getNom());
     tennisChampionship->gestionParties.ajouterPartie(partie);
   }
+
+  TypePartie getMatchTypeFromUser() {
+    int input;
+    cout << "Enter match type (0 - Simple, 1 - Double): ";
+    cin >> input;
+
+    if (input == 0) {
+      return SIMPLE;
+    } else if (input == 1) {
+      return DOUBLE;
+    } else {
+      cout << "Invalid input. Please enter 0 for Simple or 1 for Double: ";
+      return getMatchTypeFromUser();
+    }
+  }
 };
+
+// ... (Rest of your code) ... 

@@ -1,15 +1,16 @@
 #ifndef RESERVATIONS_H
 #define RESERVATIONS_H
-#include <string>
-#include <vector>
+#include "places.h"
 #include "clients.h"
 #include "parties.h"
+#include <string>
+#include <vector>
+
 using namespace std;
 
 class Reservation {
 public:
   Reservation();
-  void afficher() const;
   Reservation(Client* client, Partie* partie);
   Client* getClient() const;
   Partie* getPartie() const;

@@ -18,7 +18,6 @@ Partie* Reservation::getPartie() const {
   return partie;
 }
 
-
 // GestionReservations implementation
 GestionReservations::GestionReservations() {}
 

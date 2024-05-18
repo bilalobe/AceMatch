@@ -13,7 +13,6 @@
 using namespace std;
 
 // --- Tennis Championship Application ---
-TennisChampionship tennisChampionship; // Declare tennisChampionship globally
 
 class TennisChampionship {
 public:
@@ -37,10 +36,6 @@ public:
     gestionJoueurs.ajouterJoueur(Joueur("Rafael Nadal", 2));
     gestionJoueurs.ajouterJoueur(Joueur("Novak Djokovic", 3));
     gestionJoueurs.ajouterJoueur(Joueur("Carlos Alcaraz", 4));
-
-    // Initialize tickets (for testing)
-    gestionTickets.ajouterTicket(gestionTickets.genererTicket("Standard", 10.0, "Roger Federer vs. Rafael Nadal"));
-    gestionTickets.ajouterTicket(gestionTickets.genererTicket("VIP", 20.0, "Novak Djokovic vs. Carlos Alcaraz"));
   }
 
   // Menu functions (members of the TennisChampionship class)
@@ -56,7 +51,6 @@ public:
 
 private:
   int getUserChoice(); // Helper function for menu selection
-  TypePartie getMatchTypeFromUser(); // Function to handle match type input
 
   // ... (Other helper functions you may need)
 };
@@ -87,17 +81,6 @@ int TennisChampionship::getUserChoice() {
     cin.ignore(numeric_limits<streamsize>::max(), '\n'); // Discard remaining input
   }
   return choice;
-}
-
-TypePartie TennisChampionship::getMatchTypeFromUser() {
-  int choice;
-  cout << "Enter match type (0 - Simple, 1 - Double): ";
-  while (!(cin >> choice) || (choice != 0 && choice != 1)) {
-    cout << "Invalid input. Please enter 0 for Simple or 1 for Double: ";
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-  }
-  return (choice == 0) ? SIMPLE : DOUBLE;
 }
 
 // --- Menu Functions for Each Section ---
@@ -359,7 +342,7 @@ void TennisChampionship::displayPartiesMenu() {
       string nomJoueur2;
       cin >> nomJoueur2;
 
-      Partie partie = rechercherPartie(nomJoueur1, nomJoueur2);
+    //  Partie partie = rechercherPartie(nomJoueur1, nomJoueur2);
 
       // Update match details (you'll need to decide what to update)
       // ...
@@ -370,11 +353,15 @@ void TennisChampionship::displayPartiesMenu() {
     case 4: { // Search for match
       // Implement search functionality
       // Example:
-      cout << "Enter Match Name (Player 1 vs. Player 2): ";
-      string matchName;
-      cin >> matchName;
+      cout << "Enter Player 1 Name: ";
+      string nomJoueur1;
+      cin >> nomJoueur1;
 
-      Partie* partie = gestionParties.rechercherPartie(matchName);
+      cout << "Enter Player 2 Name: ";
+      string nomJoueur2;
+      cin >> nomJoueur2;
+
+      Partie* partie = gestionParties.rechercherPartie(nomJoueur1, nomJoueur2);
       if (partie != nullptr) {
         partie->afficher();
       } else {
@@ -517,7 +504,7 @@ void TennisChampionship::displayReservationsMenu() {
 
           Reservation* reservation = gestionReservations.rechercherReservation(client, partie);
           if (reservation != nullptr) {
-            reservation->afficher();
+           // reservation->afficher();
           } else {
             cout << "Reservation not found." << endl;
           }
@@ -834,11 +821,25 @@ void TennisChampionship::displayTicketsMenu() {
   }
 }
 
-// ... (Implementations of other functions) ...
+TypePartie getMatchTypeFromUser() {
+  int input;
+  cout << "Enter match type (0 - Simple, 1 - Double): ";
+  cin >> input;
+
+  if (input == 0) {
+    return SIMPLE;
+  } else if (input == 1) {
+    return DOUBLE;
+  } else {
+    cout << "Invalid input. Please enter 0 for Simple or 1 for Double: ";
+    return getMatchTypeFromUser();
+  }
+}
 
 int main() {
-  // ... (You'll likely want to initialize your data here, perhaps by loading it from a file)
+  // ... (Initialize your data, perhaps by loading from a file)
   TennisChampionship tennisChampionship; // Create an instance
+  PlanificationParties planificateur(&tennisChampionship); // Pass the instance
 
   int selection;
   do {
