@@ -10,15 +10,15 @@ using namespace std;
 
 class Joueur {
 public:
-    Joueur(const std::string& nom) : nom(nom) {}
-    std::string getNom() const { return nom; }
+  Joueur(const std::string& nom, int classement);
+
+  Joueur(const std::string& nom); 
+
   std::string nom;
   int classement;
   int nbVictoires;
   int nbDefaites;
 
-  Joueur(string nom, int classement);
-  Joueur(std::string nom);
 
   string getNom() const;
   int getClassement() const;
@@ -36,11 +36,12 @@ class GestionJoueurs {
 public:
   vector<Joueur> joueurs;
   GestionJoueurs();
-
+  
+  const std::vector<Joueur>& getJoueurs() const; 
   void afficherJoueurs();
   void ajouterJoueur(const Joueur& joueur);
   bool supprimerJoueur(const std::string& nom);
-  void rechercherJoueur(const std::string& searchTerm) const;
+  Joueur* GestionJoueurs::rechercherJoueur(const std::string& nom);
   void trierJoueursParClassement();
   void modifierJoueur(Joueur& joueur);
 };

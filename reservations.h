@@ -10,18 +10,19 @@ using namespace std;
 
 class Reservation {
 public:
-  Reservation();
-  Reservation(Client* client, Partie* partie);
-  Client* getClient() const;
-  Partie* getPartie() const;
-  // Remove Place: void setPlace(Place* place);
+  Reservation(Client* client, Partie* partie); 
+  
+    Client* getClient() const { return client; }
+    Partie* getPartie() const { return partie; }
+    Terrain* getTerrain() const { return terrain; }
+    void afficher() const;
+    void setTerrain(Terrain* terrain) { this->terrain = terrain; }
 
 private:
-  Client* client;
-  Partie* partie;
-  // Remove Place: Place* place;
+    Client* client;
+    Partie* partie;
+    Terrain* terrain;
 };
-
 class GestionReservations {
 public:
   void ajouterReservation(Reservation reservation);

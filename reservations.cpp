@@ -1,4 +1,5 @@
 #include "reservations.h"
+#include "terrains.h"
 #include <iostream>
 #include <vector>
 #include <string>
@@ -6,10 +7,14 @@
 
 using namespace std;
 
-// Constructor for Reservation
 Reservation::Reservation(Client* client, Partie* partie)
-    : client(client), partie(partie) {}
+  : client(client), partie(partie) {}
 
+void Reservation::afficher() const {
+    cout << "Client: " << client->getNom() << endl;
+    cout << "Match: " << partie->getNomJoueur1() << " vs. " << partie->getNomJoueur2() << endl;
+    cout << "Terrain: " << terrain->getType() << endl;
+}
 // Getters for Reservation
 Client* Reservation::getClient() const {
   return client;
@@ -54,6 +59,6 @@ const vector<Reservation>& GestionReservations::getReservations() const {
 // Sort reservations by client name
 void GestionReservations::trierReservationsParClient() {
   sort(reservations.begin(), reservations.end(), [](const Reservation& a, const Reservation& b) {
-    return a.getClient()->nom < b.getClient()->nom;
+    return a.getClient()->getNom() < b.getClient()->getNom();
   });
 }

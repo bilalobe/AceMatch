@@ -8,7 +8,6 @@
 using namespace std;
 
 class Ticket {
-public:
   string type;
   double prix;
   string nomMatch; 
@@ -16,8 +15,15 @@ public:
 
 public:
   Ticket(string type, double prix, string nomMatch, int numeroTicket);
-
+  string getType() const { return type; }
+  double getPrix() const { return prix; }
+  string getNomMatch() const { return nomMatch; }
+  int getNumeroTicket() const { return numeroTicket; }
+  bool isSold() const { return sold; }
+  void setSold(bool sold) { this->sold = sold; }
   void afficher() const;
+private:
+  bool sold;
 };
 
 class GestionTickets {

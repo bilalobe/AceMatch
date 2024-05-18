@@ -10,35 +10,53 @@ using namespace std;
 Ticket::Ticket(string type, double prix, string nomMatch, int numeroTicket)
     : type(type), prix(prix), nomMatch(nomMatch), numeroTicket(numeroTicket) {}
 
-void Ticket::afficher() const {
+bool Ticket::isSold() const
+{
+  return sold;
+}
+void Ticket::setSold(bool sold)
+{
+  this->sold = sold;
+}
+
+void Ticket::afficher() const
+{
   cout << "Type: " << type << endl;
   cout << "Prix: " << prix << endl;
   cout << "Nom du Match: " << nomMatch << endl;
   cout << "Numéro de ticket: " << numeroTicket << endl;
+  cout << "Vendu: " << (sold ? "Oui" : "Non") << endl;
 }
 
-class GestionTickets {
+class GestionTickets
+{
 public:
   vector<Ticket> tickets;
   int nextTicketNumber = 1; // Track ticket numbers
 
   // Add a ticket
-  void ajouterTicket(Ticket ticket) {
+  void ajouterTicket(Ticket ticket)
+  {
     tickets.push_back(ticket);
   }
 
   // Display all tickets
-  void afficherTickets() {
-    for (Ticket ticket : tickets) {
+  void afficherTickets()
+  {
+    for (Ticket ticket : tickets)
+    {
       ticket.afficher();
       cout << endl;
     }
   }
 
   // Remove a ticket
-  void supprimerTicket(int numeroTicket) {
-    for (int i = 0; i < tickets.size(); i++) {
-      if (tickets[i].numeroTicket == numeroTicket) {
+  void supprimerTicket(int numeroTicket)
+  {
+    for (int i = 0; i < tickets.size(); i++)
+    {
+      if (tickets[i].getNumeroTicket() == numeroTicket)
+      {
         tickets.erase(tickets.begin() + i);
         break;
       }
@@ -46,49 +64,60 @@ public:
   }
 
   // Search for a ticket
-  Ticket* rechercherTicket(int numeroTicket) const {
-    for (int i = 0; i < tickets.size(); i++) {
-      if (tickets[i].numeroTicket == numeroTicket) {
-        return const_cast<Ticket*>(&tickets[i]); 
+  Ticket *rechercherTicket(int numeroTicket) const
+  {
+    for (int i = 0; i < tickets.size(); i++)
+    {
+      if (tickets[i].getNumeroTicket() == numeroTicket)
+      {
+        return const_cast<Ticket *>(&tickets[i]);
       }
     }
-    return nullptr; 
+    return nullptr;
   }
 
   // Generate a new ticket
-  Ticket genererTicket(string type, double prix, string nomMatch) {
+  Ticket genererTicket(string type, double prix, string nomMatch)
+  {
     random_device rd;
     mt19937 gen(rd());
-    uniform_int_distribution<> dis(100000, 999999); 
+    uniform_int_distribution<> dis(100000, 999999);
     int uniqueTicketNumber = dis(gen);
-    
+
     return Ticket(type, prix, nomMatch, uniqueTicketNumber);
   }
 
   // Sell a ticket to a client (using GestionClients)
-  bool GestionTickets::vendreTicket(GestionClients& gestionClients, int numeroTicket) {
-    Ticket* ticketToSell = rechercherTicket(numeroTicket);
-    if (ticketToSell != nullptr) {
-      // 1. Remove the ticket from the inventory
-      supprimerTicket(numeroTicket);
 
-      // 2. Get the client from the GestionClients object
-      cout << "Enter client name: ";
+  bool vendreTicket(GestionClients &gestionClients, int numeroTicket)
+  {
+    Ticket *ticket = rechercherTicket(numeroTicket);
+
+    if (ticket != nullptr && !ticket->isSold())
+    {
+      cout << "Enter client name to sell the ticket to: ";
       string clientName;
       cin >> clientName;
 
-      Client* client = gestionClients.rechercherClient(clientName);
-      if (client != nullptr) {
-        // 3. Associate the ticket with the client
-        client->tickets.push_back(*ticketToSell);
-        cout << "Ticket purchased successfully!" << endl;
+      Client *client = gestionClients.rechercherClient(clientName);
+
+      if (client != nullptr)
+      {
+        // Assign the ticket to the client
+        client->addTicket(ticket);
+        // Mark the ticket as sold
+        ticket->setSold(true);
         return true;
-      } else {
+      }
+      else
+      {
         cout << "Client not found." << endl;
         return false;
       }
-    } else {
-      cout << "Ticket not found." << endl;
+    }
+    else
+    {
+      cout << "Ticket not found or already sold." << endl;
       return false;
     }
   }

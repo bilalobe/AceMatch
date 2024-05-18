@@ -5,16 +5,13 @@
 
 using namespace std;
 
-// Constructor for Joueur
-Joueur::Joueur(string nom, int classement) {
-  this->nom = nom;
-  this->classement = classement;
-  this->nbVictoires = 0;
-  this->nbDefaites = 0;
-}
 
-// Constructor for Joueur (with only name)
-Joueur::Joueur(std::string nom) : nom(nom), classement(0), nbVictoires(0), nbDefaites(0) {}
+Joueur::Joueur(const std::string& nom, int classement)
+  : nom(nom), classement(classement), nbVictoires(0), nbDefaites(0) {}
+
+// Constructor 2 (with just name)
+Joueur::Joueur(const std::string& nom)
+  : nom(nom), classement(0), nbVictoires(0), nbDefaites(0) {} 
 
 // Getters for Joueur
 string Joueur::getNom() const {
@@ -23,6 +20,7 @@ string Joueur::getNom() const {
 int Joueur::getClassement() const {
   return classement;
 }
+
 
 // Setters for Joueur
 void Joueur::setNom(string nom) {
@@ -49,6 +47,10 @@ bool Joueur::operator==(const Joueur& other) const {
 
 // GestionJoueurs implementation
 GestionJoueurs::GestionJoueurs() {}
+
+const std::vector<Joueur>& GestionJoueurs::getJoueurs() const {
+  return joueurs;
+}
 
 // Display players in GestionJoueurs
 void GestionJoueurs::afficherJoueurs() {
@@ -89,19 +91,13 @@ bool GestionJoueurs::supprimerJoueur(const std::string& nom) {
   return false; // Player not found
 }
 
-// Search for a player in GestionJoueurs
-void GestionJoueurs::rechercherJoueur(const std::string& searchTerm) const {
-  auto it = std::find_if(joueurs.begin(), joueurs.end(),
-                         [&searchTerm](const Joueur& joueur) {
-                           return joueur.getNom().find(searchTerm) != std::string::npos;
-                         });
-  if (it != joueurs.end()) {
-    std::cout << "Player found:" << std::endl;
-    std::cout << "Nom: " << it->nom << std::endl; 
-    std::cout << "Classement: " << it->classement << std::endl;
-  } else {
-    std::cout << "Player not found." << std::endl;
+Joueur* GestionJoueurs::rechercherJoueur(const std::string& nom) {
+  for (int i = 0; i < joueurs.size(); i++) {
+    if (joueurs[i].getNom() == nom) {
+      return &joueurs[i]; // Return a pointer to the found player
+    }
   }
+  return nullptr; // Return nullptr if the player is not found
 }
 
 // Sort players in GestionJoueurs by ranking
