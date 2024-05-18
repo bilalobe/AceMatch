@@ -4,46 +4,61 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "scores.h"
-
-using namespace std;
+#include <string>
 
 class Joueur {
+private:
+    std::string nom;
+    int classement;
+    int nbVictoires;
+    int nbDefaites;
+
 public:
-  Joueur(const std::string& nom, int classement);
+    // Constructor 1: Initialize with name and ranking
+    Joueur(const std::string& nom, int classement);
 
-  Joueur(const std::string& nom); 
+    // Constructor 2: Initialize with just a name (ranking is optional)
+    Joueur(const std::string& nom);
 
-  std::string nom;
-  int classement;
-  int nbVictoires;
-  int nbDefaites;
+    // Getters and Setters
+    std::string getNom() const;
+    int getClassement() const;
+    void setNom(std::string nom);
+    void setClassement(int classement);
+    int getNbVictoires() const;
+    int getNbDefaites() const;
+    void setNbVictoires(int nbVictoires);
+    void setNbDefaites(int nbDefaites);
 
+    // Methods to increment wins and losses
+    void incrementerVictoire();
+    void incrementerDefaite();
 
-  string getNom() const;
-  int getClassement() const;
-
-  void setNom(string nom);
-  void setClassement(int classement);
-
-  void incrementerVictoire();
-  void incrementerDefaite();
-
-  bool operator==(const Joueur& other) const;
+    // Operator overloading for comparison
+    bool operator==(const Joueur& other) const;
 };
 
 class GestionJoueurs {
+private:
+    std::vector<Joueur> joueurs;
+
 public:
-  vector<Joueur> joueurs;
-  GestionJoueurs();
-  
-  const std::vector<Joueur>& getJoueurs() const; 
-  void afficherJoueurs();
-  void ajouterJoueur(const Joueur& joueur);
-  bool supprimerJoueur(const std::string& nom);
-  Joueur* GestionJoueurs::rechercherJoueur(const std::string& nom);
-  void trierJoueursParClassement();
-  void modifierJoueur(Joueur& joueur);
+    GestionJoueurs();
+
+    // Accessors
+    const std::vector<Joueur>& getJoueurs() const;
+
+    // Methods for managing players
+    void afficherJoueurs();
+    void ajouterJoueur(const Joueur& joueur);
+    bool supprimerJoueur(const std::string& nom);
+    Joueur* rechercherJoueur(const std::string& nom);
+    void trierJoueursParClassement();
+    void modifierJoueur(Joueur& joueur);
+
+    // Methods to update wins and losses
+    void updateWin(const std::string& playerName);
+    void updateLoss(const std::string& playerName);
 };
 
-#endif 
+#endif // JOUEURS_H

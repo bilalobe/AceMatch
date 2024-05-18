@@ -1,124 +1,105 @@
 #include "tickets.h"
 #include "clients.h"
+
 #include <iostream>
-#include <string>
-#include <vector>
-#include <random> // Include for random number generation
+#include <vector> 
+#include <map>
+#include <algorithm>
 
-using namespace std;
 
-Ticket::Ticket(string type, double prix, string nomMatch, int numeroTicket)
-    : type(type), prix(prix), nomMatch(nomMatch), numeroTicket(numeroTicket) {}
 
-bool Ticket::isSold() const
-{
-  return sold;
-}
-void Ticket::setSold(bool sold)
-{
-  this->sold = sold;
-}
+// Static member initialization for next ticket number
+int Ticket::nextTicketNumber = 1;
 
-void Ticket::afficher() const
-{
-  cout << "Type: " << type << endl;
-  cout << "Prix: " << prix << endl;
-  cout << "Nom du Match: " << nomMatch << endl;
-  cout << "Numéro de ticket: " << numeroTicket << endl;
-  cout << "Vendu: " << (sold ? "Oui" : "Non") << endl;
+// Constructor for Ticket
+Ticket::Ticket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation, int row, int col)
+    : type(type), prix(prix), matchName(matchName), numeroTicket(nextTicketNumber++), sold(false), reservation(reservation), row(row), col(col) {} 
+
+// Display ticket information
+void Ticket::afficher() const {
+    cout << "Ticket Number: " << numeroTicket << endl;
+    cout << "Type: " << type << endl;
+    cout << "Price: " << prix << endl;
+    cout << "Match: " << matchName << endl;
+    cout << "Sold: " << (sold ? "Yes" : "No") << endl;
+    cout << "Reservation: " << (reservation ? "Yes" : "No") << endl; 
+    cout << "Row: " << row << endl;
+    cout << "Column: " << col << endl;
 }
 
-class GestionTickets
-{
-public:
-  vector<Ticket> tickets;
-  int nextTicketNumber = 1; // Track ticket numbers
+// GestionTickets implementation
+GestionTickets::GestionTickets() {}
 
-  // Add a ticket
-  void ajouterTicket(Ticket ticket)
-  {
+// Generate a ticket
+Ticket GestionTickets::genererTicket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation) {
+    // Get row and col from reservation
+    int row = reservation->getRow();
+    int col = reservation->getCol();
+
+    Ticket ticket(type, prix, matchName, reservation, row, col); 
     tickets.push_back(ticket);
-  }
+    ticketsMap[ticket.getNumeroTicket()] = &tickets.back();
+    return ticket;
+}
 
-  // Display all tickets
-  void afficherTickets()
-  {
-    for (Ticket ticket : tickets)
-    {
-      ticket.afficher();
-      cout << endl;
+// Add a ticket
+void GestionTickets::ajouterTicket(const Ticket& ticket) {
+    tickets.push_back(ticket);
+    ticketsMap[ticket.getNumeroTicket()] = &tickets.back();
+}
+
+// Sell a ticket
+bool GestionTickets::vendreTicket(GestionClients& gestionClients, int ticketNumber) {
+    Ticket* ticket = rechercherTicket(ticketNumber);
+
+    if (ticket != nullptr && !ticket->isSold()) {
+        cout << "Enter client name to sell the ticket to: ";
+        string clientName;
+        cin >> clientName;
+
+        Client* client = gestionClients.rechercherClient(clientName);
+
+        if (client != nullptr) {
+            // Assign the ticket to the client
+            client->addTicket(ticket);
+            // Mark the ticket as sold
+            ticket->setSold(true);
+            return true;
+        } else {
+            cout << "Client not found." << endl;
+            return false;
+        }
+    } else {
+        cout << "Ticket not found or already sold." << endl;
+        return false;
     }
-  }
+}
 
-  // Remove a ticket
-  void supprimerTicket(int numeroTicket)
-  {
-    for (int i = 0; i < tickets.size(); i++)
-    {
-      if (tickets[i].getNumeroTicket() == numeroTicket)
-      {
-        tickets.erase(tickets.begin() + i);
-        break;
-      }
+// Display all tickets
+void GestionTickets::afficherTickets() const {
+    for (const Ticket& ticket : tickets) {
+        ticket.afficher();
+        cout << endl;
     }
-  }
+}
 
-  // Search for a ticket
-  Ticket *rechercherTicket(int numeroTicket) const
-  {
-    for (int i = 0; i < tickets.size(); i++)
-    {
-      if (tickets[i].getNumeroTicket() == numeroTicket)
-      {
-        return const_cast<Ticket *>(&tickets[i]);
-      }
+// Search for a ticket
+Ticket* GestionTickets::rechercherTicket(int ticketNumber) {
+    auto it = ticketsMap.find(ticketNumber);
+    if (it != ticketsMap.end()) {
+        return it->second;
     }
     return nullptr;
-  }
+}
 
-  // Generate a new ticket
-  Ticket genererTicket(string type, double prix, string nomMatch)
-  {
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dis(100000, 999999);
-    int uniqueTicketNumber = dis(gen);
-
-    return Ticket(type, prix, nomMatch, uniqueTicketNumber);
-  }
-
-  // Sell a ticket to a client (using GestionClients)
-
-  bool vendreTicket(GestionClients &gestionClients, int numeroTicket)
-  {
-    Ticket *ticket = rechercherTicket(numeroTicket);
-
-    if (ticket != nullptr && !ticket->isSold())
-    {
-      cout << "Enter client name to sell the ticket to: ";
-      string clientName;
-      cin >> clientName;
-
-      Client *client = gestionClients.rechercherClient(clientName);
-
-      if (client != nullptr)
-      {
-        // Assign the ticket to the client
-        client->addTicket(ticket);
-        // Mark the ticket as sold
-        ticket->setSold(true);
-        return true;
-      }
-      else
-      {
-        cout << "Client not found." << endl;
-        return false;
-      }
+// Remove a ticket
+void GestionTickets::supprimerTicket(int ticketNumber) {
+    auto it = ticketsMap.find(ticketNumber);
+    if (it != ticketsMap.end()) {
+        auto iter = std::find(tickets.begin(), tickets.end(), *(it->second));
+        if (iter != tickets.end()) {
+            tickets.erase(iter); // Erase using the iterator
+            ticketsMap.erase(it);
+        }
     }
-    else
-    {
-      cout << "Ticket not found or already sold." << endl;
-      return false;
-    }
-  }
-};
+}

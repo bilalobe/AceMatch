@@ -6,139 +6,151 @@
 using namespace std;
 
 // Constructor with type, length, and width
-Terrain::Terrain(TypeTerrain type, int longueur, int largeur) : 
-  type(type), longueur(longueur), largeur(largeur), nbPlacesReservees(0) {
-  initializeSeatingPlan(longueur, largeur); // Initialize seating plan based on terrain size
+Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
+    : type(type), longueur(longueur), largeur(largeur), nbPlacesReservees(0) {
+    initializeSeatingPlan(longueur, largeur); // Initialize seating plan based on terrain size
 }
 
 // Constructor with type, length, width, and reserved seats
-Terrain::Terrain(TypeTerrain type, int longueur, int largeur, int nbPlacesReservees) :
-  type(type), longueur(longueur), largeur(largeur), nbPlacesReservees(nbPlacesReservees) {
-  initializeSeatingPlan(longueur, largeur); // Initialize seating plan based on terrain size
+Terrain::Terrain(TypeTerrain type, int longueur, int largeur, int nbPlacesReservees)
+    : type(type), longueur(longueur), largeur(largeur), nbPlacesReservees(nbPlacesReservees) {
+    initializeSeatingPlan(longueur, largeur); // Initialize seating plan based on terrain size
 }
 
 // Getter for type
 TypeTerrain Terrain::getType() const {
-  return type;
+    return type;
 }
 
-// Getters for dimensions and reserved seats
-void Terrain::getLongueur(int& longueur) const {
-  longueur = this->longueur;
+// Getter for length
+int Terrain::getLongueur() const {
+    return longueur;
 }
 
-void Terrain::getLargeur(int& largeur) const {
-  largeur = this->largeur;
+// Getter for width
+int Terrain::getLargeur() const {
+    return largeur;
 }
 
-void Terrain::getNbPlacesReservees(int& nbPlacesReservees) const {
-  nbPlacesReservees = this->nbPlacesReservees;
+// Getter for reserved seats
+int Terrain::getNbPlacesReservees() const {
+    return nbPlacesReservees;
 }
 
-// Setters for dimensions and reserved seats
+// Setter for length
 void Terrain::setLongueur(int longueur) {
-  this->longueur = longueur;
-  initializeSeatingPlan(this->longueur, this->largeur); // Reinitialize seating plan
+    this->longueur = longueur;
+    initializeSeatingPlan(this->longueur, this->largeur); // Reinitialize seating plan
 }
 
+// Setter for width
 void Terrain::setLargeur(int largeur) {
-  this->largeur = largeur;
-  initializeSeatingPlan(this->longueur, this->largeur); // Reinitialize seating plan
+    this->largeur = largeur;
+    initializeSeatingPlan(this->longueur, this->largeur); // Reinitialize seating plan
 }
 
+// Setter for reserved seats
 void Terrain::setNbPlacesReservees(int nbPlacesReservees) {
-  this->nbPlacesReservees = nbPlacesReservees;
+    this->nbPlacesReservees = nbPlacesReservees;
 }
 
+// Setter for all attributes except reserved seats
 void Terrain::setTerrain(TypeTerrain type, int longueur, int largeur) {
-  this->type = type;
-  this->longueur = longueur;
-  this->largeur = largeur;
-  initializeSeatingPlan(longueur, largeur); // Reinitialize seating plan
+    this->type = type;
+    this->longueur = longueur;
+    this->largeur = largeur;
+    initializeSeatingPlan(longueur, largeur); // Reinitialize seating plan
 }
 
+// Setter for all attributes including reserved seats
 void Terrain::setTerrain(TypeTerrain type, int longueur, int largeur, int nbPlacesReservees) {
-  this->type = type;
-  this->longueur = longueur;
-  this->largeur = largeur;
-  this->nbPlacesReservees = nbPlacesReservees;
-  initializeSeatingPlan(longueur, largeur); // Reinitialize seating plan
+    this->type = type;
+    this->longueur = longueur;
+    this->largeur = largeur;
+    this->nbPlacesReservees = nbPlacesReservees;
+    initializeSeatingPlan(longueur, largeur); // Reinitialize seating plan
 }
 
-
-
+// Display terrain details
 void Terrain::afficher() const {
-  cout << "Type de terrain: " << (type == DUR ? "Dur" : (type == TERRE_BATTUE ? "Terre battue" : "Gazon")) << endl;
-  cout << "Longueur: " << longueur << endl;
-  cout << "Largeur: " << largeur << endl;
-  cout << "Nombre de places réservées: " << nbPlacesReservees << endl;
+    cout << "Type de terrain: " << (type == DUR ? "Dur" : (type == TERRE_BATTUE ? "Terre battue" : "Gazon")) << endl;
+    cout << "Longueur: " << longueur << endl;
+    cout << "Largeur: " << largeur << endl;
+    cout << "Nombre de places réservées: " << nbPlacesReservees << endl;
 }
 
-// Seating plan methods
+#include "terrains.h"
+#include <iostream>
+
+Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
+    : type(type), longueur(longueur), largeur(largeur) {}
+
 void Terrain::initializeSeatingPlan(int rows, int cols) {
   seatingPlan.resize(rows);
   for (int i = 0; i < rows; ++i) {
-    seatingPlan[i].resize(cols, false); // Initially, all seats are available
+    seatingPlan[i].resize(cols, '.'); // Initialize with '.' for available seats
   }
 }
 
-bool Terrain::isSeatAvailable(int row, int col) const {
+bool Terrain::isSeatAvailable(int row, int col) {
   if (row < 0 || row >= seatingPlan.size() || col < 0 || col >= seatingPlan[0].size()) {
-    return false; 
+    return false;
   }
-  return !seatingPlan[row][col]; // true if the seat is available (not reserved)
+  return seatingPlan[row][col] == '.'; // Check for '.' to indicate available
 }
 
 void Terrain::reserveSeat(int row, int col) {
   if (isSeatAvailable(row, col)) {
-    seatingPlan[row][col] = true;
-    ++nbPlacesReservees;
+    seatingPlan[row][col] = 'X'; // Mark as reserved
   }
 }
 
 void Terrain::releaseSeat(int row, int col) {
   if (!isSeatAvailable(row, col)) {
-    seatingPlan[row][col] = false; 
-    --nbPlacesReservees;
+    seatingPlan[row][col] = '.'; // Mark as available
   }
 }
 
+void Terrain::afficherSeatingPlan() const {
+  for (const auto& row : seatingPlan) {
+    for (char seat : row) {
+      cout << seat << " ";
+    }
+    cout << endl;
+  }
+}
 // GestionTerrains methods
+
+// Add a terrain
 void GestionTerrains::ajouterTerrain(Terrain terrain) {
-  terrains.push_back(terrain);
+    terrains.push_back(terrain);
 }
 
 // Display all terrains
 void GestionTerrains::afficherTerrains() {
-  for (const Terrain& terrain : terrains) {
-    terrain.afficher();
-    cout << endl;
-  }
+    for (const Terrain& terrain : terrains) {
+        terrain.afficher();
+        cout << endl;
+    }
 }
 
 // Remove a terrain
 bool GestionTerrains::supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
-  for (auto it = terrains.begin(); it != terrains.end(); ++it) {
-    int tLongueur, tLargeur;
-    it->getLongueur(tLongueur);
-    it->getLargeur(tLargeur);
-    if (it->getType() == type && tLongueur == longueur && tLargeur == largeur) {
-      terrains.erase(it);
-      return true; // Terrain found and deleted
+    for (auto it = terrains.begin(); it != terrains.end(); ++it) {
+        if (it->getType() == type && it->getLongueur() == longueur && it->getLargeur() == largeur) {
+            terrains.erase(it);
+            return true; // Terrain found and deleted
+        }
     }
-  }
-  return false; // Terrain not found
+    return false; // Terrain not found
 }
 
 // Search for a terrain
 Terrain* GestionTerrains::rechercherTerrain(TypeTerrain type, int longueur, int largeur) const {
-  for (const auto& terrain : terrains) {
-    int tLongueur, tLargeur;
-    terrain.getLongueur(tLongueur);
-    terrain.getLargeur(tLargeur);
-    if (terrain.getType() == type && tLongueur == longueur && tLargeur == largeur) {
-      return const_cast<Terrain*>(&terrain);
+    for (const auto& terrain : terrains) {
+        if (terrain.getType() == type && terrain.getLongueur() == longueur && terrain.getLargeur() == largeur) {
+            return const_cast<Terrain*>(&terrain);
+        }
     }
-  }
-  return nullptr; 
+    return nullptr;
 }

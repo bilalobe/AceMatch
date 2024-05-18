@@ -14,13 +14,14 @@ using namespace std;
 int Partie::nextMatchNumber = 1;
 
 // Constructor for Partie
-Partie::Partie(TypePartie type, string nomJoueur1, string nomJoueur2) {
+Partie::Partie(TypePartie type, string nomJoueur1, string nomJoueur2, Terrain* terrain) {
   this->type = type;
   this->nomJoueur1 = nomJoueur1;
   this->nomJoueur2 = nomJoueur2;
   resultat1 = MATCH_NUL;
   resultat2 = MATCH_NUL;
   numero = nextMatchNumber++;
+  this->terrain = terrain;
 }
 
 // Display a match's details
@@ -69,23 +70,14 @@ ResultatPartie Partie::getResultat2() const {
   return resultat2;
 }
 
-// Get the name of player 1
-string Partie::getNomJoueur1() const {
-  return nomJoueur1;
-}
-
-// Get the name of player 2
-string Partie::getNomJoueur2() const {
-  return nomJoueur2;
-}
 
 // Set the name of player 1
-void Partie::setNomJoueur1(string nomJoueur1) const {
+void Partie::setNomJoueur1(string nomJoueur1) {
   this->nomJoueur1 = nomJoueur1;
 }
 
 // Set the name of player 2
-void Partie::setNomJoueur2(string nomJoueur2) const {
+void Partie::setNomJoueur2(string nomJoueur2) {
   this->nomJoueur2 = nomJoueur2;
 }
 
@@ -146,7 +138,7 @@ void GestionParties::afficherParties() {
 // Remove a match
 void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2) {
   for (int i = 0; i < parties.size(); i++) {
-    if (parties[i].getType() == type && parties[i].getNomJoueur1() == nomJoueur1 &&
+    if (parties[i].getType == type && parties[i].getNomJoueur1() == nomJoueur1 &&
         parties[i].getNomJoueur2() == nomJoueur2) {
       parties.erase(parties.begin() + i);
       break;
@@ -163,17 +155,31 @@ Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string&
   return nullptr;
 }
 
+// Function to retrieve a Partie by match name
 Partie* GestionParties::rechercherPartie(const std::string& matchName) {
   // Add logic to search for a match by its name
   // Example: Assuming matchName is in the format "Player1 vs. Player2"
   for (auto& partie : parties) {
-    // Use getNomJoueur1() and getNomJoueur2() here 
-    if ((partie.getNomJoueur1() + " vs. " + partie.getNomJoueur2() == matchName) || // Use getNomJoueur1()
-        (partie.getNomJoueur2() + " vs. " + partie.getNomJoueur1() == matchName)) { // Use getNomJoueur2()
-      return &partie; 
+    if ((partie.getNomJoueur1() + " vs. " + partie.getNomJoueur1() == matchName) ||
+        (partie.getNomJoueur2() + " vs. " + partie.getNomJoueur1() == matchName)) {
+      return &partie;
     }
   }
   return nullptr; // Match not found
+}
+void GestionParties::setMatchResult(int numero, const std::string& winnerName) {
+    for (int i = 0; i < parties.size(); i++) {
+        if (parties[i].getNumero() == numero) {
+            if (parties[i].getNomJoueur1() == winnerName) {
+                parties[i].setResultat(parties[i].getNomJoueur1(), 1);
+                parties[i].setResultat(parties[i].getNomJoueur2(), 2);
+            } else if (parties[i].getNomJoueur2() == winnerName) {
+                parties[i].setResultat(parties[i].getNomJoueur2(), 1);
+                parties[i].setResultat(parties[i].getNomJoueur1(), 2);
+            }
+            break;
+        }
+    }
 }
 
 std::istream& operator>>(std::istream& is, TypePartie& tp) {

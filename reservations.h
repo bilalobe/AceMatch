@@ -1,52 +1,60 @@
 #ifndef RESERVATIONS_H
 #define RESERVATIONS_H
+
 #include "places.h"
 #include "clients.h"
 #include "parties.h"
+#include "terrains.h"
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Reservation {
 public:
-    Reservation(Client* client, Partie* partie, Terrain* terrain);
+    Reservation(Client* client, Partie* partie, Terrain* terrain, int row, int col);
 
-    Client* getClient() const { return client; }
-    Partie* getPartie() const { return partie; }
-    Terrain* getTerrain() const { return terrain; }
+    // Getters
+    Client* getClient() const;
+    Partie* getPartie() const;
+    Terrain* getTerrain() const;
+    int getRow() const;
+    int getCol() const;
+
+    // Display reservation details
     void afficher() const;
 
 private:
     Client* client;
     Partie* partie;
     Terrain* terrain;
+    int row;
+    int col;
 };
+
 class GestionReservations {
 private:
-  std::vector<Reservation> reservations;
+    std::vector<Reservation> reservations;
 
 public:
-  // Constructor
-  GestionReservations() {}
+    // Constructor
+    GestionReservations() {}
 
-  // Add a reservation
-  void ajouterReservation(const Reservation& reservation);
+    // Add a reservation
+    void ajouterReservation(const Reservation& reservation);
 
-  // Remove a reservation
-  void supprimerReservation(Client* client, Partie* partie);
+    // Remove a reservation
+    void supprimerReservation(Client* client, Partie* partie, int row, int col);
 
-  // Search for a reservation
-  Reservation* rechercherReservation(Client* client, Partie* partie);
+    // Search for a reservation
+    Reservation* rechercherReservation(Client* client, Partie* partie, int row, int col);
 
-  // Display all reservations
-  void afficherReservations() const;
+    // Display all reservations
+    void afficherReservations() const;
 
-  // Get the list of reservations
-  const std::vector<Reservation>& getReservations() const;
+    // Get the list of reservations
+    const std::vector<Reservation>& getReservations() const;
 
-  // Sort reservations by client name
-  void trierReservationsParClient();
+    // Sort reservations by client name
+    void trierReservationsParClient();
 };
 
-#endif // GESTION_RESERVATIONS_H
+#endif // RESERVATIONS_H

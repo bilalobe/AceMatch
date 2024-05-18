@@ -2,76 +2,80 @@
 #include <iostream>
 #include <vector>
 #include <string>
-#include <algorithm> 
+#include <algorithm>
 #include <map>
 #include "joueurs.h"
 #include "championnats.h"
 
-using namespace std;
+// Constructor
+Score::Score(const Partie& partie, int scoreJoueur1, int scoreJoueur2)
+    : partie(partie), scoreJoueur1(scoreJoueur1), scoreJoueur2(scoreJoueur2) {}
 
-// Constructor for Score
-Score::Score(string nomJoueur, int score) : nomJoueur(nomJoueur), score(score) {}
-
-// Display a score's details
+// Display the score
 void Score::afficher() const {
-  cout << "Nom: " << nomJoueur << endl;
-  cout << "Score: " << score << endl;
+    std::cout << "Match: " << partie.getNomJoueur1() << " vs. " << partie.getNomJoueur2() << std::endl;
+    std::cout << "Score: " << scoreJoueur1 << " - " << scoreJoueur2 << std::endl;
 }
 
 // GestionScores implementation
 GestionScores::GestionScores() {}
 
-
-
-// Get the top scores (sorted by score)
-vector<Score> GestionScores::getTopScores(int count) {
-  vector<Score> topScores;
-  for (const auto& pair : scoresMap) {
-    topScores.emplace_back(pair.first, pair.second);
-  }
-  std::sort(topScores.begin(), topScores.end(),
-            [](const Score& score1, const Score& score2) {
-              return score1.score > score2.score;
-            });
-  if (count < topScores.size()) {
-    topScores.resize(count);
-  }
-  return topScores;
+// Add a score
+void GestionScores::ajouterScore(const Score& score) {
+    scores.push_back(score);
+    scoresMap[score.getPartie().getNumero()] = &scores.back();
 }
 
-// Remove a score from the map
-void GestionScores::supprimerScore(string nomJoueur) {
-  auto it = scoresMap.find(nomJoueur);
-  if (it != scoresMap.end()) {
-    scoresMap.erase(it);
-  }
+// Remove a score
+void GestionScores::supprimerScore(int numero) {
+    auto it = scoresMap.find(numero);
+    if (it != scoresMap.end()) {
+        scores.erase(std::remove(scores.begin(), scores.end(), *(it->second)), scores.end());
+        scoresMap.erase(it);
+    }
+}
+
+// Update a score
+void GestionScores::mettreAJourScore(int numero, int scoreJoueur1, int scoreJoueur2, GestionJoueurs& gestionJoueurs) {
+    auto it = scoresMap.find(numero);
+    if (it != scoresMap.end()) {
+        it->second->setScoreJoueur1(scoreJoueur1);
+        it->second->setScoreJoueur2(scoreJoueur2);
+
+        const Partie& partie = it->second->getPartie();
+
+        // Update win/loss records
+        if (scoreJoueur1 > scoreJoueur2) {
+            gestionJoueurs.updateWin(partie.getNomJoueur1());
+            gestionJoueurs.updateLoss(partie.getNomJoueur2());
+        } else if (scoreJoueur2 > scoreJoueur1) {
+            gestionJoueurs.updateWin(partie.getNomJoueur2());
+            gestionJoueurs.updateLoss(partie.getNomJoueur1());
+        } else {
+            gestionJoueurs.updateLoss(partie.getNomJoueur1());
+            gestionJoueurs.updateLoss(partie.getNomJoueur2());
+        }
+    }
 }
 
 // Display all scores
-void GestionScores::afficherScores() {
-  for (const auto& pair : scoresMap) {
-    cout << "Nom: " << pair.first << endl;
-    cout << "Score: " << pair.second << endl;
-  }
+void GestionScores::afficherScores() const {
+    for (const Score& score : scores) {
+        score.afficher();
+        std::cout << std::endl;
+    }
 }
 
-void GestionScores::updateScoreMatchWin(string nomJoueur) {
-  if (scoresMap.find(nomJoueur) != scoresMap.end()) { // Check if the player exists
-    scoresMap[nomJoueur] += 3; // Add 3 points for a win
-  } else {
-    scoresMap[nomJoueur] = 3;  // Initialize the player's score if they are new
-  }
-}
-
-// Update a player's score for a match loss
-void GestionScores::updateScoreMatchLoss(string nomJoueur) {
-  if (scoresMap.find(nomJoueur) != scoresMap.end()) { // Check if the player exists
-    scoresMap[nomJoueur] += 1; // Add 1 point for a loss
-  } else {
-    scoresMap[nomJoueur] = 1;  // Initialize the player's score if they are new
-  }
-}
-
-void GestionScores::updateScoreForPlayer(string nomJoueur, int newScore) {
-    scoresMap[nomJoueur] = newScore;
+// Display Top Scorers
+std::vector<Score> GestionScores::getTopScores(int numScoresToDisplay) {
+    std::vector<Score> topScores = scores; // Make a copy
+    std::sort(topScores.begin(), topScores.end(),
+                [](const Score& a, const Score& b) {
+                    return (a.getScoreJoueur1() + a.getScoreJoueur2()) > (b.getScoreJoueur1() + b.getScoreJoueur2());
+                });
+    if (numScoresToDisplay > topScores.size()) {
+        numScoresToDisplay = topScores.size();
+    }
+    topScores.resize(numScoresToDisplay);
+    return topScores;
 }

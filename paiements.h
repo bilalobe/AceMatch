@@ -56,6 +56,5 @@ private:
     string numeroCheque; // Member variable
 };
 
-// ... (Other Payment Types You May Want to Add)
 
 #endif
