@@ -42,6 +42,8 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.cpp")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_mainwindow.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp"
   "A:/workspace/special-broccoli/app/main.cpp"
   "A:/workspace/special-broccoli/app/mainwindow.cpp"
   )
@@ -62,6 +64,8 @@ endif()
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.h")
 set(OLD_GLOB
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_mainwindow.h"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h"
   "A:/workspace/special-broccoli/app/mainwindow.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")

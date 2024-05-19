@@ -35,7 +35,7 @@ void ChampionnatSimple::ajouterJoueur(const Joueur& joueur) {
 // Method to remove players from the tournament
 void ChampionnatSimple::supprimerJoueur(const string& nom) {
   for (int i = 0; i < joueurs.size(); i++) {
-    if (joueurs[i].nom == nom) {
+    if (joueurs[i].nom == getNom()) {
       joueurs.erase(joueurs.begin() + i);
       break;
     }

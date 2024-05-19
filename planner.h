@@ -11,7 +11,9 @@
 
 class PlanificationParties {
 private:
-  TennisChampionship* tennisChampionship; 
+  TennisChampionship* tennisChampionship;
+  std::vector<Joueur*> joueurs;
+   void creerParties16emes();
 public:
   PlanificationParties(TennisChampionship* tennisChampionship); 
 };

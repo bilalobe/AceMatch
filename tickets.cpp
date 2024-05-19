@@ -96,10 +96,9 @@ Ticket* GestionTickets::rechercherTicket(int ticketNumber) {
 void GestionTickets::supprimerTicket(int ticketNumber) {
     auto it = ticketsMap.find(ticketNumber);
     if (it != ticketsMap.end()) {
-        auto iter = std::find(tickets.begin(), tickets.end(), *(it->second));
-        if (iter != tickets.end()) {
-            tickets.erase(iter); // Erase using the iterator
-            ticketsMap.erase(it);
-        }
+        tickets.erase(std::remove(tickets.begin(), tickets.end(), *(it->second)), tickets.end());
+        delete it->second; // Assuming you need to delete the dynamically allocated Ticket object
+        ticketsMap.erase(it);
     }
 }
+

@@ -135,16 +135,16 @@ void GestionParties::afficherParties() {
   }
 }
 
-// Remove a match
 void GestionParties::supprimerPartie(TypePartie type, string nomJoueur1, string nomJoueur2) {
-  for (int i = 0; i < parties.size(); i++) {
-    if (parties[i].getType == type && parties[i].getNomJoueur1() == nomJoueur1 &&
-        parties[i].getNomJoueur2() == nomJoueur2) {
-      parties.erase(parties.begin() + i);
-      break;
-    }
-  }
+  parties.erase(
+    std::remove_if(parties.begin(), parties.end(),
+      [type, nomJoueur1, nomJoueur2](const Partie& partie) {
+        return partie.getType() == type && partie.getNomJoueur1() == nomJoueur1 && partie.getNomJoueur2() == nomJoueur2;
+      }),
+    parties.end()
+  );
 }
+
 
 // Function to retrieve a Partie by player names
 Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string& nomJoueur2) {

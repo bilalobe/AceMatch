@@ -7,7 +7,8 @@
 #include <string>
 
 class Joueur {
-private:
+    
+public:
     std::string nom;
     int classement;
     int nbVictoires;
@@ -36,8 +37,9 @@ public:
 
     // Operator overloading for comparison
     bool operator==(const Joueur& other) const;
-};
 
+
+};
 class GestionJoueurs {
 private:
     std::vector<Joueur> joueurs;
