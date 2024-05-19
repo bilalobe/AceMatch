@@ -3,12 +3,10 @@
 
 #include <iostream>
 #include <vector>
-#include "terrains.h"
-#include "clients.h"
-#include "tickets.h"
-#include "reservations.h"
+
+
 #include "scoreboard.h"
-#include "joueurs.h"
+
 
 using namespace std;
 

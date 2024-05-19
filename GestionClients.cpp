@@ -1,6 +1,7 @@
-
 #include "Client.h"
+#include "GestionClients.h"
 
+// Add a client
 void GestionClients::ajouterClient(const Client &client) {
     clients.push_back(client);
 }
@@ -32,7 +33,6 @@ Client *GestionClients::rechercherClient(const std::string &nom) const {
 void GestionClients::afficherClients() const {
     for (const Client &client : clients) {
         client.afficher();
-        cout << endl;
     }
 }
 

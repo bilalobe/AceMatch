@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <conio.h> 
+#include <windows.h> // Include windows.h for Windows-specific functions
 
 using namespace std;
 

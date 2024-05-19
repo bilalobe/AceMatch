@@ -1,9 +1,5 @@
-#include "parties.h"
-#include "championnats.h"
-#include "joueurs.h"
-#include "pilot.h"
-#include <random>
-// PlanificationParties implementation
+#include "PlanificationParties.h"
+
 class PlanificationParties
 {
 private:

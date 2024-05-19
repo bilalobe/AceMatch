@@ -6,9 +6,7 @@
 #include <map>
 
 #include "parties.h"
-#include "joueurs.h" 
-#include "scores.h"
-#include "planner.h"
+
 #include "TennisEvent.h"
 #include "terrains.h"
 #include "reservations.h"

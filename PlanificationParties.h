@@ -1,13 +1,10 @@
 #ifndef PLANIFICATION_PARTIES_H
 #define PLANIFICATION_PARTIES_H
 
-#include "parties.h"
-#include "championnats.h"
-#include "pilot.h"
-#include "joueurs.h"
+
 #include <vector>
 #include <random>
-// ... other includes ...
+#include "Joueur.h"
 
 class PlanificationParties {
 private:

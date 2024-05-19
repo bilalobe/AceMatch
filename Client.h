@@ -3,8 +3,9 @@
 
 #include <string>
 #include <vector>
-#include "tickets.h"
 #include <map>
+
+#include "Ticket.h"
 
 class Client
 {

@@ -1,8 +1,13 @@
 #ifndef MATCHRESULT_H
 #define MATCHRESULT_H
 
-#include "Match.h"
+#include "Partie.h"
 
+enum ResultatPartie {
+  MATCH_NUL,
+  VICTOIRE,
+  DEFAITE
+};
 
 class MatchResult {
 public:

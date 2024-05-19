@@ -1,9 +1,11 @@
-#ifndef GESTIONCLIENT_H
-#define GESTIONCLIENT_H
+#ifndef GESTIONCLIENTS_H
+#define GESTIONCLIENTS_H
 
-#include <string>
-#include <vector>
+
 #include "client.h"
+#include <string>
+#include <algorithm>
+#include <vector>
 
 class GestionClients
 {

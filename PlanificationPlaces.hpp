@@ -1,15 +1,8 @@
-#ifndef SEATINGPLAN_H
-#define SEATINGPLAN_H
-
-#include <iostream>
-#include <vector>
-
-using namespace std;
+#include "PlanificationPlaces.h"
 
 class SeatingPlan
 {
 public:
-    vector<vector<bool>> seatingPlan;
 
     SeatingPlan(int numRows, int numCols) : seatingPlan(numRows, vector<bool>(numCols, false)) {}
 
@@ -30,7 +23,7 @@ public:
         return false;
     }
 
-    void displaySeatingPlan()
+    void displaySeatingPlan() const
     {
         cout << "Seating Plan:" << endl;
         for (int i = 0; i < seatingPlan.size(); i++)

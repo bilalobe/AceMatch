@@ -1,11 +1,5 @@
-#include "terrains.h"
-#include <iostream>
-#include <vector>
-#include <string>
+#include "Terrain.h"
 
-using namespace std;
-
-// Constructor with type, length, and width
 Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
     : type(type), longueur(longueur), largeur(largeur), nbPlacesReservees(0) {
     initializeSeatingPlan(longueur, largeur); // Initialize seating plan based on terrain size
@@ -79,45 +73,3 @@ void Terrain::afficher() const {
     cout << "Nombre de places réservées: " << nbPlacesReservees << endl;
 }
 
-#include "terrains.h"
-#include <iostream>
-
-Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
-    : type(type), longueur(longueur), largeur(largeur) {}
-
-
-// GestionTerrains methods
-
-// Add a terrain
-void GestionTerrains::ajouterTerrain(Terrain terrain) {
-    terrains.push_back(terrain);
-}
-
-// Display all terrains
-void GestionTerrains::afficherTerrains() {
-    for (const Terrain& terrain : terrains) {
-        terrain.afficher();
-        cout << endl;
-    }
-}
-
-// Remove a terrain
-bool GestionTerrains::supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
-    for (auto it = terrains.begin(); it != terrains.end(); ++it) {
-        if (it->getType() == type && it->getLongueur() == longueur && it->getLargeur() == largeur) {
-            terrains.erase(it);
-            return true; // Terrain found and deleted
-        }
-    }
-    return false; // Terrain not found
-}
-
-// Search for a terrain
-Terrain* GestionTerrains::rechercherTerrain(TypeTerrain type, int longueur, int largeur) const {
-    for (const auto& terrain : terrains) {
-        if (terrain.getType() == type && terrain.getLongueur() == longueur && terrain.getLargeur() == largeur) {
-            return const_cast<Terrain*>(&terrain);
-        }
-    }
-    return nullptr;
-}

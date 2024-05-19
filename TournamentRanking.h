@@ -3,8 +3,7 @@
 
 #include <vector>
 #include <string>
-#include "championnats.h"
-#include "joueurs.h"
+
 
 
 class TournamentRanking {
