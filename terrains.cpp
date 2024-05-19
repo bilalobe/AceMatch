@@ -85,40 +85,7 @@ void Terrain::afficher() const {
 Terrain::Terrain(TypeTerrain type, int longueur, int largeur)
     : type(type), longueur(longueur), largeur(largeur) {}
 
-void Terrain::initializeSeatingPlan(int rows, int cols) {
-  seatingPlan.resize(rows);
-  for (int i = 0; i < rows; ++i) {
-    seatingPlan[i].resize(cols, '.'); // Initialize with '.' for available seats
-  }
-}
 
-bool Terrain::isSeatAvailable(int row, int col) {
-  if (row < 0 || row >= seatingPlan.size() || col < 0 || col >= seatingPlan[0].size()) {
-    return false;
-  }
-  return seatingPlan[row][col] == '.'; // Check for '.' to indicate available
-}
-
-void Terrain::reserveSeat(int row, int col) {
-  if (isSeatAvailable(row, col)) {
-    seatingPlan[row][col] = 'X'; // Mark as reserved
-  }
-}
-
-void Terrain::releaseSeat(int row, int col) {
-  if (!isSeatAvailable(row, col)) {
-    seatingPlan[row][col] = '.'; // Mark as available
-  }
-}
-
-void Terrain::afficherSeatingPlan() const {
-  for (const auto& row : seatingPlan) {
-    for (char seat : row) {
-      cout << seat << " ";
-    }
-    cout << endl;
-  }
-}
 // GestionTerrains methods
 
 // Add a terrain

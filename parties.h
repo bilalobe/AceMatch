@@ -62,7 +62,6 @@ public:
     void afficherParties();
     void supprimerPartie(TypePartie type, std::string nomJoueur1, std::string nomJoueur2);
     Partie* rechercherPartie(const std::string& nomJoueur1, const std::string& nomJoueur2);
-    Partie* rechercherPartie(const std::string& matchName);
     void setMatchResult(int numero, const std::string& winnerName);
 
 private:

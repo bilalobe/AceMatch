@@ -7,7 +7,7 @@
 #include "tickets.h"
 #include "joueurs.h"
 #include "scores.h"
-#include "tennis_championnat.h" // Include the TennisChampionship header
+#include "pilot.h" // Include the TennisChampionship header
 
 using namespace std;
 

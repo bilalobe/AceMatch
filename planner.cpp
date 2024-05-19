@@ -1,7 +1,7 @@
 #include "parties.h"
 #include "championnats.h"
 #include "joueurs.h"
-#include "tennis_championnat.h"
+#include "pilot.h"
 #include <random>
 // PlanificationParties implementation
 class PlanificationParties

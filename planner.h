@@ -3,7 +3,7 @@
 
 #include "parties.h"
 #include "championnats.h"
-#include "tennis_championnat.cpp"
+#include "pilot.h"
 #include "joueurs.h"
 #include <vector>
 #include <random>

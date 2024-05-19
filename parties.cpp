@@ -155,18 +155,7 @@ Partie* GestionParties::rechercherPartie(const string& nomJoueur1, const string&
   return nullptr;
 }
 
-// Function to retrieve a Partie by match name
-Partie* GestionParties::rechercherPartie(const std::string& matchName) {
-  // Add logic to search for a match by its name
-  // Example: Assuming matchName is in the format "Player1 vs. Player2"
-  for (auto& partie : parties) {
-    if ((partie.getNomJoueur1() + " vs. " + partie.getNomJoueur1() == matchName) ||
-        (partie.getNomJoueur2() + " vs. " + partie.getNomJoueur1() == matchName)) {
-      return &partie;
-    }
-  }
-  return nullptr; // Match not found
-}
+
 void GestionParties::setMatchResult(int numero, const std::string& winnerName) {
     for (int i = 0; i < parties.size(); i++) {
         if (parties[i].getNumero() == numero) {
