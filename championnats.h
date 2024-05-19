@@ -3,8 +3,6 @@
 
 #include <vector>
 #include <string>
-#include "parties.h"
-#include "tickets.h"
 
 
 using namespace std;

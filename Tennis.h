@@ -5,13 +5,9 @@
 #include <vector>
 #include <map>
 
-#include "parties.h"
 
 #include "TennisEvent.h"
-#include "terrains.h"
-#include "reservations.h"
-#include "TournamentRanking.h"
-#include "MatchSchedule.h"
+
 
 
 class TennisChampionship {
@@ -36,17 +32,6 @@ public:
   bool sellTicket(int ticketNumber);
 
 
-  GestionJoueurs gestionJoueurs;
-  GestionTerrains gestionTerrains;
-  GestionReservations gestionReservations;
-  GestionScores gestionScores;
-  GestionParties gestionParties;
-  ChampionnatSimple championnat;
-  PlanificationParties planificateur;
-  GestionClients gestionClients;
-  TennisEvent* tennisEvent;
-    MatchSchedule schedule; // Store the match schedule
-  TournamentRanking rankings; // Store the tournament rankings
-  GestionTickets gestionTickets;};
+}
 
-#endif // TENNIS_CHAMPIONSHIP_H
+#endif 
