@@ -43,9 +43,12 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_mainwindow.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_playerbox.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_ui_playerbox.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp"
   "A:/workspace/special-broccoli/app/main.cpp"
   "A:/workspace/special-broccoli/app/mainwindow.cpp"
+  "A:/workspace/special-broccoli/app/playerbox.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -65,8 +68,11 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.h")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_mainwindow.h"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_playerbox.h"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_ui_playerbox.h"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h"
   "A:/workspace/special-broccoli/app/mainwindow.h"
+  "A:/workspace/special-broccoli/app/playerbox.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -167,6 +173,7 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.ui")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/mainwindow.ui"
+  "A:/workspace/special-broccoli/app/playerbox.ui"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

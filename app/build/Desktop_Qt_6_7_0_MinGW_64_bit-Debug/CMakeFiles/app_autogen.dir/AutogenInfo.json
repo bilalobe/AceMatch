@@ -270,6 +270,12 @@
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/playerbox.h",
+			"MU",
+			"EWIEGA46WW/moc_playerbox.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -344,7 +350,8 @@
 	"SOURCES" : 
 	[
 		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ]
+		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/playerbox.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
