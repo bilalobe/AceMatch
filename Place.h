@@ -1,9 +1,8 @@
 #ifndef PLACE.H
-#define PLACE.H
+#define PLACE .H
 
-
-
-class Place {
+class Place
+{
 public:
   string type;
   double prix;
@@ -16,7 +15,8 @@ public:
 };
 
 // Définition de la classe StandardPlace
-class StandardPlace : public Place {
+class StandardPlace : public Place
+{
 public:
   StandardPlace(int numero);
 
@@ -28,7 +28,8 @@ private:
 };
 
 // Définition de la classe VipPlace
-class VipPlace : public Place {
+class VipPlace : public Place
+{
 public:
   VipPlace(int numero);
 

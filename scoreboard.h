@@ -1,48 +1,20 @@
 #ifndef SCOREBOARD_H
 #define SCOREBOARD_H
 
+#include <string>
+#include <map>
+#include <fstream>
 #include <iostream>
-#include <vector>
 
-using namespace std;
-
-class ScoreBoard
-{
+class Scoreboard {
 public:
-    vector<Score *> scores;
+    void afficherScores() const;
+    void ajouterScore(const std::string& joueur1, const std::string& joueur2, int score1, int score2);
+    void sauvegarderScores(const std::string& filename) const;
+    void chargerScores(const std::string& filename);
 
-    void addScore(Score *score)
-    {
-        scores.push_back(score);
-    }
-
-    Score *getScore(int matchIndex)
-    {
-        if (matchIndex >= 0 && matchIndex < scores.size())
-        {
-            return scores[matchIndex];
-        }
-        return nullptr;
-    }
-
-    void updateScore(int matchIndex, int scorePlayer1, int scorePlayer2)
-    {
-        if (matchIndex >= 0 && matchIndex < scores.size())
-        {
-            scores[matchIndex]->setScoreJoueur1(scorePlayer1);
-            scores[matchIndex]->setScoreJoueur2(scorePlayer2);
-        }
-    }
-
-    void displayScores() const
-    {
-        for (int i = 0; i < scores.size(); i++)
-        {
-            cout << "Match " << i + 1 << ": ";
-            scores[i]->afficher();
-            cout << endl;
-        }
-    }
+private:
+    std::map<std::string, std::map<std::string, int>> scores;
 };
 
-#endif
+#endif // SCOREBOARD_H

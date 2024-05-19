@@ -1,4 +1,4 @@
-#include "partie.h"
+#include "Partie.h"
 
 // Static member initialization for next match number
 int Partie::nextMatchNumber = 1;

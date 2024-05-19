@@ -2,11 +2,15 @@
 #define PARTIE_H
 
 #include <string>
-#include "ResultatPartie.h"
-#include "TypePartie.h"
 #include "Terrain.h"
+#include "MatchResult.h"
 
 using namespace std;
+
+enum TypePartie {
+    SIMPLE,
+    DOUBLE
+}
 
 class Partie {
 public:

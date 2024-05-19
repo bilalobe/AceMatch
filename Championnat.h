@@ -3,6 +3,8 @@
 
 #include "Joueur.h"
 #include "Ticket.h"
+#include "Partie.h"
+#include "Tennis.h"
 
 #include<string>
 #include<vector>

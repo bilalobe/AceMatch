@@ -2,6 +2,7 @@
 #define MATCHRESULT_H
 
 #include "Partie.h"
+#include "Joueur.h"
 
 enum ResultatPartie {
   MATCH_NUL,

@@ -4,7 +4,11 @@
 #include <iostream>
 #include <vector>
 
-
+#include "Terrain.h"
+#include "Client.h"
+#include "GestionJoueurs.h"
+#include "Ticket.h"
+#include "Reservation.h"
 #include "scoreboard.h"
 
 

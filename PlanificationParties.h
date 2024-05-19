@@ -4,7 +4,10 @@
 
 #include <vector>
 #include <random>
+
+#include "GestionParties.h"
 #include "Joueur.h"
+#include "Tennis.h"
 
 class PlanificationParties {
 private:

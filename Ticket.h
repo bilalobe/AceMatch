@@ -1,6 +1,9 @@
 #ifndef TICKET_H
 #define TICKET_H
 
+#include <string>
+#include "Reservation.h"
+    
 class Ticket {
 public:
     Ticket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation, int row, int col); // Constructor

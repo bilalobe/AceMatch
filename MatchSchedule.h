@@ -3,8 +3,7 @@
 
 #include <vector>
 #include "scoreboard.h"
-#include "Championnats.h"
-
+#include "Tennis.h"
 using namespace std;
 
 class MatchSchedule {

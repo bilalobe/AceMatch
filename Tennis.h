@@ -5,9 +5,9 @@
 #include <vector>
 #include <map>
 
-
-#include "TennisEvent.h"
-
+#include "MatchSchedule.h"
+#include "TournamentRanking.h"
+#include "Championnat.h"
 
 
 class TennisChampionship {

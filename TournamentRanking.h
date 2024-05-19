@@ -1,27 +1,18 @@
-#ifndef TOURNAMENT_RANKING_H
-#define TOURNAMENT_RANKING_H
+#ifndef TOURNAMENTRANKING_H
+#define TOURNAMENTRANKING_H
 
 #include <vector>
 #include <string>
-
-#include "Joueur.h"
-
+#include <map>
 
 class TournamentRanking {
 public:
-  // Constructor
-  TournamentRanking(const ChampionnatSimple& championnat) : championnat(championnat) {}
-
-  // Methods:
-  void updateRanking(const Match& match); // Update rankings based on match results
-  void displayRankings(); // Display current rankings
-  void saveRankings(const string& filename); // Save rankings to a file
-  void loadRankings(const string& filename); // Load rankings from a file
-  Joueur* getRankedPlayer(int rank); // Get the player at a given rank
+    void ajouterMatch(const std::string &joueur1, const std::string &joueur2, int score1, int score2);
+    void afficherClassement() const;
 
 private:
-  ChampionnatSimple championnat;
-  vector<Joueur*> rankedPlayers; // Or a more suitable data structure for efficient ranking
+    std::map<std::string, int> classement;
+    void mettreAJourClassement(const std::string &joueur, int points);
 };
 
-#endif
+#endif // TOURNAMENTRANKING_H

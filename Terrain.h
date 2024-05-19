@@ -1,5 +1,5 @@
 #ifndef TERRAIN.H
-#define TERRAIN .H
+#define TERRAIN.H
 
 class Terrain
 {

@@ -1,16 +1,3 @@
-#include <iostream>
-#include <vector>
-#include <limits>
-#include "joueurs.h"
-#include "terrains.h"
-#include "parties.h"
-#include "reservations.h"
-#include "tennis_championnat.h"
-#include "championnats.h"
-#include "tickets.h"
-#include "scores.h"
-#include "clients.h"
-#include "planner.h"
 
 using namespace std;
 
