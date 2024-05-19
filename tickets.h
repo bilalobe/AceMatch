@@ -5,8 +5,6 @@
 #include <vector>
 #include <map>
 #include "parties.h"
-#include "clients.h"
-#include "reservations.h"
 
 class Ticket {
 public:

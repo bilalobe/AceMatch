@@ -9,7 +9,6 @@
 #include "joueurs.h" 
 #include "scores.h"
 #include "planner.h"
-#include "clients.h"
 #include "TennisEvent.h"
 #include "terrains.h"
 #include "reservations.h"
