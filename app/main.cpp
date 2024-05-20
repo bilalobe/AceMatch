@@ -17,7 +17,7 @@ int main(int argc, char *argv[])
 
     QMainWindow mainWindow;
     mainWindow.setWindowIcon(QIcon("ball.svg")); // Set your app's logo
-    mainWindow.resize(1280, 720); // Widen the overall interface
+    mainWindow.resize(720, 720); // Widen the overall interface
 
     // Menu Bar
     QMenuBar *menuBar = mainWindow.menuBar();
