@@ -1,15 +1,14 @@
 #ifndef TERRAIN.H
 #define TERRAIN.H
 
+enum TypeTerrain {
+    GAZON,
+    TERRE_BATTUE,
+    ASPHALTE
+};
+
 class Terrain
 {
-private:
-    TypeTerrain type;
-    int longueur;
-    int largeur;
-    int nbPlacesReservees;
-    std::vector<std::vector<bool>> seatingPlan; // 2D vector for seating plan
-
 public:
     // Constructors
     Terrain(TypeTerrain type, int longueur, int largeur);
@@ -19,6 +18,8 @@ public:
     TypeTerrain getType() const;
     int getLongueur() const;
     int getLargeur() const;
+    std::string getNom() const;
+    std::vector<std::vector<bool>> getSeatingPlan() const;
     int getNbPlacesReservees() const;
 
     // Setters
@@ -33,5 +34,14 @@ public:
 
     int getRow() const { return seatingPlan.size(); }    // Return the number of rows
     int getCol() const { return seatingPlan[0].size(); } // Return the number of columns
-}
-#endif // TERRAIN.H
+
+private:
+    TypeTerrain type;
+    int longueur;
+    int largeur;
+    int nbPlacesReservees;
+    std::string nom;
+    std::vector<std::vector<bool>> seatingPlan; // 2D vector for seating plan
+};
+
+#endif

@@ -1,31 +1,24 @@
 #ifndef MATCHRESULT_H
 #define MATCHRESULT_H
 
-#include "Partie.h"
-#include "Joueur.h"
+#include <string>
 
-enum ResultatPartie {
-  MATCH_NUL,
-  VICTOIRE,
-  DEFAITE
+enum class MatchResultEnum {
+    DRAW,
+    PLAYER1_WON,
+    PLAYER2_WON
 };
 
 class MatchResult {
 public:
-  // Constructor
-  MatchResult(const Match& match, int scorePlayer1, int scorePlayer2);
+    MatchResult(MatchResultEnum result = MatchResultEnum::DRAW);
 
-  // Methods:
-  void displayResult();
-  Joueur* getWinner();
-  Joueur* getLoser();
-  int getScorePlayer1();
-  int getScorePlayer2();
+    void setResult(MatchResultEnum result);
+    MatchResultEnum getResult() const;
+    std::string toString() const;
 
 private:
-  Match match;
-  int scorePlayer1;
-  int scorePlayer2;
+    MatchResultEnum result;
 };
 
 #endif // MATCHRESULT_H

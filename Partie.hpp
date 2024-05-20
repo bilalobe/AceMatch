@@ -4,70 +4,45 @@
 int Partie::nextMatchNumber = 1;
 
 // Constructor for Partie
-Partie::Partie(TypePartie type, string nomJoueur1, string nomJoueur2, Terrain* terrain) {
-  this->type = type;
-  this->nomJoueur1 = nomJoueur1;
-  this->nomJoueur2 = nomJoueur2;
-  resultat1 = MATCH_NUL;
-  resultat2 = MATCH_NUL;
-  numero = nextMatchNumber++;
-  this->terrain = terrain;
+Partie::Partie(TypePartie type, const std::string& nomJoueur1, const std::string& nomJoueur2, Terrain* terrain)
+    : type(type), nomJoueur1(nomJoueur1), nomJoueur2(nomJoueur2), resultat1(DRAW), resultat2(DRAW), terrain(terrain) {
+    numero = nextMatchNumber++;
 }
 
 // Display a match's details
 void Partie::afficher() const {
-  cout << "Type: " << (type == SIMPLE ? "Simple" : "Double") << endl;
-  cout << "Joueur 1: " << nomJoueur1 << endl;
-  cout << "Joueur 2: " << nomJoueur2 << endl;
-  cout << "Résultat 1: " << (resultat1 == VICTOIRE ? "Victoire" : "Défaite") << endl;
-  cout << "Résultat 2: " << (resultat2 == VICTOIRE ? "Victoire" : "Défaite") << endl;
+    std::cout << "Type: " << (type == SIMPLE ? "Simple" : "Double") << std::endl;
+    std::cout << "Joueur 1: " << nomJoueur1 << std::endl;
+    std::cout << "Joueur 2: " << nomJoueur2 << std::endl;
+    std::cout << "Résultat 1: " << (resultat1 == PLAYER2_WON ? "Victoire" : (resultat1 == PLAYER2_WON ? "Défaite" : "Match Nul")) << std::endl;
+    std::cout << "Résultat 2: " << (resultat2 == PLAYER1_WON ? "Victoire" : (resultat2 == PLAYER2_WON ? "Défaite" : "Match Nul")) << std::endl;
+    if (terrain) {
+        std::cout << "Terrain: " << terrain->getNom() << std::endl;
+    } else {
+        std::cout << "Terrain: Non spécifié" << std::endl;
+    }
 }
 
 // Set the result of a match
-void Partie::setResultat(const string& nomJoueur, int resultatAsInt) {
-  if (resultatAsInt < 0 || resultatAsInt > 2) {
-    throw std::invalid_argument("Invalid result value. Must be between 0 and 2.");
-  }
-  ResultatPartie actualResultat = static_cast<ResultatPartie>(resultatAsInt);
-  switch (resultatAsInt) {
-    case 0:
-      actualResultat = MATCH_NUL;
-      break;
-    case 1:
-      actualResultat = VICTOIRE;
-      break;
-    case 2:
-      actualResultat = DEFAITE;
-      break;
-    default:
-      break;
-  }
+void Partie::setResultat(const std::string& nomJoueur, int resultatAsInt) {
+    if (resultatAsInt < 0 || resultatAsInt > 2) {
+        throw std::invalid_argument("Invalid result value. Must be between 0 and 2.");
+    }
+    MatchResult actualResultat = static_cast<MatchResult>(resultatAsInt);
 
-  if (nomJoueur == nomJoueur1) {
-    resultat1 = actualResultat;
-  } else if (nomJoueur == nomJoueur2) {
-    resultat2 = actualResultat;
-  }
+    if (nomJoueur == nomJoueur1) {
+        resultat1 = actualResultat;
+    } else if (nomJoueur == nomJoueur2) {
+        resultat2 = actualResultat;
+    } else {
+        throw std::invalid_argument("Player name does not match any participants in the match.");
+    }
 }
 
-// Get the result for player 1
-ResultatPartie Partie::getResultat1() const {
-  return resultat1;
+// Overload the operator>> to read TypePartie
+std::istream& operator>>(std::istream& is, TypePartie& tp) {
+    int typeInt;
+    is >> typeInt;
+    tp = static_cast<TypePartie>(typeInt);
+    return is;
 }
-
-// Get the result for player 2
-ResultatPartie Partie::getResultat2() const {
-  return resultat2;
-}
-
-
-// Set the name of player 1
-void Partie::setNomJoueur1(string nomJoueur1) {
-  this->nomJoueur1 = nomJoueur1;
-}
-
-// Set the name of player 2
-void Partie::setNomJoueur2(string nomJoueur2) {
-  this->nomJoueur2 = nomJoueur2;
-}
-

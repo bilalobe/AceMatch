@@ -1,5 +1,11 @@
 #include "Tennis.h"
 
+TennisChampionship::TennisChampionship() {}
+
+void TennisChampionship::addMatch(const Match& match) {
+    matches.push_back(match);
+}
+
 void TennisChampionship::scheduleMatches(int championshipIndex, int round) {
     if (championshipIndex >= 0 && championshipIndex < championnats.size() && round >= 1 && round <= championnats[championshipIndex]->numRounds) {
         Championnat* championnat = championnats[championshipIndex];
@@ -8,7 +14,7 @@ void TennisChampionship::scheduleMatches(int championshipIndex, int round) {
 }
 
 
-MatchSchedule TennisChampionship::createMatchSchedule(const ChampionnatSimple& championnat) {
+MatchSchedule TennisChampionship::createMatchSchedule(const TennisChampionship& championnat) {
   return MatchSchedule(championnat);
 }
 
@@ -27,8 +33,8 @@ void TennisChampionship::updateTournamentRanking(const Match& match) {
   rankings.updateRanking(match);
 }
 
-void TennisChampionship::addChampionship(ChampionnatSimple championnat) {
-  championnats.push_back(make_shared<ChampionnatSimple>(championnat));
+void TennisChampionship::addChampionship(TennisChampionship championnat) {
+  championnats.push_back(make_shared<TennisChampionship>(championnat));
 }
 
 void TennisChampionship::removeChampionship(int index) {
@@ -37,11 +43,21 @@ void TennisChampionship::removeChampionship(int index) {
   }
 }
 
-vector<shared_ptr<ChampionnatSimple>> TennisChampionship::getChampionnats() const {
+vector<shared_ptr<TennisChampionship>> TennisChampionship::getChampionnats() const {
   return championnats;
 }
 
-void TennisChampionship::setChampionnats(vector<shared_ptr<ChampionnatSimple>> newChampionnats) {
+void TennisChampionship::addMatch(std::shared_ptr<MatchBase> match) {
+    matches.push_back(match);
+}
+
+void TennisChampionship::displayMatches() const {
+    for (const auto& match : matches) {
+        match->display();
+    }
+}
+
+void TennisChampionship::setChampionnats(vector<shared_ptr<TennisChampionship>> newChampionnats) {
   championnats = newChampionnats;
 }
 
@@ -88,7 +104,3 @@ vector<Terrain> TennisChampionship::getTerrains() const {
 void TennisChampionship::addPartie(const Partie& partie) {
   gestionParties.ajouterPartie(partie);
 }
-
-
-
-

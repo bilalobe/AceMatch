@@ -1,10 +1,19 @@
 #include "Score.h"
 
-Score::Score(const Partie& partie, int scoreJoueur1, int scoreJoueur2)
-    : partie(partie), scoreJoueur1(scoreJoueur1), scoreJoueur2(scoreJoueur2) {}
+void Score::updateScore(const std::string& player, int score) {
+    scores[player] = score;
+}
 
-// Display the score
-void Score::afficher() const {
-    std::cout << "Match: " << partie.getNomJoueur1() << " vs. " << partie.getNomJoueur2() << std::endl;
-    std::cout << "Score: " << scoreJoueur1 << " - " << scoreJoueur2 << std::endl;
+int Score::getScore(const std::string& player) const {
+    auto it = scores.find(player);
+    if (it != scores.end()) {
+        return it->second;
+    }
+    return 0;
+}
+
+void Score::displayScores() const {
+    for (const auto& entry : scores) {
+        std::cout << "Player: " << entry.first << ", Score: " << entry.second << std::endl;
+    }
 }

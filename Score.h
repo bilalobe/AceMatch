@@ -1,24 +1,18 @@
-#ifndef SCORE.H
-#define SCORE.H
+#ifndef SCORE_H
+#define SCORE_H
 
-#include "Partie.h"
+#include <map>
+#include <string>
+#include "Scoreboard.h"
 
 class Score {
 public:
-    Score(const Partie& partie, int scoreJoueur1, int scoreJoueur2); // Constructor
-
-    const Partie& getPartie() const { return partie; } // Getter for Partie
-    int getScoreJoueur1() const { return scoreJoueur1; } // Getter for scoreJoueur1
-    int getScoreJoueur2() const { return scoreJoueur2; } // Getter for scoreJoueur2
-
-    void setScoreJoueur1(int score) { scoreJoueur1 = score; } // Setter for scoreJoueur1
-    void setScoreJoueur2(int score) { scoreJoueur2 = score; } // Setter for scoreJoueur2
-
-    void afficher() const; // Display the score
+    void updateScore(const std::string& player, int score);
+    int getScore(const std::string& player) const;
+    void displayScores() const;
 
 private:
-    const Partie& partie;
-    int scoreJoueur1;
-    int scoreJoueur2;
+    std::map<std::string, int> scores;
 };
-#endif // SCORE.H
+
+#endif // SCOREBOARD_H

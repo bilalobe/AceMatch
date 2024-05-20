@@ -14,6 +14,8 @@ private:
   TennisChampionship* tennisChampionship;
   std::vector<Joueur*> joueurs;
    void creerParties16emes();
+
+  
 public:
   PlanificationParties(TennisChampionship* tennisChampionship); 
 };

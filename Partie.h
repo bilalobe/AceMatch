@@ -1,47 +1,48 @@
 #ifndef PARTIE_H
 #define PARTIE_H
 
+#include <iostream>
 #include <string>
+
+#include "Match.h"
 #include "Terrain.h"
 #include "MatchResult.h"
-
-using namespace std;
 
 enum TypePartie {
     SIMPLE,
     DOUBLE
-}
+};
 
 class Partie {
 public:
-    Partie(TypePartie type, std::string nomJoueur1, std::string nomJoueur2, Terrain* terrain = nullptr);
+    Partie(TypePartie type, const std::string& nomJoueur1, const std::string& nomJoueur2, Terrain* terrain = nullptr);
+
     void afficher() const;
     int getNumero() const { return numero; }
-    string getNomJoueur1() const { return nomJoueur1; }
-    string getNomJoueur2() const { return nomJoueur2; }
+    std::string getNomJoueur1() const { return nomJoueur1; }
+    std::string getNomJoueur2() const { return nomJoueur2; }
     TypePartie getType() const { return type; }
-    void setNumero(int numero) { this->numero = numero; }
-    void setResultat(const std::string& nomJoueur, int resultatAsInt);
-    ResultatPartie getResultat1() const;
-    ResultatPartie getResultat2() const;
-    std::string getNomJoueur1() const;
-    std::string getNomJoueur2() const;
-    void setNomJoueur1(std::string nomJoueur1);
-    void setNomJoueur2(std::string nomJoueur2);
     Terrain* getTerrain() const { return terrain; }
 
-    // Declare the operator>> as a friend function of the Partie class
+    void setNumero(int numero) { this->numero = numero; }
+    void setNomJoueur1(const std::string& nomJoueur1) { this->nomJoueur1 = nomJoueur1; }
+    void setNomJoueur2(const std::string& nomJoueur2) { this->nomJoueur2 = nomJoueur2; }
+    void setResultat(const std::string& nomJoueur, int resultatAsInt);
+
+    MatchResult getResultat1() const { return resultat1; }
+    MatchResult getResultat2() const { return resultat2; }
+
     friend std::istream& operator>>(std::istream& is, TypePartie& tp);
 
 private:
     TypePartie type;
     std::string nomJoueur1;
     std::string nomJoueur2;
-    ResultatPartie resultat1;
-    ResultatPartie resultat2;
+    MatchResult resultat1;
+    MatchResult resultat2;
     int numero;
     static int nextMatchNumber;
     Terrain* terrain;
 };
 
-#endif
+#endif // PARTIE_H

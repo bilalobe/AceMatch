@@ -20,11 +20,11 @@ public:
         // Iterate through matches and identify winners
         for (Partie partie : previousRoundMatches)
         {
-            if (partie.getResultat1() == VICTOIRE)
+            if (partie.getResultat1() == PLAYER1_WON)
             {
                 winners.push_back(Joueur(partie.getNomJoueur1()));
             }
-            else if (partie.getResultat2() == VICTOIRE)
+            else if (partie.getResultat2() == PLAYER1_WON)
             {
                 winners.push_back(Joueur(partie.getNomJoueur2()));
             }
@@ -205,11 +205,11 @@ public:
         // Iterate through matches and identify winners
         for (Partie partie : previousRoundMatches)
         {
-            if (partie.getResultat1() == VICTOIRE)
+            if (partie.getResultat1() == PLAYER1_WON)
             {
                 winners.push_back(Joueur(partie.getNomJoueur1()));
             }
-            else if (partie.getResultat2() == VICTOIRE)
+            else if (partie.getResultat2() == PLAYER1_WON)
             {
                 winners.push_back(Joueur(partie.getNomJoueur2()));
             }
