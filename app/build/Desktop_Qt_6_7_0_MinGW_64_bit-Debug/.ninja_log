@@ -1,5 +1,5 @@
 # ninja log v5
-16	245	0	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f7b2c63e7c1d25e6
+10	133	0	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f7b2c63e7c1d25e6
 38	865	7378949404238512	app_autogen/mocs_compilation.cpp	f1f4bd759f55629
 38	865	7378949404238512	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp	f1f4bd759f55629
 691	10119	7378518687663776	CMakeFiles/app.dir/ui_playerbox.cpp.obj	78d0d9052aeb9cf1
@@ -9,5 +9,5 @@
 1122	14513	7378549054914358	CMakeFiles/app.dir/mainwindow.cpp.obj	2bd0a9a134866126
 1621	12299	7378948743991986	CMakeFiles/app.dir/main.cpp.obj	9253b2aef6b12895
 7313	8113	7378949476530436	app.exe	559cbe551b534ee3
-246	2365	7380743570358802	build.ninja	80f06d7230dc2386
+246	2365	7380776394867278	build.ninja	80f06d7230dc2386
 915	7312	7378949468690787	CMakeFiles/app.dir/playerbox.cpp.obj	78db1ef952df6601

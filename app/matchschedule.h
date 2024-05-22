@@ -17,5 +17,7 @@ public:
 public slots:
     void addMatch(Match *match);
     void removeMatch(int matchId);
-    Match*
-}
+    Match* match;
+};
+
+#endif

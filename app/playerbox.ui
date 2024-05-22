@@ -6,147 +6,236 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
-    <height>608</height>
+    <width>500</width>
+    <height>650</height>
    </rect>
   </property>
   <property name="mouseTracking">
    <bool>true</bool>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Player Management</string>
   </property>
+  
+  <!-- Label for Player Name -->
+  <widget class="QLabel" name="playerNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>30</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter Player's Name:</string>
+   </property>
+  </widget>
+
+  <!-- Input for Player Name -->
+  <widget class="QLineEdit" name="playerNameLineEdit">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>30</y>
+     <width>250</width>
+     <height>25</height>
+    </rect>
+   </property>
+  </widget>
+
+  <!-- Label for Player Rank -->
+  <widget class="QLabel" name="playerRankLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>80</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Enter Player's Rank:</string>
+   </property>
+  </widget>
+
+  <!-- Input for Player Rank -->
+  <widget class="QSpinBox" name="playerRankingSpinBox">
+   <property name="geometry">
+    <rect>
+     <x>200</x>
+     <y>80</y>
+     <width>100</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="minimum">
+    <number>1</number>
+   </property>
+   <property name="maximum">
+    <number>1000</number>
+   </property>
+  </widget>
+
+  <!-- Add Player Button -->
   <widget class="QPushButton" name="addPlayerButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>170</y>
-     <width>111</width>
-     <height>51</height>
+     <x>350</x>
+     <y>130</y>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
     <string>Add Player</string>
    </property>
   </widget>
-  <widget class="QPushButton" name="removePlayerButton">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>290</y>
-     <width>111</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Remove Player</string>
-   </property>
-  </widget>
+
+  <!-- Update Player Button -->
   <widget class="QPushButton" name="updatePlayerButton">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>230</y>
-     <width>111</width>
-     <height>51</height>
+     <x>350</x>
+     <y>180</y>
+     <width>100</width>
+     <height>30</height>
     </rect>
    </property>
    <property name="text">
     <string>Update Player</string>
    </property>
   </widget>
+
+  <!-- Remove Player Button -->
+  <widget class="QPushButton" name="removePlayerButton">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>230</y>
+     <width>100</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Remove Player</string>
+   </property>
+  </widget>
+
+  <!-- Label for Player List -->
+  <widget class="QLabel" name="playerListLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>280</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Player List:</string>
+   </property>
+  </widget>
+
+  <!-- Player List Widget -->
   <widget class="QListWidget" name="playerListWidget">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>370</y>
-     <width>256</width>
-     <height>192</height>
+     <x>20</x>
+     <y>310</y>
+     <width>300</width>
+     <height>250</height>
     </rect>
    </property>
-   <item>
-    <property name="text">
-     <string>Nouvel élément</string>
-    </property>
-   </item>
   </widget>
+
+  <!-- Label for Search Player -->
+  <widget class="QLabel" name="searchPlayerLabel">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>580</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Search Player:</string>
+   </property>
+  </widget>
+
+  <!-- Search Player LineEdit -->
   <widget class="QLineEdit" name="searchPlayerLineEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>380</y>
-     <width>113</width>
-     <height>26</height>
+     <x>200</x>
+     <y>580</y>
+     <width>250</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
+
+  <!-- Label for Update Player -->
+  <widget class="QLabel" name="updatePlayerNameLabel">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>280</y>
+     <width>150</width>
+     <height>25</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Update Player Name:</string>
+   </property>
+  </widget>
+
+  <!-- Update Player LineEdit -->
   <widget class="QLineEdit" name="updatePlayerLineEdit">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>430</y>
-     <width>113</width>
-     <height>121</height>
+     <x>350</x>
+     <y>310</y>
+     <width>150</width>
+     <height>25</height>
     </rect>
    </property>
   </widget>
-  <widget class="QSplitter" name="splitter_4">
+
+  <!-- Label for Update Player Rank -->
+  <widget class="QLabel" name="updatePlayerRankLabel">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>80</y>
-     <width>289</width>
-     <height>26</height>
+     <x>350</x>
+     <y>350</y>
+     <width>150</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="text">
+    <string>Update Player Rank:</string>
    </property>
-   <widget class="QLabel" name="label_3">
-    <property name="text">
-     <string>Enter Player's name :</string>
-    </property>
-   </widget>
-   <widget class="QSplitter" name="splitter_2">
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
-    </property>
-    <widget class="QSplitter" name="splitter_3">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="playerNameLineEdit">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-   </widget>
   </widget>
-  <widget class="QSplitter" name="splitter">
+
+  <!-- Update Player Rank SpinBox -->
+  <widget class="QSpinBox" name="updatePlayerRankSpinBox">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>130</y>
-     <width>172</width>
-     <height>26</height>
+     <x>350</x>
+     <y>380</y>
+     <width>100</width>
+     <height>25</height>
     </rect>
    </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
+   <property name="minimum">
+    <number>1</number>
    </property>
-   <widget class="QLabel" name="label_2">
-    <property name="text">
-     <string>Enter Player's Rank :</string>
-    </property>
-   </widget>
-   <widget class="QSpinBox" name="playerRankingSpinBox"/>
+   <property name="maximum">
+    <number>1000</number>
+   </property>
   </widget>
+
  </widget>
  <resources/>
  <connections/>

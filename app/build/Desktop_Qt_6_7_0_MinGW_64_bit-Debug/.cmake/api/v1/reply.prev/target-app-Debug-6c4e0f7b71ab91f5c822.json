@@ -75,13 +75,13 @@
 			{
 				"command" : 4,
 				"file" : 1,
-				"line" : 78,
+				"line" : 79,
 				"parent" : 0
 			},
 			{
 				"command" : 5,
 				"file" : 1,
-				"line" : 61,
+				"line" : 62,
 				"parent" : 0
 			},
 			{
@@ -513,12 +513,13 @@
 				14,
 				17,
 				20,
-				23,
 				24,
 				25,
 				26,
 				27,
-				28
+				28,
+				29,
+				30
 			]
 		},
 		{
@@ -532,14 +533,15 @@
 				16,
 				19,
 				22,
-				29
+				23,
+				31
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				30
+				32
 			]
 		}
 	],
@@ -671,6 +673,11 @@
 			"sourceGroupIndex" : 2
 		},
 		{
+			"backtrace" : 4,
+			"path" : "mainwindow.ui",
+			"sourceGroupIndex" : 2
+		},
+		{
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_playerbox.h",
@@ -704,6 +711,12 @@
 			"backtrace" : 0,
 			"isGenerated" : true,
 			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_scoreboard.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_mainwindow.h",
 			"sourceGroupIndex" : 1
 		},
 		{
