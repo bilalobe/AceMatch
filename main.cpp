@@ -6,6 +6,36 @@
 #include "DataManager.h"
 #include "TournamentRanking.h"
 #include "DataManager.h"
+#include "GestionClients.h"
+#include "GestionReservations.h"
+#include "GestionJoueurs.h"
+#include "GestionParties.h"
+#include "GestionTickets.h"
+#include "GestionScores.h"
+#include "PlanificationParties.h"
+#include "Championnat.h"
+#include "Ticket.h"
+#include "MatchSchedule.h"
+#include "MatchBase.h"
+#include "Terrain.h"
+#include "MatchResult.h"
+#include "PlanificationPlaces.h"
+
+#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <algorithm>
+#include <random>
+#include <map>
+#include <set>
+#include <memory>
+
+using namespace std;
+
+
 
 int main() {
     DataManager dataManager;
@@ -38,6 +68,8 @@ int main() {
     dataManager.sauvegarderReservations("reservations.dat", reservations);
     dataManager.sauvegarderScores("scores.dat", scoreboard);
     paiements.sauvegarderPaiements("paiements.dat");
+
+    
 
     return 0;
 }

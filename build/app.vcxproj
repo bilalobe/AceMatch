@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <PreferredToolArchitecture>x64</PreferredToolArchitecture>
+  </PropertyGroup>
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|arm64">
+      <Configuration>Debug</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|arm64">
+      <Configuration>Release</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|arm64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|arm64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>arm64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{824BE532-C0AB-3236-AE3F-2D70ACA6F057}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
+    <Platform>arm64</Platform>
+    <ProjectName>app</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\build\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">app.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">app</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\build\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">app.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">app</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\build\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">app.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">app</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</GenerateManifest>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\build\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">app.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">app</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">.exe</TargetExt>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</LinkIncremental>
+    <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</GenerateManifest>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Debug;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtWidgets" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore" /external:I "C:/Users/beo.MSI/anaconda3/Library/./mkspecs/win32-msvc"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Debug;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Debug;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Automatic MOC and UIC for target app</Message>
+      <Command>setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenInfo.json Debug
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Widgets_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Gui_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Core_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\qtmain_conda.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:ARM64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>A:/workspace/special-broccoli/build/Debug/app.lib</ImportLibrary>
+      <ProgramDataBaseFile>A:/workspace/special-broccoli/build/Debug/app.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Release;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtWidgets" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore" /external:I "C:/Users/beo.MSI/anaconda3/Library/./mkspecs/win32-msvc"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Release;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_Release;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Automatic MOC and UIC for target app</Message>
+      <Command>setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenInfo.json Release
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Widgets_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Gui_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Core_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\qtmain_conda.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:ARM64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>A:/workspace/special-broccoli/build/Release/app.lib</ImportLibrary>
+      <ProgramDataBaseFile>A:/workspace/special-broccoli/build/Release/app.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtWidgets" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore" /external:I "C:/Users/beo.MSI/anaconda3/Library/./mkspecs/win32-msvc"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR="MinSizeRel"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat>
+      </DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Automatic MOC and UIC for target app</Message>
+      <Command>setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenInfo.json MinSizeRel
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Widgets_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Gui_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Core_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\qtmain_conda.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:ARM64</AdditionalOptions>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>A:/workspace/special-broccoli/build/MinSizeRel/app.lib</ImportLibrary>
+      <ProgramDataBaseFile>A:/workspace/special-broccoli/build/MinSizeRel/app.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtWidgets" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE" /external:I "C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore" /external:I "C:/Users/beo.MSI/anaconda3/Library/./mkspecs/win32-msvc"</AdditionalOptions>
+      <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ExternalWarningLevel>TurnOffAllWarnings</ExternalWarningLevel>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeTypeInfo>true</RuntimeTypeInfo>
+      <UseFullPaths>false</UseFullPaths>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR="RelWithDebInfo"</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;QT_WIDGETS_LIB;QT_GUI_LIB;QT_CORE_LIB;QT_NO_DEBUG;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo;C:\Users\beo.MSI\anaconda3\Library\include\qt;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtWidgets;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtGui;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtANGLE;C:\Users\beo.MSI\anaconda3\Library\include\qt\QtCore;C:\Users\beo.MSI\anaconda3\Library\.\mkspecs\win32-msvc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <PreBuildEvent>
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message>Automatic MOC and UIC for target app</Message>
+      <Command>setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+"C:\Program Files\CMake\bin\cmake.exe" -E cmake_autogen A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenInfo.json RelWithDebInfo
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+    </PreBuildEvent>
+    <Link>
+      <AdditionalDependencies>C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Widgets_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Gui_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\Qt5Core_conda.lib;C:\Users\beo.MSI\anaconda3\Library\lib\qtmain_conda.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>%(AdditionalOptions) /machine:ARM64</AdditionalOptions>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ImportLibrary>A:/workspace/special-broccoli/build/RelWithDebInfo/app.lib</ImportLibrary>
+      <ProgramDataBaseFile>A:/workspace/special-broccoli/build/RelWithDebInfo/app.pdb</ProgramDataBaseFile>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+    <ProjectReference>
+      <LinkLibraryDependencies>false</LinkLibraryDependencies>
+    </ProjectReference>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="A:\workspace\special-broccoli\build\CMakeFiles\e793a0cccb0a34010bc1d6447297cbc6\app_fr_FR.ts.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">Generating A:/workspace/special-broccoli/app/app_fr_FR.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr_FR.ts_lst_file -ts A:/workspace/special-broccoli/app/app_fr_FR.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app\app_fr_FR.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">Generating A:/workspace/special-broccoli/app/app_fr_FR.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr_FR.ts_lst_file -ts A:/workspace/special-broccoli/app/app_fr_FR.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app\app_fr_FR.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">Generating A:/workspace/special-broccoli/app/app_fr_FR.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr_FR.ts_lst_file -ts A:/workspace/special-broccoli/app/app_fr_FR.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app\app_fr_FR.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">Generating A:/workspace/special-broccoli/app/app_fr_FR.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr_FR.ts_lst_file -ts A:/workspace/special-broccoli/app/app_fr_FR.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app\app_fr_FR.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="A:\workspace\special-broccoli\app\CMakeLists.txt">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">Building Custom Rule A:/workspace/special-broccoli/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/workspace/special-broccoli/app -BA:/workspace/special-broccoli/build --check-stamp-file A:/workspace/special-broccoli/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeCXXCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeRCCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5Config.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QPdfPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QVirtualKeyboardPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebGLIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">Building Custom Rule A:/workspace/special-broccoli/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/workspace/special-broccoli/app -BA:/workspace/special-broccoli/build --check-stamp-file A:/workspace/special-broccoli/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeCXXCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeRCCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5Config.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QPdfPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QVirtualKeyboardPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebGLIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">Building Custom Rule A:/workspace/special-broccoli/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/workspace/special-broccoli/app -BA:/workspace/special-broccoli/build --check-stamp-file A:/workspace/special-broccoli/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeCXXCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeRCCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5Config.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QPdfPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QVirtualKeyboardPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebGLIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">Building Custom Rule A:/workspace/special-broccoli/app/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SA:/workspace/special-broccoli/app -BA:/workspace/special-broccoli/build --check-stamp-file A:/workspace/special-broccoli/build/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeCXXCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeRCCompiler.cmake;A:\workspace\special-broccoli\build\CMakeFiles\3.27.4\CMakeSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCXXInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeCommonLanguageInclude.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeGenericSystem.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeInitializeConfigs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeParseArguments.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeRCInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInformation.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\CMakeSystemSpecificInitialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\CMakeCommonCompilerMacros.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Compiler\MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\GNUInstallDirs.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-Initialize.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC-CXX.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\Windows.cmake;C:\Program Files\CMake\share\cmake-3.27\Modules\Platform\WindowsPaths.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5Config.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5\Qt5ModuleLocation.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigExtrasMkspecDir.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Core\Qt5CoreMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5GuiConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QGifPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICNSPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QICOPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QJpegPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QMinimalIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QOffscreenIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QPdfPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgIconPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QSvgPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTgaPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTiffPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QTuioTouchPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QVirtualKeyboardPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWbmpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebGLIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWebpPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsDirect2DIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QWindowsIntegrationPlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Gui\Qt5Gui_QXdgDesktopPortalThemePlugin.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5LinguistTools\Qt5LinguistToolsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfig.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigExtras.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsConfigVersion.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5WidgetsMacros.cmake;C:\Users\beo.MSI\anaconda3\Library\lib\cmake\Qt5Widgets\Qt5Widgets_QWindowsVistaStylePlugin.cmake;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\build\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Debug.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="A:\workspace\special-broccoli\app\main.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\mainwindow.cpp" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\mainwindow.h" />
+    <None Include="A:\workspace\special-broccoli\app\app_fr_FR.ts">
+    </None>
+    <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Release.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_MinSizeRel.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_RelWithDebInfo.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="A:\workspace\special-broccoli\build\ZERO_CHECK.vcxproj">
+      <Project>{9D9A0227-F5F0-3F8B-A236-3786B5465D74}</Project>
+      <Name>ZERO_CHECK</Name>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

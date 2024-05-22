@@ -1,4 +1,8 @@
 #include "GestionPlaces.h"
+#include <iostream>
+#include <vector>
+#include <string>
+
 
 class GestionPlaces {
 public:
