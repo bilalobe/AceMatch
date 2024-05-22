@@ -1,49 +1,34 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "playerbox.h"
+#include "MainWindow.h"
+#include "ui_MainWindow.h"
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
+    : QMainWindow(parent), ui(new Ui::MainWindow), scoreboard(new Scoreboard(this)) {
     ui->setupUi(this);
 
-    // Declare playerBox as a member variable
     playerBox = new PlayerBox(this);
+    ui->centralWidget->layout()->addWidget(playerBox);
 
-    // Set PlayerBox as the central widget
-    setCentralWidget(playerBox);
+    connect(scoreboard, &Scoreboard::resultsChanged, this, &MainWindow::updateResultsView);
 
-    // Connect signals from PlayerBox
-    connect(playerBox, &PlayerBox::playerAdded, this, &MainWindow::handlePlayerAdded);
-    connect(playerBox, &PlayerBox::playerRemoved, this, &MainWindow::handlePlayerRemoved);
-    connect(playerBox, &PlayerBox::playerUpdated, this, &MainWindow::handlePlayerUpdated);
-    connect(playerBox, &PlayerBox::playerSearched, this, &MainWindow::handlePlayerSearched);
-
-    // ... (rest of your MainWindow code) ...
+    // Initialize other UI components, menus, etc.
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow() {
     delete ui;
 }
 
-void MainWindow::handlePlayerAdded(const QString& name, int ranking) {
-    // Handle the addition of a new player in your main application logic
-    qDebug() << "Player Added:" << name << "with ranking" << ranking;
+connect(scoreboard, &Scoreboard::resultsChanged, this, &MainWindow::updateResultsView);
+
+void MainWindow::updateResultsView() {
+    QList<MatchResult*> results = scoreboard->getAllResults();
+    QStringList resultList;
+    for (const auto &result : results) {
+        resultList << QString("%1 vs %2: %3")
+                          .arg(result->getPlayer1()->getName())
+                          .arg(result->getPlayer2()->getName())
+                          .arg(result->getScore());
+    }
+    ui->resultsListView->clear();
+    ui->resultsListView->addItems(resultList);
 }
 
-void MainWindow::handlePlayerRemoved(const QString& name) {
-    // Handle the removal of a player in your main application logic
-    qDebug() << "Player Removed:" << name;
-}
-
-void MainWindow::handlePlayerUpdated(const QString& name, int newRanking) {
-    // Handle the update of a player in your main application logic
-    qDebug() << "Player Updated:" << name << "with new ranking" << newRanking;
-}
-
-void MainWindow::handlePlayerSearched(const QString& searchTerm) {
-    // Handle the search query in your main application logic
-    qDebug() << "Search Term:" << searchTerm;
-}

@@ -272,9 +272,39 @@
 			null
 		],
 		[
+			"A:/workspace/special-broccoli/app/match.h",
+			"MU",
+			"EWIEGA46WW/moc_match.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/matchresult.h",
+			"MU",
+			"EWIEGA46WW/moc_matchresult.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/matchschedule.h",
+			"MU",
+			"EWIEGA46WW/moc_matchschedule.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/player.h",
+			"MU",
+			"EWIEGA46WW/moc_player.cpp",
+			null
+		],
+		[
 			"A:/workspace/special-broccoli/app/playerbox.h",
 			"MU",
 			"EWIEGA46WW/moc_playerbox.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/scoreboard.h",
+			"MU",
+			"EWIEGA46WW/moc_scoreboard.cpp",
 			null
 		]
 	],
@@ -351,7 +381,12 @@
 	[
 		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
 		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/playerbox.cpp", "MU", null ]
+		[ "A:/workspace/special-broccoli/app/match.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/matchresult.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/matchschedule.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/player.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/playerbox.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/scoreboard.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

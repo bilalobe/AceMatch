@@ -43,12 +43,21 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_mainwindow.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_match.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_matchresult.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_player.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_playerbox.cpp"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_scoreboard.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_ui_playerbox.cpp"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp"
   "A:/workspace/special-broccoli/app/main.cpp"
   "A:/workspace/special-broccoli/app/mainwindow.cpp"
+  "A:/workspace/special-broccoli/app/match.cpp"
+  "A:/workspace/special-broccoli/app/matchresult.cpp"
+  "A:/workspace/special-broccoli/app/matchschedule.cpp"
+  "A:/workspace/special-broccoli/app/player.cpp"
   "A:/workspace/special-broccoli/app/playerbox.cpp"
+  "A:/workspace/special-broccoli/app/scoreboard.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -69,10 +78,16 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_mainwindow.h"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_playerbox.h"
+  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_scoreboard.h"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_ui_playerbox.h"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h"
   "A:/workspace/special-broccoli/app/mainwindow.h"
+  "A:/workspace/special-broccoli/app/match.h"
+  "A:/workspace/special-broccoli/app/matchresult.h"
+  "A:/workspace/special-broccoli/app/matchschedule.h"
+  "A:/workspace/special-broccoli/app/player.h"
   "A:/workspace/special-broccoli/app/playerbox.h"
+  "A:/workspace/special-broccoli/app/scoreboard.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
@@ -173,7 +188,12 @@ endif()
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.ui")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/mainwindow.ui"
+  "A:/workspace/special-broccoli/app/match.ui"
+  "A:/workspace/special-broccoli/app/matchresult.ui"
+  "A:/workspace/special-broccoli/app/matchschedule.ui"
+  "A:/workspace/special-broccoli/app/player.ui"
   "A:/workspace/special-broccoli/app/playerbox.ui"
+  "A:/workspace/special-broccoli/app/scoreboard.ui"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

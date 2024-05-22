@@ -34,6 +34,7 @@ private slots:
     void searchPlayer(const QString& text);
     void playerSelectionChanged();
 
+
 private:
     Ui::PlayerBox *ui;
     QList<QString> players;
