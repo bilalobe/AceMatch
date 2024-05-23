@@ -8,10 +8,22 @@ app_autogen/timestamp: \
 	A:/workspace/special-broccoli/app/main.cpp \
 	A:/workspace/special-broccoli/app/mainwindow.cpp \
 	A:/workspace/special-broccoli/app/mainwindow.h \
+	A:/workspace/special-broccoli/app/match.cpp \
+	A:/workspace/special-broccoli/app/match.h \
+	A:/workspace/special-broccoli/app/matchresult.cpp \
+	A:/workspace/special-broccoli/app/matchresult.h \
+	A:/workspace/special-broccoli/app/matchschedule.cpp \
+	A:/workspace/special-broccoli/app/matchschedule.h \
+	A:/workspace/special-broccoli/app/player.cpp \
+	A:/workspace/special-broccoli/app/player.h \
 	A:/workspace/special-broccoli/app/playerbox.cpp \
 	A:/workspace/special-broccoli/app/playerbox.h \
+	A:/workspace/special-broccoli/app/scoreboard.cpp \
+	A:/workspace/special-broccoli/app/scoreboard.h \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/QObject \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/QSignalMapper \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/QString \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/q20type_traits.h \
@@ -132,6 +144,7 @@ app_autogen/timestamp: \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qutf8stringview.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h \
+	C:/Qt/6.7.0/mingw_64/include/QtCore/qvector.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qversiontagging.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qxptype_traits.h \
 	C:/Qt/6.7.0/mingw_64/include/QtCore/qyieldcpu.h \

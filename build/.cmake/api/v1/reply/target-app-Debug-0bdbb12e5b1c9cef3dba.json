@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "MinSizeRel/app.exe"
+			"path" : "Debug/app.exe"
 		},
 		{
-			"path" : "MinSizeRel/app.pdb"
+			"path" : "Debug/app.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -38,19 +38,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 48,
+				"line" : 55,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 73,
+				"line" : 80,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 56,
+				"line" : 63,
 				"parent" : 0
 			},
 			{
@@ -129,7 +129,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1 -std:c++17"
 				}
 			],
 			"defines" : 
@@ -144,10 +144,6 @@
 				},
 				{
 					"backtrace" : 3,
-					"define" : "QT_NO_DEBUG"
-				},
-				{
-					"backtrace" : 3,
 					"define" : "QT_WIDGETS_LIB"
 				}
 			],
@@ -155,7 +151,7 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "A:/workspace/special-broccoli/build/app_autogen/include_MinSizeRel"
+					"path" : "A:/workspace/special-broccoli/build/app_autogen/include_Debug"
 				},
 				{
 					"backtrace" : 3,
@@ -231,11 +227,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O1 /Ob1 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MDd /Zi /Ob0 /Od /RTC1",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:ARM64 /INCREMENTAL:NO /subsystem:windows",
+				"fragment" : "/machine:ARM64 /debug /INCREMENTAL /subsystem:windows",
 				"role" : "flags"
 			},
 			{
@@ -311,7 +307,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_MinSizeRel.cpp",
+			"path" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_Debug.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{

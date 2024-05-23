@@ -2,10 +2,10 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "Release/app.exe"
+			"path" : "RelWithDebInfo/app.exe"
 		},
 		{
-			"path" : "Release/app.pdb"
+			"path" : "RelWithDebInfo/app.pdb"
 		}
 	],
 	"backtrace" : 1,
@@ -38,19 +38,19 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 48,
+				"line" : 55,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 73,
+				"line" : 80,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 56,
+				"line" : 63,
 				"parent" : 0
 			},
 			{
@@ -129,7 +129,7 @@
 			"compileCommandFragments" : 
 			[
 				{
-					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG -std:c++17"
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG -std:c++17"
 				}
 			],
 			"defines" : 
@@ -155,7 +155,7 @@
 			[
 				{
 					"backtrace" : 0,
-					"path" : "A:/workspace/special-broccoli/build/app_autogen/include_Release"
+					"path" : "A:/workspace/special-broccoli/build/app_autogen/include_RelWithDebInfo"
 				},
 				{
 					"backtrace" : 3,
@@ -231,11 +231,11 @@
 		"commandFragments" : 
 		[
 			{
-				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /O2 /Ob2 /DNDEBUG",
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MD /Zi /O2 /Ob1 /DNDEBUG",
 				"role" : "flags"
 			},
 			{
-				"fragment" : "/machine:ARM64 /INCREMENTAL:NO /subsystem:windows",
+				"fragment" : "/machine:ARM64 /debug /INCREMENTAL /subsystem:windows",
 				"role" : "flags"
 			},
 			{
@@ -311,7 +311,7 @@
 			"backtrace" : 0,
 			"compileGroupIndex" : 0,
 			"isGenerated" : true,
-			"path" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_Release.cpp",
+			"path" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_RelWithDebInfo.cpp",
 			"sourceGroupIndex" : 0
 		},
 		{
