@@ -278,15 +278,51 @@
 			null
 		],
 		[
+			"A:/workspace/special-broccoli/app/placesui.h",
+			"MU",
+			"EWIEGA46WW/moc_placesui.cpp",
+			null
+		],
+		[
 			"A:/workspace/special-broccoli/app/playerbox.h",
 			"MU",
 			"EWIEGA46WW/moc_playerbox.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/scoreboard.h",
+			"A:/workspace/special-broccoli/app/playerprofileui.h",
 			"MU",
-			"EWIEGA46WW/moc_scoreboard.cpp",
+			"EWIEGA46WW/moc_playerprofileui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/playerui.h",
+			"MU",
+			"EWIEGA46WW/moc_playerui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/reservationsui.h",
+			"MU",
+			"EWIEGA46WW/moc_reservationsui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.h",
+			"MU",
+			"EWIEGA46WW/moc_scoreboardmatchdetailsui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/terrainsui.h",
+			"MU",
+			"EWIEGA46WW/moc_terrainsui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ticketsui.h",
+			"MU",
+			"EWIEGA46WW/moc_ticketsui.cpp",
 			null
 		]
 	],
@@ -365,8 +401,18 @@
 		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
 		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ],
 		[ "A:/workspace/special-broccoli/app/matchui.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/placesui.cpp", "MU", null ],
 		[ "A:/workspace/special-broccoli/app/playerbox.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/scoreboard.cpp", "MU", null ]
+		[ "A:/workspace/special-broccoli/app/playerprofileui.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/playerui.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/reservationsui.cpp", "MU", null ],
+		[
+			"A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.cpp",
+			"MU",
+			null
+		],
+		[ "A:/workspace/special-broccoli/app/terrainsui.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/ticketsui.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

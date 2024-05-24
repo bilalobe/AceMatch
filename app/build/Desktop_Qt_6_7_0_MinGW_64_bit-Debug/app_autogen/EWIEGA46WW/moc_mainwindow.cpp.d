@@ -1,13 +1,11 @@
 A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_mainwindow.cpp: A:/workspace/special-broccoli/app/mainwindow.h \
   A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h \
-  A:/workspace/special-broccoli/app/MatchResult.h \
-  A:/workspace/special-broccoli/app/Player.h \
-  A:/workspace/special-broccoli/app/PlayerBox.h \
-  A:/workspace/special-broccoli/app/Scoreboard.h \
-  C:/Qt/6.7.0/mingw_64/include/QtCore/QObject \
+  A:/workspace/special-broccoli/GestionJoueurs.h \
+  A:/workspace/special-broccoli/Joueur.h \
+  A:/workspace/special-broccoli/app/matchui.h \
+  A:/workspace/special-broccoli/app/playerbox.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QSignalMapper \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QString \
-  C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20type_traits.h \
@@ -128,7 +126,6 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/6.7.0/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qvariant.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qvarlengtharray.h \
-  C:/Qt/6.7.0/mingw_64/include/QtCore/qvector.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qversiontagging.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qxptype_traits.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/qyieldcpu.h \
@@ -152,6 +149,7 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/6.7.0/mingw_64/include/QtGui/qregion.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qrgb.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qrgba64.h \
+  C:/Qt/6.7.0/mingw_64/include/QtGui/qstandarditemmodel.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtextcursor.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtextdocument.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qtextformat.h \
@@ -163,6 +161,11 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/6.7.0/mingw_64/include/QtGui/qvalidator.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt/6.7.0/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt/6.7.0/mingw_64/include/QtSql/QSqlDatabase \
+  C:/Qt/6.7.0/mingw_64/include/QtSql/qsqldatabase.h \
+  C:/Qt/6.7.0/mingw_64/include/QtSql/qtsql-config.h \
+  C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlexports.h \
+  C:/Qt/6.7.0/mingw_64/include/QtSql/qtsqlglobal.h \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QLineEdit \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QListWidget \
   C:/Qt/6.7.0/mingw_64/include/QtWidgets/QMainWindow \
@@ -208,6 +211,8 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/allocator.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/atomic_base.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/atomic_lockfree_defines.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_ios.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/basic_string.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/char_traits.h \
@@ -228,14 +233,18 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/hashtable_policy.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/invoke.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ios_base.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/istream.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/list.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_classes.tcc \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/locale_facets.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/localefwd.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/memoryfwd.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/move.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/nested_exception.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/node_handle.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream.tcc \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/ostream_insert.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/parse_numbers.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/bits/postypes.h \
@@ -292,6 +301,7 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cstring \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ctime \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwchar \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/cwctype \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/debug/assertions.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/debug/debug.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/exception \
@@ -305,7 +315,10 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ext/type_traits.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/functional \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/initializer_list \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ios \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iosfwd \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iostream \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/istream \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/iterator \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/limits \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/list \
@@ -314,6 +327,7 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/new \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/numeric \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/optional \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/ostream \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/execution_defs.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_algorithm_defs.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/pstl/glue_memory_defs.h \
@@ -349,6 +363,8 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/c++locale.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/cpu_defines.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_base.h \
+  C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/ctype_inline.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/error_constants.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr-default.h \
   C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32/bits/gthr.h \
@@ -391,4 +407,5 @@ A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/sys/types.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
-  C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h
+  C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include/wctype.h

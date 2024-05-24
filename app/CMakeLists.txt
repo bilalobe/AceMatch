@@ -27,13 +27,15 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         playerbox.h playerbox.cpp playerbox.ui
-
-
-
-
-        scoreboard.h scoreboard.cpp scoreboard.ui
         mainwindow.ui
         matchui.h matchui.cpp matchui.ui
+        playerprofileui.h playerprofileui.cpp playerprofileui.ui
+        placesui.h placesui.cpp placesui.ui
+        terrainsui.h terrainsui.cpp terrainsui.ui
+        reservationsui.h reservationsui.cpp reservationsui.ui
+        playerui.h playerui.cpp playerui.ui
+        ticketsui.h ticketsui.cpp ticketsui.ui
+        scoreboardmatchdetailsui.h scoreboardmatchdetailsui.cpp scoreboardmatchdetailsui.ui
 
 
 

@@ -11,20 +11,194 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Tournament Management System</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
+  <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="playerBoxLayout"/>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="matchUILayout"/>
+     <widget class="QTabWidget" name="tabWidget">
+      <property name="currentIndex">
+       <number>0</number>
+      </property>
+      <widget class="QWidget" name="playersTab">
+       <attribute name="title">
+        <string>Players</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
+        <item>
+         <widget class="QWidget" name="playerBox" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="matchesTab">
+       <attribute name="title">
+        <string>Matches</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
+        <item>
+         <widget class="QWidget" name="matchUI" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="standingsTab">
+       <attribute name="title">
+        <string>Standings</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_4">
+        <item>
+         <widget class="QTableView" name="standingsTableView"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="playerProfileTab">
+       <attribute name="title">
+        <string>Player Profile</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_5">
+        <item>
+         <widget class="QWidget" name="playerProfileUI" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="scoreboardAndMatchDetailsTab">
+       <attribute name="title">
+        <string>Scoreboard Match Details</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QWidget" name="scoreboardMatchDetailsUI" native="true"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tournamentManagementTab">
+       <attribute name="title">
+        <string>Tournament Management</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalLayout_7">
+        <item>
+         <widget class="QTabWidget" name="tournamentTabWidget">
+          <property name="currentIndex">
+           <number>0</number>
+          </property>
+          <widget class="QWidget" name="placesTab">
+           <attribute name="title">
+            <string>Places</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QWidget" name="placesUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="reservationsTab">
+           <attribute name="title">
+            <string>Reservations</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <widget class="QWidget" name="reservationsUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="terrainsTab">
+           <attribute name="title">
+            <string>Terrains</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_10">
+            <item>
+             <widget class="QWidget" name="terrainsUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="ticketsTab">
+           <attribute name="title">
+            <string>Tickets</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <widget class="QWidget" name="ticketsUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
     </item>
    </layout>
   </widget>
-  <widget class="QMenuBar" name="menuBar"/>
-  <widget class="QStatusBar" name="statusBar"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew_Tournament"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionLoad"/>
+    <addaction name="actionExport_Data"/>
+    <addaction name="actionImport_Data"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionNew_Tournament">
+   <property name="text">
+    <string>New Tournament</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
+   </property>
+  </action>
+  <action name="actionLoad">
+   <property name="text">
+    <string>Load</string>
+   </property>
+  </action>
+  <action name="actionExport_Data">
+   <property name="text">
+    <string>Export Data</string>
+   </property>
+  </action>
+  <action name="actionImport_Data">
+   <property name="text">
+    <string>Import Data</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>

@@ -1,9 +1,7 @@
-A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_scoreboard.cpp: A:/workspace/special-broccoli/app/scoreboard.h \
+A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_Scoreboard.cpp: A:/workspace/special-broccoli/app/Scoreboard.h \
   A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h \
-  A:/workspace/special-broccoli/app/MatchResult.h \
-  A:/workspace/special-broccoli/app/Player.h \
+  A:/workspace/special-broccoli/MatchResult.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QObject \
-  C:/Qt/6.7.0/mingw_64/include/QtCore/QString \
   C:/Qt/6.7.0/mingw_64/include/QtCore/QVector \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20functional.h \
   C:/Qt/6.7.0/mingw_64/include/QtCore/q20memory.h \
