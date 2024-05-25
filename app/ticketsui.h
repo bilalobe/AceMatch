@@ -2,21 +2,41 @@
 #define TICKETSUI_H
 
 #include <QWidget>
+#include <QSqlDatabase>
 
-namespace Ui {
-class TicketUI;
-}
+QT_BEGIN_NAMESPACE
+namespace Ui { class TicketsUI; }
+QT_END_NAMESPACE
 
-class TicketUI : public QWidget
+class TicketsUI : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit TicketUI(QWidget *parent = nullptr);
-    ~TicketUI();
+    explicit TicketsUI(QWidget *parent = nullptr, const QSqlDatabase& database = QSqlDatabase());
+    ~TicketsUI();
+
+signals:
+    void ticketAdded(int clientId, int matchId, int placeId, double price, const QString& status); // Adjust signal parameters
+    void ticketDeleted(int ticketId);
+    void ticketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus);
+
+private slots:
+    void addTicket();
+    void deleteTicket();
+    void updateTicket();
+    void loadTicketDetails(const QModelIndex& index);
+    void clearTicketDetails();
 
 private:
-    Ui::TicketUI *ui;
+    Ui::TicketsUI *ui;
+    QSqlDatabase db;
+    QStandardItemModel* ticketsModel;
+
+    void updateTicketsList();
+    void updateClientComboBox();
+    void updateMatchComboBox();
+    void updatePlaceComboBox();
 };
 
 #endif // TICKETSUI_H

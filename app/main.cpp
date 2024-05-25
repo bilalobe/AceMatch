@@ -8,7 +8,7 @@
 #include <QIcon>
 #include <QLineEdit>
 #include <QVBoxLayout>
-#include <QtSql/QSqlDatabase>
+#include <QSqlDatabase>
 #include <QTableView>
 #include <QStandardItemModel>
 
@@ -17,6 +17,12 @@
 #include "scoreboardmatchdetailsui.h"
 #include "playerprofileui.h"
 #include "placesui.h"
+#include "reservationsui.h"
+#include "terrainsui.h"
+#include "ticketsui.h"
+
+
+
 
 int main(int argc, char *argv[])
 {
@@ -54,7 +60,6 @@ int main(int argc, char *argv[])
     db.setDatabaseName("tournament.db"); // Or your database name
     if (!db.open()) {
         qDebug() << "Error opening database:" << db.lastError();
-        // Handle the error (e.g., display a message to the user)
         return 1;
     }
 
@@ -113,7 +118,17 @@ int main(int argc, char *argv[])
     PlacesUI* placesUI = new PlacesUI(&mainWindow, db);
     tournamentTabWidget->addTab(placesUI, "Places");
 
-    // ... (Add other mini-tabs - Reservations, Terrains, Tickets) ...
+    // Reservations Mini-Tab
+    ReservationsUI* reservationsUI = new ReservationsUI(&mainWindow, db);
+    tournamentTabWidget->addTab(reservationsUI, "Reservations");
+
+    // Terrains Mini-Tab
+    TerrainsUI* terrainsUI = new TerrainsUI(&mainWindow, db);
+    tournamentTabWidget->addTab(terrainsUI, "Terrains");
+
+    // Tickets Mini-Tab
+    TicketsUI* ticketsUI = new TicketsUI(&mainWindow, db);
+    tournamentTabWidget->addTab(ticketsUI, "Tickets");
 
     // Set tabWidget as the central widget
     mainWindow.setCentralWidget(tabWidget);

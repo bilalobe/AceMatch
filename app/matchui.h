@@ -27,7 +27,12 @@ private slots:
     void createMatch();
     void deleteMatch();
     void updateMatch();
+    void searchMatch(const QString& searchText);
+    void updateMatchList();
     void updateMatchDetails(const QModelIndex& index);
+    void updatePlayerComboBoxes();
+
+
 
 private:
     Ui::MatchUI *ui;

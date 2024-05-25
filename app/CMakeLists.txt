@@ -1,5 +1,4 @@
 cmake_minimum_required(VERSION 3.5)
-
 project(app VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_AUTOUIC ON)
@@ -88,3 +87,5 @@ install(TARGETS app
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(app)
 endif()
+
+

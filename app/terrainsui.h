@@ -1,8 +1,9 @@
 #ifndef TERRAINUI_H
 #define TERRAINUI_H
 
+#include "qstandarditemmodel.h"
 #include <QWidget>
-#include <QSqlDatabase>
+#include <QtSql/QSqlDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TerrainUI; }

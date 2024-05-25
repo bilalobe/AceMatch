@@ -167,4 +167,28 @@ void MatchUI::updatePlayerComboBoxes() {
     }
 }
 
-// ... (Other methods) ...
+void MatchUI::searchMatch(const QString& searchTerm) {
+    matchModel->clear();
+    matchModel->setHorizontalHeaderLabels({"Player 1", "Player 2", "Score 1", "Score 2"});
+
+    QList<Match> matches = gestionJoueurs->getMatches(db);
+
+    for (const Match& match : matches) {
+        if (match.getJoueur1().getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            match.getJoueur2().getNom().contains(searchTerm, Qt::CaseInsensitive)) {
+
+            int row = matchModel->rowCount();
+            matchModel->insertRow(row);
+
+            matchModel->setData(matchModel->index(row, 0), match.getJoueur1().getNom());
+            matchModel->setData(matchModel->index(row, 1), match.getJoueur2().getNom());
+            matchModel->setData(matchModel->index(row, 2), match.getScore1());
+            matchModel->setData(matchModel->index(row, 3), match.getScore2());
+        }
+    }
+}
+
+void MatchUI::clearSearch() {
+    ui->searchLineEdit->clear();
+    updateMatchList();
+}

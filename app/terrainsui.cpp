@@ -2,7 +2,7 @@
 #include "ui_terrainsui.h"
 #include <QMessageBox>
 
-TerrainUI::TerrainUI(QWidget *parent, const QSqlDatabase& database)
+TerrainUI::TerrainUI(QWidget *parent, const QSqlDatabase &database)
     : QWidget(parent), ui(new Ui::TerrainUI), db(database)
 {
     ui->setupUi(this);
@@ -28,12 +28,14 @@ TerrainUI::TerrainUI(QWidget *parent, const QSqlDatabase& database)
             this, &TerrainUI::loadTerrainDetails);
 }
 
-TerrainUI::~TerrainUI() {
+TerrainUI::~TerrainUI()
+{
     delete ui;
     delete terrainsModel;
 }
 
-void TerrainUI::addTerrain() {
+void TerrainUI::addTerrain()
+{
     QString name = ui->nameLineEdit->text();
     QString type = ui->typeLineEdit->text(); // Adjust based on your Terrain class
 
@@ -47,16 +49,59 @@ void TerrainUI::addTerrain() {
     updateTerrainsList();
 }
 
-void TerrainUI::deleteTerrain() {
-    // ... (Implementation similar to deletePlace() in PlacesUI) ...
+void TerrainUI::deleteTerrain()
+{
+    QModelIndexList selectedIndexes = ui->terrainsTableView->selectionModel()->selectedIndexes();
+    if (selectedIndexes.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "No terrain selected.");
+        return;
+    }
+
+    int terrainId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get terrain ID
+
+    // Confirmation Dialog
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Terrain",
+                                                              "Are you sure you want to delete this terrain?",
+                                                              QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        emit terrainDeleted(terrainId);
+        updateTerrainsList();
+        clearTerrainDetails();
+
+        // Status Bar Message (you need access to MainWindow's status bar)
+        MainWindow *mainWindow = dynamic_cast<MainWindow *>(parent());
+        if (mainWindow)
+        {
+            mainWindow->statusBar()->showMessage("Terrain deleted successfully.");
+        }
+    }
 }
 
-void TerrainUI::updateTerrain() {
-    // ... (Implementation similar to updatePlace() in PlacesUI) ...
+void TerrainUI::updateTerrain()
+{
+    QModelIndexList selectedIndexes = ui->terrainsTableView->selectionModel()->selectedIndexes();
+    if (selectedIndexes.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "No terrain selected.");
+        return;
+    }
+
+    int terrainId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get terrain ID
+    QString newName = ui->nameLineEdit->text();
+    QString newType = ui->typeLineEdit->text(); // Adjust based on your Terrain class
+
+    emit terrainUpdated(terrainId, newName, newType); // Emit the signal with the correct parameters
+
+    // Update the terrains list
+    updateTerrainsList();
 }
 
-void TerrainUI::loadTerrainDetails(const QModelIndex& index) {
-    if (!index.isValid()) {
+void TerrainUI::loadTerrainDetails(const QModelIndex &index)
+{
+    if (!index.isValid())
+    {
         clearTerrainDetails();
         return;
     }
@@ -67,27 +112,50 @@ void TerrainUI::loadTerrainDetails(const QModelIndex& index) {
     Terrain selectedTerrain = gestionTerrains->getTerrains(db)[row]; // Adjust to your actual method
 
     ui->idLineEdit->setText(QString::number(selectedTerrain.getId())); // Assuming your Terrain class has an getId() method
-    ui->nameLineEdit->setText(selectedTerrain.getNom()); // Adjust based on your Terrain class
-    ui->typeLineEdit->setText(selectedTerrain.getType()); // Adjust based on your Terrain class
+    ui->nameLineEdit->setText(selectedTerrain.getNom());               // Adjust based on your Terrain class
+    ui->typeLineEdit->setText(selectedTerrain.getType());              // Adjust based on your Terrain class
 
     // ... (Set values for other terrain detail fields) ...
 }
 
-void TerrainUI::clearTerrainDetails() {
+void TerrainUI::loadTerrainDetails(const QModelIndex &index)
+{
+    if (!index.isValid())
+    {
+        clearTerrainDetails();
+        return;
+    }
+
+    int row = index.row();
+
+    // Get the selected terrain from your GestionTerrains (or wherever you store terrain data)
+    Terrain selectedTerrain = gestionTerrains->getTerrains(db)[row]; // Adjust to your actual method
+
+    ui->idLineEdit->setText(QString::number(selectedTerrain.getId())); // Assuming your Terrain class has an getId() method
+    ui->nameLineEdit->setText(selectedTerrain.getNom());               // Adjust based on your Terrain class
+    ui->typeLineEdit->setText(selectedTerrain.getType());              // Adjust based on your Terrain class
+
+    // ... (Set values for other terrain detail fields) ...
+}
+
+void TerrainUI::clearTerrainDetails()
+{
     ui->idLineEdit->clear();
     ui->nameLineEdit->clear();
     ui->typeLineEdit->clear();
     // ... (Clear other terrain detail fields) ...
 }
 
-void TerrainUI::updateTerrainsList() {
+void TerrainUI::updateTerrainsList()
+{
     terrainsModel->clear();
     terrainsModel->setHorizontalHeaderLabels({"ID", "Name", "Type"}); // Adjust if needed
 
     // Get terrains from GestionTerrains (or wherever you store terrain data)
     QList<Terrain> terrains = gestionTerrains->getTerrains(db); // Adjust to your actual method
 
-    for (const Terrain& terrain : terrains) {
+    for (const Terrain &terrain : terrains)
+    {
         int row = terrainsModel->rowCount();
         terrainsModel->insertRow(row);
 

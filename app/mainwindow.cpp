@@ -4,7 +4,6 @@
 #include <QMessageBox>
 #include <QMap>
 #include <QPair>
-#include <algorithm> // for std::sort
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -139,8 +138,31 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Update UI Elements
     updateStandings();
-    // ... (Update other UI elements like player lists, combo boxes, etc.) ...
+    }
+
+// ... (Implementation of other slots and methods) ...
+
+GestionJoueurs* MainWindow::getGestionJoueurs() const {
+    return gestionJoueurs;
 }
+
+GestionPlaces* MainWindow::getGestionPlaces() const {
+    return gestionPlaces;
+}
+
+GestionReservations* MainWindow::getGestionReservations() const {
+    return gestionReservations;
+}
+
+GestionTerrains* MainWindow::getGestionTerrains() const {
+    return gestionTerrains;
+}
+
+GestionTickets* MainWindow::getGestionTickets() const {
+    return gestionTickets;
+}
+
+
 
 MainWindow::~MainWindow()
 {
@@ -365,6 +387,69 @@ void MainWindow::handleSearchTextChanged(const QString& searchTerm) {
     // Filter Matches
     matchUI->searchMatch(searchTerm);
 
+        // Filter Player Profile
+    playerProfileUI->searchPlayerProfile(searchTerm);
+
+    // Filter Places
+    placesUI->searchPlace(searchTerm);
+
+    // Filter Reservations
+    reservationsUI->searchReservation(searchTerm);
+
+    // Filter Terrains
+    terrainsUI->searchTerrain(searchTerm);
+
+    // Filter Tickets
+    ticketsUI->searchTicket(searchTerm);
+}
+
+void MainWindow::handlePlayerSelected(const QString& playerName) {
+    // Filter Players
+    playerBox->searchPlayer(playerName);
+    // Filter Matches
+    matchUI->searchMatch(playerName);
+
+    // Filter Player Profile
+    playerProfileUI->searchPlayerProfile(playerName);
+
+    // Filter Tickets
+    ticketsUI->searchTicket(playerName);
+}
+
+void MainWindow::handleMatchSelected(int matchId) {
+    // Filter Matches
+    matchUI->searchMatch(QString::number(matchId));
+
+    // Filter Tickets
+    ticketsUI->searchTicket(QString::number(matchId));
+}
+
+void MainWindow::handlePlaceSelected(int placeId) {
+    // Filter Places
+    placesUI->searchPlace(QString::number(placeId));
+
+    // Filter Reservations
+    reservationsUI->searchReservation(QString::number(placeId));
+
+    // Filter Tickets
+    ticketsUI->searchTicket(QString::number(placeId));
+}
+
+void MainWindow::handleReservationSelected(int reservationId) {
+    // Filter Reservations
+    reservationsUI->searchReservation(QString::number(reservationId));
+}
+
+void MainWindow::handleTerrainSelected(int terrainId) {
+    // Filter Terrains
+    terrainsUI->searchTerrain(QString::number(terrainId));
+}
+
+void MainWindow::handleTicketSelected(int ticketId) {
+    // Filter Tickets
+    ticketsUI->searchTicket(QString::number(ticketId));
+}
+
     // Filter Standings
     // ... (Implement filtering for the standings table) ...
 
@@ -380,9 +465,7 @@ void MainWindow::handleSearchTextChanged(const QString& searchTerm) {
     // Filter Terrains
     // ... (Implement filtering for terrains) ...
 
-    // Filter Tickets
-    // ... (Implement filtering for tickets) ...
-}
+
 
 void MainWindow::updateStandings() {
     QList<Joueur> players = gestionJoueurs->getJoueurs(db);
