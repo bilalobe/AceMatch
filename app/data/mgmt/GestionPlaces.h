@@ -1,27 +1,28 @@
-#ifndef GESTION_PLACES.H
-#define GESTION_PLACES.H
+#ifndef GESTIONPLACES_H
+#define GESTIONPLACES_H
 
-#include "Place.h"
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include "Place.h" 
 
-#include <vector>
-#include <string>
-
-class GestionPlaces {
+class GestionPlaces
+{
 public:
-    // Add a place
-    void ajouterPlace(Place* place);
-    
-    // Get the list of places
-    const vector<Place*>& getPlaces() const;
+    GestionPlaces(const QSqlDatabase& db);
+    ~GestionPlaces();
 
-    // Search for a place (example: search by type)
-    Place* rechercherPlace(const string& type) const;
-
-    // Display all places
-    void afficherPlaces() const;
+    bool ajouterPlace(const QSqlDatabase& db, const QString& nom, int capacity);
+    bool supprimerPlace(const QSqlDatabase& db, int placeId);
+    bool modifierPlace(const QSqlDatabase& db, int placeId, const QString& newName, int newCapacity);
+    bool modifierPlaceCapacity(const QSqlDatabase& db, int placeId, int newCapacity);
+    void searchPlace(const QSqlDatabase& db, const QString& searchTerm);
+    QList<Place> getPlaces(const QSqlDatabase& db) const; 
+    Place getPlaceById(const QSqlDatabase& db, int placeId) const;
 
 private:
-    vector<Place*> places; 
+    // QSqlDatabase db; // No need for this member anymore, as the database is passed as an argument
+
 };
 
-#endif
+#endif // GESTIONPLACES_H

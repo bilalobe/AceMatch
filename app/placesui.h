@@ -2,8 +2,7 @@
 #define PLACESUI_H
 
 #include <QWidget>
-#include <QSqlDatabase>
-#include "GestionPlaces.h" 
+#include <QSqlDatabase> 
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class PlacesUI; }
@@ -21,19 +20,19 @@ signals:
     void placeAdded(const QString& name, int capacity);
     void placeDeleted(int placeId);
     void placeUpdated(int placeId, const QString& newName, int newCapacity);
+    void placeSearched(const QString& searchTerm); // Add this signal
 
 private slots:
     void addPlace();
     void deletePlace();
     void updatePlace();
-    void searchPlace();
     void loadPlaceDetails(const QModelIndex& index);
     void clearPlaceDetails(); 
+    void searchPlace(const QString& searchTerm); // Add this slot
 
 private:
     Ui::PlacesUI *ui;
     QSqlDatabase db;
-    GestionPlaces* gestionPlaces; 
     QStandardItemModel* placesModel;
 
     void updatePlacesList(); 

@@ -1,34 +1,69 @@
 #include "GestionTerrains.h"
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
-void GestionTerrains::ajouterTerrain(Terrain terrain) {
-    terrains.push_back(terrain);
+GestionTerrains::GestionTerrains(const QSqlDatabase& db)
+    // : db(db)  // No need for this initialization
+{
+    // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
 }
 
-// Display all terrains
-void GestionTerrains::afficherTerrains() {
-    for (const Terrain& terrain : terrains) {
-        terrain.afficher();
-        cout << endl;
-    }
+GestionTerrains::~GestionTerrains()
+{
+    // No need to close the database connection, as it's managed in MainWindow
 }
 
-// Remove a terrain
-bool GestionTerrains::supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
-    for (auto it = terrains.begin(); it != terrains.end(); ++it) {
-        if (it->getType() == type && it->getLongueur() == longueur && it->getLargeur() == largeur) {
-            terrains.erase(it);
-            return true; // Terrain found and deleted
-        }
+bool GestionTerrains::ajouterTerrain(const QSqlDatabase& db, const QString& nom, const QString& type) {
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO Terrains (nom, type) VALUES (:nom, :type)");
+    query.bindValue(":nom", nom);
+    query.bindValue(":type", type);
+
+    if (!query.exec()) {
+        qDebug() << "Error adding terrain:" << query.lastError();
+        return false;
     }
-    return false; // Terrain not found
+    return true;
 }
 
-// Search for a terrain
-Terrain* GestionTerrains::rechercherTerrain(TypeTerrain type, int longueur, int largeur) const {
-    for (const auto& terrain : terrains) {
-        if (terrain.getType() == type && terrain.getLongueur() == longueur && terrain.getLargeur() == largeur) {
-            return const_cast<Terrain*>(&terrain);
-        }
+bool GestionTerrains::supprimerTerrain(const QSqlDatabase& db, int terrainId) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM Terrains WHERE id = :terrainId");
+    query.bindValue(":terrainId", terrainId);
+
+    if (!query.exec()) {
+        qDebug() << "Error deleting terrain:" << query.lastError();
+        return false;
     }
-    return nullptr;
+    return true;
+}
+
+bool GestionTerrains::modifierTerrain(const QSqlDatabase& db, int terrainId, const QString& newName, const QString& newType) {
+    QSqlQuery query(db);
+    query.prepare("UPDATE Terrains SET nom = :newName, type = :newType WHERE id = :terrainId");
+    query.bindValue(":newName", newName);
+    query.bindValue(":newType", newType);
+    query.bindValue(":terrainId", terrainId);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating terrain:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+QList<Terrain> GestionTerrains::getTerrains(const QSqlDatabase& db) const {
+    QList<Terrain> terrains;
+    QSqlQuery query(db);
+    query.exec("SELECT * FROM Terrains"); 
+
+    while (query.next()) {
+        int id = query.value("id").toInt();
+        QString nom = query.value("nom").toString();
+        QString type = query.value("type").toString(); 
+
+        terrains.append(Terrain(id, nom, type)); 
+    }
+    return terrains;
 }

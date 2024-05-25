@@ -1,24 +1,23 @@
+// GestionJoueurs.h
 #ifndef GESTIONJOUEURS_H
 #define GESTIONJOUEURS_H
 
-#include <QSqlDatabase>
-#include <QSqlQuery>
+#include <QString>
 #include <QList>
-#include "Joueur.h" // Make sure to include your Joueur header
+#include <QSqlDatabase>
+#include "Joueur.h" 
 
-class GestionJoueurs {
+class GestionJoueurs
+{
 public:
-    // Constructor (You can modify to take QSqlDatabase if needed)
-    GestionJoueurs();
+    GestionJoueurs(const QSqlDatabase& db);
+    ~GestionJoueurs();
 
-    // Database Interaction Methods:
-    bool ajouterJoueur(QSqlDatabase& db, const Tournament::Joueur& joueur); 
-    bool supprimerJoueur(QSqlDatabase& db, const QString& nom);
-    bool modifierJoueur(QSqlDatabase& db, const QString& nom, int nouveauRang);
-    Tournament::Joueur getJoueurByName(const QSqlDatabase& db, const QString& nom) const; 
-    QList<Tournament::Joueur> getJoueurs(const QSqlDatabase& db) const;
-
-    
+    bool ajouterJoueur(const QSqlDatabase& db, const QString& nom, int rang);
+    bool supprimerJoueur(const QSqlDatabase& db, const QString& nom);
+    bool modifierJoueur(const QSqlDatabase& db, const QString& nom, int nouveauRang);
+    QList<Joueur> getJoueurs(const QSqlDatabase& db) const; 
+    Joueur getJoueurByName(const QSqlDatabase& db, const QString& name) const; 
 };
 
 #endif // GESTIONJOUEURS_H

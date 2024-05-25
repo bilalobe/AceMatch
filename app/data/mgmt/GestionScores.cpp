@@ -1,60 +1,84 @@
+#include "GestionScore.h"
+#include <QSqlQuery>
+#include <QSqlError>
+#include <QDebug>
 
-// Add a score
-void GestionScores::ajouterScore(const Score& score) {
-    scores.push_back(score);
-    scoresMap[score.getPartie().getNumero()] = &scores.back();
+GestionScore::GestionScore(const QSqlDatabase& db)
+    // : db(db)  // No need for this initialization
+{
+    // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
 }
 
-// Remove a score
-void GestionScores::supprimerScore(int numero) {
-    auto it = scoresMap.find(numero);
-    if (it != scoresMap.end()) {
-        scores.erase(std::remove(scores.begin(), scores.end(), *(it->second)), scores.end());
-        scoresMap.erase(it);
-    }
+GestionScore::~GestionScore()
+{
+    // No need to close the database connection, as it's managed in MainWindow
 }
 
-// Update a score
-void GestionScores::mettreAJourScore(int numero, int scoreJoueur1, int scoreJoueur2, GestionJoueurs& gestionJoueurs) {
-    auto it = scoresMap.find(numero);
-    if (it != scoresMap.end()) {
-        it->second->setScoreJoueur1(scoreJoueur1);
-        it->second->setScoreJoueur2(scoreJoueur2);
+bool GestionScore::ajouterScore(const QSqlDatabase& db, int matchId, int score1, int score2) {
+    QSqlQuery query(db);
+    query.prepare("INSERT INTO Scores (matchId, score1, score2) VALUES (:matchId, :score1, :score2)");
+    query.bindValue(":matchId", matchId);
+    query.bindValue(":score1", score1);
+    query.bindValue(":score2", score2);
 
-        const Partie& partie = it->second->getPartie();
-
-        // Update win/loss records
-        if (scoreJoueur1 > scoreJoueur2) {
-            gestionJoueurs.updateWin(partie.getNomJoueur1());
-            gestionJoueurs.updateLoss(partie.getNomJoueur2());
-        } else if (scoreJoueur2 > scoreJoueur1) {
-            gestionJoueurs.updateWin(partie.getNomJoueur2());
-            gestionJoueurs.updateLoss(partie.getNomJoueur1());
-        } else {
-            gestionJoueurs.updateLoss(partie.getNomJoueur1());
-            gestionJoueurs.updateLoss(partie.getNomJoueur2());
-        }
+    if (!query.exec()) {
+        qDebug() << "Error adding score:" << query.lastError();
+        return false;
     }
+    return true;
 }
 
-// Display all scores
-void GestionScores::afficherScores() const {
-    for (const Score& score : scores) {
-        score.afficher();
-        std::cout << std::endl;
+bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM Scores WHERE id = :scoreId");
+    query.bindValue(":scoreId", scoreId);
+
+    if (!query.exec()) {
+        qDebug() << "Error deleting score:" << query.lastError();
+        return false;
     }
+    return true;
 }
 
-// Display Top Scorers
-std::vector<Score> GestionScores::getTopScores(int numScoresToDisplay) {
-    std::vector<Score> topScores = scores; // Make a copy
-    std::sort(topScores.begin(), topScores.end(),
-                [](const Score& a, const Score& b) {
-                    return (a.getScoreJoueur1() + a.getScoreJoueur2()) > (b.getScoreJoueur1() + b.getScoreJoueur2());
-                });
-    if (numScoresToDisplay > topScores.size()) {
-        numScoresToDisplay = topScores.size();
+bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
+    QSqlQuery query(db);
+    query.prepare("UPDATE Scores SET score1 = :newScore1, score2 = :newScore2 WHERE id = :scoreId");
+    query.bindValue(":newScore1", newScore1);
+    query.bindValue(":newScore2", newScore2);
+    query.bindValue(":scoreId", scoreId);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating score:" << query.lastError();
+        return false;
     }
-    topScores.resize(numScoresToDisplay);
-    return topScores;
+    return true;
+}
+
+QList<Score> GestionScore::getScores(const QSqlDatabase& db) const {
+    QList<Score> scores;
+    QSqlQuery query(db);
+    query.exec("SELECT * FROM Scores"); 
+
+    while (query.next()) {
+        int id = query.value("id").toInt();
+        int matchId = query.value("matchId").toInt();
+        int score1 = query.value("score1").toInt();
+        int score2 = query.value("score2").toInt(); 
+
+        scores.append(Score(id, matchId, score1, score2)); 
+    }
+    return scores;
+}
+
+Score GestionScore::getScoreById(const QSqlDatabase& db, int scoreId) const {
+    QSqlQuery query(db);
+    query.prepare("SELECT * FROM Scores WHERE id = :scoreId"); 
+    query.bindValue(":scoreId", scoreId);
+
+    if (query.exec() && query.next()) {
+        return Score(query.value("id").toInt(), query.value("matchId").toInt(), query.value("score1").toInt(), query.value("score2").toInt());
+    } else {
+        qDebug() << "Error getting score by ID:" << query.lastError();
+        return Score(); // Return a default-constructed Score (you might want to define a specific "not found" Score)
+    }
 }

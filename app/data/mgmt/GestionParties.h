@@ -1,29 +1,26 @@
-#ifndef GESTION_PARTIES.H
-#define GESTION_PARTIES.H
+// GestionMatch.h
+#ifndef GESTIONMATCH_H
+#define GESTIONMATCH_H
 
-#include "Partie.h"
-#include <vector>
-#include <map>
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include "Match.h"
 
-class GestionParties {
+class GestionMatch
+{
 public:
-    GestionParties();
-    std::vector<Partie> getParties();
-    std::vector<Partie> getPreviousRoundMatches();
-    bool isPartieFromPreviousRound(Partie partie);
-    int getPreviousRoundMaxMatchNumber() const;
-    void setPreviousRoundMaxMatchNumber(int newMax);
-    void setParties(std::vector<Partie> parties);
-    void ajouterPartie(Partie partie);
-    void afficherParties();
-    void supprimerPartie(TypePartie type, std::string nomJoueur1, std::string nomJoueur2);
-    Partie* rechercherPartie(const std::string& nomJoueur1, const std::string& nomJoueur2);
-    void setMatchResult(int numero, const std::string& winnerName);
+    GestionMatch(const QSqlDatabase& db);
+    ~GestionMatch();
 
-private:
-    std::vector<Partie> parties;
-    std::map<std::pair<std::string, std::string>, Partie*> partiesMap;
-    int previousRoundMaxMatchNumber;
+    bool creerMatch(const QSqlDatabase& db, const QString& player1Name, const QString& player2Name, int score1, int score2);
+    bool supprimerMatch(const QSqlDatabase& db, int matchId);
+    bool modifierMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2);
+    QList<Match> getMatches(const QSqlDatabase& db) const;
+    Match getMatchById(const QSqlDatabase& db, int matchId) const;
+
+    // Add method to get the score for a match
+    Score getMatchScore(const QSqlDatabase& db, int matchId) const;
 };
 
-#endif
+#endif // GESTIONMATCH_H

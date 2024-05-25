@@ -1,21 +1,41 @@
 #include "Ticket.h"
 
-// Static member initialization for next ticket number
-int Ticket::nextTicketNumber = 1;
-
-// Constructor for Ticket
-Ticket::Ticket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation, int row, int col)
-    : type(type), prix(prix), matchName(matchName), numeroTicket(nextTicketNumber++), sold(false), reservation(reservation), row(row), col(col) {} 
-
-// Display ticket information
-void Ticket::afficher() const {
-    cout << "Ticket Number: " << numeroTicket << endl;
-    cout << "Type: " << type << endl;
-    cout << "Price: " << prix << endl;
-    cout << "Match: " << matchName << endl;
-    cout << "Sold: " << (sold ? "Yes" : "No") << endl;
-    cout << "Reservation: " << (reservation ? "Yes" : "No") << endl; 
-    cout << "Row: " << row << endl;
-    cout << "Column: " << col << endl;
+Ticket::Ticket(int id, const Client& client, const Match& match, const Place& place, double price, const QString& status) :
+    id(id),
+    client(client),
+    match(match),
+    place(place),
+    price(price),
+    status(status)
+{
 }
 
+int Ticket::getId() const
+{
+    return id;
+}
+
+const Client& Ticket::getClient() const
+{
+    return client;
+}
+
+const Match& Ticket::getMatch() const
+{
+    return match;
+}
+
+const Place& Ticket::getPlace() const
+{
+    return place;
+}
+
+double Ticket::getPrice() const
+{
+    return price;
+}
+
+QString Ticket::getStatus() const
+{
+    return status;
+}

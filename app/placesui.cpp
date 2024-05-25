@@ -7,13 +7,6 @@ PlacesUI::PlacesUI(QWidget *parent, const QSqlDatabase& database)
 {
     ui->setupUi(this);
 
-    // Get access to GestionPlaces
-    gestionPlaces = dynamic_cast<MainWindow*>(parent)->getGestionPlaces(); 
-    if (!gestionPlaces) {
-        qDebug() << "Error: Could not access GestionPlaces.";
-        return; 
-    }
-
     // Initialize the placesModel
     placesModel = new QStandardItemModel(0, 3, this); // 3 columns (ID, Name, Capacity)
     placesModel->setHeaderData(0, Qt::Horizontal, tr("ID"));
@@ -65,8 +58,8 @@ void PlacesUI::deletePlace() {
 
     // Confirmation Dialog
     QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Place", 
-                                                              "Are you sure you want to delete this place?",
-                                                              QMessageBox::Yes | QMessageBox::No);
+                                                                 "Are you sure you want to delete this place?",
+                                                                 QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         emit placeDeleted(placeId);
         updatePlacesList();
@@ -109,7 +102,8 @@ void PlacesUI::loadPlaceDetails(const QModelIndex& index) {
     ui->idLineEdit->setText(QString::number(selectedPlace.getId()));
     ui->nameLineEdit->setText(selectedPlace.getNom());
     ui->capacitySpinBox->setValue(selectedPlace.getCapacity()); // Assuming getCapacity() is a method in your Place class
-    ui->placesTableView->setFocus();
+
+    // ... (Set values for other place detail fields) ...
 }
 
 void PlacesUI::clearPlaceDetails() {
@@ -133,7 +127,26 @@ void PlacesUI::updatePlacesList() {
         placesModel->setData(placesModel->index(row, 2), place.getCapacity());
 
         // Optional: Store the place ID in the Qt::UserRole of the first column
-        placesModel->setData(placesModel->index(row, 0), place.getId(), Qt::UserRole);
+        placesModel->setData(placesModel->index(row, 0), place.getId(), Qt::UserRole); 
     }
 }
 
+void PlacesUI::searchPlace(const QString& searchTerm) {
+    placesModel->clear(); // Clear the existing model data
+    placesModel->setHorizontalHeaderLabels({"ID", "Name", "Capacity"});
+
+    QList<Place> places = gestionPlaces->getPlaces(db); 
+
+    for (const Place& place : places) {
+        if (place.getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            QString::number(place.getId()).contains(searchTerm)) { // Search ID as well
+            int row = placesModel->rowCount();
+            placesModel->insertRow(row);
+            placesModel->setData(placesModel->index(row, 0), place.getId());
+            placesModel->setData(placesModel->index(row, 1), place.getNom());
+            placesModel->setData(placesModel->index(row, 2), place.getCapacity());
+            // Optional: Store the place ID in the Qt::UserRole of the first column
+            placesModel->setData(placesModel->index(row, 0), place.getId(), Qt::UserRole); 
+        }
+    }
+}

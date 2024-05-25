@@ -1,25 +1,22 @@
-#ifndef GESTION_SCORES_H
-#define GESTION_SCORES_H
+#ifndef GESTIONSCORE_H
+#define GESTIONSCORE_H
 
-#include <vector>
-#include "Score.h"
-#include "Partie.h"
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include "Score.h" 
 
-
-class GestionScores {
+class GestionScore
+{
 public:
-    GestionScores(); // Constructor
+    GestionScore(const QSqlDatabase& db);
+    ~GestionScore();
 
-    void ajouterScore(const Score& score); // Add a score
-    void supprimerScore(int numero); // Remove a score
-    void mettreAJourScore(int numero, int scoreJoueur1, int scoreJoueur2, GestionJoueurs& gestionJoueurs); // Update a score
-    void afficherScores() const; // Display all scores
-    std::vector<Score> getTopScores(int numScoresToDisplay); // Display Top Scorers
-
-private:
-    std::vector<Score> scores;
-    std::map<int, Score*> scoresMap;
+    bool ajouterScore(const QSqlDatabase& db, int matchId, int score1, int score2);
+    bool supprimerScore(const QSqlDatabase& db, int scoreId); 
+    bool modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2);
+    QList<Score> getScores(const QSqlDatabase& db) const; 
+    Score getScoreById(const QSqlDatabase& db, int scoreId) const; 
 };
 
-
-#endif // GESTION_SCORES_H
+#endif // GESTIONSCORE_H

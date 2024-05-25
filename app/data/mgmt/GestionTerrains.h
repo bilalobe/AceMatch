@@ -1,19 +1,21 @@
-#ifndef GESTION_TERRAINS.H
-#define GESTION_TERRAINS.H
+#ifndef GESTIONTERRAINS_H
+#define GESTIONTERRAINS_H
 
-#include "Terrain.h"
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include "Terrain.h" 
 
 class GestionTerrains
 {
-private:
-  std::vector<Terrain> terrains;
-
 public:
-  void ajouterTerrain(Terrain terrain);
-  void afficherTerrains();
-  bool supprimerTerrain(TypeTerrain type, int longueur, int largeur);
-  Terrain *rechercherTerrain(TypeTerrain type, int longueur, int largeur) const;
+    GestionTerrains(const QSqlDatabase& db);
+    ~GestionTerrains();
+
+    bool ajouterTerrain(const QSqlDatabase& db, const QString& nom, const QString& type);
+    bool supprimerTerrain(const QSqlDatabase& db, int terrainId); 
+    bool modifierTerrain(const QSqlDatabase& db, int terrainId, const QString& newName, const QString& newType);
+    QList<Terrain> getTerrains(const QSqlDatabase& db) const; 
 };
 
-
-#endif // GESTION_TERRAINS.H
+#endif // GESTIONTERRAINS_H

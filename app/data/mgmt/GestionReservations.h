@@ -1,16 +1,21 @@
-// GestionReservations.h
 #ifndef GESTIONRESERVATIONS_H
 #define GESTIONRESERVATIONS_H
 
-// ... (Other includes) ...
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include "Reservation.h" 
 
-class GestionReservations {
+class GestionReservations
+{
 public:
-    // ... (Other methods) ...
+    GestionReservations(const QSqlDatabase& db);
+    ~GestionReservations();
 
-    bool ajouterReservation(QSqlDatabase& db, int clientId, int placeId, const QDateTime& dateTime);
-    bool supprimerReservation(QSqlDatabase& db, int reservationId); 
-    bool modifierReservation(QSqlDatabase& db, int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
+    bool ajouterReservation(const QSqlDatabase& db, int clientId, int placeId, const QDateTime& dateTime);
+    bool supprimerReservation(const QSqlDatabase& db, int reservationId); 
+    bool modifierReservation(const QSqlDatabase& db, int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
+    void searchReservations(const QSqlDatabase& db, const QString& searchTerm);
     QList<Reservation> getReservations(const QSqlDatabase& db) const; 
 };
 

@@ -1,30 +1,27 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
 
+#include <QString>
+#include <QList>
+#include <QSqlDatabase>
+#include <QDateTime>
 #include "Client.h"
-#include "Partie.h"
+#include "Place.h"
 
-
-class Reservation {
+class Reservation
+{
 public:
-    Reservation(Client* client, Partie* partie, Terrain* terrain, int row, int col);
-
-    // Getters
-    Client* getClient() const;
-    Partie* getPartie() const;
-    Terrain* getTerrain() const;
-    int getRow() const;
-    int getCol() const;
-
-    // Display reservation details
-    void afficher() const;
+    Reservation(int id = -1, const Client& client = Client(), const Place& place = Place(), const QDateTime& dateTime = QDateTime());
+    int getId() const { return id; }
+    const Client& getClient() const { return client; }
+    const Place& getPlace() const { return place; }
+    QDateTime getDateTime() const { return dateTime; }
 
 private:
-    Client* client;
-    Partie* partie;
-    Terrain* terrain;
-    int row;
-    int col;
+    int id;
+    Client client;
+    Place place;
+    QDateTime dateTime;
 };
 
-#endif
+#endif // RESERVATIONS_H
