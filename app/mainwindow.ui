@@ -62,7 +62,7 @@
       </widget>
       <widget class="QWidget" name="scoreboardAndMatchDetailsTab">
        <attribute name="title">
-        <string>Scoreboard Match Details</string>
+        <string>Scoreboard & Match Details</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
@@ -80,11 +80,21 @@
           <property name="currentIndex">
            <number>0</number>
           </property>
+          <widget class="QWidget" name="clientsTab">
+           <attribute name="title">
+            <string>Clients</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_8">
+            <item>
+             <widget class="QWidget" name="clientsUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
           <widget class="QWidget" name="placesTab">
            <attribute name="title">
             <string>Places</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_8">
+           <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
              <widget class="QWidget" name="placesUI" native="true"/>
             </item>
@@ -94,7 +104,7 @@
            <attribute name="title">
             <string>Reservations</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_9">
+           <layout class="QVBoxLayout" name="verticalLayout_10">
             <item>
              <widget class="QWidget" name="reservationsUI" native="true"/>
             </item>
@@ -104,7 +114,7 @@
            <attribute name="title">
             <string>Terrains</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_10">
+           <layout class="QVBoxLayout" name="verticalLayout_11">
             <item>
              <widget class="QWidget" name="terrainsUI" native="true"/>
             </item>
@@ -114,9 +124,19 @@
            <attribute name="title">
             <string>Tickets</string>
            </attribute>
-           <layout class="QVBoxLayout" name="verticalLayout_11">
+           <layout class="QVBoxLayout" name="verticalLayout_12">
             <item>
              <widget class="QWidget" name="ticketsUI" native="true"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="scoresTab">
+           <attribute name="title">
+            <string>Scores</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <widget class="QWidget" name="scoreUI" native="true"/>
             </item>
            </layout>
           </widget>
@@ -134,7 +154,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

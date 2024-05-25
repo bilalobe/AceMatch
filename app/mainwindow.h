@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include <QtSql/QSqlDatabase>
+#include <QSqlDatabase>
 #include <QTableView>
 #include <QStandardItemModel>
 
@@ -14,6 +14,8 @@
 #include "reservationsui.h"
 #include "terrainsui.h"
 #include "ticketsui.h"
+#include "scoreui.h"
+#include "clientsui.h" // Include ClientsUI
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -55,8 +57,16 @@ private slots:
     void handleTicketDeleted(int ticketId);
     void handleTicketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus);
 
+    void handleScoreAdded(int matchId, int score1, int score2);
+    void handleScoreDeleted(int scoreId);
+    void handleScoreUpdated(int scoreId, int newScore1, int newScore2);
+
+    void handleMatchSelected(int matchId);
     void handleSearchTextChanged(const QString& searchTerm); 
     void updateStandings();
+    void handleClientAdded(const QString& nom, const QString& email, const QString& phoneNumber);
+    void handleClientDeleted(int clientId);
+    void handleClientUpdated(int clientId, const QString& newName, const QString& newEmail, const QString& newPhoneNumber);
 
 private:
     Ui::MainWindow *ui;
@@ -69,15 +79,21 @@ private:
     ReservationsUI* reservationsUI;
     TerrainsUI* terrainsUI;
     TicketsUI* ticketsUI;
+    ScoreUI* scoreUI;
+    ClientsUI* clientsUI; // Add ClientsUI
 
     QStandardItemModel* standingsModel;
     QTableView* standingsTableView;
 
     GestionJoueurs* gestionJoueurs;
+    GestionMatch* gestionMatch;
+    GestionClients* gestionClients;
     GestionPlaces* gestionPlaces;
     GestionReservations* gestionReservations;
     GestionTerrains* gestionTerrains;
     GestionTickets* gestionTickets; 
+    GestionScore* gestionScore;
+    GestionPaiements* gestionPaiements; 
 };
 
 #endif // MAINWINDOW_H

@@ -1,4 +1,3 @@
-// GestionClients.cpp
 #include "GestionClients.h"
 #include <QSqlQuery>
 #include <QSqlError>
@@ -56,28 +55,6 @@ bool GestionClients::modifierClient(const QSqlDatabase& db, int clientId, const 
     return true;
 }
 
-void GestionClients::searchClient(const QSqlDatabase &db, const QString &searchTerm)
-{
-        QSqlQuery query(db);
-    query.prepare("SELECT * FROM Clients WHERE nom LIKE :searchTerm OR email LIKE :searchTerm OR phoneNumber LIKE :searchTerm");
-    query.bindValue(":searchTerm", "%" + searchTerm + "%");
-
-    if (!query.exec()) {
-        qDebug() << "Error searching client:" << query.lastError();
-        return;
-    }
-
-    while (query.next()) {
-        int id = query.value("id").toInt();
-        QString nom = query.value("nom").toString();
-        QString email = query.value("email").toString();
-        QString phoneNumber = query.value("phoneNumber").toString();
-
-        // Emit a signal to notify the UI about the found client
-        emit clientFound(id, nom, email, phoneNumber);
-    }
-}
-
 QList<Client> GestionClients::getClients(const QSqlDatabase& db) const {
     QList<Client> clients;
     QSqlQuery query(db);
@@ -89,7 +66,7 @@ QList<Client> GestionClients::getClients(const QSqlDatabase& db) const {
         QString email = query.value("email").toString();
         QString phoneNumber = query.value("phoneNumber").toString();
 
-        clients.append(Client(id, nom, email, phoneNumber)); 
+        clients.append(Client(id, nom, email, phoneNumber));
     }
     return clients;
 }
@@ -106,4 +83,3 @@ Client GestionClients::getClientById(const QSqlDatabase& db, int clientId) const
         return Client();
     }
 }
-

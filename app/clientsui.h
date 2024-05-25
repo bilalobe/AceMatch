@@ -1,6 +1,5 @@
-// clientsui.h
-#ifndef CLIENTSUI_H
-#define CLIENTSUI_H
+#ifndef CLIENTSUUI_H
+#define CLIENTSUUI_H
 
 #include <QWidget>
 #include <QSqlDatabase>

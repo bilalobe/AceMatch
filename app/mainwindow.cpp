@@ -4,6 +4,7 @@
 #include <QMessageBox>
 #include <QMap>
 #include <QPair>
+#include <algorithm> // for std::sort
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -22,10 +23,13 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Initialize Gestion* Classes
     gestionJoueurs = new GestionJoueurs(db);
+    gestionMatch = new GestionMatch(db);
+    gestionClients = new GestionClients(db);
     gestionPlaces = new GestionPlaces(db);
     gestionReservations = new GestionReservations(db);
     gestionTerrains = new GestionTerrains(db);
     gestionTickets = new GestionTickets(db);
+    gestionScore = new GestionScore(db);
 
     // Create UI Components
     playerBox = new PlayerBox(this, db);
@@ -36,6 +40,7 @@ MainWindow::MainWindow(QWidget *parent)
     reservationsUI = new ReservationsUI(this, db);
     terrainsUI = new TerrainsUI(this, db);
     ticketsUI = new TicketsUI(this, db);
+    scoreUI = new ScoreUI(this, db);
 
     // Create Main Tab Widget
     QTabWidget* tabWidget = new QTabWidget(this);
@@ -53,17 +58,17 @@ MainWindow::MainWindow(QWidget *parent)
     matchesLayout->addWidget(matchUI);
     tabWidget->addTab(matchesTab, "Matches");
 
-    // Standings Tab 
+    // Standings Tab
     QWidget* standingsTab = new QWidget();
     QVBoxLayout* standingsLayout = new QVBoxLayout(standingsTab);
     standingsTableView = new QTableView(standingsTab);
     standingsLayout->addWidget(standingsTableView);
     tabWidget->addTab(standingsTab, "Standings");
 
-    // Create a model for standings data (you'll populate this later)
-    standingsModel = new QStandardItemModel(0, 2, standingsTab); // 0 rows, 2 columns
+    // Create a model for standings data
+    standingsModel = new QStandardItemModel(0, 2, standingsTab); 
     standingsModel->setHeaderData(0, Qt::Horizontal, tr("Player"));
-    standingsModel->setHeaderData(1, Qt::Horizontal, tr("Wins")); // Or other relevant data
+    standingsModel->setHeaderData(1, Qt::Horizontal, tr("Wins"));
     standingsTableView->setModel(standingsModel);
 
     // Scoreboard & Match Details Tab
@@ -85,6 +90,9 @@ MainWindow::MainWindow(QWidget *parent)
     tournamentLayout->addWidget(tournamentTabWidget);
     tabWidget->addTab(tournamentTab, "Tournament Management");
 
+    // Clients Mini-Tab
+    tournamentTabWidget->addTab(clientsUI, "Clients");
+
     // Places Mini-Tab
     tournamentTabWidget->addTab(placesUI, "Places");
 
@@ -96,6 +104,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Tickets Mini-Tab
     tournamentTabWidget->addTab(ticketsUI, "Tickets");
+
+    // Scores Mini-Tab
+    tournamentTabWidget->addTab(scoreUI, "Scores");
 
     // Set tabWidget as the central widget
     setCentralWidget(tabWidget);
@@ -136,33 +147,16 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ticketsUI, &TicketsUI::ticketDeleted, this, &MainWindow::handleTicketDeleted);
     connect(ticketsUI, &TicketsUI::ticketUpdated, this, &MainWindow::handleTicketUpdated);
 
+    connect(scoreUI, &ScoreUI::scoreAdded, this, &MainWindow::handleScoreAdded);
+    connect(scoreUI, &ScoreUI::scoreDeleted, this, &MainWindow::handleScoreDeleted);
+    connect(scoreUI, &ScoreUI::scoreUpdated, this, &MainWindow::handleScoreUpdated);
+
+    connect(scoreboardMatchDetailsUI, &ScoreboardMatchDetailsUI::matchSelected, this, &MainWindow::handleMatchSelected);
+
     // Update UI Elements
     updateStandings();
-    }
-
-// ... (Implementation of other slots and methods) ...
-
-GestionJoueurs* MainWindow::getGestionJoueurs() const {
-    return gestionJoueurs;
+    // ... (Update other UI elements like player lists, combo boxes, etc.) ...
 }
-
-GestionPlaces* MainWindow::getGestionPlaces() const {
-    return gestionPlaces;
-}
-
-GestionReservations* MainWindow::getGestionReservations() const {
-    return gestionReservations;
-}
-
-GestionTerrains* MainWindow::getGestionTerrains() const {
-    return gestionTerrains;
-}
-
-GestionTickets* MainWindow::getGestionTickets() const {
-    return gestionTickets;
-}
-
-
 
 MainWindow::~MainWindow()
 {
@@ -174,6 +168,9 @@ MainWindow::~MainWindow()
     delete gestionReservations;
     delete gestionTerrains;
     delete gestionTickets;
+    delete gestionScore;
+    delete gestionClients;
+    delete gestionPaiements; 
 
     // Delete UI components
     delete playerBox;
@@ -184,6 +181,7 @@ MainWindow::~MainWindow()
     delete reservationsUI;
     delete terrainsUI;
     delete ticketsUI;
+    delete scoreUI;
 
     // Close database connection
     if (db.isOpen()) {
@@ -232,7 +230,7 @@ void MainWindow::handlePlayerUpdated(const QString& nom, int newRanking) {
 }
 
 void MainWindow::handleMatchCreated(const QString& player1Name, const QString& player2Name, int score1, int score2) {
-    if (gestionJoueurs->creerMatch(db, player1Name, player2Name, score1, score2)) {
+    if (gestionMatch->creerMatch(db, player1Name, player2Name, score1, score2)) {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match created successfully.");
@@ -242,7 +240,7 @@ void MainWindow::handleMatchCreated(const QString& player1Name, const QString& p
 }
 
 void MainWindow::handleMatchDeleted(int matchId) {
-    if (gestionJoueurs->supprimerMatch(db, matchId)) {
+    if (gestionMatch->supprimerMatch(db, matchId)) {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match deleted successfully.");
@@ -252,7 +250,7 @@ void MainWindow::handleMatchDeleted(int matchId) {
 }
 
 void MainWindow::handleMatchUpdated(int matchId, int newScore1, int newScore2) {
-    if (gestionJoueurs->modifierMatch(db, matchId, newScore1, newScore2)) {
+    if (gestionMatch->modifierMatch(db, matchId, newScore1, newScore2)) {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match updated successfully.");
@@ -380,75 +378,43 @@ void MainWindow::handleTicketUpdated(int ticketId, int newClientId, int newMatch
     }
 }
 
+void MainWindow::handleScoreAdded(int matchId, int score1, int score2) {
+    if (gestionScore->ajouterScore(db, matchId, score1, score2)) {
+        scoreUI->updateScoresList();
+        statusBar()->showMessage("Score added successfully.");
+    } else {
+        QMessageBox::warning(this, "Error", "Failed to add score.");
+    }
+}
+
+void MainWindow::handleScoreDeleted(int scoreId) {
+    if (gestionScore->supprimerScore(db, scoreId)) {
+        scoreUI->updateScoresList();
+        statusBar()->showMessage("Score deleted successfully.");
+    } else {
+        QMessageBox::warning(this, "Error", "Failed to delete score.");
+    }
+}
+
+void MainWindow::handleScoreUpdated(int scoreId, int newScore1, int newScore2) {
+    if (gestionScore->modifierScore(db, scoreId, newScore1, newScore2)) {
+        scoreUI->updateScoresList();
+        statusBar()->showMessage("Score updated successfully.");
+    } else {
+        QMessageBox::warning(this, "Error", "Failed to update score.");
+    }
+}
+
+void MainWindow::handleMatchSelected(int matchId) {
+    // ... (Update other UI elements that might depend on the selected match, like the "Match Details" section in a different tab) ...
+}
+
 void MainWindow::handleSearchTextChanged(const QString& searchTerm) {
     // Filter Players
     playerBox->searchPlayer(searchTerm);
 
     // Filter Matches
-    matchUI->searchMatch(searchTerm);
-
-        // Filter Player Profile
-    playerProfileUI->searchPlayerProfile(searchTerm);
-
-    // Filter Places
-    placesUI->searchPlace(searchTerm);
-
-    // Filter Reservations
-    reservationsUI->searchReservation(searchTerm);
-
-    // Filter Terrains
-    terrainsUI->searchTerrain(searchTerm);
-
-    // Filter Tickets
-    ticketsUI->searchTicket(searchTerm);
-}
-
-void MainWindow::handlePlayerSelected(const QString& playerName) {
-    // Filter Players
-    playerBox->searchPlayer(playerName);
-    // Filter Matches
-    matchUI->searchMatch(playerName);
-
-    // Filter Player Profile
-    playerProfileUI->searchPlayerProfile(playerName);
-
-    // Filter Tickets
-    ticketsUI->searchTicket(playerName);
-}
-
-void MainWindow::handleMatchSelected(int matchId) {
-    // Filter Matches
-    matchUI->searchMatch(QString::number(matchId));
-
-    // Filter Tickets
-    ticketsUI->searchTicket(QString::number(matchId));
-}
-
-void MainWindow::handlePlaceSelected(int placeId) {
-    // Filter Places
-    placesUI->searchPlace(QString::number(placeId));
-
-    // Filter Reservations
-    reservationsUI->searchReservation(QString::number(placeId));
-
-    // Filter Tickets
-    ticketsUI->searchTicket(QString::number(placeId));
-}
-
-void MainWindow::handleReservationSelected(int reservationId) {
-    // Filter Reservations
-    reservationsUI->searchReservation(QString::number(reservationId));
-}
-
-void MainWindow::handleTerrainSelected(int terrainId) {
-    // Filter Terrains
-    terrainsUI->searchTerrain(QString::number(terrainId));
-}
-
-void MainWindow::handleTicketSelected(int ticketId) {
-    // Filter Tickets
-    ticketsUI->searchTicket(QString::number(ticketId));
-}
+    matchUI->searchMatch(searchTerm); 
 
     // Filter Standings
     // ... (Implement filtering for the standings table) ...
@@ -457,7 +423,7 @@ void MainWindow::handleTicketSelected(int ticketId) {
     // ... (Implement filtering for player profile) ...
 
     // Filter Places
-    // ... (Implement filtering for places) ...
+    placesUI->searchPlace(searchTerm); 
 
     // Filter Reservations
     // ... (Implement filtering for reservations) ...
@@ -465,14 +431,19 @@ void MainWindow::handleTicketSelected(int ticketId) {
     // Filter Terrains
     // ... (Implement filtering for terrains) ...
 
+    // Filter Tickets
+    // ... (Implement filtering for tickets) ...
 
+    // Filter Scores
+    // ... (Implement filtering for scores) ... 
+}
 
 void MainWindow::updateStandings() {
     QList<Joueur> players = gestionJoueurs->getJoueurs(db);
     QMap<QString, int> playerWins; 
 
     // Calculate wins from match data
-    QList<Match> matches = gestionJoueurs->getMatches(db); 
+    QList<Match> matches = gestionMatch->getMatches(db);
     for (const Match& match : matches) {
         if (match.getScore1() > match.getScore2()) {
             playerWins[match.getJoueur1().getNom()]++; 

@@ -192,3 +192,4 @@ void MatchUI::clearSearch() {
     ui->searchLineEdit->clear();
     updateMatchList();
 }
+

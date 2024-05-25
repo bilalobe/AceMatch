@@ -104,3 +104,31 @@ Score GestionMatch::getMatchScore(const QSqlDatabase& db, int matchId) const {
         return Score(); // Return a default-constructed Score (you might want to define a specific "not found" Score)
     }
 }
+
+// GestionMatch.cpp
+bool GestionMatch::modifierMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2) {
+    QSqlQuery query(db);
+    query.prepare("UPDATE Matches SET score1 = :score1, score2 = :score2 WHERE id = :matchId");
+    query.bindValue(":score1", newScore1);
+    query.bindValue(":score2", newScore2);
+    query.bindValue(":matchId", matchId);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating match:" << query.lastError();
+        return false;
+    }
+
+    // Also update the Scores table (assuming you have a Scores table)
+    QSqlQuery updateScoreQuery(db);
+    updateScoreQuery.prepare("UPDATE Scores SET score1 = :newScore1, score2 = :newScore2 WHERE matchId = :matchId");
+    updateScoreQuery.bindValue(":newScore1", newScore1);
+    updateScoreQuery.bindValue(":newScore2", newScore2);
+    updateScoreQuery.bindValue(":matchId", matchId);
+
+    if (!updateScoreQuery.exec()) {
+        qDebug() << "Error updating score:" << updateScoreQuery.lastError();
+        return false;
+    }
+
+    return true;
+}
