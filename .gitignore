@@ -13,4 +13,4 @@ build/
 .vscode/*
 
 # Database file (consider excluding from version control)
-tournament.db
+#tournament.db

@@ -62,7 +62,7 @@
       </widget>
       <widget class="QWidget" name="scoreboardAndMatchDetailsTab">
        <attribute name="title">
-        <string>Scoreboard & Match Details</string>
+        <string>Scoreboard | Match Details</string>
        </attribute>
        <layout class="QVBoxLayout" name="verticalLayout_6">
         <item>
@@ -187,11 +187,17 @@
      <string>Help</string>
     </property>
    </widget>
+   <widget class="QMenu" name="menuAbout">
+    <property name="title">
+     <string>About</string>
+    </property>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
    <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
+   <addaction name="menuAbout"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionNew_Tournament">

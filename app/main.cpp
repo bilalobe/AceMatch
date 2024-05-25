@@ -8,7 +8,7 @@
 #include <QIcon>
 #include <QLineEdit>
 #include <QVBoxLayout>
-#include <QSqlDatabase>
+#include <QtSql/QSqlDatabase>
 #include <QTableView>
 #include <QStandardItemModel>
 
@@ -123,7 +123,7 @@ int main(int argc, char *argv[])
     tournamentTabWidget->addTab(reservationsUI, "Reservations");
 
     // Terrains Mini-Tab
-    TerrainsUI* terrainsUI = new TerrainsUI(&mainWindow, db);
+    TerrainUI* terrainsUI = new TerrainUI(&mainWindow, db);
     tournamentTabWidget->addTab(terrainsUI, "Terrains");
 
     // Tickets Mini-Tab

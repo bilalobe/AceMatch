@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <QSqlQuery>
+#include <QtSql/QSqlQuery>
 #include <QMessageBox>
 #include <QMap>
 #include <QPair>
