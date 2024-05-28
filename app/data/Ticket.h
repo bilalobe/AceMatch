@@ -11,7 +11,8 @@
 class Ticket
 {
 public:
-    Ticket(int id = -1, const Client& client = Client(), const Match& match = Match(), const Place& place = Place(), double price = 0.0, const QString& status = "");
+    Ticket(int id = -1, const Client& client = Client(), const Match& match = Match(), const Place& place = Place(), double price = 0.0, const QString& status = "")
+        : id(id), client(client), match(match), place(place), price(price), status(status) {} // Inline constructor
     int getId() const { return id; }
     const Client& getClient() const { return client; }
     const Match& getMatch() const { return match; }

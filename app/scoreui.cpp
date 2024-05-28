@@ -51,12 +51,43 @@ void ScoreUI::addScore() {
     updateScoresList();
 }
 
-void ScoreUI::deleteScore() {
-    // ... (Implementation similar to delete functions in other tabs) ... 
+bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
+    QSqlQuery query(db);
+    query.prepare("DELETE FROM Scores WHERE id = :scoreId");
+    query.bindValue(":scoreId", scoreId);
+
+    if (!query.exec()) {
+        qDebug() << "Error deleting score:" << query.lastError();
+        return false;
+    }
+    return true;
 }
 
-void ScoreUI::updateScore() {
-    // ... (Implementation similar to update functions in other tabs) ... 
+bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
+    QSqlQuery query(db);
+    query.prepare("UPDATE Scores SET score1 = :newScore1, score2 = :newScore2 WHERE id = :scoreId");
+    query.bindValue(":newScore1", newScore1);
+    query.bindValue(":newScore2", newScore2);
+    query.bindValue(":scoreId", scoreId);
+
+    if (!query.exec()) {
+        qDebug() << "Error updating score:" << query.lastError();
+        return false;
+    }
+    return true;
+}
+
+Score GestionScore::getScoreById(const QSqlDatabase& db, int scoreId) const {
+    QSqlQuery query(db);
+    query.prepare("SELECT * FROM Scores WHERE id = :scoreId");
+    query.bindValue(":scoreId", scoreId);
+
+    if (query.exec() && query.next()) {
+        return Score(query.value("id").toInt(), query.value("matchId").toInt(), query.value("score1").toInt(), query.value("score2").toInt());
+    } else {
+        qDebug() << "Error getting score by ID:" << query.lastError();
+        return Score();
+    }
 }
 
 void ScoreUI::loadScoreDetails(const QModelIndex& index) {
@@ -79,12 +110,18 @@ void ScoreUI::loadScoreDetails(const QModelIndex& index) {
     ui->score1SpinBox->setValue(selectedScore.getScore1());
     ui->score2SpinBox->setValue(selectedScore.getScore2());
 
+
     // ... (Set values for other score detail fields) ...
 }
 
 void ScoreUI::clearScoreDetails() {
-    // ... (Clear all input fields and labels in the details section) ...
+       ui->idLineEdit->clear();
+    ui->matchComboBox->setCurrentIndex(0); // Reset combo box
+    ui->score1SpinBox->setValue(0);
+    ui->score2SpinBox->setValue(0);
+
 }
+
 
 void ScoreUI::updateScoresList() {
     scoresModel->clear();

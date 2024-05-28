@@ -7,6 +7,14 @@ ReservationsUI::ReservationsUI(QWidget *parent)
     ui->setupUi(this);
 }
 
+ReservationsUI::ReservationsUI(QWidget *parent, const QSqlDatabase &database)
+{
+    ui = new Ui::ReservationsUI;
+    ui->setupUi(this);
+    db = database;
+    gestionReservations = new GestionReservations(db);
+}
+
 // Initialize the reservationsModel
 reservationsModel = new QStandardItemModel(0, 4, this);
 reservationsModel->setHeaderData(0, Qt::Horizontal, tr("Client ID"));
@@ -22,9 +30,6 @@ connect(ui->updateReservationButton, &QPushButton::clicked, this, &ReservationsU
 connect(ui->reservationsTableView->selectionModel(), &QItemSelectionModel::currentRowChanged, this, &ReservationsUI::loadReservationDetails);
 connect(ui->clearButton, &QPushButton::clicked, this, &ReservationsUI::clearReservationDetails);
 
-// Update the reservations list
-updateReservationsList();
-}
 
 ReservationsUI::~ReservationsUI()
 {
@@ -131,3 +136,114 @@ void ReservationsUI::loadReservationDetails(const QModelIndex &index)
     ui->placeIdLineEdit->setText(QString::number(reservation.placeId));
     ui->dateTimeEdit->setDateTime(reservation.dateTime);
 }
+
+void ReservationsUI::searchReservations(const QString& searchTerm) {
+        // Clear the existing model data
+    reservationsModel->clear();
+
+    // Set the horizontal header labels
+    reservationsModel->setHorizontalHeaderLabels({"Client ID", "Place ID", "Date Time", "Status"});
+
+    // Get the reservations from the database
+    QList<Reservation> reservations = gestionReservations->getReservations(db, searchTerm);
+
+    // Add the reservations to the model
+    for (const Reservation& reservation : reservations) {
+        int row = reservationsModel->rowCount();
+        reservationsModel->insertRow(row);
+
+        // Set the data for each column
+        reservationsModel->setData(reservationsModel->index(row, 0), reservation.clientId);
+        reservationsModel->setData(reservationsModel->index(row, 1), reservation.placeId);
+        reservationsModel->setData(reservationsModel->index(row, 2), reservation.dateTime);
+        reservationsModel->setData(reservationsModel->index(row, 3), reservation.status);
+
+        // Set the reservation ID in the Qt::UserRole of the first column
+        reservationsModel->setData(reservationsModel->index(row, 0), reservation.id, Qt::UserRole);
+    }
+}
+
+void ReservationsUI::clearReservationDetails()
+{
+    ui->clientIdLineEdit->clear();
+    ui->placeIdLineEdit->clear();
+    ui->dateTimeEdit->setDateTime(QDateTime::currentDateTime());
+}
+
+void ReservationsUI::updateReservationsList()
+{
+    // Clear the existing model data
+    reservationsModel->clear();
+
+    // Set the horizontal header labels
+    reservationsModel->setHorizontalHeaderLabels({"Client ID", "Place ID", "Date Time", "Status"});
+
+    // Get the reservations from the database
+    QList<Reservation> reservations = gestionReservations->getReservations(db);
+
+    // Add the reservations to the model
+    for (const Reservation& reservation : reservations) {
+        int row = reservationsModel->rowCount();
+        reservationsModel->insertRow(row);
+
+        // Set the data for each column
+        reservationsModel->setData(reservationsModel->index(row, 0), reservation.clientId);
+        reservationsModel->setData(reservationsModel->index(row, 1), reservation.placeId);
+        reservationsModel->setData(reservationsModel->index(row, 2), reservation.dateTime);
+        reservationsModel->setData(reservationsModel->index(row, 3), reservation.status);
+
+        // Set the reservation ID in the Qt::UserRole of the first column
+        reservationsModel->setData(reservationsModel->index(row, 0), reservation.id, Qt::UserRole);
+    }
+}
+
+void ReservationsUI::updateClientComboBox()
+{
+    // Clear the existing items
+    ui->clientIdComboBox->clear();
+   // Add the client IDs to the combo box
+    QList<int> clientIds = gestionClients->getClientIds(db);
+    for (int clientId : clientIds) {
+        ui->clientIdComboBox->addItem(QString::number(clientId));
+    }
+}
+
+void ReservationsUI::updatePlaceComboBox()
+{
+    // Clear the existing items
+    ui->placeIdComboBox->clear();
+
+    // Add the place IDs to the combo box
+    QList<int> placeIds = gestionPlaces->getPlaceIds(db);
+    for (int placeId : placeIds) {
+        ui->placeIdComboBox->addItem(QString::number(placeId));
+    }
+}
+
+void ReservationsUI::on_clientIdComboBox_currentIndexChanged(int index)
+{
+    // Get the selected client ID
+    int clientId = ui->clientIdComboBox->itemText(index).toInt();
+
+    // Update the client ID line edit
+    ui->clientIdLineEdit->setText(QString::number(clientId));
+}
+
+void ReservationsUI::on_placeIdComboBox_currentIndexChanged(int index)
+{
+    // Get the selected place ID
+    int placeId = ui->placeIdComboBox->itemText(index).toInt();
+
+    // Update the place ID line edit
+    ui->placeIdLineEdit->setText(QString::number(placeId));
+}
+
+void ReservationsUI::on_searchButton_clicked()
+{
+    // Get the search term
+    QString searchTerm = ui->searchLineEdit->text();
+
+    // Search for reservations
+    searchReservations(searchTerm);
+}
+

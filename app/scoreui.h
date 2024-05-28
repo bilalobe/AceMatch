@@ -16,15 +16,10 @@ public:
     explicit ScoreUI(QWidget *parent = nullptr, const QSqlDatabase& database = QSqlDatabase());
     ~ScoreUI();
 
-signals:
-    void scoreAdded(int matchId, int score1, int score2);
-    void scoreDeleted(int scoreId);
-    void scoreUpdated(int scoreId, int newScore1, int newScore2);
-
 private slots:
     void addScore();
-    void deleteScore();
-    void updateScore();
+    bool supprimerScore(const QSqlDatabase& db, int scoreId);
+    bool modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2)
     void loadScoreDetails(const QModelIndex& index);
     void clearScoreDetails();
 

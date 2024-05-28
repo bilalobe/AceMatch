@@ -16,15 +16,12 @@ public:
     explicit ClientsUI(QWidget *parent = nullptr, const QSqlDatabase& database = QSqlDatabase());
     ~ClientsUI();
 
-signals:
-    void clientAdded(const QString& nom, const QString& email, const QString& phoneNumber);
-    void clientDeleted(int clientId);
-    void clientUpdated(int clientId, const QString& newName, const QString& newEmail, const QString& newPhoneNumber);
 
 private slots:
     void addClient();
     void deleteClient();
     void updateClient();
+    void searchClient(const QString& searchTerm);
     void loadClientDetails(const QModelIndex& index);
     void clearClientDetails();
 
@@ -34,6 +31,7 @@ private:
     QStandardItemModel* clientsModel;
 
     void updateClientsList();
+    void clearSearch();
 };
 
 #endif // CLIENTSUUI_H

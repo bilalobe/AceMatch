@@ -1,43 +1,20 @@
-#ifndef PLACE.H
-#define PLACE .H
+#ifndef PLACE_H
+#define PLACE_H
+
+#include <QString>
 
 class Place
 {
 public:
-  string type;
-  double prix;
-
-public:
-  Place(string type, double prix);
-  void afficher() const;
-  string getType() const;
-  double getPrix() const;
-};
-
-// Définition de la classe StandardPlace
-class StandardPlace : public Place
-{
-public:
-  StandardPlace(int numero);
-
-  void afficher() const;
-  int getNumero() const;
+    Place(int id = -1, const QString& nom = "", int capacity = 0) : id(id), nom(nom), capacity(capacity) {} // Inline constructor
+    int getId() const { return id; }
+    QString getNom() const { return nom; }
+    int getCapacity() const { return capacity; }
 
 private:
-  int numero;
+    int id;
+    QString nom;
+    int capacity;
 };
 
-// Définition de la classe VipPlace
-class VipPlace : public Place
-{
-public:
-  VipPlace(int numero);
-
-  void afficher() const;
-  int getNumero() const;
-
-private:
-  int numero;
-};
-
-#endif
+#endif // PLACE_H

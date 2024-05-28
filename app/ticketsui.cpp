@@ -2,7 +2,7 @@
 #include "ui_ticketsui.h"
 #include <QMessageBox>
 
-TicketsUI::TicketsUI(QWidget *parent, const QSqlDatabase& database)
+TicketsUI::TicketsUI(QWidget *parent, const QSqlDatabase &database)
     : QWidget(parent), ui(new Ui::TicketsUI), db(database)
 {
     ui->setupUi(this);
@@ -35,12 +35,14 @@ TicketsUI::TicketsUI(QWidget *parent, const QSqlDatabase& database)
             this, &TicketsUI::loadTicketDetails);
 }
 
-TicketsUI::~TicketsUI() {
+TicketsUI::~TicketsUI()
+{
     delete ui;
     delete ticketsModel;
 }
 
-void TicketsUI::addTicket() {
+void TicketsUI::addTicket()
+{
     int clientId = ui->clientComboBox->currentData().toInt();
     int matchId = ui->matchComboBox->currentData().toInt();
     int placeId = ui->placeComboBox->currentData().toInt();
@@ -51,21 +53,72 @@ void TicketsUI::addTicket() {
 
     // Clear input fields
     // ...
+    ui->clientComboBox->setCurrentIndex(0);
+    ui->matchComboBox->setCurrentIndex(0);
+    ui->placeComboBox->setCurrentIndex(0);
+    ui->priceLineEdit->setText("");
+    ui->statusComboBox->setCurrentIndex(0);
 
     // Update the tickets list
     updateTicketsList();
 }
 
-void TicketsUI::deleteTicket() {
-    // ... (Implementation similar to delete functions in other tabs) ...
+void TicketsUI::deleteTicket()
+{
+    QModelIndexList selectedIndexes = ui->ticketsTableView->selectionModel()->selectedIndexes();
+    if (selectedIndexes.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "No ticket selected.");
+        return;
+    }
+
+    int ticketId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get ticket ID
+
+    // Confirmation Dialog
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Ticket",
+                                                              "Are you sure you want to delete this ticket?",
+                                                              QMessageBox::Yes | QMessageBox::No);
+    if (reply == QMessageBox::Yes)
+    {
+        emit ticketDeleted(ticketId);
+        updateTicketsList();
+        clearTicketDetails();
+
+        // Status Bar Message (you need access to MainWindow's status bar)
+        MainWindow *mainWindow = dynamic_cast<MainWindow *>(parent());
+        if (mainWindow)
+        {
+            mainWindow->statusBar()->showMessage("Ticket deleted successfully.");
+        }
+    }
 }
 
-void TicketsUI::updateTicket() {
-    // ... (Implementation similar to update functions in other tabs) ...
+void TicketsUI::updateTicket()
+{
+    QModelIndexList selectedIndexes = ui->ticketsTableView->selectionModel()->selectedIndexes();
+    if (selectedIndexes.isEmpty())
+    {
+        QMessageBox::warning(this, "Error", "No ticket selected.");
+        return;
+    }
+
+    int ticketId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get ticket ID
+    int clientId = ui->clientComboBox->currentData().toInt();
+    int matchId = ui->matchComboBox->currentData().toInt();
+    int placeId = ui->placeComboBox->currentData().toInt();
+    double price = ui->priceLineEdit->text().toDouble();
+    QString status = ui->statusComboBox->currentText();
+
+    emit ticketUpdated(ticketId, clientId, matchId, placeId, price, status);
+
+    // Update the tickets list
+    updateTicketsList();
 }
 
-void TicketsUI::loadTicketDetails(const QModelIndex& index) {
-    if (!index.isValid()) {
+void TicketsUI::loadTicketDetails(const QModelIndex &index)
+{
+    if (!index.isValid())
+    {
         clearTicketDetails();
         return;
     }
@@ -77,48 +130,90 @@ void TicketsUI::loadTicketDetails(const QModelIndex& index) {
     ui->idLineEdit->setText(QString::number(selectedTicket.getId()));
     // Set selected client in clientComboBox
     int clientIndex = ui->clientComboBox->findData(selectedTicket.getClientId());
-    if (clientIndex != -1) {
+    if (clientIndex != -1)
+    {
         ui->clientComboBox->setCurrentIndex(clientIndex);
     }
     // Set selected match in matchComboBox
     int matchIndex = ui->matchComboBox->findData(selectedTicket.getMatchId());
-    if (matchIndex != -1) {
+    if (matchIndex != -1)
+    {
         ui->matchComboBox->setCurrentIndex(matchIndex);
     }
     // Set selected place in placeComboBox
     int placeIndex = ui->placeComboBox->findData(selectedTicket.getPlaceId());
-    if (placeIndex != -1) {
+    if (placeIndex != -1)
+    {
         ui->placeComboBox->setCurrentIndex(placeIndex);
     }
     ui->priceLineEdit->setText(QString::number(selectedTicket.getPrice()));
     // Set selected status in statusComboBox
     int statusIndex = ui->statusComboBox->findText(selectedTicket.getStatus());
-    if (statusIndex != -1) {
+    if (statusIndex != -1)
+    {
         ui->statusComboBox->setCurrentIndex(statusIndex);
     }
-
-    // ... (Set values for other ticket detail fields) ...
 }
 
-void TicketsUI::clearTicketDetails() {
-    // ... (Clear all input fields and labels in the details section) ...
+void TicketsUI::clearTicketDetails()
+{
+    ui->idLineEdit->clear();
+    ui->clientComboBox->setCurrentIndex(0);
+    ui->matchComboBox->setCurrentIndex(0);
+    ui->placeComboBox->setCurrentIndex(0);
+    ui->priceLineEdit->clear();
+    ui->statusComboBox->setCurrentIndex(0);
 }
 
-void TicketsUI::updateTicketsList() {
+void TicketsUI::searchTickets(const QString& searchTerm) {
+       ticketsModel->clear(); // Clear the existing model data
+    ticketsModel->setHorizontalHeaderLabels({"ID", "Client", "Match", "Place", "Price", "Status"}); // Adjust if needed
+
+    // Get tickets from GestionTickets (or wherever you store ticket data)
+    QList<Ticket> tickets = gestionTickets->getTickets(db); // Adjust to your actual method
+
+    for (const Ticket &ticket : tickets)
+    {
+        if (ticket.getClient().getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            ticket.getMatch().getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            ticket.getPlace().getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            QString::number(ticket.getId()).contains(searchTerm) ||
+            QString::number(ticket.getPrice()).contains(searchTerm) ||
+            ticket.getStatus().contains(searchTerm, Qt::CaseInsensitive)) { // Search ID as well
+            int row = ticketsModel->rowCount();
+            ticketsModel->insertRow(row);
+
+            // Use the correct data from your Ticket class
+            ticketsModel->setData(ticketsModel->index(row, 0), ticket.getId());
+            ticketsModel->setData(ticketsModel->index(row, 1), ticket.getClient().getNom()); // Assuming you can access the client name
+            ticketsModel->setData(ticketsModel->index(row, 2), ticket.getMatch().getNom());  // Assuming you can access the match name
+            ticketsModel->setData(ticketsModel->index(row, 3), ticket.getPlace().getNom());  // Assuming you can access the place name
+            ticketsModel->setData(ticketsModel->index(row, 4), ticket.getPrice());
+            ticketsModel->setData(ticketsModel->index(row, 5), ticket.getStatus());
+
+            // Optional: Store the ticket ID in the Qt::UserRole of the first column
+            ticketsModel->setData(ticketsModel->index(row, 0), ticket.getId(), Qt::UserRole);
+        }
+    }
+}
+
+void TicketsUI::updateTicketsList()
+{
     ticketsModel->clear();
     ticketsModel->setHorizontalHeaderLabels({"ID", "Client", "Match", "Place", "Price", "Status"});
 
     QList<Ticket> tickets = gestionTickets->getTickets(db);
 
-    for (const Ticket& ticket : tickets) {
+    for (const Ticket &ticket : tickets)
+    {
         int row = ticketsModel->rowCount();
         ticketsModel->insertRow(row);
 
         // Use the correct data from your Ticket class
         reservationsModel->setData(ticketsModel->index(row, 0), ticket.getId());
         reservationsModel->setData(ticketsModel->index(row, 1), ticket.getClient().getNom()); // Assuming you can access the client name
-        reservationsModel->setData(ticketsModel->index(row, 2), ticket.getMatch().getNom()); // Assuming you can access the match name
-        reservationsModel->setData(ticketsModel->index(row, 3), ticket.getPlace().getNom()); // Assuming you can access the place name
+        reservationsModel->setData(ticketsModel->index(row, 2), ticket.getMatch().getNom());  // Assuming you can access the match name
+        reservationsModel->setData(ticketsModel->index(row, 3), ticket.getPlace().getNom());  // Assuming you can access the place name
         reservationsModel->setData(ticketsModel->index(row, 4), ticket.getPrice());
         reservationsModel->setData(ticketsModel->index(row, 5), ticket.getStatus());
 
@@ -127,30 +222,36 @@ void TicketsUI::updateTicketsList() {
     }
 }
 
-void TicketsUI::updateClientComboBox() {
+void TicketsUI::updateClientComboBox()
+{
     ui->clientComboBox->clear();
     // Get clients (you'll likely need a GestionClients or similar)
-    QList<Client> clients = gestionClients->getClients(db);  // Assuming you have a getClients() function
-    for (const Client& client : clients) {
+    QList<Client> clients = gestionClients->getClients(db); // Assuming you have a getClients() function
+    for (const Client &client : clients)
+    {
         ui->clientComboBox->addItem(client.getNom(), client.getId()); // Add client name and ID to combo box
     }
 }
 
-void TicketsUI::updateMatchComboBox() {
+void TicketsUI::updateMatchComboBox()
+{
     ui->matchComboBox->clear();
     // Get matches
     QList<Match> matches = gestionJoueurs->getMatches(db);
-    for (const Match& match : matches) {
+    for (const Match &match : matches)
+    {
         QString matchDescription = QString("%1 vs %2").arg(match.getJoueur1().getNom(), match.getJoueur2().getNom());
         ui->matchComboBox->addItem(matchDescription, match.getId()); // Add match name and ID to combo box
     }
 }
 
-void TicketsUI::updatePlaceComboBox() {
+void TicketsUI::updatePlaceComboBox()
+{
     ui->placeComboBox->clear();
     // Get places
     QList<Place> places = gestionPlaces->getPlaces(db);
-    for (const Place& place : places) {
+    for (const Place &place : places)
+    {
         ui->placeComboBox->addItem(place.getNom(), place.getId()); // Add place name and ID to combo box
     }
 }

@@ -16,15 +16,12 @@ public:
     explicit TicketsUI(QWidget *parent = nullptr, const QSqlDatabase& database = QSqlDatabase());
     ~TicketsUI();
 
-signals:
-    void ticketAdded(int clientId, int matchId, int placeId, double price, const QString& status); // Adjust signal parameters
-    void ticketDeleted(int ticketId);
-    void ticketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus);
 
 private slots:
     void addTicket();
     void deleteTicket();
     void updateTicket();
+    void searchTickets(const QString& searchTerm);
     void loadTicketDetails(const QModelIndex& index);
     void clearTicketDetails();
 

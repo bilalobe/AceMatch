@@ -120,7 +120,6 @@ void ClientsUI::clearClientDetails() {
     ui->nameLineEdit->clear();
     ui->emailLineEdit->clear();
     ui->phoneNumberLineEdit->clear();
-    // ... (Clear other client detail fields) ...
 }
 
 void ClientsUI::updateClientsList() {
@@ -143,3 +142,37 @@ void ClientsUI::updateClientsList() {
         clientsModel->setData(clientsModel->index(row, 0), client.getId(), Qt::UserRole);
     }
 }
+
+void ClientsUI::searchClient(const QString& searchTerm) {
+    clientsModel->clear(); // Clear the existing model data
+    clientsModel->setHorizontalHeaderLabels({"ID", "Name", "Email", "Phone Number"});
+
+    // Get clients from GestionClients (or wherever you store client data)
+    QList<Client> clients = gestionClients->getClients(db); // Adjust to your actual method
+
+    for (const Client &client : clients)
+    {
+        if (client.getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            client.getEmail().contains(searchTerm, Qt::CaseInsensitive) ||
+            client.getPhoneNumber().contains(searchTerm, Qt::CaseInsensitive) ||
+            QString::number(client.getId()).contains(searchTerm)) { // Search ID as well
+            int row = clientsModel->rowCount();
+            clientsModel->insertRow(row);
+
+            // Use the correct data from your Client class
+            clientsModel->setData(clientsModel->index(row, 0), client.getId());
+            clientsModel->setData(clientsModel->index(row, 1), client.getNom());
+            clientsModel->setData(clientsModel->index(row, 2), client.getEmail());
+            clientsModel->setData(clientsModel->index(row, 3), client.getPhoneNumber());
+
+            // Optional: Store the client ID in the Qt::UserRole of the first column
+            clientsModel->setData(clientsModel->index(row, 0), client.getId(), Qt::UserRole);
+        }
+    }
+}
+
+void ClientsUI::clearSearch() {
+    ui->searchLineEdit->clear();
+    updateClientsList();
+}
+

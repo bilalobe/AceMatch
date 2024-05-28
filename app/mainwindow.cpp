@@ -7,15 +7,15 @@
 #include <algorithm> // for std::sort
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
     // Database Connection
     db = QSqlDatabase::addDatabase("QSQLITE");
     db.setDatabaseName("tournament.db"); // Use your database name
-    if (!db.open()) {
+    if (!db.open())
+    {
         qDebug() << "Error opening database:" << db.lastError();
         QMessageBox::critical(this, "Database Error", "Could not connect to database.");
         return;
@@ -43,50 +43,50 @@ MainWindow::MainWindow(QWidget *parent)
     scoreUI = new ScoreUI(this, db);
 
     // Create Main Tab Widget
-    QTabWidget* tabWidget = new QTabWidget(this);
+    QTabWidget *tabWidget = new QTabWidget(this);
     setCentralWidget(tabWidget);
 
     // Players Tab
-    QWidget* playersTab = new QWidget();
-    QVBoxLayout* playersLayout = new QVBoxLayout(playersTab);
+    QWidget *playersTab = new QWidget();
+    QVBoxLayout *playersLayout = new QVBoxLayout(playersTab);
     playersLayout->addWidget(playerBox);
     tabWidget->addTab(playersTab, "Players");
 
     // Matches Tab
-    QWidget* matchesTab = new QWidget();
-    QVBoxLayout* matchesLayout = new QVBoxLayout(matchesTab);
+    QWidget *matchesTab = new QWidget();
+    QVBoxLayout *matchesLayout = new QVBoxLayout(matchesTab);
     matchesLayout->addWidget(matchUI);
     tabWidget->addTab(matchesTab, "Matches");
 
     // Standings Tab
-    QWidget* standingsTab = new QWidget();
-    QVBoxLayout* standingsLayout = new QVBoxLayout(standingsTab);
+    QWidget *standingsTab = new QWidget();
+    QVBoxLayout *standingsLayout = new QVBoxLayout(standingsTab);
     standingsTableView = new QTableView(standingsTab);
     standingsLayout->addWidget(standingsTableView);
     tabWidget->addTab(standingsTab, "Standings");
 
     // Create a model for standings data
-    standingsModel = new QStandardItemModel(0, 2, standingsTab); 
+    standingsModel = new QStandardItemModel(0, 2, standingsTab);
     standingsModel->setHeaderData(0, Qt::Horizontal, tr("Player"));
     standingsModel->setHeaderData(1, Qt::Horizontal, tr("Wins"));
     standingsTableView->setModel(standingsModel);
 
     // Scoreboard & Match Details Tab
-    QWidget* detailsTab = new QWidget();
-    QVBoxLayout* detailsLayout = new QVBoxLayout(detailsTab);
+    QWidget *detailsTab = new QWidget();
+    QVBoxLayout *detailsLayout = new QVBoxLayout(detailsTab);
     detailsLayout->addWidget(scoreboardMatchDetailsUI);
     tabWidget->addTab(detailsTab, "Scoreboard & Match Details");
 
     // Player Profile Tab
-    QWidget* profileTab = new QWidget();
-    QVBoxLayout* profileLayout = new QVBoxLayout(profileTab);
+    QWidget *profileTab = new QWidget();
+    QVBoxLayout *profileLayout = new QVBoxLayout(profileTab);
     profileLayout->addWidget(playerProfileUI);
     tabWidget->addTab(profileTab, "Player Profile");
 
     // Tournament Management Tab with Mini-Tabs
-    QTabWidget* tournamentTabWidget = new QTabWidget(this);
-    QWidget* tournamentTab = new QWidget();
-    QVBoxLayout* tournamentLayout = new QVBoxLayout(tournamentTab);
+    QTabWidget *tournamentTabWidget = new QTabWidget(this);
+    QWidget *tournamentTab = new QWidget();
+    QVBoxLayout *tournamentLayout = new QVBoxLayout(tournamentTab);
     tournamentLayout->addWidget(tournamentTabWidget);
     tabWidget->addTab(tournamentTab, "Tournament Management");
 
@@ -155,7 +155,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Update UI Elements
     updateStandings();
-    // ... (Update other UI elements like player lists, combo boxes, etc.) ...
+    updatePlayerBox();
+    updateMatchUI();
+    updatePlayerProfileUI();
+    updateScoreboardMatchDetailsUI();
+    updatePlacesUI();
+    updateReservationsUI();
+    updateTerrainsUI();
+    updateTicketsUI();
+    updateScoreUI();
 }
 
 MainWindow::~MainWindow()
@@ -170,7 +178,7 @@ MainWindow::~MainWindow()
     delete gestionTickets;
     delete gestionScore;
     delete gestionClients;
-    delete gestionPaiements; 
+    delete gestionPaiements;
 
     // Delete UI components
     delete playerBox;
@@ -184,290 +192,398 @@ MainWindow::~MainWindow()
     delete scoreUI;
 
     // Close database connection
-    if (db.isOpen()) {
+    if (db.isOpen())
+    {
         db.close();
     }
 }
 
-// ... (Implementation of slots: handleMatchCreated, handleMatchDeleted, 
-//      handleMatchUpdated, handlePlayerProfileUpdated, handlePlaceAdded, 
+// ... (Implementation of slots: handleMatchCreated, handleMatchDeleted,
+//      handleMatchUpdated, handlePlayerProfileUpdated, handlePlaceAdded,
 //      handlePlaceDeleted, handlePlaceUpdated, and other slots as needed) ...
 
-void MainWindow::handlePlayerAdded(const QString& name, int ranking) {
-    if (gestionJoueurs->ajouterJoueur(db, name, ranking)) {
-        // Update UI 
-        playerBox->updatePlayerList(); 
+void MainWindow::handlePlayerAdded(const QString &name, int ranking)
+{
+    if (gestionJoueurs->ajouterJoueur(db, name, ranking))
+    {
+        // Update UI
+        playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
-        matchUI->updatePlayerComboBoxes(); 
+        matchUI->updatePlayerComboBoxes();
         statusBar()->showMessage("Player added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add player.");
     }
 }
 
-void MainWindow::handlePlayerRemoved(const QString& nom) {
-    if (gestionJoueurs->supprimerJoueur(db, nom)) {
+void MainWindow::handlePlayerRemoved(const QString &nom)
+{
+    if (gestionJoueurs->supprimerJoueur(db, nom))
+    {
         // Update UI
         playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
-        matchUI->updatePlayerComboBoxes(); 
+        matchUI->updatePlayerComboBoxes();
         statusBar()->showMessage("Player removed successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to remove player.");
     }
 }
 
-void MainWindow::handlePlayerUpdated(const QString& nom, int newRanking) {
-    if (gestionJoueurs->modifierJoueur(db, nom, newRanking)) {
+void MainWindow::handlePlayerUpdated(const QString &nom, int newRanking)
+{
+    if (gestionJoueurs->modifierJoueur(db, nom, newRanking))
+    {
         // Update UI
         playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
-        matchUI->updatePlayerComboBoxes(); 
+        matchUI->updatePlayerComboBoxes();
         statusBar()->showMessage("Player updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update player.");
     }
 }
 
-void MainWindow::handleMatchCreated(const QString& player1Name, const QString& player2Name, int score1, int score2) {
-    if (gestionMatch->creerMatch(db, player1Name, player2Name, score1, score2)) {
+void MainWindow::handleMatchCreated(const QString &player1Name, const QString &player2Name, int score1, int score2)
+{
+    if (gestionMatch->creerMatch(db, player1Name, player2Name, score1, score2))
+    {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match created successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to create match.");
     }
 }
 
-void MainWindow::handleMatchDeleted(int matchId) {
-    if (gestionMatch->supprimerMatch(db, matchId)) {
+void MainWindow::handleMatchDeleted(int matchId)
+{
+    if (gestionMatch->supprimerMatch(db, matchId))
+    {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete match.");
     }
 }
 
-void MainWindow::handleMatchUpdated(int matchId, int newScore1, int newScore2) {
-    if (gestionMatch->modifierMatch(db, matchId, newScore1, newScore2)) {
+void MainWindow::handleMatchUpdated(int matchId, int newScore1, int newScore2)
+{
+    if (gestionMatch->modifierMatch(db, matchId, newScore1, newScore2))
+    {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
         statusBar()->showMessage("Match updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update match.");
     }
 }
 
-void MainWindow::handlePlayerProfileUpdated(const QString& playerName, int newRanking) {
-    if (gestionJoueurs->modifierJoueur(db, playerName, newRanking)) {
-        playerBox->updatePlayerList(); // Update player list
-        matchUI->updatePlayerComboBoxes(); // Update player combo boxes
+void MainWindow::handlePlayerProfileUpdated(const QString &playerName, int newRanking)
+{
+    if (gestionJoueurs->modifierJoueur(db, playerName, newRanking))
+    {
+        playerBox->updatePlayerList();           // Update player list
+        matchUI->updatePlayerComboBoxes();       // Update player combo boxes
         playerProfileUI->updatePlayerComboBox(); // Update player profile combo box
         statusBar()->showMessage("Player profile updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update player profile.");
     }
 }
 
-void MainWindow::handlePlaceAdded(const QString& name, int capacity) {
-    if (gestionPlaces->ajouterPlace(db, name, capacity)) {
+void MainWindow::handlePlaceAdded(const QString &name, int capacity)
+{
+    if (gestionPlaces->ajouterPlace(db, name, capacity))
+    {
         placesUI->updatePlacesList();
         statusBar()->showMessage("Place added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add place.");
     }
 }
 
-void MainWindow::handlePlaceDeleted(int placeId) {
-    if (gestionPlaces->supprimerPlace(db, placeId)) {
+void MainWindow::handlePlaceDeleted(int placeId)
+{
+    if (gestionPlaces->supprimerPlace(db, placeId))
+    {
         placesUI->updatePlacesList();
         statusBar()->showMessage("Place deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete place.");
     }
 }
 
-void MainWindow::handlePlaceUpdated(int placeId, const QString& newName, int newCapacity) {
-    if (gestionPlaces->modifierPlace(db, placeId, newName, newCapacity)) {
+void MainWindow::handlePlaceUpdated(int placeId, const QString &newName, int newCapacity)
+{
+    if (gestionPlaces->modifierPlace(db, placeId, newName, newCapacity))
+    {
         placesUI->updatePlacesList();
         statusBar()->showMessage("Place updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update place.");
     }
 }
 
-void MainWindow::handleReservationAdded(int clientId, int placeId, const QDateTime& dateTime) {
-    if (gestionReservations->ajouterReservation(db, clientId, placeId, dateTime)) {
+void MainWindow::handleReservationAdded(int clientId, int placeId, const QDateTime &dateTime)
+{
+    if (gestionReservations->ajouterReservation(db, clientId, placeId, dateTime))
+    {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add reservation.");
     }
 }
 
-void MainWindow::handleReservationDeleted(int reservationId) {
-    if (gestionReservations->supprimerReservation(db, reservationId)) {
+void MainWindow::handleReservationDeleted(int reservationId)
+{
+    if (gestionReservations->supprimerReservation(db, reservationId))
+    {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete reservation.");
     }
 }
 
-void MainWindow::handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime) {
-    if (gestionReservations->modifierReservation(db, reservationId, newClientId, newPlaceId, newDateTime)) {
+void MainWindow::handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime &newDateTime)
+{
+    if (gestionReservations->modifierReservation(db, reservationId, newClientId, newPlaceId, newDateTime))
+    {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update reservation.");
     }
 }
 
-void MainWindow::handleTerrainAdded(const QString& name, const QString& type) {
-    if (gestionTerrains->ajouterTerrain(db, name, type)) {
+void MainWindow::handleTerrainAdded(const QString &name, const QString &type)
+{
+    if (gestionTerrains->ajouterTerrain(db, name, type))
+    {
         terrainsUI->updateTerrainsList();
         statusBar()->showMessage("Terrain added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add terrain.");
     }
 }
 
-void MainWindow::handleTerrainDeleted(int terrainId) {
-    if (gestionTerrains->supprimerTerrain(db, terrainId)) {
+void MainWindow::handleTerrainDeleted(int terrainId)
+{
+    if (gestionTerrains->supprimerTerrain(db, terrainId))
+    {
         terrainsUI->updateTerrainsList();
         statusBar()->showMessage("Terrain deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete terrain.");
     }
 }
 
-void MainWindow::handleTerrainUpdated(int terrainId, const QString& newName, const QString& newType) {
-    if (gestionTerrains->modifierTerrain(db, terrainId, newName, newType)) {
+void MainWindow::handleTerrainUpdated(int terrainId, const QString &newName, const QString &newType)
+{
+    if (gestionTerrains->modifierTerrain(db, terrainId, newName, newType))
+    {
         terrainsUI->updateTerrainsList();
         statusBar()->showMessage("Terrain updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update terrain.");
     }
 }
 
-void MainWindow::handleTicketAdded(int clientId, int matchId, int placeId, double price, const QString& status) {
-    if (gestionTickets->ajouterTicket(db, clientId, matchId, placeId, price, status)) {
+void MainWindow::handleTicketAdded(int clientId, int matchId, int placeId, double price, const QString &status)
+{
+    if (gestionTickets->ajouterTicket(db, clientId, matchId, placeId, price, status))
+    {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add ticket.");
     }
 }
 
-void MainWindow::handleTicketDeleted(int ticketId) {
-    if (gestionTickets->supprimerTicket(db, ticketId)) {
+void MainWindow::handleTicketDeleted(int ticketId)
+{
+    if (gestionTickets->supprimerTicket(db, ticketId))
+    {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete ticket.");
     }
 }
 
-void MainWindow::handleTicketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus) {
-    if (gestionTickets->modifierTicket(db, ticketId, newClientId, newMatchId, newPlaceId, newPrice, newStatus)) {
+void MainWindow::handleTicketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString &newStatus)
+{
+    if (gestionTickets->modifierTicket(db, ticketId, newClientId, newMatchId, newPlaceId, newPrice, newStatus))
+    {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update ticket.");
     }
 }
 
-void MainWindow::handleScoreAdded(int matchId, int score1, int score2) {
-    if (gestionScore->ajouterScore(db, matchId, score1, score2)) {
+void MainWindow::handleScoreAdded(int matchId, int score1, int score2)
+{
+    if (gestionScore->ajouterScore(db, matchId, score1, score2))
+    {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score added successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to add score.");
     }
 }
 
-void MainWindow::handleScoreDeleted(int scoreId) {
-    if (gestionScore->supprimerScore(db, scoreId)) {
+void MainWindow::handleScoreDeleted(int scoreId)
+{
+    if (gestionScore->supprimerScore(db, scoreId))
+    {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score deleted successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to delete score.");
     }
 }
 
-void MainWindow::handleScoreUpdated(int scoreId, int newScore1, int newScore2) {
-    if (gestionScore->modifierScore(db, scoreId, newScore1, newScore2)) {
+void MainWindow::handleScoreUpdated(int scoreId, int newScore1, int newScore2)
+{
+    if (gestionScore->modifierScore(db, scoreId, newScore1, newScore2))
+    {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score updated successfully.");
-    } else {
+    }
+    else
+    {
         QMessageBox::warning(this, "Error", "Failed to update score.");
     }
 }
 
-void MainWindow::handleMatchSelected(int matchId) {
-    // ... (Update other UI elements that might depend on the selected match, like the "Match Details" section in a different tab) ...
+void MainWindow::handleMatchSelected(int matchId)
+{
+    Match match = gestionMatch->getMatch(db, matchId);
+    matchUI->displayMatchDetails(match);
+    placesUI->displayAvailablePlaces(match);
+    playerProfileUI->displayPlayerProfile(match.getJoueur1());
+    playerProfileUI->displayPlayerProfile(match.getJoueur2());
+    ticketsUI->displayTickets(match);
+    scoreUI->displayScore(match);
 }
 
-void MainWindow::handleSearchTextChanged(const QString& searchTerm) {
-    // Filter Players
+void MainWindow::handleSearchTextChanged(const QString &searchTerm)
+{
     playerBox->searchPlayer(searchTerm);
-
-    // Filter Matches
-    matchUI->searchMatch(searchTerm); 
-
-    // Filter Standings
-    // ... (Implement filtering for the standings table) ...
-
-    // Filter Player Profile
-    // ... (Implement filtering for player profile) ...
-
-    // Filter Places
-    placesUI->searchPlace(searchTerm); 
-
-    // Filter Reservations
-    // ... (Implement filtering for reservations) ...
-
-    // Filter Terrains
-    // ... (Implement filtering for terrains) ...
-
-    // Filter Tickets
-    // ... (Implement filtering for tickets) ...
-
-    // Filter Scores
-    // ... (Implement filtering for scores) ... 
+    matchUI->searchMatch(searchTerm);
+    placesUI->searchPlace(searchTerm);
+    playerProfileUI->searchPlayerProfile(searchTerm); // Assuming you have this method in PlayerProfileUI
+    reservationsUI->searchReservations(searchTerm);   // Assuming you have this method in ReservationsUI
+    terrainsUI->searchTerrains(searchTerm);           // Assuming you have this method in TerrainsUI
+    ticketsUI->searchTickets(searchTerm);             // Assuming you have this method in TicketsUI
+    scoreUI->searchScores(searchTerm);                // Assuming you have this method in ScoreUI
 }
 
-void MainWindow::updateStandings() {
+void MainWindow::updateStandings()
+{
     QList<Joueur> players = gestionJoueurs->getJoueurs(db);
-    QMap<QString, int> playerWins; 
+    QMap<QString, int> playerWins;
 
     // Calculate wins from match data
     QList<Match> matches = gestionMatch->getMatches(db);
-    for (const Match& match : matches) {
-        if (match.getScore1() > match.getScore2()) {
-            playerWins[match.getJoueur1().getNom()]++; 
-        } else if (match.getScore2() > match.getScore1()) {
-            playerWins[match.getJoueur2().getNom()]++; 
-        } 
-        // Handle ties as needed based on your tournament rules
+    for (const Match &match : matches)
+    {
+        if (match.getScore1() > match.getScore2())
+        {
+            playerWins[match.getJoueur1().getNom()]++;
+        }
+        else if (match.getScore2() > match.getScore1())
+        {
+            playerWins[match.getJoueur2().getNom()]++;
+        }
+        // Sort players by wins (descending order)
+        QList<QPair<QString, int>> sortedPlayers;
+        for (const QString &playerName : playerWins.keys())
+        {
+            sortedPlayers.append(qMakePair(playerName, playerWins[playerName]));
+        }
+        std::sort(sortedPlayers.begin(), sortedPlayers.end(),
+                  [](const QPair<QString, int> &a, const QPair<QString, int> &b)
+                  {
+                      return a.second > b.second;
+                  });
+
+        // Update the standings table view model
+        standingsModel->removeRows(0, standingsModel->rowCount()); // Clear existing rows
+        for (int i = 0; i < sortedPlayers.size(); ++i)
+        {
+            standingsModel->insertRow(i);
+            standingsModel->setData(standingsModel->index(i, 0), sortedPlayers[i].first);
+            standingsModel->setData(standingsModel->index(i, 1), sortedPlayers[i].second);
+        }
     }
 
-    // Sort players by wins (descending order)
-    QList<QPair<QString, int>> sortedPlayers;
-    for (const QString& playerName : playerWins.keys()) {
-        sortedPlayers.append(qMakePair(playerName, playerWins[playerName]));
-    }
-    std::sort(sortedPlayers.begin(), sortedPlayers.end(),
-              [](const QPair<QString, int>& a, const QPair<QString, int>& b) {
-                  return a.second > b.second; 
-              });
+    // Handle ties as needed based on your tournament rules
+}
 
-    // Update the standings table view model
-    standingsModel->removeRows(0, standingsModel->rowCount()); // Clear existing rows
-    for (int i = 0; i < sortedPlayers.size(); ++i) {
-        standingsModel->insertRow(i);
-        standingsModel->setData(standingsModel->index(i, 0), sortedPlayers[i].first);
-        standingsModel->setData(standingsModel->index(i, 1), sortedPlayers[i].second);
-    }
+// Sort players by wins (descending order)
+QList<QPair<QString, int>> sortedPlayers;
+for (const QString &playerName : playerWins.keys())
+{
+    sortedPlayers.append(qMakePair(playerName, playerWins[playerName]));
+}
+std::sort(sortedPlayers.begin(), sortedPlayers.end(),
+          [](const QPair<QString, int> &a, const QPair<QString, int> &b)
+          {
+              return a.second > b.second;
+          });
+
+// Update the standings table view model
+standingsModel->removeRows(0, standingsModel->rowCount()); // Clear existing rows
+for (int i = 0; i < sortedPlayers.size(); ++i)
+{
+    standingsModel->insertRow(i);
+    standingsModel->setData(standingsModel->index(i, 0), sortedPlayers[i].first);
+    standingsModel->setData(standingsModel->index(i, 1), sortedPlayers[i].second);
 }

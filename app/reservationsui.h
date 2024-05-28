@@ -16,15 +16,11 @@ public:
     explicit ReservationsUI(QWidget *parent = nullptr, const QSqlDatabase& database = QSqlDatabase());
     ~ReservationsUI();
 
-signals:
-    void reservationAdded(int clientId, int placeId, const QDateTime& dateTime);
-    void reservationDeleted(int reservationId);
-    void reservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
-
 private slots:
     void addReservation();
     void deleteReservation();
     void updateReservation();
+    void searchReservations(QString& searchTerm);
     void loadReservationDetails(const QModelIndex& index);
     void clearReservationDetails();
 
@@ -36,6 +32,9 @@ private:
     void updateReservationsList();
     void updateClientComboBox();
     void updatePlaceComboBox();
+    void on_clientIdComboBox_currentIndexChanged(int index);
+    void on_placeIdComboBox_currentIndexChanged(int index);
+
 };
 
 #endif // RESERVATIONSUI_H

@@ -79,6 +79,32 @@ void TerrainUI::deleteTerrain()
     }
 }
 
+void TerrainUI::searchTerrain(const QString& searchTerm) {
+       terrainsModel->clear(); // Clear the existing model data
+    terrainsModel->setHorizontalHeaderLabels({"ID", "Name", "Type"}); // Adjust if needed
+
+    // Get terrains from GestionTerrains (or wherever you store terrain data)
+    QList<Terrain> terrains = gestionTerrains->getTerrains(db); // Adjust to your actual method
+
+    for (const Terrain &terrain : terrains)
+    {
+        if (terrain.getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+            QString::number(terrain.getId()).contains(searchTerm)) { // Search ID as well
+            int row = terrainsModel->rowCount();
+            terrainsModel->insertRow(row);
+
+            // Use the correct data from your Terrain class
+            terrainsModel->setData(terrainsModel->index(row, 0), terrain.getId());
+            terrainsModel->setData(terrainsModel->index(row, 1), terrain.getNom());
+            terrainsModel->setData(terrainsModel->index(row, 2), terrain.getType());
+
+            // Optional: Store the terrain ID in the Qt::UserRole of the first column
+            terrainsModel->setData(terrainsModel->index(row, 0), terrain.getId(), Qt::UserRole);
+        }
+    }
+}
+
+
 void TerrainUI::updateTerrain()
 {
     QModelIndexList selectedIndexes = ui->terrainsTableView->selectionModel()->selectedIndexes();
@@ -168,3 +194,4 @@ void TerrainUI::updateTerrainsList()
         terrainsModel->setData(terrainsModel->index(row, 0), terrain.getId(), Qt::UserRole);
     }
 }
+

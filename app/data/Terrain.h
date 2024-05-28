@@ -8,10 +8,10 @@
 class Terrain
 {
 public:
-    Terrain(int id = -1, const QString& nom = "", const QString& type = "");
+    Terrain(int id = -1, const QString& nom = "", const QString& type = "") : id(id), nom(nom), type(type) {} // Inline constructor
     int getId() const { return id; }
-    QString getNomType() const { return nom + " (" + type + ")"; }
-
+    QString getNom() const { return nom; }
+    QString getType() const { return type; }
 
 private:
     int id;
@@ -19,4 +19,4 @@ private:
     QString type;
 };
 
-#endif // TERRAINS_H
+#endif // TERRAIN_H

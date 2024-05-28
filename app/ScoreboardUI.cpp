@@ -1,3 +1,4 @@
+// scoreboard.cpp
 #include "scoreboard.h"
 #include "ui_scoreboard.h"
 
