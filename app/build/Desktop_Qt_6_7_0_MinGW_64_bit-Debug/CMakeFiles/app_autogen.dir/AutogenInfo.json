@@ -247,6 +247,36 @@
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets.cmake",
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginTargets-relwithdebinfo.cmake",
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Widgets/Qt6QModernWindowsStylePluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersion.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfigVersionImpl.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlDependencies.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlAdditionalTargetInfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlVersionlessTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6SqlPlugins.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QMimerSQLDriverPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QODBCDriverPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QPSQLDriverPluginAdditionalTargetInfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginConfig.cmake",
+		"C:/Qt/Tools/CMake_64/share/cmake-3.27/Modules/CMakeFindDependencyMacro.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginTargets-relwithdebinfo.cmake",
+		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6Sql/Qt6QSQLiteDriverPluginAdditionalTargetInfo.cmake",
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfigVersion.cmake",
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfigVersionImpl.cmake",
 		"C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsConfig.cmake",
@@ -266,63 +296,195 @@
 	"HEADERS" : 
 	[
 		[
+			"A:/workspace/special-broccoli/app/data/Client.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Client.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Joueur.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Joueur.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Match.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Match.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Paiement.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Paiement.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Place.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Place.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Reservation.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Reservation.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Score.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Score.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Terrain.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Terrain.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/Ticket.h",
+			"MU",
+			"QYFM2Z2WYQ/moc_Ticket.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionClients.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionClients.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionJoueurs.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionJoueurs.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionMatch.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionMatch.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionPaiements.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionPaiements.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionPlaces.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionPlaces.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionReservations.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionReservations.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionSeats.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionTerrains.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionTerrains.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionTickets.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_PlanificationParties.cpp",
+			null
+		],
+		[
 			"A:/workspace/special-broccoli/app/mainwindow.h",
 			"MU",
 			"EWIEGA46WW/moc_mainwindow.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/matchui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/SettingsDialog.h",
 			"MU",
-			"EWIEGA46WW/moc_matchui.cpp",
+			"W4TOFSYN2R/moc_SettingsDialog.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/placesui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/clientsui.h",
 			"MU",
-			"EWIEGA46WW/moc_placesui.cpp",
+			"W4TOFSYN2R/moc_clientsui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/playerbox.h",
+			"A:/workspace/special-broccoli/app/ui/headers/matchui.h",
 			"MU",
-			"EWIEGA46WW/moc_playerbox.cpp",
+			"W4TOFSYN2R/moc_matchui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/playerprofileui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/placesui.h",
 			"MU",
-			"EWIEGA46WW/moc_playerprofileui.cpp",
+			"W4TOFSYN2R/moc_placesui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/playerui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/playerbox.h",
 			"MU",
-			"EWIEGA46WW/moc_playerui.cpp",
+			"W4TOFSYN2R/moc_playerbox.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/reservationsui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/playerprofileui.h",
 			"MU",
-			"EWIEGA46WW/moc_reservationsui.cpp",
+			"W4TOFSYN2R/moc_playerprofileui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/reservationsui.h",
 			"MU",
-			"EWIEGA46WW/moc_scoreboardmatchdetailsui.cpp",
+			"W4TOFSYN2R/moc_reservationsui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/terrainsui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/scoreboardmatchdetailsui.h",
 			"MU",
-			"EWIEGA46WW/moc_terrainsui.cpp",
+			"W4TOFSYN2R/moc_scoreboardmatchdetailsui.cpp",
 			null
 		],
 		[
-			"A:/workspace/special-broccoli/app/ticketsui.h",
+			"A:/workspace/special-broccoli/app/ui/headers/scoreui.h",
 			"MU",
-			"EWIEGA46WW/moc_ticketsui.cpp",
+			"W4TOFSYN2R/moc_scoreui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/headers/seatsui.h",
+			"MU",
+			"W4TOFSYN2R/moc_seatsui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/headers/terrainsui.h",
+			"MU",
+			"W4TOFSYN2R/moc_terrainsui.cpp",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/headers/ticketsui.h",
+			"MU",
+			"W4TOFSYN2R/moc_ticketsui.cpp",
 			null
 		]
 	],
@@ -335,6 +497,7 @@
 		"QT_CORE_LIB",
 		"QT_GUI_LIB",
 		"QT_NEEDS_QMAIN",
+		"QT_SQL_LIB",
 		"QT_WIDGETS_LIB",
 		"UNICODE",
 		"WIN32",
@@ -358,6 +521,7 @@
 		"C:/Qt/6.7.0/mingw_64/include/QtWidgets",
 		"C:/Qt/6.7.0/mingw_64/include/QtGui",
 		"C:/VulkanSDK/1.3.283.0/Include",
+		"C:/Qt/6.7.0/mingw_64/include/QtSql",
 		"C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++",
 		"C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32",
 		"C:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward",
@@ -398,21 +562,118 @@
 	"SETTINGS_FILE" : "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/app_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
-		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/matchui.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/placesui.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/playerbox.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/playerprofileui.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/playerui.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/reservationsui.cpp", "MU", null ],
 		[
-			"A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.cpp",
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionClients.cpp",
 			"MU",
 			null
 		],
-		[ "A:/workspace/special-broccoli/app/terrainsui.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/ticketsui.cpp", "MU", null ]
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionJoueurs.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionMatch.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionPaiements.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionPlaces.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionReservations.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionTerrains.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.cpp",
+			"MU",
+			null
+		],
+		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
+		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/SettingsDialog.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/clientsui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/matchui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/placesui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/playerbox.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/playerprofileui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/reservationsui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/scoreboardmatchdetailsui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/scoreui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/seatsui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/terrainsui.cpp",
+			"MU",
+			null
+		],
+		[
+			"A:/workspace/special-broccoli/app/ui/sources/ticketsui.cpp",
+			"MU",
+			null
+		]
 	],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],

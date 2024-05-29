@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Terrain.h" 
+#include "..\Terrain.h"
 
 class GestionTerrains
 {

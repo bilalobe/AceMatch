@@ -8,7 +8,6 @@
 #include <QString>
 #include <QSignalMapper>
 #include <QListWidget>
-#include "Joueur.h" // Include your Joueur.h header
 #include <QSqlDatabase> 
 
 QT_BEGIN_NAMESPACE

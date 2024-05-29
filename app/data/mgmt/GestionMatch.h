@@ -5,7 +5,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Match.h"
+#include "..\Match.h"
 
 class GestionMatch
 {

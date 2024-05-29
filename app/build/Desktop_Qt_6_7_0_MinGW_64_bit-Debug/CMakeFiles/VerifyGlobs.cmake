@@ -3,6 +3,7 @@
 cmake_policy(SET CMP0009 NEW)
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.c")
 set(OLD_GLOB
   )
@@ -11,6 +12,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.c++")
 set(OLD_GLOB
@@ -21,6 +23,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.cc")
 set(OLD_GLOB
   )
@@ -29,6 +32,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.ch")
 set(OLD_GLOB
@@ -39,62 +43,44 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.cpp")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/3.27.7/CompilerIdCXX/CMakeCXXCompilerId.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_Scoreboard.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_mainwindow.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_match.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_matchresult.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_matchschedule.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_matchui.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_player.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_playerbox.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/EWIEGA46WW/moc_ui_playerbox.cpp"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp"
-  "A:/workspace/special-broccoli/app/data/Championnat.cpp"
-  "A:/workspace/special-broccoli/app/data/Client.cpp"
-  "A:/workspace/special-broccoli/app/data/Joueur.cpp"
-  "A:/workspace/special-broccoli/app/data/Match.cpp"
-  "A:/workspace/special-broccoli/app/data/MatchBase.cpp"
-  "A:/workspace/special-broccoli/app/data/MatchResult.cpp"
-  "A:/workspace/special-broccoli/app/data/MatchSchedule.cpp"
-  "A:/workspace/special-broccoli/app/data/Paiements.cpp"
-  "A:/workspace/special-broccoli/app/data/Partie.cpp"
-  "A:/workspace/special-broccoli/app/data/Place.cpp"
-  "A:/workspace/special-broccoli/app/data/Reservation.cpp"
-  "A:/workspace/special-broccoli/app/data/Score.cpp"
-  "A:/workspace/special-broccoli/app/data/Tennis.cpp"
-  "A:/workspace/special-broccoli/app/data/Terrain.cpp"
-  "A:/workspace/special-broccoli/app/data/Ticket.cpp"
-  "A:/workspace/special-broccoli/app/data/TournamentRanking.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionClients.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionJoueurs.cpp"
-  "A:/workspace/special-broccoli/app/data/mgmt/GestionParties.cpp"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionMatch.cpp"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionPaiements.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionPlaces.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionReservations.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionScores.cpp"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionTerrains.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.cpp"
   "A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.cpp"
-  "A:/workspace/special-broccoli/app/data/mgmt/PlanificationPlaces.cpp"
   "A:/workspace/special-broccoli/app/main.cpp"
   "A:/workspace/special-broccoli/app/mainwindow.cpp"
-  "A:/workspace/special-broccoli/app/matchui.cpp"
-  "A:/workspace/special-broccoli/app/placesui.cpp"
-  "A:/workspace/special-broccoli/app/playerbox.cpp"
-  "A:/workspace/special-broccoli/app/playerprofileui.cpp"
-  "A:/workspace/special-broccoli/app/playerui.cpp"
-  "A:/workspace/special-broccoli/app/reservationsui.cpp"
-  "A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.cpp"
-  "A:/workspace/special-broccoli/app/terrainsui.cpp"
-  "A:/workspace/special-broccoli/app/ticketsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/ScoreboardUI.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/SettingsDialog.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/clientsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/matchui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/placesui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/playerbox.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/playerprofileui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/playerui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/reservationsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/scoreboardmatchdetailsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/scoreui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/seatsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/terrainsui.cpp"
+  "A:/workspace/special-broccoli/app/ui/sources/ticketsui.cpp"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.cxx")
 set(OLD_GLOB
@@ -105,57 +91,54 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.h")
 set(OLD_GLOB
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_mainwindow.h"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_matchui.h"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_playerbox.h"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_scoreboard.h"
-  "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include/ui_ui_playerbox.h"
   "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/moc_predefs.h"
-  "A:/workspace/special-broccoli/app/data/Championnat.h"
   "A:/workspace/special-broccoli/app/data/Client.h"
   "A:/workspace/special-broccoli/app/data/Joueur.h"
   "A:/workspace/special-broccoli/app/data/Match.h"
-  "A:/workspace/special-broccoli/app/data/MatchBase.h"
-  "A:/workspace/special-broccoli/app/data/MatchResult.h"
-  "A:/workspace/special-broccoli/app/data/MatchSchedule.h"
-  "A:/workspace/special-broccoli/app/data/Paiements.h"
-  "A:/workspace/special-broccoli/app/data/Partie.h"
+  "A:/workspace/special-broccoli/app/data/Paiement.h"
   "A:/workspace/special-broccoli/app/data/Place.h"
   "A:/workspace/special-broccoli/app/data/Reservation.h"
   "A:/workspace/special-broccoli/app/data/Score.h"
-  "A:/workspace/special-broccoli/app/data/Tennis.h"
-  "A:/workspace/special-broccoli/app/data/TennisEvent.h"
+  "A:/workspace/special-broccoli/app/data/Seat.h"
   "A:/workspace/special-broccoli/app/data/Terrain.h"
   "A:/workspace/special-broccoli/app/data/Ticket.h"
-  "A:/workspace/special-broccoli/app/data/TournamentRanking.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionClients.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionJoueurs.h"
-  "A:/workspace/special-broccoli/app/data/mgmt/GestionParties.h"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionMatch.h"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionPaiements.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionPlaces.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionReservations.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionScores.h"
+  "A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionTerrains.h"
   "A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.h"
   "A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.h"
-  "A:/workspace/special-broccoli/app/data/mgmt/PlanificationPlaces.h"
   "A:/workspace/special-broccoli/app/mainwindow.h"
-  "A:/workspace/special-broccoli/app/matchui.h"
-  "A:/workspace/special-broccoli/app/placesui.h"
-  "A:/workspace/special-broccoli/app/playerbox.h"
-  "A:/workspace/special-broccoli/app/playerprofileui.h"
-  "A:/workspace/special-broccoli/app/playerui.h"
-  "A:/workspace/special-broccoli/app/reservationsui.h"
-  "A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.h"
-  "A:/workspace/special-broccoli/app/terrainsui.h"
-  "A:/workspace/special-broccoli/app/ticketsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/ScoreboardUI.h"
+  "A:/workspace/special-broccoli/app/ui/headers/SettingsDialog.h"
+  "A:/workspace/special-broccoli/app/ui/headers/clientsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/mainwindow.h"
+  "A:/workspace/special-broccoli/app/ui/headers/matchui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/placesui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/playerbox.h"
+  "A:/workspace/special-broccoli/app/ui/headers/playerprofileui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/playerui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/reservationsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/scoreboardmatchdetailsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/scoreui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/seatsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/terrainsui.h"
+  "A:/workspace/special-broccoli/app/ui/headers/ticketsui.h"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.h++")
 set(OLD_GLOB
@@ -166,6 +149,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.hh")
 set(OLD_GLOB
   )
@@ -174,6 +158,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.hpp")
 set(OLD_GLOB
@@ -184,6 +169,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.hxx")
 set(OLD_GLOB
   )
@@ -192,6 +178,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.java")
 set(OLD_GLOB
@@ -202,6 +189,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.js")
 set(OLD_GLOB
   )
@@ -210,6 +198,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.jui")
 set(OLD_GLOB
@@ -220,6 +209,7 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.qml")
 set(OLD_GLOB
   )
@@ -229,14 +219,17 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.qrc")
 set(OLD_GLOB
+  "A:/workspace/special-broccoli/app/resources.qrc"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")
   file(TOUCH_NOCREATE "A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs")
 endif()
 
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.qs")
 set(OLD_GLOB
@@ -247,18 +240,24 @@ if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
 endif()
 
 # _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
+# _directory_contents at C:/Qt/6.7.0/mingw_64/lib/cmake/Qt6LinguistTools/Qt6LinguistToolsMacros.cmake:55 (file)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "A:/workspace/special-broccoli/app/*.ui")
 set(OLD_GLOB
   "A:/workspace/special-broccoli/app/mainwindow.ui"
-  "A:/workspace/special-broccoli/app/matchui.ui"
-  "A:/workspace/special-broccoli/app/placesui.ui"
-  "A:/workspace/special-broccoli/app/playerbox.ui"
-  "A:/workspace/special-broccoli/app/playerprofileui.ui"
-  "A:/workspace/special-broccoli/app/playerui.ui"
-  "A:/workspace/special-broccoli/app/reservationsui.ui"
-  "A:/workspace/special-broccoli/app/scoreboardmatchdetailsui.ui"
-  "A:/workspace/special-broccoli/app/terrainsui.ui"
-  "A:/workspace/special-broccoli/app/ticketsui.ui"
+  "A:/workspace/special-broccoli/app/ui/clientsui.ui"
+  "A:/workspace/special-broccoli/app/ui/matchui.ui"
+  "A:/workspace/special-broccoli/app/ui/placesui.ui"
+  "A:/workspace/special-broccoli/app/ui/playerbox.ui"
+  "A:/workspace/special-broccoli/app/ui/playerprofileui.ui"
+  "A:/workspace/special-broccoli/app/ui/playerui.ui"
+  "A:/workspace/special-broccoli/app/ui/reservationsui.ui"
+  "A:/workspace/special-broccoli/app/ui/scoreboardmatchdetailsui.ui"
+  "A:/workspace/special-broccoli/app/ui/scoreboardui.ui"
+  "A:/workspace/special-broccoli/app/ui/scoreui.ui"
+  "A:/workspace/special-broccoli/app/ui/seatsui.ui"
+  "A:/workspace/special-broccoli/app/ui/settingsdialog.ui"
+  "A:/workspace/special-broccoli/app/ui/terrainsui.ui"
+  "A:/workspace/special-broccoli/app/ui/ticketsui.ui"
   )
 if(NOT "${NEW_GLOB}" STREQUAL "${OLD_GLOB}")
   message("-- GLOB mismatch!")

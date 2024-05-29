@@ -1,0 +1,96 @@
+/* General Styles */
+QWidget {
+    background-color: #f0f0f0; /* Light gray background */
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #007bff; /* Blue button */
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+QPushButton:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+QPushButton:pressed {
+    background-color: #00308f; /* Even darker blue when pressed */
+}
+
+/* Line Edits */
+QLineEdit {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+QLineEdit:focus {
+    border: 2px solid #007bff; /* Blue border on focus */
+}
+
+/* Combo Boxes */
+QComboBox {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 6px;
+}
+
+QComboBox:focus {
+    border: 2px solid #007bff; /* Blue border on focus */
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 20px;
+    border-left-width: 1px;
+    border-left-color: #ced4da;
+    border-left-style: solid; 
+}
+
+/* Tab Widget */
+QTabWidget::pane {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+QTabBar::tab {
+    background-color: #e9ecef; /* Light gray tab background */
+    padding: 8px 16px;
+    border: 1px solid #ced4da;
+    border-bottom: none; 
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+QTabBar::tab:selected {
+    background-color: #f8f9fa; /* White background for selected tab */
+    border-bottom-color: #f8f9fa; /* Match background color */
+    font-weight: bold;
+}
+
+/* Table View */
+QTableView {
+    alternate-background-color: #f2f2f2; /* Alternate row color */
+    selection-background-color: #007bff; /* Blue selection */
+    selection-color: white;
+}
+
+/* Group Boxes */
+QGroupBox {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top left;
+    padding: 0 3px;
+}

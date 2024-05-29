@@ -67,7 +67,7 @@ QList<Seat> GestionSeats::getSeats(const QSqlDatabase& db) const {
 
         // Assuming you have a way to get the seat's position (x, y) and size
         // (You'll need to define this logic based on your seat layout)
-        QPointF center = QPointF(0, 0); // Replace with the correct position
+               QPointF center = QPointF(0, 0); // Replace with the correct position
         qreal size = 20.0; // Replace with the correct size 
 
         seats.append(Seat(id, center, size, status == "Available")); // Assuming "Available" is the status for an available seat

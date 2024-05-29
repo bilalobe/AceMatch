@@ -65,6 +65,11 @@
 		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake",
 		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets/Qt5WidgetsMacros.cmake",
 		"C:/Program Files/CMake/share/cmake-3.27/Modules/CMakeParseArguments.cmake",
+		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5SqlConfigVersion.cmake",
+		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5SqlConfig.cmake",
+		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QODBCDriverPlugin.cmake",
+		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QPSQLDriverPlugin.cmake",
+		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QSQLiteDriverPlugin.cmake",
 		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfigVersion.cmake",
 		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake",
 		"C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake",
@@ -74,15 +79,7 @@
 	"CMAKE_SOURCE_DIR" : "A:/workspace/special-broccoli/app",
 	"DEP_FILE" : "",
 	"DEP_FILE_RULE_NAME" : "",
-	"HEADERS" : 
-	[
-		[
-			"A:/workspace/special-broccoli/app/mainwindow.h",
-			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
-			null
-		]
-	],
+	"HEADERS" : [],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "A:/workspace/special-broccoli/build/app_autogen/include",
 	"INCLUDE_DIR_Debug" : "A:/workspace/special-broccoli/build/app_autogen/include_Debug",
@@ -95,10 +92,34 @@
 	"MOC_COMPILATION_FILE_RelWithDebInfo" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_RelWithDebInfo.cpp",
 	"MOC_COMPILATION_FILE_Release" : "A:/workspace/special-broccoli/build/app_autogen/mocs_compilation_Release.cpp",
 	"MOC_DEFINITIONS" : [],
-	"MOC_DEFINITIONS_Debug" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_WIDGETS_LIB", "WIN32" ],
-	"MOC_DEFINITIONS_MinSizeRel" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
-	"MOC_DEFINITIONS_RelWithDebInfo" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
-	"MOC_DEFINITIONS_Release" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_Debug" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_SQL_LIB", "QT_WIDGETS_LIB", "WIN32" ],
+	"MOC_DEFINITIONS_MinSizeRel" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB",
+		"WIN32"
+	],
+	"MOC_DEFINITIONS_RelWithDebInfo" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB",
+		"WIN32"
+	],
+	"MOC_DEFINITIONS_Release" : 
+	[
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_SQL_LIB",
+		"QT_WIDGETS_LIB",
+		"WIN32"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -114,7 +135,8 @@
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore",
-		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc"
+		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc",
+		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtSql"
 	],
 	"MOC_INCLUDES_MinSizeRel" : 
 	[
@@ -123,7 +145,8 @@
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore",
-		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc"
+		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc",
+		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtSql"
 	],
 	"MOC_INCLUDES_RelWithDebInfo" : 
 	[
@@ -132,7 +155,8 @@
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore",
-		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc"
+		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc",
+		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtSql"
 	],
 	"MOC_INCLUDES_Release" : 
 	[
@@ -141,7 +165,8 @@
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtGui",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtANGLE",
 		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtCore",
-		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc"
+		"C:/Users/beo.MSI/anaconda3/Library/mkspecs/win32-msvc",
+		"C:/Users/beo.MSI/anaconda3/Library/include/qt/QtSql"
 	],
 	"MOC_MACRO_NAMES" : [ "Q_OBJECT", "Q_GADGET", "Q_NAMESPACE", "Q_NAMESPACE_EXPORT" ],
 	"MOC_OPTIONS" : [],
@@ -166,11 +191,7 @@
 	"SETTINGS_FILE_MinSizeRel" : "A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenUsed_MinSizeRel.txt",
 	"SETTINGS_FILE_RelWithDebInfo" : "A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenUsed_RelWithDebInfo.txt",
 	"SETTINGS_FILE_Release" : "A:/workspace/special-broccoli/build/CMakeFiles/app_autogen.dir/AutogenUsed_Release.txt",
-	"SOURCES" : 
-	[
-		[ "A:/workspace/special-broccoli/app/main.cpp", "MU", null ],
-		[ "A:/workspace/special-broccoli/app/mainwindow.cpp", "MU", null ]
-	],
+	"SOURCES" : [],
 	"UIC_OPTIONS" : [],
 	"UIC_SEARCH_PATHS" : [],
 	"UIC_SKIP" : [],

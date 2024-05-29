@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Paiement.h" 
+#include "..\Paiement.h"
 
 class GestionPaiements
 {

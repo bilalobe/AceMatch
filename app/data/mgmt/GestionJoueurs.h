@@ -5,7 +5,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Joueur.h" 
+#include "..\Joueur.h"
 
 class GestionJoueurs
 {

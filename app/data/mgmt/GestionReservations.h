@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Reservation.h" 
+#include "..\Reservation.h"
 
 class GestionReservations
 {

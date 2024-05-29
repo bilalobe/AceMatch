@@ -245,6 +245,9 @@ Qt5Gui_DIR:PATH=C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Gui
 //The directory containing a CMake configuration file for Qt5LinguistTools.
 Qt5LinguistTools_DIR:PATH=C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools
 
+//The directory containing a CMake configuration file for Qt5Sql.
+Qt5Sql_DIR:PATH=C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql
+
 //The directory containing a CMake configuration file for Qt5Widgets.
 Qt5Widgets_DIR:PATH=C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets
 

@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Ticket.h" 
+#include "..\Ticket.h"
 
 class GestionTickets
 {

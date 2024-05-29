@@ -1,6 +1,7 @@
 #ifndef CLIENTSUUI_H
 #define CLIENTSUUI_H
 
+#include "qstandarditemmodel.h"
 #include <QWidget>
 #include <QSqlDatabase>
 

@@ -3,7 +3,7 @@
 
 #include "qstandarditemmodel.h"
 #include <QWidget>
-#include <QtSql/QSqlDatabase>
+#include <QSqlDatabase>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class TerrainUI; }

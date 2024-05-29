@@ -4,12 +4,6 @@
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Debug.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="A:\workspace\special-broccoli\app\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="A:\workspace\special-broccoli\app\mainwindow.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Release.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -21,26 +15,9 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="A:\workspace\special-broccoli\app\mainwindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="A:\workspace\special-broccoli\build\CMakeFiles\e793a0cccb0a34010bc1d6447297cbc6\app_fr_FR.ts.rule">
-      <Filter>CMake Rules</Filter>
-    </CustomBuild>
     <CustomBuild Include="A:\workspace\special-broccoli\app\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="A:\workspace\special-broccoli\app\app_fr_FR.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="CMake Rules">
-      <UniqueIdentifier>{9F01B20B-232A-323D-A5DE-536E9C2154FF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{CE3BFC51-3748-3002-8193-EB96713ECA68}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files">
       <UniqueIdentifier>{A6F5A126-605D-30EC-892D-0BD06F489923}</UniqueIdentifier>
     </Filter>

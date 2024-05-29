@@ -1,6 +1,7 @@
 #ifndef TICKETSUI_H
 #define TICKETSUI_H
 
+#include "qstandarditemmodel.h"
 #include <QWidget>
 #include <QSqlDatabase>
 

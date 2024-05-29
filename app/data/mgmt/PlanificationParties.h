@@ -1,23 +1,31 @@
-#ifndef PLANIFICATION_PARTIES_H
-#define PLANIFICATION_PARTIES_H
-
+#ifndef PLANIFICATIONPARTIES_H
+#define PLANIFICATIONPARTIES_H
 
 #include <vector>
-#include <random>
+#include "data/Joueur.h"
+#include "data/Partie.h"
+#include "data/TennisChampionship.h"
 
-#include "GestionParties.h"
-#include "Joueur.h"
-#include "Tennis.h"
-
-class PlanificationParties {
+class PlanificationParties
+{
 private:
-  TennisChampionship* tennisChampionship;
-  std::vector<Joueur*> joueurs;
-   void creerParties16emes();
+    TennisChampionship *tennisChampionship;
+    TypePartie matchType;
 
-  
 public:
-  PlanificationParties(TennisChampionship* tennisChampionship); 
+    PlanificationParties(TennisChampionship *tennisChampionship);
+    ~PlanificationParties() {} // Destructor
+
+    void creerTournoi(int nbRounds);
+    void creerParties16emes();
+    void creerRound(int round);
+    void creerPartieFinale();
+
+    std::vector<Joueur> getWinnersFromPreviousRound();
+
+    // Match Type Management
+    TypePartie getMatchType() const { return matchType; }
+    void setMatchType(TypePartie type) { matchType = type; }
 };
 
-#endif // PLANIFICATION_PARTIES_H
+#endif // PLANIFICATIONPARTIES_H

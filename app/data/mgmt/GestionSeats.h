@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Seat.h" 
+#include "..\Seat.h"
 
 class GestionSeats
 {

@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Place.h" 
+#include "..\Place.h"
 
 class GestionPlaces
 {

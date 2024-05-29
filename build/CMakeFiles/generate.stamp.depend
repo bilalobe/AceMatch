@@ -54,6 +54,11 @@ C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Gui/Qt5Gui_QXdgDesktopPortalThem
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfig.cmake
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsConfigVersion.cmake
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5LinguistTools/Qt5LinguistToolsMacros.cmake
+C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5SqlConfig.cmake
+C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5SqlConfigVersion.cmake
+C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QODBCDriverPlugin.cmake
+C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QPSQLDriverPlugin.cmake
+C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Sql/Qt5Sql_QSQLiteDriverPlugin.cmake
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets/Qt5WidgetsConfigExtras.cmake
 C:/Users/beo.MSI/anaconda3/Library/lib/cmake/Qt5Widgets/Qt5WidgetsConfigVersion.cmake

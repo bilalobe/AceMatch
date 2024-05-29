@@ -1,6 +1,7 @@
 #ifndef SCOREUI_H
 #define SCOREUI_H
 
+#include "qstandarditemmodel.h"
 #include <QWidget>
 #include <QSqlDatabase>
 

@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Client.h"
+#include "..\Client.h"
 
 class GestionClients
 {
