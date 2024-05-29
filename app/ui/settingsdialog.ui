@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>147</height>
+    <width>325</width>
+    <height>154</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,16 +33,10 @@
          <property name="text">
           <string>English</string>
          </property>
-         <property name="userProperty" stdset="0">
-          <string>en</string>
-         </property>
         </item>
         <item>
          <property name="text">
           <string>French</string>
-         </property>
-         <property name="userProperty" stdset="0">
-          <string>fr</string>
          </property>
         </item>
        </widget>

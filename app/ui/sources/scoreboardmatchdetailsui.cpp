@@ -1,4 +1,5 @@
 #include "scoreboardmatchdetailsui.h"
+#include "qsqldatabase.h"
 #include "ui_scoreboardmatchdetailsui.h"
 #include <QMessageBox>
 

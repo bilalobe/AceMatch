@@ -75,7 +75,7 @@ QList<Reservation> GestionReservations::getReservations(const QSqlDatabase& db) 
     return reservations;
 }
 
-void GestionReservations::searchReservation(const QSqlDatabase &db, const QString &searchTerm)
+void GestionReservations::searchReservations(const QSqlDatabase &db, const QString &searchTerm)
 {
         QSqlQuery query(db);
     query.prepare("SELECT * FROM Reservations WHERE clientId LIKE :searchTerm OR placeId LIKE :searchTerm");

@@ -8,17 +8,17 @@
 #include <QIcon>
 #include <QLineEdit>
 #include <QVBoxLayout>
-#include <QtSql/QSqlDatabase>
+#include <QSqlDatabase>
 #include <QTableView>
 #include <QStandardItemModel>
+#include <qsqlerror>
 
-#include "matchui.h"
-#include "scoreboardmatchdetailsui.h"
-#include "playerprofileui.h"
-#include "placesui.h"
-#include "reservationsui.h"
-#include "terrainsui.h"
-#include "ticketsui.h"
+#include "ui/headers/scoreboardmatchdetailsui.h"
+#include "ui/headers/playerprofileui.h"
+#include "ui/headers/placesui.h"
+#include "ui/headers/reservationsui.h"
+#include "ui/headers/terrainsui.h"
+#include "ui/headers/ticketsui.h"
 #include "ui/headers/matchui.h"
 #include "ui/headers/playerbox.h"
 

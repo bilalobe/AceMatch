@@ -1,4 +1,5 @@
 #include "reservationsui.h"
+#include "qsqldatabase.h"
 #include "ui_reservationsui.h"
 
 ReservationsUI::ReservationsUI(QWidget *parent)

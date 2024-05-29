@@ -386,6 +386,12 @@
 			null
 		],
 		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionScores.h",
+			"MU",
+			"VRNAHJ3XZ7/moc_GestionScores.cpp",
+			null
+		],
+		[
 			"A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.h",
 			"MU",
 			"VRNAHJ3XZ7/moc_GestionSeats.cpp",
@@ -401,12 +407,6 @@
 			"A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.h",
 			"MU",
 			"VRNAHJ3XZ7/moc_GestionTickets.cpp",
-			null
-		],
-		[
-			"A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.h",
-			"MU",
-			"VRNAHJ3XZ7/moc_PlanificationParties.cpp",
 			null
 		],
 		[
@@ -593,6 +593,11 @@
 			null
 		],
 		[
+			"A:/workspace/special-broccoli/app/data/mgmt/GestionScores.cpp",
+			"MU",
+			null
+		],
+		[
 			"A:/workspace/special-broccoli/app/data/mgmt/GestionSeats.cpp",
 			"MU",
 			null
@@ -604,11 +609,6 @@
 		],
 		[
 			"A:/workspace/special-broccoli/app/data/mgmt/GestionTickets.cpp",
-			"MU",
-			null
-		],
-		[
-			"A:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.cpp",
 			"MU",
 			null
 		],

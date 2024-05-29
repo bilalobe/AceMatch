@@ -91,7 +91,7 @@ set(GESTION_HEADERS
     data/mgmt/GestionTickets.h
     data/mgmt/GestionPaiements.h
     data/mgmt/GestionSeats.h
-    data/mgmt/PlanificationParties.h
+    data/mgmt/GestionScores.h
 )
 
 set(GESTION_SOURCES
@@ -103,8 +103,8 @@ set(GESTION_SOURCES
     data/mgmt/GestionTerrains.cpp
     data/mgmt/GestionTickets.cpp
     data/mgmt/GestionPaiements.cpp
+    data/mgmt/GestionScores.cpp
     data/mgmt/GestionSeats.cpp
-    data/mgmt/PlanificationParties.cpp
 )
 
 # All Source Files

@@ -233,17 +233,17 @@ build CMakeFiles/app.dir/data/mgmt/GestionPaiements.cpp.obj: CXX_COMPILER__app_u
   OBJECT_DIR = CMakeFiles\app.dir
   OBJECT_FILE_DIR = CMakeFiles\app.dir\data\mgmt
 
-build CMakeFiles/app.dir/data/mgmt/GestionSeats.cpp.obj: CXX_COMPILER__app_unscanned_Debug A$:/workspace/special-broccoli/app/data/mgmt/GestionSeats.cpp || cmake_object_order_depends_target_app
+build CMakeFiles/app.dir/data/mgmt/GestionScores.cpp.obj: CXX_COMPILER__app_unscanned_Debug A$:/workspace/special-broccoli/app/data/mgmt/GestionScores.cpp || cmake_object_order_depends_target_app
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\app.dir\data\mgmt\GestionSeats.cpp.obj.d
+  DEP_FILE = CMakeFiles\app.dir\data\mgmt\GestionScores.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IA:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include -isystem C:/Qt/6.7.0/mingw_64/include/QtCore -isystem C:/Qt/6.7.0/mingw_64/include -isystem C:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.0/mingw_64/include/QtGui -isystem C:/VulkanSDK/1.3.283.0/Include -isystem C:/Qt/6.7.0/mingw_64/include/QtSql
   OBJECT_DIR = CMakeFiles\app.dir
   OBJECT_FILE_DIR = CMakeFiles\app.dir\data\mgmt
 
-build CMakeFiles/app.dir/data/mgmt/PlanificationParties.cpp.obj: CXX_COMPILER__app_unscanned_Debug A$:/workspace/special-broccoli/app/data/mgmt/PlanificationParties.cpp || cmake_object_order_depends_target_app
+build CMakeFiles/app.dir/data/mgmt/GestionSeats.cpp.obj: CXX_COMPILER__app_unscanned_Debug A$:/workspace/special-broccoli/app/data/mgmt/GestionSeats.cpp || cmake_object_order_depends_target_app
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NEEDS_QMAIN -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\app.dir\data\mgmt\PlanificationParties.cpp.obj.d
+  DEP_FILE = CMakeFiles\app.dir\data\mgmt\GestionSeats.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IA:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/include -isystem C:/Qt/6.7.0/mingw_64/include/QtCore -isystem C:/Qt/6.7.0/mingw_64/include -isystem C:/Qt/6.7.0/mingw_64/mkspecs/win32-g++ -isystem C:/Qt/6.7.0/mingw_64/include/QtWidgets -isystem C:/Qt/6.7.0/mingw_64/include/QtGui -isystem C:/VulkanSDK/1.3.283.0/Include -isystem C:/Qt/6.7.0/mingw_64/include/QtSql
   OBJECT_DIR = CMakeFiles\app.dir
@@ -257,7 +257,7 @@ build CMakeFiles/app.dir/data/mgmt/PlanificationParties.cpp.obj: CXX_COMPILER__a
 #############################################
 # Link the executable app.exe
 
-build app.exe: CXX_EXECUTABLE_LINKER__app_Debug CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.obj CMakeFiles/app.dir/main.cpp.obj CMakeFiles/app.dir/mainwindow.cpp.obj CMakeFiles/app.dir/ui/sources/playerbox.cpp.obj CMakeFiles/app.dir/ui/sources/matchui.cpp.obj CMakeFiles/app.dir/ui/sources/playerprofileui.cpp.obj CMakeFiles/app.dir/ui/sources/scoreboardmatchdetailsui.cpp.obj CMakeFiles/app.dir/ui/sources/placesui.cpp.obj CMakeFiles/app.dir/ui/sources/reservationsui.cpp.obj CMakeFiles/app.dir/ui/sources/terrainsui.cpp.obj CMakeFiles/app.dir/ui/sources/ticketsui.cpp.obj CMakeFiles/app.dir/ui/sources/scoreui.cpp.obj CMakeFiles/app.dir/ui/sources/clientsui.cpp.obj CMakeFiles/app.dir/ui/sources/seatsui.cpp.obj CMakeFiles/app.dir/ui/sources/SettingsDialog.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionJoueurs.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionMatch.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionClients.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionPlaces.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionReservations.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionTerrains.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionTickets.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionPaiements.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionSeats.cpp.obj CMakeFiles/app.dir/data/mgmt/PlanificationParties.cpp.obj | C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/lib/libQt6EntryPoint.a || app_autogen app_autogen_timestamp_deps
+build app.exe: CXX_EXECUTABLE_LINKER__app_Debug CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.obj CMakeFiles/app.dir/main.cpp.obj CMakeFiles/app.dir/mainwindow.cpp.obj CMakeFiles/app.dir/ui/sources/playerbox.cpp.obj CMakeFiles/app.dir/ui/sources/matchui.cpp.obj CMakeFiles/app.dir/ui/sources/playerprofileui.cpp.obj CMakeFiles/app.dir/ui/sources/scoreboardmatchdetailsui.cpp.obj CMakeFiles/app.dir/ui/sources/placesui.cpp.obj CMakeFiles/app.dir/ui/sources/reservationsui.cpp.obj CMakeFiles/app.dir/ui/sources/terrainsui.cpp.obj CMakeFiles/app.dir/ui/sources/ticketsui.cpp.obj CMakeFiles/app.dir/ui/sources/scoreui.cpp.obj CMakeFiles/app.dir/ui/sources/clientsui.cpp.obj CMakeFiles/app.dir/ui/sources/seatsui.cpp.obj CMakeFiles/app.dir/ui/sources/SettingsDialog.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionJoueurs.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionMatch.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionClients.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionPlaces.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionReservations.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionTerrains.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionTickets.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionPaiements.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionScores.cpp.obj CMakeFiles/app.dir/data/mgmt/GestionSeats.cpp.obj | C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/lib/libQt6EntryPoint.a || app_autogen app_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_FLAGS = -mwindows
   LINK_LIBRARIES = C:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a  C:/Qt/6.7.0/mingw_64/lib/libQt6Sql.a  C:/Qt/6.7.0/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  C:/Qt/6.7.0/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lmingw32  C:/Qt/6.7.0/mingw_64/lib/libQt6EntryPoint.a  -lshell32  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
@@ -360,7 +360,7 @@ build app_autogen/timestamp app_autogen/mocs_compilation.cpp | ${cmake_ninja_wor
 #############################################
 # Phony custom command for CMakeFiles\app_autogen_timestamp_deps
 
-build CMakeFiles/app_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/app_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/./bin/uic.exe C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a
+build CMakeFiles/app_autogen_timestamp_deps | ${cmake_ninja_workdir}CMakeFiles/app_autogen_timestamp_deps: phony C$:/Qt/6.7.0/mingw_64/lib/libQt6Core.a C$:/Qt/6.7.0/mingw_64/./bin/moc.exe C$:/Qt/6.7.0/mingw_64/./bin/uic.exe C$:/Qt/6.7.0/mingw_64/lib/libQt6Sql.a C$:/Qt/6.7.0/mingw_64/lib/libQt6Widgets.a
 
 
 #############################################

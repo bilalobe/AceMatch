@@ -7,8 +7,10 @@
 #include <QStandardItemModel>
 
 // UI Classes
-#include "ui/headers/playerbox.h"
+
+#include "data/mgmt/GestionSeats.h"
 #include "ui/headers/matchui.h"
+#include "ui/headers/playerbox.h"
 #include "ui/headers/playerprofileui.h"
 #include "ui/headers/scoreboardmatchdetailsui.h"
 #include "ui/headers/placesui.h"
@@ -20,15 +22,15 @@
 #include "ui/headers/seatsui.h"
 
 // Data Management Classes
-#include "data/GestionJoueurs.h"
-#include "data/GestionMatch.h"
-#include "data/GestionClients.h"
-#include "data/GestionPlaces.h"
-#include "data/GestionReservations.h"
-#include "data/GestionTerrains.h"
-#include "data/GestionTickets.h"
-#include "data/GestionScore.h"
-#include "data/GestionPaiements.h"
+#include "data/mgmt/GestionJoueurs.h"
+#include "data/mgmt/GestionMatch.h"
+#include "data/mgmt/GestionClients.h"
+#include "data/mgmt/GestionPlaces.h"
+#include "data/mgmt/GestionReservations.h"
+#include "data/mgmt/GestionTerrains.h"
+#include "data/mgmt/GestionTickets.h"
+#include "data/mgmt/GestionScores.h"
+#include "data/mgmt/GestionPaiements.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -50,8 +52,8 @@ public:
     GestionReservations* getGestionReservations() const { return gestionReservations; }
     GestionTerrains* getGestionTerrains() const { return gestionTerrains; }
     GestionTickets* getGestionTickets() const { return gestionTickets; }
-    GestionScore* getGestionScore() const { return gestionScore; }
-    GestionPaiements* getGestionPaiements() const { return gestionPaiements; }
+    GestionScore* getGestionScores()   const { return gestionScores; }
+    GestionClients* getGestionPaiements() const { return gestionPaiements; }
     GestionSeats* getGestionSeats() const { return gestionSeats; } // Add this getter
 
 private slots:
@@ -144,7 +146,7 @@ private:
     ScoreboardMatchDetailsUI* scoreboardMatchDetailsUI;
     PlacesUI* placesUI;
     ReservationsUI* reservationsUI;
-    TerrainsUI* terrainsUI;
+    TerrainUI* terrainsUI;
     TicketsUI* ticketsUI;
     ScoreUI* scoreUI;
     ClientsUI* clientsUI;
@@ -162,7 +164,7 @@ private:
     GestionReservations* gestionReservations;
     GestionTerrains* gestionTerrains;
     GestionTickets* gestionTickets;
-    GestionScore* gestionScore;
+    GestionScores* gestionScores;
     GestionPaiements* gestionPaiements;
     GestionSeats* gestionSeats;
 

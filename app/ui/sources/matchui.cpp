@@ -1,7 +1,7 @@
-#include "matchui.h"
+#include "ui/headers/matchui.h"
 #include "mainwindow.h"
 #include "ui_matchui.h"
-#include <QtSql/QSqlQuery>
+#include <QSqlQuery>
 #include <QMessageBox>
 #include "../Match.h"
 

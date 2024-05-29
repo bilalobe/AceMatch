@@ -1,3 +1,4 @@
+#include "GestionScores.h"
 #include "GestionScore.h"
 #include <QSqlQuery>
 #include <QSqlError>

@@ -1,4 +1,5 @@
 #include "placesui.h"
+#include "qsqldatabase.h"
 #include "ui_placesui.h"
 #include <QMessageBox>
 

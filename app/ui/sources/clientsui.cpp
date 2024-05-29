@@ -1,4 +1,5 @@
 #include "clientsui.h"
+#include "qsqldatabase.h"
 #include "ui_clientsui.h"
 #include <QMessageBox>
 

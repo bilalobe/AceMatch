@@ -21,7 +21,7 @@ public:
     Place getPlaceById(const QSqlDatabase& db, int placeId) const;
 
 private:
-    // QSqlDatabase db; // No need for this member anymore, as the database is passed as an argument
+
 
 };
 

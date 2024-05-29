@@ -344,6 +344,187 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <CustomBuild Include="A:\workspace\special-broccoli\build\CMakeFiles\9413625f8a95acadc549776320f08c41\app_fr.ts.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_fr.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_fr.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app\translations\app_fr.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_fr.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_fr.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app\translations\app_fr.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_fr.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_fr.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app\translations\app_fr.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_fr.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_fr.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_fr.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app\translations\app_fr.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="A:\workspace\special-broccoli\build\CMakeFiles\9413625f8a95acadc549776320f08c41\app_en.ts.rule">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_en.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_en.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_en.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app\translations\app_en.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_en.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_en.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_en.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app\translations\app_en.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_en.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_en.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_en.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app\translations\app_en.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">Generating A:/workspace/special-broccoli/app/translations/app_en.ts</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">setlocal
+C:\Users\beo.MSI\anaconda3\Library\bin\lupdate.exe @A:/workspace/special-broccoli/build/CMakeFiles/app_en.ts_lst_file -ts A:/workspace/special-broccoli/app/translations/app_en.ts
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app\translations\app_en.ts</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="A:\workspace\special-broccoli\build\CMakeFiles\6ce2ec0d38eb05ec6885605ec71a5c4b\autouic_(CONFIG).stamp.rule">
+      <UseUtf8Encoding>Always</UseUtf8Encoding>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\app\mainwindow.ui;A:\workspace\special-broccoli\app\ui\playerbox.ui;A:\workspace\special-broccoli\app\ui\matchui.ui;A:\workspace\special-broccoli\app\ui\playerprofileui.ui;A:\workspace\special-broccoli\app\ui\scoreboardmatchdetailsui.ui;A:\workspace\special-broccoli\app\ui\placesui.ui;A:\workspace\special-broccoli\app\ui\reservationsui.ui;A:\workspace\special-broccoli\app\ui\terrainsui.ui;A:\workspace\special-broccoli\app\ui\ticketsui.ui;A:\workspace\special-broccoli\app\ui\scoreui.ui;A:\workspace\special-broccoli\app\ui\clientsui.ui;A:\workspace\special-broccoli\app\ui\seatsui.ui;A:\workspace\special-broccoli\app\ui\settingsdialog.ui;C:\Users\beo.MSI\anaconda3\Library\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">A:\workspace\special-broccoli\build\app_autogen\autouic_Debug.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|arm64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\app\mainwindow.ui;A:\workspace\special-broccoli\app\ui\playerbox.ui;A:\workspace\special-broccoli\app\ui\matchui.ui;A:\workspace\special-broccoli\app\ui\playerprofileui.ui;A:\workspace\special-broccoli\app\ui\scoreboardmatchdetailsui.ui;A:\workspace\special-broccoli\app\ui\placesui.ui;A:\workspace\special-broccoli\app\ui\reservationsui.ui;A:\workspace\special-broccoli\app\ui\terrainsui.ui;A:\workspace\special-broccoli\app\ui\ticketsui.ui;A:\workspace\special-broccoli\app\ui\scoreui.ui;A:\workspace\special-broccoli\app\ui\clientsui.ui;A:\workspace\special-broccoli\app\ui\seatsui.ui;A:\workspace\special-broccoli\app\ui\settingsdialog.ui;C:\Users\beo.MSI\anaconda3\Library\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">A:\workspace\special-broccoli\build\app_autogen\autouic_Release.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\app\mainwindow.ui;A:\workspace\special-broccoli\app\ui\playerbox.ui;A:\workspace\special-broccoli\app\ui\matchui.ui;A:\workspace\special-broccoli\app\ui\playerprofileui.ui;A:\workspace\special-broccoli\app\ui\scoreboardmatchdetailsui.ui;A:\workspace\special-broccoli\app\ui\placesui.ui;A:\workspace\special-broccoli\app\ui\reservationsui.ui;A:\workspace\special-broccoli\app\ui\terrainsui.ui;A:\workspace\special-broccoli\app\ui\ticketsui.ui;A:\workspace\special-broccoli\app\ui\scoreui.ui;A:\workspace\special-broccoli\app\ui\clientsui.ui;A:\workspace\special-broccoli\app\ui\seatsui.ui;A:\workspace\special-broccoli\app\ui\settingsdialog.ui;C:\Users\beo.MSI\anaconda3\Library\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">A:\workspace\special-broccoli\build\app_autogen\autouic_MinSizeRel.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">false</LinkObjects>
+      <BuildInParallel Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</BuildInParallel>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'"></Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">setlocal
+cd A:\workspace\special-broccoli\build
+if %errorlevel% neq 0 goto :cmEnd
+A:
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\app\mainwindow.ui;A:\workspace\special-broccoli\app\ui\playerbox.ui;A:\workspace\special-broccoli\app\ui\matchui.ui;A:\workspace\special-broccoli\app\ui\playerprofileui.ui;A:\workspace\special-broccoli\app\ui\scoreboardmatchdetailsui.ui;A:\workspace\special-broccoli\app\ui\placesui.ui;A:\workspace\special-broccoli\app\ui\reservationsui.ui;A:\workspace\special-broccoli\app\ui\terrainsui.ui;A:\workspace\special-broccoli\app\ui\ticketsui.ui;A:\workspace\special-broccoli\app\ui\scoreui.ui;A:\workspace\special-broccoli\app\ui\clientsui.ui;A:\workspace\special-broccoli\app\ui\seatsui.ui;A:\workspace\special-broccoli\app\ui\settingsdialog.ui;C:\Users\beo.MSI\anaconda3\Library\bin\uic.exe;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">A:\workspace\special-broccoli\build\app_autogen\autouic_RelWithDebInfo.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
     <CustomBuild Include="A:\workspace\special-broccoli\app\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">Building Custom Rule A:/workspace/special-broccoli/app/CMakeLists.txt</Message>
@@ -402,29 +583,171 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Debug.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="A:\workspace\special-broccoli\app\main.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\mainwindow.cpp" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\mainwindow.h" />
+    <None Include="A:\workspace\special-broccoli\app\mainwindow.ui">
+    </None>
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\playerbox.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\matchui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\playerprofileui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\scoreboardmatchdetailsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\placesui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\reservationsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\terrainsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\ticketsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\scoreui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\clientsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\seatsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\ui\headers\SettingsDialog.h" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\playerbox.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\matchui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\playerprofileui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\scoreboardmatchdetailsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\placesui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\reservationsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\terrainsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\ticketsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\scoreui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\clientsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\seatsui.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\ui\sources\SettingsDialog.cpp" />
+    <None Include="A:\workspace\special-broccoli\app\ui\playerbox.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\matchui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\playerprofileui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\scoreboardmatchdetailsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\placesui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\reservationsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\terrainsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\ticketsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\scoreui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\clientsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\seatsui.ui">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\ui\settingsdialog.ui">
+    </None>
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Joueur.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Match.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Client.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Place.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Reservation.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Terrain.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Ticket.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Score.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\Paiement.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionJoueurs.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionMatch.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionClients.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionPlaces.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionReservations.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionTerrains.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionTickets.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionPaiements.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\GestionSeats.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\app\data\mgmt\PlanificationParties.h" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionJoueurs.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionMatch.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionClients.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionPlaces.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionReservations.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionTerrains.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionTickets.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionPaiements.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\GestionSeats.cpp" />
+    <ClCompile Include="A:\workspace\special-broccoli\app\data\mgmt\PlanificationParties.cpp" />
+    <None Include="A:\workspace\special-broccoli\app\translations\app_fr.ts">
+    </None>
+    <None Include="A:\workspace\special-broccoli\app\translations\app_en.ts">
+    </None>
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui_mainwindow.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_playerbox.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_matchui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_playerprofileui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_scoreboardmatchdetailsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_placesui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_reservationsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_terrainsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_ticketsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_scoreui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_clientsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_seatsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Debug\ui\ui_settingsdialog.h" />
+    <None Include="A:\workspace\special-broccoli\build\app_autogen\autouic_Debug.stamp">
+    </None>
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_Release.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui_mainwindow.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_playerbox.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_matchui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_playerprofileui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_scoreboardmatchdetailsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_placesui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_reservationsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_terrainsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_ticketsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_scoreui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_clientsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_seatsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_Release\ui\ui_settingsdialog.h" />
+    <None Include="A:\workspace\special-broccoli\build\app_autogen\autouic_Release.stamp">
+    </None>
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_MinSizeRel.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|arm64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui_mainwindow.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_playerbox.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_matchui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_playerprofileui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_scoreboardmatchdetailsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_placesui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_reservationsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_terrainsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_ticketsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_scoreui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_clientsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_seatsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_MinSizeRel\ui\ui_settingsdialog.h" />
+    <None Include="A:\workspace\special-broccoli\build\app_autogen\autouic_MinSizeRel.stamp">
+    </None>
     <ClCompile Include="A:\workspace\special-broccoli\build\app_autogen\mocs_compilation_RelWithDebInfo.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|arm64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui_mainwindow.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_playerbox.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_matchui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_playerprofileui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_scoreboardmatchdetailsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_placesui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_reservationsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_terrainsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_ticketsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_scoreui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_clientsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_seatsui.h" />
+    <ClInclude Include="A:\workspace\special-broccoli\build\app_autogen\include_RelWithDebInfo\ui\ui_settingsdialog.h" />
+    <None Include="A:\workspace\special-broccoli\build\app_autogen\autouic_RelWithDebInfo.stamp">
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="A:\workspace\special-broccoli\build\ZERO_CHECK.vcxproj">

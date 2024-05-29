@@ -2,9 +2,9 @@
 #define MATCHUI_H
 
 #include <QWidget>
-#include <QtSql/QSqlDatabase>
-#include "../GestionJoueurs.h"
+#include <QSqlDatabase>
 #include "qstandarditemmodel.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MatchUI; }
@@ -37,11 +37,8 @@ private slots:
 private:
     Ui::MatchUI *ui;
     QSqlDatabase db;
-    GestionJoueurs* gestionJoueurs;
     QStandardItemModel* matchModel;
 
-    void updateMatchList();
-    void updatePlayerComboBoxes();
     void clearMatchDetails();
 };
 

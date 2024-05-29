@@ -1,7 +1,6 @@
 #ifndef PLANIFICATIONPARTIES_H
 #define PLANIFICATIONPARTIES_H
 
-#include <vector>
 #include "data/Joueur.h"
 #include "data/Partie.h"
 #include "data/TennisChampionship.h"

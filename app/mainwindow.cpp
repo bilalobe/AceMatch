@@ -5,6 +5,8 @@
 #include "data/mgmt/GestionReservations.h"
 #include "data/mgmt/GestionTerrains.h"
 #include "data/mgmt/GestionTickets.h"
+#include "qtoolbar.h"
+#include "ui/headers/SettingsDialog.h"
 #include "qsqlerror.h"
 #include "ui_mainwindow.h"
 #include <QSqlQuery>
@@ -88,7 +90,7 @@ void MainWindow::initializeGestionClasses() {
     gestionReservations = new GestionReservations(db);
     gestionTerrains = new GestionTerrains(db);
     gestionTickets = new GestionTickets(db);
-    gestionScores = new GestionScores(db);
+    gestionScore = new GestionScores(db);
     gestionPaiements = new GestionPaiements(db);
 }
 
@@ -233,8 +235,8 @@ void MainWindow::connectSignalsAndSlots() {
     connect(reservationsUI, &ReservationsUI::reservationUpdated, this, &MainWindow::handleReservationUpdated);
 
     connect(terrainsUI, &TerrainUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
-    connect(terrainsUI, &TerrainsUI::terrainDeleted, this, &MainWindow::handleTerrainDeleted);
-    connect(terrainsUI, &TerrainsUI::terrainUpdated, this, &MainWindow::handleTerrainUpdated);
+    connect(terrainsUI, &TerrainUI::terrainDeleted, this, &MainWindow::handleTerrainDeleted);
+    connect(terrainsUI, &TerrainUI::terrainUpdated, this, &MainWindow::handleTerrainUpdated);
 
     connect(ticketsUI, &TicketsUI::ticketAdded, this, &MainWindow::handleTicketAdded);
     connect(ticketsUI, &TicketsUI::ticketDeleted, this, &MainWindow::handleTicketDeleted);
