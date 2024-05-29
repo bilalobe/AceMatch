@@ -12,7 +12,6 @@
 #include <QTableView>
 #include <QStandardItemModel>
 
-#include "playerbox.h"
 #include "matchui.h"
 #include "scoreboardmatchdetailsui.h"
 #include "playerprofileui.h"
@@ -20,6 +19,8 @@
 #include "reservationsui.h"
 #include "terrainsui.h"
 #include "ticketsui.h"
+#include "ui/headers/matchui.h"
+#include "ui/headers/playerbox.h"
 
 
 

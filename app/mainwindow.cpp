@@ -1,4 +1,10 @@
 #include "mainwindow.h"
+#include "data/mgmt/GestionClients.h"
+#include "data/mgmt/GestionPaiements.h"
+#include "data/mgmt/GestionPlaces.h"
+#include "data/mgmt/GestionReservations.h"
+#include "data/mgmt/GestionTerrains.h"
+#include "data/mgmt/GestionTickets.h"
 #include "qsqlerror.h"
 #include "ui_mainwindow.h"
 #include <QSqlQuery>
@@ -82,7 +88,7 @@ void MainWindow::initializeGestionClasses() {
     gestionReservations = new GestionReservations(db);
     gestionTerrains = new GestionTerrains(db);
     gestionTickets = new GestionTickets(db);
-    gestionScore = new GestionScore(db);
+    gestionScores = new GestionScores(db);
     gestionPaiements = new GestionPaiements(db);
 }
 
@@ -93,7 +99,7 @@ void MainWindow::createUIComponents() {
     scoreboardMatchDetailsUI = new ScoreboardMatchDetailsUI(this, db);
     placesUI = new PlacesUI(this, db);
     reservationsUI = new ReservationsUI(this, db);
-    terrainsUI = new TerrainsUI(this, db);
+    terrainsUI = new TerrainUI(this, db);
     ticketsUI = new TicketsUI(this, db);
     scoreUI = new ScoreUI(this, db);
     clientsUI = new ClientsUI(this, db);
@@ -226,7 +232,7 @@ void MainWindow::connectSignalsAndSlots() {
     connect(reservationsUI, &ReservationsUI::reservationDeleted, this, &MainWindow::handleReservationDeleted);
     connect(reservationsUI, &ReservationsUI::reservationUpdated, this, &MainWindow::handleReservationUpdated);
 
-    connect(terrainsUI, &TerrainsUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
+    connect(terrainsUI, &TerrainUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
     connect(terrainsUI, &TerrainsUI::terrainDeleted, this, &MainWindow::handleTerrainDeleted);
     connect(terrainsUI, &TerrainsUI::terrainUpdated, this, &MainWindow::handleTerrainUpdated);
 
@@ -992,11 +998,6 @@ void MainWindow::handleImportData()
     }
 }
 
-void MainWindow::handleSettings()
-{
-    // Implement logic to display a settings dialog or menu
-
-}
 
 void MainWindow::handleAbout()
 {
@@ -1015,26 +1016,6 @@ void MainWindow::handleSettings()
     }  
 }  
   
-void MainWindow::loadLanguage(const QString &languageCode)  
-{  
-    QTranslator translator;  
-    if (translator.load(QString(":/translations/app_%1.qm").arg(languageCode)))  
-    {  
-        qApp->installTranslator(&translator);  
-        ui->retranslateUi(this); // Retranslate UI elements  
-  
-        // Update UI elements that need to be refreshed  
-        updateAllUI();  
-          
-        // Persist language preference  
-        QSettings settings;  
-        settings.setValue("language", languageCode);  
-    }  
-    else  
-    {  
-        qDebug() << "Error loading translation file for:" << languageCode;  
-    }  
-}  
   
 // Utility functions for database backup and restore  
 bool MainWindow::backupDatabase(const QString &sourceFile, const QString &destinationFile)  
@@ -1107,8 +1088,3 @@ bool MainWindow::importDataFromCSV(const QString &fileName)
     return true;
 }
 
-// Destructor
-MainWindow::~MainWindow()
-{
-    delete ui;
-}
