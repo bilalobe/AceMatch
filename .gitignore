@@ -1,2 +1,16 @@
-main.cpp
-main.cpp
+# Build files
+build/
+*.o
+*.a
+*.so
+*.dll
+
+# Qt Creator files
+*.pro.user
+*.user
+
+# VS Code files
+.vscode/*
+
+# Database file (consider excluding from version control)
+#tournament.db

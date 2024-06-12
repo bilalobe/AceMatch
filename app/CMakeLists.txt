@@ -9,66 +9,149 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets LinguistTools)
+# Find Qt
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql LinguistTools)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql LinguistTools)
 
-set(TS_FILES app_fr_FR.ts)
-
-set(PROJECT_SOURCES
-        main.cpp
-        mainwindow.cpp
-        mainwindow.h
-
-        ${TS_FILES}
+# Translation Files
+set(TS_FILES 
+    translations/app_fr.ts
+    translations/app_en.ts
 )
 
+# UI Files
+set(UI_FILES 
+    ui/playerbox.ui 
+    ui/matchui.ui 
+    ui/playerprofileui.ui 
+    ui/scoreboardmatchdetailsui.ui
+    ui/placesui.ui
+    ui/reservationsui.ui 
+    ui/terrainsui.ui
+    ui/ticketsui.ui
+    ui/scoreui.ui
+    ui/clientsui.ui
+    ui/seatsui.ui
+    ui/settingsdialog.ui 
+)
+
+# UI Header Files
+set(UI_HEADERS
+    ui/headers/playerbox.h
+    ui/headers/matchui.h
+    ui/headers/playerprofileui.h
+    ui/headers/scoreboardmatchdetailsui.h
+    ui/headers/placesui.h
+    ui/headers/reservationsui.h
+    ui/headers/terrainsui.h
+    ui/headers/ticketsui.h
+    ui/headers/scoreui.h
+    ui/headers/clientsui.h
+    ui/headers/seatsui.h
+    ui/headers/settingsdialog.h 
+)
+
+# UI Source Files
+set(UI_SOURCES
+    ui/sources/playerbox.cpp
+    ui/sources/matchui.cpp
+    ui/sources/playerprofileui.cpp
+    ui/sources/scoreboardmatchdetailsui.cpp
+    ui/sources/placesui.cpp
+    ui/sources/reservationsui.cpp
+    ui/sources/terrainsui.cpp
+    ui/sources/ticketsui.cpp
+    ui/sources/scoreui.cpp
+    ui/sources/clientsui.cpp
+    ui/sources/seatsui.cpp
+    ui/sources/settingsdialog.cpp # Add the settings dialog source file
+)
+
+# Data Class Header Files (No .cpp files as constructors are inline)
+set(DATA_HEADERS
+    data/Joueur.h
+    data/Match.h
+    data/Client.h
+    data/Place.h
+    data/Reservation.h
+    data/Terrain.h
+    data/Ticket.h
+    data/Score.h
+    data/Paiement.h
+)
+
+# Gestion Class Header and Source Files
+set(GESTION_HEADERS
+    data/mgmt/GestionJoueurs.h
+    data/mgmt/GestionMatch.h
+    data/mgmt/GestionClients.h
+    data/mgmt/GestionPlaces.h
+    data/mgmt/GestionReservations.h
+    data/mgmt/GestionTerrains.h
+    data/mgmt/GestionTickets.h
+    data/mgmt/GestionPaiements.h
+    data/mgmt/GestionSeats.h
+    data/mgmt/GestionScores.h
+)
+
+set(GESTION_SOURCES
+    data/mgmt/GestionJoueurs.cpp
+    data/mgmt/GestionMatch.cpp
+    data/mgmt/GestionClients.cpp
+    data/mgmt/GestionPlaces.cpp
+    data/mgmt/GestionReservations.cpp
+    data/mgmt/GestionTerrains.cpp
+    data/mgmt/GestionTickets.cpp
+    data/mgmt/GestionPaiements.cpp
+    data/mgmt/GestionScores.cpp
+    data/mgmt/GestionSeats.cpp
+)
+
+# All Source Files
+set(PROJECT_SOURCES
+    main.cpp
+    mainwindow.cpp
+    mainwindow.h
+    mainwindow.ui
+
+    ${UI_HEADERS}
+    ${UI_SOURCES}
+    ${UI_FILES}
+
+    ${DATA_HEADERS}
+
+    ${GESTION_HEADERS}
+    ${GESTION_SOURCES}
+
+    ${TS_FILES}
+)
+
+# Add the executable
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(app
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        playerbox.h playerbox.cpp playerbox.ui
-
-
-
-
-        scoreboard.h scoreboard.cpp scoreboard.ui
-        mainwindow.ui
-        matchui.h matchui.cpp matchui.ui
-
-
-
     )
-# Define target properties for Android with Qt 6 as:
-#    set_property(TARGET app APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
-#                 ${CMAKE_CURRENT_SOURCE_DIR}/android)
-# For more information, see https://doc.qt.io/qt-6/qt-add-executable.html#target-creation
+    target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
 
     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 else()
-    if(ANDROID)
-        add_library(app SHARED
-            ${PROJECT_SOURCES}
-        )
-# Define properties for Android with Qt 5 after find_package() calls as:
-#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
-    else()
-        add_executable(app
-            ${PROJECT_SOURCES}
-        )
-    endif()
+    add_executable(app ${PROJECT_SOURCES})
+    target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
 
     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 endif()
 
-target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+# Add Resources (Make sure to create the resources.qrc file)
+#set(RESOURCES_FILES resources.qrc)
+#target_sources(app PRIVATE ${RESOURCES_FILES})
+#target_sources(app PRIVATE resources.qrc)
 
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
+# Bundle Identifiers (Adjust based on your project)
 if(${QT_VERSION} VERSION_LESS 6.1.0)
-  set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.example.app)
+    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.yourcompany.app)
 endif()
-set_target_properties(app PROPERTIES
+set_target_properties(app PROPERTIES 
     ${BUNDLE_ID_OPTION}
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -76,6 +159,7 @@ set_target_properties(app PROPERTIES
     WIN32_EXECUTABLE TRUE
 )
 
+# Installation (Adjust based on your preferences)
 include(GNUInstallDirs)
 install(TARGETS app
     BUNDLE DESTINATION .
@@ -83,6 +167,7 @@ install(TARGETS app
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
+# Finalize Executable (Qt 6)
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(app)
 endif()
