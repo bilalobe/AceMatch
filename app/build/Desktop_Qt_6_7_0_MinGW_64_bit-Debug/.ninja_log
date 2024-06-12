@@ -1,0 +1,18 @@
+# ninja log v5
+10	3158	7377624565388127	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp	f1f4bd759f55629
+10	3158	7377624565388127	app_autogen/mocs_compilation.cpp	f1f4bd759f55629
+34	384	7377658954570019	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f7b2c63e7c1d25e6
+10	3158	7377624565388127	app_autogen/timestamp	f1f4bd759f55629
+10	3158	7377624565388127	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/timestamp	f1f4bd759f55629
+3199	13814	7377624673694029	CMakeFiles/app.dir/app_autogen/mocs_compilation.cpp.obj	8bfa938306525eab
+3179	14309	7377624679089250	CMakeFiles/app.dir/mainwindow.cpp.obj	2bd0a9a134866126
+3159	14324	7377624679193867	CMakeFiles/app.dir/main.cpp.obj	9253b2aef6b12895
+14325	15543	7377624691104801	app.exe	f6c8d2406f1b3c7e
+385	7881	7377659029457271	build.ninja	80f06d7230dc2386
+19	561	0	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/CMakeFiles/cmake.verify_globs	f7b2c63e7c1d25e6
+82	1521	7377659048977764	app_autogen/timestamp	f1f4bd759f55629
+82	1521	7377659048977764	app_autogen/mocs_compilation.cpp	f1f4bd759f55629
+82	1521	7377659048977764	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/timestamp	f1f4bd759f55629
+82	1521	7377659048977764	A:/workspace/special-broccoli/app/build/Desktop_Qt_6_7_0_MinGW_64_bit-Debug/app_autogen/mocs_compilation.cpp	f1f4bd759f55629
+1882	2627	7377659062954673	CMakeFiles/app.dir/main.cpp.obj	9253b2aef6b12895
+1947	17142	7377659207897569	CMakeFiles/app.dir/mainwindow.cpp.obj	2bd0a9a134866126

@@ -3,56 +3,63 @@
 
 #include <string>
 #include <vector>
-#include <algorithm>
+#include "tickets.h"
+#include <map>
 
-class Client {
+class Client
+{
 public:
-    Client(std::string nom, int numero) : nom(nom), numero(numero) {} // Member initialization list
+    Client(const std::string &nom, int age, const std::string &adresse, const std::string &telephone);
 
-    std::string getNom() const { return nom; }
-    int getNumero() const { return numero; }
+    // Getters
+    std::string getNom() const;
+    int getAge() const;
+    std::string getAdresse() const;
+    std::string getTelephone() const;
 
-    void setNom(const std::string& nom) { this->nom = nom; }
-    void setNumero(int numero) { this->numero = numero; }
+    // Setters
+    int setNom(const std::string &nom);
+    int setAge(int age);
+    int setAdresse(const std::string &adresse);
+    int setTelephone(const std::string &telephone);
+
+    // Add a ticket to the client's list
+    void addTicket(Ticket *ticket);
+
+    // Display client information
+    void afficher() const;
 
 private:
     std::string nom;
-    int numero;
+    int age;
+    std::string adresse;
+    std::string telephone;
+    std::vector<Ticket *> tickets;
 };
 
-class GestionClients {
+class GestionClients
+{
 public:
-    void ajouterClient(const Client& client) {
-        clients.push_back(client);
-    }
+    // Constructor
+    GestionClients() {}
 
-    void supprimerClient(const std::string& nom) {
-        auto it = std::find_if(clients.begin(), clients.end(),
-                               [&nom](const Client& client) {
-                                   return client.getNom() == nom;
-                               });
-        if (it != clients.end()) {
-            clients.erase(it);
-        }
-    }
+    // Add a client
+    void ajouterClient(const Client &client);
 
-    Client* rechercherClient(const std::string& nom) const {
-    for (const Client& client : clients) {
-        if (client.getNom().find(nom) != std::string::npos) {
-            return const_cast<Client*>(&client); // Remove const to return a Client*
-        }
-    }
-    return nullptr;
-    }
+    // Remove a client
+    bool supprimerClient(const std::string &nom);
 
-    const std::vector<Client>& getClients() const { return clients; }
+    // Search for a client
+    Client *rechercherClient(const std::string &nom) const;
 
-    void trierClientsParNom() {
-        std::sort(clients.begin(), clients.end(),
-                  [](const Client& a, const Client& b) {
-                      return a.getNom() < b.getNom();
-                  });
-    }
+    // Display all clients
+    void afficherClients() const;
+
+    // Sort clients by name
+    void trierClientsParNom();
+
+    // Get the list of clients
+    const std::vector<Client> &getClients() const;
 
 private:
     std::vector<Client> clients;

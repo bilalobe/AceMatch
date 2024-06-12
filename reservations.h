@@ -1,60 +1,60 @@
 #ifndef RESERVATIONS_H
 #define RESERVATIONS_H
+
 #include "places.h"
+#include "clients.h"
+#include "parties.h"
+#include "terrains.h"
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class Reservation {
 public:
-  Reservation(){}
-  Reservation(Joueur* joueur, Partie* partie, Place* place) : joueur(joueur), partie(partie), place(place) {}
-  Joueur* getJoueur() const{ return joueur; }
-  Partie* getPartie() const{ return partie; }
-  Place* getPlace() const{ return place; }
-  void setJoueur(Joueur* joueur){this->joueur = joueur;}
-  void setPartie(Partie* partie) {this->partie = partie;}
-  void setPlace(Place* place) {this->place = place;}
+    Reservation(Client* client, Partie* partie, Terrain* terrain, int row, int col);
+
+    // Getters
+    Client* getClient() const;
+    Partie* getPartie() const;
+    Terrain* getTerrain() const;
+    int getRow() const;
+    int getCol() const;
+
+    // Display reservation details
+    void afficher() const;
 
 private:
-  Joueur* joueur;
-  Partie* partie;
-  Place* place;
+    Client* client;
+    Partie* partie;
+    Terrain* terrain;
+    int row;
+    int col;
 };
 
 class GestionReservations {
-public:
-  void ajouterReservation(Reservation reservation){
-    reservations.push_back(reservation);
-  }
-  void supprimerReservation(Joueur* joueur, Partie* partie, Place* place){
-    for (Reservation& reservation : reservations) {
-      if (reservation.getJoueur() == joueur && reservation.getPartie() == partie && reservation.getPlace() == place) {
-        reservations.erase(remove(reservations.begin(), reservations.end(), reservation), reservations.end());
-        break;
-      }
-    }
-  }
-  Reservation* rechercherReservation(Joueur* joueur, Partie* partie, Place* place){
-    for (Reservation& reservation : reservations) {
-      if (reservation.getJoueur() == joueur && reservation.getPartie() == partie && reservation.getPlace() == place) {
-        return &reservation;
-      }
-    }
-    return nullptr;
-  }
-  const vector<Reservation>& getReservations() const{
-    return reservations;
-  }
-  void trierReservationsParJoueur(){
-    sort(reservations.begin(), reservations.end(), [](const Reservation& a, const Reservation& b) {
-      return a.getJoueur()->getNom() < b.getJoueur()->getNom();
-    });
-  }
-
 private:
-  vector<Reservation> reservations;
+    std::vector<Reservation> reservations;
+
+public:
+    // Constructor
+    GestionReservations() {}
+
+    // Add a reservation
+    void ajouterReservation(const Reservation& reservation);
+
+    // Remove a reservation
+    void supprimerReservation(Client* client, Partie* partie, int row, int col);
+
+    // Search for a reservation
+    Reservation* rechercherReservation(Client* client, Partie* partie, int row, int col);
+
+    // Display all reservations
+    void afficherReservations() const;
+
+    // Get the list of reservations
+    const std::vector<Reservation>& getReservations() const;
+
+    // Sort reservations by client name
+    void trierReservationsParClient();
 };
 
 #endif // RESERVATIONS_H

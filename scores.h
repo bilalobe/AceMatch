@@ -1,72 +1,43 @@
 #ifndef SCORES_H
 #define SCORES_H
 
-#include <iostream>
 #include <vector>
-#include <string>
-#include <algorithm> 
 #include <map>
+#include "parties.h"
 #include "joueurs.h"
-#include "championnats.h"
-
-using namespace std;
 
 class Score {
 public:
-  string nomJoueur;
-  int score;
+    Score(const Partie& partie, int scoreJoueur1, int scoreJoueur2); // Constructor
 
-public:
-  Score(string nomJoueur, int score) : nomJoueur(nomJoueur), score(score) {}
+    const Partie& getPartie() const { return partie; } // Getter for Partie
+    int getScoreJoueur1() const { return scoreJoueur1; } // Getter for scoreJoueur1
+    int getScoreJoueur2() const { return scoreJoueur2; } // Getter for scoreJoueur2
 
-  void afficher() const {
-    cout << "Nom: " << nomJoueur << endl;
-    cout << "Score: " << score << endl;
-  }
+    void setScoreJoueur1(int score) { scoreJoueur1 = score; } // Setter for scoreJoueur1
+    void setScoreJoueur2(int score) { scoreJoueur2 = score; } // Setter for scoreJoueur2
+
+    void afficher() const; // Display the score
+
+private:
+    const Partie& partie;
+    int scoreJoueur1;
+    int scoreJoueur2;
 };
 
 class GestionScores {
 public:
-    std::map<std::string, int> scoresMap; 
+    GestionScores(); // Constructor
 
-    void ajouterScore(string nomJoueur, int score) {
-        scoresMap[nomJoueur] = score; 
-    }
+    void ajouterScore(const Score& score); // Add a score
+    void supprimerScore(int numero); // Remove a score
+    void mettreAJourScore(int numero, int scoreJoueur1, int scoreJoueur2, GestionJoueurs& gestionJoueurs); // Update a score
+    void afficherScores() const; // Display all scores
+    std::vector<Score> getTopScores(int numScoresToDisplay); // Display Top Scorers
 
-    void updateScore(string nomJoueur, int newScore) {
-        scoresMap[nomJoueur] = newScore; 
-    }
-
-    vector<Score> getTopScores(int count) {
-        vector<Score> topScores;
-        for (const auto& pair : scoresMap) {
-            topScores.emplace_back(pair.first, pair.second);
-        }
-        std::sort(topScores.begin(), topScores.end(), 
-                  [](const Score& score1, const Score& score2) {
-                      return score1.score > score2.score; 
-                  });
-        if (count < topScores.size()) {
-            topScores.resize(count);
-        }
-        return topScores;
-    }
-
-    void supprimerScore(string nomJoueur) {
-        auto it = scoresMap.find(nomJoueur);
-        if (it != scoresMap.end()) {
-            scoresMap.erase(it);
-        }
-    }
-
-    void afficherScores() {
-        for (const auto& pair : scoresMap) {
-            cout << "Nom: " << pair.first << endl;
-            cout << "Score: " << pair.second << endl;
-        }
-    }
+private:
+    std::vector<Score> scores;
+    std::map<int, Score*> scoresMap;
 };
 
-
-
-#endif
+#endif // SCORES_H

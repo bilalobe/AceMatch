@@ -1,57 +1,67 @@
 #ifndef TERRAINS_H
 #define TERRAINS_H
 
-#include <iostream>
 #include <vector>
 #include <string>
 
-using namespace std;
-
-enum TypeTerrain {
+enum TypeTerrain
+{
   DUR,
   TERRE_BATTUE,
   GAZON
 };
 
-class Terrain {
-public:
+class Terrain
+{
+private:
   TypeTerrain type;
   int longueur;
   int largeur;
+  int nbPlacesReservees;
+  std::vector<std::vector<bool>> seatingPlan; // 2D vector for seating plan
 
 public:
-  Terrain(TypeTerrain type, int longueur, int largeur) : type(type), longueur(longueur), largeur(largeur) {}
+  // Constructors
+  Terrain(TypeTerrain type, int longueur, int largeur);
+  Terrain(TypeTerrain type, int longueur, int largeur, int nbPlacesReservees);
 
-  void afficher() {
-    cout << "Type: " << (type == DUR ? "Dur" : type == TERRE_BATTUE ? "Terre battue" : "Gazon") << endl;
-    cout << "Longueur: " << longueur << endl;
-    cout << "Largeur: " << largeur << endl;
-  }
+  // Getters
+  TypeTerrain getType() const;
+  int getLongueur() const;
+  int getLargeur() const;
+  int getNbPlacesReservees() const;
+
+  // Setters
+  void setLongueur(int longueur);
+  void setLargeur(int largeur);
+  void setNbPlacesReservees(int nbPlacesReservees);
+  void setTerrain(TypeTerrain type, int longueur, int largeur);
+  void setTerrain(TypeTerrain type, int longueur, int largeur, int nbPlacesReservees);
+
+  // Display terrain details
+  void afficher() const;
+
+  int getRow() const { return seatingPlan.size(); }    // Return the number of rows
+  int getCol() const { return seatingPlan[0].size(); } // Return the number of columns
+
+  // Methods for managing seating
+  void initializeSeatingPlan(int rows, int cols);
+  bool isSeatAvailable(int row, int col);
+  void reserveSeat(int row, int col);
+  void releaseSeat(int row, int col);
+  void afficherSeatingPlan() const; // Display the seating plan
 };
 
-class GestionTerrains {
+class GestionTerrains
+{
+private:
+  std::vector<Terrain> terrains;
+
 public:
-  vector<Terrain> terrains;
-
-  void ajouterTerrain(Terrain terrain) {
-    terrains.push_back(terrain);
-  }
-
-  void afficherTerrains() {
-    for (Terrain terrain : terrains) {
-      terrain.afficher();
-      cout << endl;
-    }
-  }
-
-  void supprimerTerrain(TypeTerrain type, int longueur, int largeur) {
-    for (int i = 0; i < terrains.size(); i++) {
-      if (terrains[i].type == type && terrains[i].longueur == longueur && terrains[i].largeur == largeur) {
-        terrains.erase(terrains.begin() + i);
-        break;
-      }
-    }
-  }
+  void ajouterTerrain(Terrain terrain);
+  void afficherTerrains();
+  bool supprimerTerrain(TypeTerrain type, int longueur, int largeur);
+  Terrain *rechercherTerrain(TypeTerrain type, int longueur, int largeur) const;
 };
 
-#endif
+#endif // TERRAINS_H
