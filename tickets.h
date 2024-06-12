@@ -1,71 +1,61 @@
 #ifndef TICKETS_H
 #define TICKETS_H
-
-#include <string>
+using namespace std;
+#include <iostream>
 #include <vector>
-#include <map>
-#include "parties.h"
-#include "clients.h"
-#include "reservations.h"
+
+// Classe Ticket
 
 class Ticket {
-public:
-    Ticket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation, int row, int col); // Constructor
+  public:
+    int numero;
+    string place;
+    float prix;
 
-    // Getters
-    std::string getType() const { return type; }
-    double getPrix() const { return prix; }
-    std::string getMatchName() const { return matchName; }
-    int getNumeroTicket() const { return numeroTicket; } // Getter for ticket number
-    bool isSold() const { return sold; } // Getter to check if the ticket is sold
-    Reservation* getReservation() const { return reservation; } // Getter for the reservation
-    int getRow() const { return row; }
-    int getCol() const { return col; }
+    Ticket(int numero, string place, float prix) {
+      this->numero = numero;
+      this->place = place;
+      this->prix = prix;
+    }
 
-    // Setters
-    void setSold(bool sold) { this->sold = sold; } // Setter to mark the ticket as sold
-
-    // Display ticket information
-    void afficher() const;
-
-private:
-    std::string type;
-    double prix;
-    std::string matchName;
-    int numeroTicket; // Ticket number
-    bool sold; // Flag to indicate if the ticket is sold
-    Reservation* reservation; 
-    int row;
-    int col; 
-    static int nextTicketNumber;
+    void afficher() {
+      cout << "Ticket numero: " << numero << endl;
+      cout << "Place: " << place << endl;
+      cout << "Prix: " << prix << endl;
+    }
 };
 
 class GestionTickets {
+<<<<<<< Updated upstream
+  public:
+    vector<Ticket> tickets;
+
+    void ajouterTicket(Ticket ticket) {
+      tickets.push_back(ticket);
+    }
+
+    void supprimerTicket(int numero) {
+      for (int i = 0; i < tickets.size(); i++) {
+        if (tickets[i].numero == numero) {
+          tickets.erase(tickets.begin() + i);
+          break;
+        }
+      }
+    }
+
+    void afficherTickets() {
+      for (Ticket ticket : tickets) {
+        ticket.afficher();
+      }
+    }
+=======
 public:
-    GestionTickets();
-
-    // Generate a ticket
-    Ticket genererTicket(const std::string& type, double prix, const std::string& matchName, Reservation* reservation);
-
-    // Add a ticket
-    void ajouterTicket(const Ticket& ticket);
-
-    // Sell a ticket
-    bool vendreTicket(GestionClients& gestionClients, int ticketNumber);
-
-    // Display all tickets
-    void afficherTickets() const;
-
-    // Search for a ticket
-    Ticket* rechercherTicket(int ticketNumber);
-
-    // Remove a ticket
-    void supprimerTicket(int ticketNumber);
-
-private:
-    std::vector<Ticket> tickets;
-    std::map<int, Ticket*> ticketsMap;
-
+  vector<Ticket> tickets;
+  
+  void ajouterTicket(Ticket ticket);
+  void afficherTickets();
+  void supprimerTicket(int numeroTicket);
+>>>>>>> Stashed changes
 };
 
-#endif // TICKETS_H
+#endif

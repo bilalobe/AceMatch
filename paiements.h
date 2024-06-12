@@ -1,61 +1,38 @@
 #ifndef PAIEMENTS_H
 #define PAIEMENTS_H
 
-#include <iostream>
 #include <string>
-#include <conio.h> 
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
-using namespace std;
-
-// Base Payment Class (Template)
-template <typename T>
 class Paiement {
 public:
-  enum MethodePaiement {
-    CARTE_BANCAIRE,
-    ESPECES,
-    CHEQUE
-  };
+    Paiement(const std::string &clientName, double amount, const std::string &date);
+    
+    std::string getClientName() const;
+    double getAmount() const;
+    std::string getDate() const;
 
-  MethodePaiement methode;
-  double montant;
+    std::string toString() const;
+    static Paiement fromString(const std::string &data);
 
-  // Constructor (Template)
-  Paiement(MethodePaiement methode, double montant);
-
-  // Virtual Function for Processing (Template)
-  virtual void traiterPaiement(const T& paymentDetails) const = 0; 
-
-  void afficher() const; 
-};
-
-// Placeholder struct for PaiementEspeces
-struct NoDetails {}; 
-
-// Specialized Payment Classes (Inherited from Paiement)
-class PaiementCarteBancaire : public Paiement<string> {
-public:
-  PaiementCarteBancaire(double montant, const string& numeroCarte);
-  void traiterPaiement(const string& numeroCarte) const override; 
-  // ... (Other methods)
 private:
-    string numeroCarte; // Member variable
+    std::string clientName;
+    double amount;
+    std::string date;
 };
 
-class PaiementEspeces : public Paiement<NoDetails> { // Use NoDetails
+class Paiements {
 public:
-  PaiementEspeces(double montant);
-  void traiterPaiement(const NoDetails&) const override; 
-};
+    void ajouterPaiement(const Paiement &paiement);
+    void afficherPaiements() const;
+    void sauvegarderPaiements(const std::string &filename) const;
+    void chargerPaiements(const std::string &filename);
 
-class PaiementCheque : public Paiement<string> {
-public:
-  PaiementCheque(double montant, const string& numeroCheque);
-  void traiterPaiement(const string& numeroCheque) const override; 
 private:
-    string numeroCheque; // Member variable
-
+    std::vector<Paiement> paiements;
 };
 
-
-#endif
+#endif // PAIEMENTS_H

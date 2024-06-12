@@ -1,14 +1,12 @@
 #include "championnats.h"
-#include "tennis_championnat.h" // Include the TennisChampionship header
 #include <iostream>
 #include <algorithm>
-#include "tickets.h"
 
 using namespace std;
 
+//  Constructor
 Championnat::Championnat(const string& nom, int annee, int nbTours)
-  : nom(nom), annee(annee), nbTours(nbTours), tennisChampionship(new TennisChampionship()) {} // Initialize tennisChampionship in the initializer list
-
+    : nom(nom), annee(annee), nbTours(nbTours) {}
 
 // Method to add players to the tournament
 void Championnat::inscrireJoueur(const Joueur& joueur) {
@@ -16,19 +14,13 @@ void Championnat::inscrireJoueur(const Joueur& joueur) {
 }
 
 // Method to get the list of enrolled players
-const std::vector<Joueur>& Championnat::getJoueursInscrits() const {
-
+const vector<Joueur>& Championnat::getJoueursInscrits() const {
   return joueursInscrits;
 }
 
 // Constructor for ChampionnatSimple
 ChampionnatSimple::ChampionnatSimple(const string& nom, int annee, int nbTours)
-    : Championnat(nom, annee, nbTours) { // Call the base class constructor
-      setNom(nom); // Use the setters to initialize private members
-      setAnnee(annee);
-      setNbTours(nbTours);
-    }
-
+    : Championnat(nom, annee, nbTours) {}
 
 // Method to add players to the tournament
 void ChampionnatSimple::ajouterJoueur(const Joueur& joueur) {
@@ -38,8 +30,7 @@ void ChampionnatSimple::ajouterJoueur(const Joueur& joueur) {
 // Method to remove players from the tournament
 void ChampionnatSimple::supprimerJoueur(const string& nom) {
   for (int i = 0; i < joueurs.size(); i++) {
-    if (joueurs[i].nom == getNom()) {
-
+    if (joueurs[i].nom == nom) {
       joueurs.erase(joueurs.begin() + i);
       break;
     }
@@ -54,8 +45,7 @@ void ChampionnatSimple::ajouterPartie(const Partie& partie) {
 // Method to remove matches from the tournament
 void ChampionnatSimple::supprimerPartie(int numero) {
   for (int i = 0; i < parties.size(); i++) {
-    if (parties[i].getNumero() == numero) {
-
+    if (parties[i].numero == numero) {
       parties.erase(parties.begin() + i);
       break;
     }
@@ -70,8 +60,7 @@ void ChampionnatSimple::ajouterTicket(const Ticket& ticket) {
 // Method to remove tickets from the tournament
 void ChampionnatSimple::supprimerTicket(int numero) {
   for (int i = 0; i < tickets.size(); i++) {
-    if (tickets[i].getNumeroTicket() == numero) {
-
+    if (tickets[i].numeroTicket == numero) {
       tickets.erase(tickets.begin() + i);
       break;
     }
@@ -80,9 +69,8 @@ void ChampionnatSimple::supprimerTicket(int numero) {
 
 // Method to display the tournament information
 void ChampionnatSimple::afficherChampionnat() {
-  cout << "Championnat: " << getNom() << endl; // Use the getter
-  cout << "Annee: " << getAnnee() << endl; // Use the getter
-
+  cout << "Championnat: " << nom << endl;
+  cout << "Annee: " << annee << endl;
   cout << "Joueurs: " << endl;
   for (Joueur joueur : joueurs) {
     cout << "Name: " << joueur.getNom() << endl;
@@ -98,4 +86,3 @@ void ChampionnatSimple::afficherChampionnat() {
     ticket.afficher();
   }
 }
-
