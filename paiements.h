@@ -54,6 +54,7 @@ public:
   void traiterPaiement(const string& numeroCheque) const override; 
 private:
     string numeroCheque; // Member variable
+
 };
 
 

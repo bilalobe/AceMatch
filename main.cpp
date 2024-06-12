@@ -19,6 +19,31 @@ TennisChampionship tennisChampionship;
 ChampionnatSimple championnat("Grand Slam", 2023, 4);
 PlanificationParties planificateur(&tennisChampionship);
 GestionScores gestionScores; // Create an instance of GestionScores
+GestionJoueurs gestionJoueurs;
+GestionTerrains gestionTerrains;
+GestionReservations gestionReservations;
+GestionScores gestionScores; 
+GestionParties gestionParties;
+PlanificationParties planificateur;
+
+void clearScreen() {
+    system("cls"); // For Windows
+  
+// Global Management Objects 
+
+// Helper Functions 
+Partie retrievePartie(const string& nomJoueur1, const string& nomJoueur2) {
+    // Implement logic to find the Partie based on player names
+    // (You may need to iterate through your parties vector or use a more efficient search method)
+    // ... 
+    for (Partie& partie : gestionParties.getParties()) {
+      if ((partie.nomJoueur1 == nomJoueur1 && partie.nomJoueur2 == nomJoueur2) || 
+          (partie.nomJoueur1 == nomJoueur2 && partie.nomJoueur2 == nomJoueur1)) {
+        return partie; 
+      }
+    }
+    return Partie(SIMPLE, "unknown", "unknown"); // Return a default if not found
+
 
 // --- Menu Display Functions ---
 void displayMainMenu()
@@ -965,6 +990,7 @@ void displayTicketsMenu()
       break;
     }
 
+
     // Get the terrain from the reservation
     Terrain *terrain = reservation->getTerrain();
     int row = reservation->getRow();
@@ -1107,6 +1133,5 @@ int main()
       cout << "Invalid choice. Please try again." << endl;
     }
   } while (selection != 9);
-
   return 0;
 }

@@ -65,6 +65,7 @@ public:
 private:
     std::vector<Ticket> tickets;
     std::map<int, Ticket*> ticketsMap;
+
 };
 
 #endif // TICKETS_H
