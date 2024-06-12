@@ -113,7 +113,6 @@ void ClientsUI::loadClientDetails(const QModelIndex& index) {
     ui->emailLineEdit->setText(selectedClient.getEmail());
     ui->phoneNumberLineEdit->setText(selectedClient.getPhoneNumber());
 
-    // ... (Set values for other client detail fields) ...
 }
 
 void ClientsUI::clearClientDetails() {

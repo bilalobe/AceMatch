@@ -1,4 +1,7 @@
 #include "GestionTickets.h"
+#include "GestionJoueurs.h"
+#include "GestionClients.h"
+#include "GestionPlaces.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>

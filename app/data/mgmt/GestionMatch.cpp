@@ -1,7 +1,9 @@
 #include "GestionMatch.h"
+#include "GestionJoueurs.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+
 
 GestionMatch::GestionMatch(const QSqlDatabase& db)
     // : db(db)  // No need for this initialization
@@ -37,20 +39,6 @@ bool GestionMatch::supprimerMatch(const QSqlDatabase& db, int matchId) {
 
     if (!query.exec()) {
         qDebug() << "Error deleting match:" << query.lastError();
-        return false; 
-    }
-    return true; 
-}
-
-bool GestionMatch::modifierMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2) {
-    QSqlQuery query(db);
-    query.prepare("UPDATE Matches SET score1 = :score1, score2 = :score2 WHERE id = :matchId");
-    query.bindValue(":score1", newScore1);
-    query.bindValue(":score2", newScore2);
-    query.bindValue(":matchId", matchId);
-
-    if (!query.exec()) {
-        qDebug() << "Error updating match:" << query.lastError();
         return false; 
     }
     return true; 

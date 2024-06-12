@@ -1,9 +1,10 @@
-#include "ui/headers/matchui.h"
-#include "mainwindow.h"
-#include "ui_matchui.h"
+#include "../../mainwindow.h"
+#include "ui/ui_matchui.h"
+#include "../Matchui.h"
 #include <QSqlQuery>
 #include <QMessageBox>
 #include "../Match.h"
+#include "data/
 
 MatchUI::MatchUI(QWidget *parent, const QSqlDatabase& database)
     : QWidget(parent), ui(new Ui::MatchUI), db(database)

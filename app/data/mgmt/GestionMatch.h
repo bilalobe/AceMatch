@@ -6,6 +6,7 @@
 #include <QList>
 #include <QSqlDatabase>
 #include "..\Match.h"
+#include "..\Score.h"
 
 class GestionMatch
 {

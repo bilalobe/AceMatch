@@ -1,4 +1,6 @@
 #include "GestionReservations.h"
+#include "GestionClients.h"
+#include "GestionPlaces.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>

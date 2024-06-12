@@ -1,6 +1,6 @@
-#include "playerbox.h"
 
 #include "playerbox.h"
+#include "qsqldatabase.h"
 #include "ui_playerbox.h"
 #include <QMessageBox>
 #include <QSqlError>

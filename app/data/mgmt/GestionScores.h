@@ -4,7 +4,7 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
-#include "Score.h" 
+#include "..\Score.h"
 
 class GestionScore
 {

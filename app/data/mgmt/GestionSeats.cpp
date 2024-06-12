@@ -1,4 +1,5 @@
 #include "GestionSeats.h"
+#include "GestionPlaces.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
@@ -63,7 +64,7 @@ QList<Seat> GestionSeats::getSeats(const QSqlDatabase& db) const {
         QString status = query.value("status").toString();
 
         // Assuming you have a way to get Place objects by ID
-        Place place = gestionPlaces->getPlaceById(db, placeId); 
+        Place place = gestionPlaces->getPlaceById(db, placeId);
 
         // Assuming you have a way to get the seat's position (x, y) and size
         // (You'll need to define this logic based on your seat layout)

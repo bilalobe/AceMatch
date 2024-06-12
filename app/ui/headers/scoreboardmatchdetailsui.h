@@ -3,9 +3,9 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
-#include "A:\workspace\special-broccoli\app\data\mgmt\GestionJoueurs.h" // You might need to adjust this path
-#include "A:\workspace\special-broccoli\app\data\mgmt\GestionMatch.h"   // You might need to adjust this path
-#include "A:\workspace\special-broccoli\app\ui\headers\ScoreboardUI.h" // You might need to adjust this path
+#include "A:\workspace\special-broccoli\app\data\mgmt\GestionJoueurs.h"
+#include "A:\workspace\special-broccoli\app\data\mgmt\GestionMatch.h"
+#include "A:\workspace\special-broccoli\app\ui\headers\ScoreboardUI.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class ScoreboardMatchDetailsUI; }
