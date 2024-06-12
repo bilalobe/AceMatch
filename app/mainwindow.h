@@ -2,22 +2,22 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "PlayerBox.h"
-#include "Scoreboard.h"
 
-class MainWindow : public QMainWindow {
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class MainWindow;
+}
+QT_END_NAMESPACE
+
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private:
-    PlayerBox *playerBox;
-    Scoreboard *scoreboard;
-
-private slots:
-    void updateResultsView();
+    Ui::MainWindow *ui;
 };
-
 #endif // MAINWINDOW_H

@@ -1,38 +1,61 @@
 #ifndef PAIEMENTS_H
 #define PAIEMENTS_H
 
-#include <string>
-#include <vector>
-#include <fstream>
 #include <iostream>
-#include <sstream>
+#include <string>
+#include <conio.h> 
 
+using namespace std;
+
+// Base Payment Class (Template)
+template <typename T>
 class Paiement {
 public:
-    Paiement(const std::string &clientName, double amount, const std::string &date);
-    
-    std::string getClientName() const;
-    double getAmount() const;
-    std::string getDate() const;
+  enum MethodePaiement {
+    CARTE_BANCAIRE,
+    ESPECES,
+    CHEQUE
+  };
 
-    std::string toString() const;
-    static Paiement fromString(const std::string &data);
+  MethodePaiement methode;
+  double montant;
 
-private:
-    std::string clientName;
-    double amount;
-    std::string date;
+  // Constructor (Template)
+  Paiement(MethodePaiement methode, double montant);
+
+  // Virtual Function for Processing (Template)
+  virtual void traiterPaiement(const T& paymentDetails) const = 0; 
+
+  void afficher() const; 
 };
 
-class Paiements {
+// Placeholder struct for PaiementEspeces
+struct NoDetails {}; 
+
+// Specialized Payment Classes (Inherited from Paiement)
+class PaiementCarteBancaire : public Paiement<string> {
 public:
-    void ajouterPaiement(const Paiement &paiement);
-    void afficherPaiements() const;
-    void sauvegarderPaiements(const std::string &filename) const;
-    void chargerPaiements(const std::string &filename);
-
+  PaiementCarteBancaire(double montant, const string& numeroCarte);
+  void traiterPaiement(const string& numeroCarte) const override; 
+  // ... (Other methods)
 private:
-    std::vector<Paiement> paiements;
+    string numeroCarte; // Member variable
 };
 
-#endif // PAIEMENTS_H
+class PaiementEspeces : public Paiement<NoDetails> { // Use NoDetails
+public:
+  PaiementEspeces(double montant);
+  void traiterPaiement(const NoDetails&) const override; 
+};
+
+class PaiementCheque : public Paiement<string> {
+public:
+  PaiementCheque(double montant, const string& numeroCheque);
+  void traiterPaiement(const string& numeroCheque) const override; 
+private:
+    string numeroCheque; // Member variable
+
+};
+
+
+#endif
