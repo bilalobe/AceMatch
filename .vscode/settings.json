@@ -102,6 +102,9 @@
     "ostream": "cpp",
     "stdexcept": "cpp",
     "streambuf": "cpp",
-    "typeinfo": "cpp"
-  }
+    "typeinfo": "cpp",
+    "fstream": "cpp",
+    "sstream": "cpp"
+  },
+  "cmake.sourceDirectory": "a:/workspace/special-broccoli/app"
 }

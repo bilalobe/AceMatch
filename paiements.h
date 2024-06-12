@@ -1,27 +1,38 @@
 #ifndef PAIEMENTS_H
 #define PAIEMENTS_H
 
-#include <iostream>
 #include <string>
-
-using namespace std;
+#include <vector>
+#include <fstream>
+#include <iostream>
+#include <sstream>
 
 class Paiement {
 public:
-  enum MethodePaiement {
-    CARTE_BANCAIRE,
-    ESPECES,
-    CHEQUE
-  };
+    Paiement(const std::string &clientName, double amount, const std::string &date);
+    
+    std::string getClientName() const;
+    double getAmount() const;
+    std::string getDate() const;
 
-  MethodePaiement methode;
-  double montant;
+    std::string toString() const;
+    static Paiement fromString(const std::string &data);
 
-public:
-  Paiement();
-  Paiement(MethodePaiement methode, double montant);
-
-  void afficher() const; 
+private:
+    std::string clientName;
+    double amount;
+    std::string date;
 };
 
-#endif
+class Paiements {
+public:
+    void ajouterPaiement(const Paiement &paiement);
+    void afficherPaiements() const;
+    void sauvegarderPaiements(const std::string &filename) const;
+    void chargerPaiements(const std::string &filename);
+
+private:
+    std::vector<Paiement> paiements;
+};
+
+#endif // PAIEMENTS_H

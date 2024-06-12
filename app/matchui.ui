@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MatchUI>
+    <header>
+        <ifndef>MATCHUI_H</ifndef>
+        <define>MATCHUI_H</define>
+    </header>
+    <includes>
+        <include>QWidget</include>
+        <include>QSqlDatabase</include>
+        <include>QStandardItemModel</include>
+        <include>GestionJoueurs.h</include>
+    </includes>
+    <namespace>Ui</namespace>
+    <class name="MatchUI" parent="QWidget">
+        <members>
+            <signal>matchCreated</signal>
+            <slots>
+                <slot>createMatch</slot>
+                <slot>updateMatchList</slot>
+                <slot>updatePlayerComboBoxes</slot>
+                <slot>updateMatchDetails</slot>
+            </slots>
+        </members>
+        <methods>
+            <method>explicit MatchUI(QWidget *parent, const QSqlDatabase &amp;database, GestionJoueurs* gestionJoueurs)</method>
+            <method>~MatchUI()</method>
+        </methods>
+        <private_members>
+            <member>Ui::MatchUI *ui;</member>
+            <member>QSqlDatabase db;</member>
+            <member>QStandardItemModel *matchModel;</member>
+            <member>GestionJoueurs *gestionJoueurs;</member>
+        </private_members>
+    </class>
+</MatchUI>
