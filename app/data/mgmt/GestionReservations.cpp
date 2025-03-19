@@ -5,10 +5,10 @@
 #include <QSqlError>
 #include <QDebug>
 
-GestionReservations::GestionReservations(const QSqlDatabase& db)
-    // : db(db)  // No need for this initialization
+GestionReservations::GestionReservations(const QSqlDatabase& db, GestionClients* gestionClients, GestionPlaces* gestionPlaces, QObject* parent)
+    : QObject(parent), db(db), gestionClients(gestionClients), gestionPlaces(gestionPlaces)
 {
-    // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
+    // Database is now stored as a member variable
 }
 
 GestionReservations::~GestionReservations()
@@ -16,7 +16,7 @@ GestionReservations::~GestionReservations()
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionReservations::ajouterReservation(const QSqlDatabase& db, int clientId, int placeId, const QDateTime& dateTime) {
+bool GestionReservations::ajouterReservation(int clientId, int placeId, const QDateTime& dateTime) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Reservations (clientId, placeId, dateTime) VALUES (:clientId, :placeId, :dateTime)");
     query.bindValue(":clientId", clientId);
@@ -27,10 +27,16 @@ bool GestionReservations::ajouterReservation(const QSqlDatabase& db, int clientI
         qDebug() << "Error adding reservation:" << query.lastError();
         return false;
     }
+    
+    int newId = query.lastInsertId().toInt();
+    Client client = gestionClients->getClientById(clientId);
+    Place place = gestionPlaces->getPlaceById(placeId);
+    emit reservationFound(newId, client, place, dateTime);
+    
     return true;
 }
 
-bool GestionReservations::supprimerReservation(const QSqlDatabase& db, int reservationId) {
+bool GestionReservations::supprimerReservation(int reservationId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Reservations WHERE id = :reservationId");
     query.bindValue(":reservationId", reservationId);
@@ -42,7 +48,7 @@ bool GestionReservations::supprimerReservation(const QSqlDatabase& db, int reser
     return true;
 }
 
-bool GestionReservations::modifierReservation(const QSqlDatabase& db, int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime) {
+bool GestionReservations::modifierReservation(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime) {
     QSqlQuery query(db);
     query.prepare("UPDATE Reservations SET clientId = :newClientId, placeId = :newPlaceId, dateTime = :newDateTime WHERE id = :reservationId");
     query.bindValue(":newClientId", newClientId);
@@ -57,7 +63,7 @@ bool GestionReservations::modifierReservation(const QSqlDatabase& db, int reserv
     return true;
 }
 
-QList<Reservation> GestionReservations::getReservations(const QSqlDatabase& db) const {
+QList<Reservation> GestionReservations::getReservations() const {
     QList<Reservation> reservations;
     QSqlQuery query(db);
     query.exec("SELECT * FROM Reservations"); 
@@ -69,17 +75,17 @@ QList<Reservation> GestionReservations::getReservations(const QSqlDatabase& db) 
         QDateTime dateTime = query.value("dateTime").toDateTime();
 
         // Assuming you have a way to get Client and Place objects by ID
-        Client client = gestionClients->getClientById(db, clientId); 
-        Place place = gestionPlaces->getPlaceById(db, placeId); 
+        Client client = gestionClients->getClientById(clientId); 
+        Place place = gestionPlaces->getPlaceById(placeId); 
 
         reservations.append(Reservation(id, client, place, dateTime)); 
     }
     return reservations;
 }
 
-void GestionReservations::searchReservations(const QSqlDatabase &db, const QString &searchTerm)
+void GestionReservations::searchReservations(const QString &searchTerm)
 {
-        QSqlQuery query(db);
+    QSqlQuery query(db);
     query.prepare("SELECT * FROM Reservations WHERE clientId LIKE :searchTerm OR placeId LIKE :searchTerm");
     query.bindValue(":searchTerm", "%" + searchTerm + "%");
 
@@ -94,9 +100,9 @@ void GestionReservations::searchReservations(const QSqlDatabase &db, const QStri
         int placeId = query.value("placeId").toInt();
         QDateTime dateTime = query.value("dateTime").toDateTime();
 
-        // Assuming you have a way to get Client and Place objects by ID
-        Client client = gestionClients->getClientById(db, clientId); 
-        Place place = gestionPlaces->getPlaceById(db, placeId); 
+        // Get related objects using the stored manager pointers
+        Client client = gestionClients->getClientById(clientId); 
+        Place place = gestionPlaces->getPlaceById(placeId); 
 
         // Emit a signal to notify the UI about the found reservation
         emit reservationFound(id, client, place, dateTime);
