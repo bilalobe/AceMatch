@@ -6,10 +6,11 @@
 #include <QSqlError>
 #include <QDebug>
 
-GestionTickets::GestionTickets(const QSqlDatabase& db)
-    // : db(db)  // No need for this initialization
+GestionTickets::GestionTickets(const QSqlDatabase& db, GestionJoueurs* gestionJoueurs, 
+                              GestionClients* gestionClients, GestionPlaces* gestionPlaces)
+    : db(db), gestionJoueurs(gestionJoueurs), gestionClients(gestionClients), gestionPlaces(gestionPlaces)
 {
-    // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
+    // Database is now stored as a member variable
 }
 
 GestionTickets::~GestionTickets()
@@ -17,7 +18,7 @@ GestionTickets::~GestionTickets()
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionTickets::ajouterTicket(const QSqlDatabase& db, int clientId, int matchId, int placeId, double price, const QString& status) {
+bool GestionTickets::ajouterTicket(int clientId, int matchId, int placeId, double price, const QString& status) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Tickets (clientId, matchId, placeId, price, status) VALUES (:clientId, :matchId, :placeId, :price, :status)");
     query.bindValue(":clientId", clientId);
@@ -33,7 +34,7 @@ bool GestionTickets::ajouterTicket(const QSqlDatabase& db, int clientId, int mat
     return true;
 }
 
-bool GestionTickets::supprimerTicket(const QSqlDatabase& db, int ticketId) {
+bool GestionTickets::supprimerTicket(int ticketId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Tickets WHERE id = :ticketId");
     query.bindValue(":ticketId", ticketId);
@@ -45,7 +46,7 @@ bool GestionTickets::supprimerTicket(const QSqlDatabase& db, int ticketId) {
     return true;
 }
 
-bool GestionTickets::modifierTicket(const QSqlDatabase& db, int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus) {
+bool GestionTickets::modifierTicket(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus) {
     QSqlQuery query(db);
     query.prepare("UPDATE Tickets SET clientId = :newClientId, matchId = :newMatchId, placeId = :newPlaceId, price = :newPrice, status = :newStatus WHERE id = :ticketId");
     query.bindValue(":newClientId", newClientId);
@@ -62,7 +63,7 @@ bool GestionTickets::modifierTicket(const QSqlDatabase& db, int ticketId, int ne
     return true;
 }
 
-QList<Ticket> GestionTickets::getTickets(const QSqlDatabase& db) const {
+QList<Ticket> GestionTickets::getTickets() const {
     QList<Ticket> tickets;
     QSqlQuery query(db);
     query.exec("SELECT * FROM Tickets"); 
@@ -75,19 +76,19 @@ QList<Ticket> GestionTickets::getTickets(const QSqlDatabase& db) const {
         double price = query.value("price").toDouble(); 
         QString status = query.value("status").toString();
 
-        // Assuming you have a way to get Client, Match, and Place objects by ID
-        Client client = gestionClients->getClientById(db, clientId); 
-        Match match = gestionJoueurs->getMatchById(db, matchId);
-        Place place = gestionPlaces->getPlaceById(db, placeId);
+        // Get related objects using the stored manager pointers
+        Client client = gestionClients->getClientById(clientId); 
+        Match match = gestionJoueurs->getMatchById(matchId);
+        Place place = gestionPlaces->getPlaceById(placeId);
 
         tickets.append(Ticket(id, client, match, place, price, status)); 
     }
     return tickets;
 }
 
-void  GestionTickets::searchTicket(const QSqlDatabase &db, const QString &searchTerm)
+void GestionTickets::searchTicket(const QString &searchTerm)
 {
-        QSqlQuery query(db);
+    QSqlQuery query(db);
     query.prepare("SELECT * FROM Tickets WHERE clientId LIKE :searchTerm OR matchId LIKE :searchTerm OR placeId LIKE :searchTerm");
     query.bindValue(":searchTerm", "%" + searchTerm + "%");
 
@@ -104,12 +105,37 @@ void  GestionTickets::searchTicket(const QSqlDatabase &db, const QString &search
         double price = query.value("price").toDouble(); 
         QString status = query.value("status").toString();
 
-        // Assuming you have a way to get Client, Match, and Place objects by ID
-        Client client = gestionClients->getClientById(db, clientId); 
-        Match match = gestionJoueurs->getMatchById(db, matchId);
-        Place place = gestionPlaces->getPlaceById(db, placeId);
+        // Get related objects using the stored manager pointers
+        Client client = gestionClients->getClientById(clientId); 
+        Match match = gestionJoueurs->getMatchById(matchId);
+        Place place = gestionPlaces->getPlaceById(placeId);
 
-        // Emit a signal to notify the UI about the found ticket
+        // Emit signal with found ticket
         emit ticketFound(id, client, match, place, price, status);
     }
+}
+
+Ticket GestionTickets::getTicketById(int ticketId) const {
+    QSqlQuery query(db);
+    query.prepare("SELECT * FROM Tickets WHERE id = :ticketId");
+    query.bindValue(":ticketId", ticketId);
+
+    if (query.exec() && query.next()) {
+        int id = query.value("id").toInt();
+        int clientId = query.value("clientId").toInt();
+        int matchId = query.value("matchId").toInt();
+        int placeId = query.value("placeId").toInt();
+        double price = query.value("price").toDouble(); 
+        QString status = query.value("status").toString();
+
+        // Get related objects using the stored manager pointers
+        Client client = gestionClients->getClientById(clientId); 
+        Match match = gestionJoueurs->getMatchById(matchId);
+        Place place = gestionPlaces->getPlaceById(placeId);
+
+        return Ticket(id, client, match, place, price, status);
+    }
+    
+    qDebug() << "Error retrieving ticket with ID:" << ticketId;
+    return Ticket();
 }
