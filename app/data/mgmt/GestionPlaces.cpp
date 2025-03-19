@@ -4,9 +4,9 @@
 #include <QDebug>
 
 GestionPlaces::GestionPlaces(const QSqlDatabase &db)
-// : db(db)  // No need for this initialization
+    : db(db)
 {
-    // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
+    // Database is now stored as a member variable
 }
 
 GestionPlaces::~GestionPlaces()
@@ -14,7 +14,7 @@ GestionPlaces::~GestionPlaces()
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionPlaces::ajouterPlace(const QSqlDatabase &db, const QString &nom, int capacity)
+bool GestionPlaces::ajouterPlace(const QString &nom, int capacity)
 {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Places (nom, capacity) VALUES (:nom, :capacity)");
@@ -29,7 +29,7 @@ bool GestionPlaces::ajouterPlace(const QSqlDatabase &db, const QString &nom, int
     return true;
 }
 
-bool GestionPlaces::supprimerPlace(const QSqlDatabase &db, int placeId)
+bool GestionPlaces::supprimerPlace(int placeId)
 {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Places WHERE id = :placeId");
@@ -43,7 +43,7 @@ bool GestionPlaces::supprimerPlace(const QSqlDatabase &db, int placeId)
     return true;
 }
 
-bool GestionPlaces::modifierPlace(const QSqlDatabase &db, int placeId, const QString &newName, int newCapacity)
+bool GestionPlaces::modifierPlace(int placeId, const QString &newName, int newCapacity)
 {
     QSqlQuery query(db);
     query.prepare("UPDATE Places SET nom = :newName, capacity = :newCapacity WHERE id = :placeId");
@@ -59,9 +59,9 @@ bool GestionPlaces::modifierPlace(const QSqlDatabase &db, int placeId, const QSt
     return true;
 }
 
-bool GestionPlaces::modifierPlaceCapacity(const QSqlDatabase & db, int placeId, int newCapacity)
+bool GestionPlaces::modifierPlaceCapacity(int placeId, int newCapacity)
 {
-       QSqlQuery query(db);
+    QSqlQuery query(db);
     query.prepare("UPDATE Places SET capacity = :newCapacity WHERE id = :placeId");
     query.bindValue(":newCapacity", newCapacity);
     query.bindValue(":placeId", placeId);
@@ -74,9 +74,7 @@ bool GestionPlaces::modifierPlaceCapacity(const QSqlDatabase & db, int placeId, 
     return true;
 }
 
-
-
-QList<Place> GestionPlaces::getPlaces(const QSqlDatabase &db) const
+QList<Place> GestionPlaces::getPlaces() const
 {
     QList<Place> places;
     QSqlQuery query(db);
@@ -94,24 +92,29 @@ QList<Place> GestionPlaces::getPlaces(const QSqlDatabase &db) const
     return places;
 }
 
-Place GestionPlaces::getPlaceById(const QSqlDatabase &db, int placeId) const
+Result<Place> GestionPlaces::getPlaceById(int placeId) const
 {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Places WHERE id = :placeId");
     query.bindValue(":placeId", placeId);
 
-    if (query.exec() && query.next())
-    {
-        return Place(query.value("id").toInt(), query.value("nom").toString(), query.value("capacity").toInt());
+    if (!query.exec()) {
+        qDebug() << "Error querying place:" << query.lastError();
+        return std::unexpected(QueryError("SELECT FROM Places", query.lastError().text().toStdString()));
     }
-    else
-    {
-        qDebug() << "Error getting place by ID:" << query.lastError();
-        return Place();
+    
+    if (!query.next()) {
+        return std::unexpected(NotFoundError("Place", placeId));
     }
+    
+    return Place(
+        query.value("id").toInt(),
+        query.value("nom").toString(),
+        query.value("capacity").toInt()
+    );
 }
 
-GestionPlaces::searchPlace(const QSqlDatabase &db, const QString &searchText) const
+QList<Place> GestionPlaces::searchPlace(const QString &searchText) const
 {
     QList<Place> places;
     QSqlQuery query(db);
@@ -127,6 +130,7 @@ GestionPlaces::searchPlace(const QSqlDatabase &db, const QString &searchText) co
             int capacity = query.value("capacity").toInt();
 
             places.append(Place(id, nom, capacity));
+            emit placeFound(id, nom, capacity);
         }
     }
     else
