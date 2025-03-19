@@ -1,5 +1,5 @@
-#ifndef GESTIONTICKETS_H
-#define GESTIONTICKETS_H
+#ifndef TICKETMANAGER_H
+#define TICKETMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -37,4 +37,4 @@ private:
     SeatManager* seatManager;
 };
 
-#endif // GESTIONTICKETS_H
+#endif // TICKETMANAGER_H

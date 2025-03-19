@@ -1,5 +1,5 @@
-#ifndef GESTIONPAIEMENTS_H
-#define GESTIONPAIEMENTS_H
+#ifndef PAYMENTMANAGER_H
+#define PAYMENTMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -32,4 +32,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONPAIEMENTS_H
+#endif // PAYMENTMANAGER_H

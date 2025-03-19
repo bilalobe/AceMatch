@@ -1,5 +1,5 @@
-#ifndef GESTIONSCORE_H
-#define GESTIONSCORE_H
+#ifndef SCOREMANAGER_H
+#define SCOREMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -32,4 +32,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONSCORE_H
+#endif // SCOREMANAGER_H

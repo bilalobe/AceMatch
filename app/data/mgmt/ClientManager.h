@@ -1,5 +1,5 @@
-#ifndef GESTIONCLIENTS_H
-#define GESTIONCLIENTS_H
+#ifndef CLIENTMANAGER_H
+#define CLIENTMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -32,4 +32,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONCLIENTS_H
+#endif // CLIENTMANAGER_H

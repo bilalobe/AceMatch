@@ -1,6 +1,6 @@
 // MatchManager.h
-#ifndef GESTIONMATCH_H
-#define GESTIONMATCH_H
+#ifndef MATCHMANAGER_H
+#define MATCHMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -35,4 +35,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONMATCH_H
+#endif // MATCHMANAGER_H

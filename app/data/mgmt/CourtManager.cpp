@@ -14,9 +14,9 @@ CourtManager::~CourtManager()
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool CourtManager::addTerrain(const QSqlDatabase& db, const QString& name, const QString& type) {
+bool CourtManager::addCourt(const QSqlDatabase& db, const QString& name, const QString& type) {
     QSqlQuery query(db);
-    query.prepare("INSERT INTO Terrains (name, type) VALUES (:name, :type)");
+    query.prepare("INSERT INTO Courts (name, type) VALUES (:name, :type)");
     query.bindValue(":name", name);
     query.bindValue(":type", type);
 
@@ -27,10 +27,10 @@ bool CourtManager::addTerrain(const QSqlDatabase& db, const QString& name, const
     return true;
 }
 
-bool CourtManager::removeTerrain(const QSqlDatabase& db, int terrainId) {
+bool CourtManager::removeCourt(const QSqlDatabase& db, int CourtId) {
     QSqlQuery query(db);
-    query.prepare("DELETE FROM Terrains WHERE id = :courtId");
-    query.bindValue(":courtId", terrainId);
+    query.prepare("DELETE FROM Courts WHERE id = :courtId");
+    query.bindValue(":courtId", CourtId);
 
     if (!query.exec()) {
         qDebug() << "Error deleting court:" << query.lastError();
@@ -39,12 +39,12 @@ bool CourtManager::removeTerrain(const QSqlDatabase& db, int terrainId) {
     return true;
 }
 
-bool CourtManager::updateTerrain(const QSqlDatabase& db, int terrainId, const QString& newName, const QString& newType) {
+bool CourtManager::updateCourt(const QSqlDatabase& db, int CourtId, const QString& newName, const QString& newType) {
     QSqlQuery query(db);
-    query.prepare("UPDATE Terrains SET name = :newName, type = :newType WHERE id = :courtId");
+    query.prepare("UPDATE Courts SET name = :newName, type = :newType WHERE id = :courtId");
     query.bindValue(":newName", newName);
     query.bindValue(":newType", newType);
-    query.bindValue(":courtId", terrainId);
+    query.bindValue(":courtId", CourtId);
 
     if (!query.exec()) {
         qDebug() << "Error updating court:" << query.lastError();
@@ -54,16 +54,16 @@ bool CourtManager::updateTerrain(const QSqlDatabase& db, int terrainId, const QS
 }
 
 QList<Court> CourtManager::getCourts(const QSqlDatabase& db) const {
-    QList<Court> terrains;
+    QList<Court> Courts;
     QSqlQuery query(db);
-    query.exec("SELECT * FROM Terrains"); 
+    query.exec("SELECT * FROM Courts"); 
 
     while (query.next()) {
         int id = query.value("id").toInt();
         QString name = query.value("name").toString();
         QString type = query.value("type").toString(); 
 
-        terrains.append(Court(id, name, type)); 
+        Courts.append(Court(id, name, type)); 
     }
-    return terrains;
+    return Courts;
 }

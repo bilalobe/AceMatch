@@ -1,5 +1,5 @@
-#ifndef GESTIONTERRAINS_H
-#define GESTIONTERRAINS_H
+#ifndef COURTMANAGER_H
+#define COURTMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -15,21 +15,21 @@ public:
     CourtManager(const QSqlDatabase& db);
     ~CourtManager();
 
-    bool addTerrain(const QString& name, const QString& type);
-    bool removeTerrain(int terrainId); 
-    bool updateTerrain(int terrainId, const QString& newName, const QString& newType);
+    bool addCourt(const QString& name, const QString& type);
+    bool removeCourt(int CourtId); 
+    bool updateCourt(int CourtId, const QString& newName, const QString& newType);
     QList<Court> getCourts() const;
-    Court getCourtById(int terrainId) const;
-    QList<Court> searchTerrains(const QString& searchTerm) const;
+    Court getCourtById(int CourtId) const;
+    QList<Court> searchCourts(const QString& searchTerm) const;
 
 signals:
-    void terrainAdded(int id, const QString& name, const QString& type);
-    void terrainUpdated(int id, const QString& name, const QString& type);
-    void terrainDeleted(int id);
-    void terrainFound(int id, const QString& name, const QString& type);
+    void CourtAdded(int id, const QString& name, const QString& type);
+    void CourtUpdated(int id, const QString& name, const QString& type);
+    void CourtDeleted(int id);
+    void CourtFound(int id, const QString& name, const QString& type);
 
 private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONTERRAINS_H
+#endif // COURTMANAGER_H

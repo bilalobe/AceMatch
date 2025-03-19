@@ -1,5 +1,5 @@
-#ifndef PAIEMENT_H
-#define PAIEMENT_H
+#ifndef PAYMENT_H
+#define PAYMENT_H
 
 #include <QString>
 
@@ -20,4 +20,4 @@ private:
     QString paymentMode;
 };
 
-#endif // PAIEMENT_H
+#endif // PAYMENT_H

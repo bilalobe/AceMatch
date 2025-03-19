@@ -1,5 +1,5 @@
-#ifndef TERRAIN_H
-#define TERRAIN_H
+#ifndef COURT_H
+#define COURT_H
 
 #include <QString>
 #include <QList>
@@ -19,4 +19,4 @@ private:
     QString type;
 };
 
-#endif // TERRAIN_H
+#endif // COURT_H

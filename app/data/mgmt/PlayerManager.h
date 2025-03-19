@@ -1,6 +1,6 @@
 // PlayerManager.h
-#ifndef GESTIONJOUEURS_H
-#define GESTIONJOUEURS_H
+#ifndef PLAYERMANAGER_H
+#define PLAYERMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -34,4 +34,4 @@ private:
     QSqlDatabase db;
 };
 
-#endif // GESTIONJOUEURS_H
+#endif // PLAYERMANAGER_H

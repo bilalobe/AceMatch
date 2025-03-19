@@ -1,5 +1,5 @@
-#ifndef TICKETS_H
-#define TICKETS_H
+#ifndef TICKET_H
+#define TICKET_H
 
 #include <QString>
 #include <QList>
@@ -29,4 +29,4 @@ private:
     QString status;
 };
 
-#endif // TICKETS_H
+#endif // TICKET_H

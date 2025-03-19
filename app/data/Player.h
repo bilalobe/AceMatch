@@ -1,5 +1,5 @@
-#ifndef JOUEUR_H
-#define JOUEUR_H
+#ifndef PLAYER_H
+#define PLAYER_H
 
 #include <QString>
 
@@ -15,4 +15,4 @@ private:
     int rang;
 };
 
-#endif // JOUEUR_H
+#endif // PLAYER_H

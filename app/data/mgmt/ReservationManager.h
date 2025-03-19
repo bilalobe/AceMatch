@@ -1,5 +1,5 @@
-#ifndef GESTIONRESERVATIONS_H
-#define GESTIONRESERVATIONS_H
+#ifndef RESERVATIONMANAGER_H
+#define RESERVATIONMANAGER_H
 
 #include <QString>
 #include <QList>
@@ -34,4 +34,4 @@ private:
     SeatManager* seatManager;
 };
 
-#endif // GESTIONRESERVATIONS_H
+#endif // RESERVATIONMANAGER_H
