@@ -5,23 +5,34 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
+#include <QObject>
 #include "..\Match.h"
 #include "..\Score.h"
 
-class GestionMatch
+class GestionMatch : public QObject
 {
+    Q_OBJECT
+
 public:
     GestionMatch(const QSqlDatabase& db);
     ~GestionMatch();
 
-    bool creerMatch(const QSqlDatabase& db, const QString& player1Name, const QString& player2Name, int score1, int score2);
-    bool supprimerMatch(const QSqlDatabase& db, int matchId);
-    bool modifierMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2);
-    QList<Match> getMatches(const QSqlDatabase& db) const;
-    Match getMatchById(const QSqlDatabase& db, int matchId) const;
+    bool creerMatch(const QString& player1Name, const QString& player2Name, int score1, int score2);
+    bool supprimerMatch(int matchId);
+    bool modifierMatch(int matchId, int newScore1, int newScore2);
+    QList<Match> getMatches() const;
+    Match getMatchById(int matchId) const;
+    Score getMatchScore(int matchId) const;
+    QList<Match> searchMatches(const QString& searchTerm) const;
 
-    // Add method to get the score for a match
-    Score getMatchScore(const QSqlDatabase& db, int matchId) const;
+signals:
+    void matchCreated(int id, const QString& player1Name, const QString& player2Name, int score1, int score2);
+    void matchDeleted(int id);
+    void matchUpdated(int id, int newScore1, int newScore2);
+    void matchFound(int id, const QString& player1Name, const QString& player2Name, int score1, int score2);
+
+private:
+    QSqlDatabase db;
 };
 
 #endif // GESTIONMATCH_H
