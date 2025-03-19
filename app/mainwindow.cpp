@@ -101,7 +101,7 @@ void MainWindow::createUIComponents() {
     scoreboardMatchDetailsUI = new ScoreboardMatchDetailsUI(this, db);
     seatsUI = new PlacesUI(this, db);
     reservationsUI = new ReservationsUI(this, db);
-    courtsUI = new TerrainUI(this, db);
+    courtsUI = new CourtUI(this, db);
     ticketsUI = new TicketsUI(this, db);
     scoreUI = new ScoreUI(this, db);
     clientsUI = new ClientsUI(this, db);
@@ -139,7 +139,7 @@ void MainWindow::setupTabs() {
     tournamentTabWidget->addTab(clientsUI, tr("Clients"));
     tournamentTabWidget->addTab(seatsUI, tr("Places"));
     tournamentTabWidget->addTab(reservationsUI, tr("Reservations"));
-    tournamentTabWidget->addTab(courtsUI, tr("Terrains"));
+    tournamentTabWidget->addTab(courtsUI, tr("Courts"));
     tournamentTabWidget->addTab(ticketsUI, tr("Tickets"));
     tournamentTabWidget->addTab(scoreUI, tr("Scores"));
     tournamentTabWidget->addTab(seatsUI, tr("Seats"));
@@ -234,9 +234,9 @@ void MainWindow::connectSignalsAndSlots() {
     connect(reservationsUI, &ReservationsUI::reservationDeleted, this, &MainWindow::handleReservationDeleted);
     connect(reservationsUI, &ReservationsUI::reservationUpdated, this, &MainWindow::handleReservationUpdated);
 
-    connect(courtsUI, &TerrainUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
-    connect(terrainsUI, &TerrainUI::terrainDeleted, this, &MainWindow::handleTerrainDeleted);
-    connect(terrainsUI, &TerrainUI::terrainUpdated, this, &MainWindow::handleTerrainUpdated);
+    connect(courtsUI, &CourtUI::CourtAdded, this, &MainWindow::handleCourtAdded);
+    connect(CourtsUI, &CourtUI::CourtDeleted, this, &MainWindow::handleCourtDeleted);
+    connect(CourtsUI, &CourtUI::CourtUpdated, this, &MainWindow::handleCourtUpdated);
 
     connect(ticketsUI, &TicketsUI::ticketAdded, this, &MainWindow::handleTicketAdded);
     connect(ticketsUI, &TicketsUI::ticketDeleted, this, &MainWindow::handleTicketDeleted);
@@ -287,7 +287,7 @@ MainWindow::~MainWindow()
     delete scoreboardMatchDetailsUI;
     delete placesUI;
     delete reservationsUI;
-    delete terrainsUI;
+    delete CourtsUI;
     delete ticketsUI;
     delete scoreUI;
 
@@ -354,7 +354,7 @@ void MainWindow::updateAllUI() {
     reservationsUI->updateReservationsList();
     reservationsUI->updateClientComboBox();
     reservationsUI->updatePlaceComboBox();
-    courtsUI->updateTerrainsList();
+    courtsUI->updateCourtsList();
     ticketsUI->updateTicketsList();
     ticketsUI->updateClientComboBox();
     ticketsUI->updateMatchComboBox();
@@ -469,7 +469,7 @@ void MainWindow::handleSearchTextChanged(const QString &searchTerm)
     seatsUI->searchPlace(searchTerm);
     playerProfileUI->searchPlayerProfile(searchTerm);
     reservationsUI->searchReservations(searchTerm);
-    courtsUI->searchTerrains(searchTerm);
+    courtsUI->searchCourts(searchTerm);
     ticketsUI->searchTickets(searchTerm);
     scoreUI->searchScores(searchTerm);
 
@@ -729,11 +729,11 @@ void MainWindow::handleReservationUpdated(int reservationId, int newClientId, in
     }
 }
 
-void MainWindow::handleTerrainAdded(const QString &name, const QString &type)
+void MainWindow::handleCourtAdded(const QString &name, const QString &type)
 {
-    if (courtManager->addTerrain(db, name, type))
+    if (courtManager->addCourt(db, name, type))
     {
-        courtsUI->updateTerrainsList();
+        courtsUI->updateCourtsList();
         statusBar()->showMessage("Court added successfully.");
     }
     else
@@ -742,11 +742,11 @@ void MainWindow::handleTerrainAdded(const QString &name, const QString &type)
     }
 }
 
-void MainWindow::handleTerrainDeleted(int terrainId)
+void MainWindow::handleCourtDeleted(int CourtId)
 {
-    if (courtManager->removeTerrain(db, terrainId))
+    if (courtManager->removeCourt(db, CourtId))
     {
-        terrainsUI->updateTerrainsList();
+        CourtsUI->updateCourtsList();
         statusBar()->showMessage("Court deleted successfully.");
     }
     else
@@ -755,11 +755,11 @@ void MainWindow::handleTerrainDeleted(int terrainId)
     }
 }
 
-void MainWindow::handleTerrainUpdated(int terrainId, const QString &newName, const QString &newType)
+void MainWindow::handleCourtUpdated(int CourtId, const QString &newName, const QString &newType)
 {
-    if (courtManager->updateTerrain(db, terrainId, newName, newType))
+    if (courtManager->updateCourt(db, CourtId, newName, newType))
     {
-        terrainsUI->updateTerrainsList();
+        CourtsUI->updateCourtsList();
         statusBar()->showMessage("Court updated successfully.");
     }
     else
@@ -938,9 +938,9 @@ void MainWindow::updateReservationsUI()
     reservationsUI->updatePlaceComboBox();
 }
 
-void MainWindow::updateTerrainsUI()
+void MainWindow::updateCourtsUI()
 {
-    courtsUI->updateTerrainsList();
+    courtsUI->updateCourtsList();
 }
 
 void MainWindow::updateTicketsUI()

@@ -2,8 +2,8 @@
 #include "ui_courtsui.h"
 #include <QMessageBox>
 
-TerrainUI::TerrainUI(QWidget *parent, const QSqlDatabase &database)
-    : QWidget(parent), ui(new Ui::TerrainUI), db(database)
+CourtUI::CourtUI(QWidget *parent, const QSqlDatabase &database)
+    : QWidget(parent), ui(new Ui::CourtUI), db(database)
 {
     ui->setupUi(this);
 
@@ -18,38 +18,38 @@ TerrainUI::TerrainUI(QWidget *parent, const QSqlDatabase &database)
     ui->idLineEdit->setReadOnly(true);
 
     // Update the courts list
-    updateTerrainsList();
+    updateCourtsList();
 
     // Connect signals and slots:
-    connect(ui->addTerrainButton, &QPushButton::clicked, this, &TerrainUI::addTerrain);
-    connect(ui->deleteTerrainButton, &QPushButton::clicked, this, &TerrainUI::deleteTerrain);
-    connect(ui->updateTerrainButton, &QPushButton::clicked, this, &TerrainUI::updateTerrain);
+    connect(ui->addCourtButton, &QPushButton::clicked, this, &CourtUI::addCourt);
+    connect(ui->deleteCourtButton, &QPushButton::clicked, this, &CourtUI::deleteCourt);
+    connect(ui->updateCourtButton, &QPushButton::clicked, this, &CourtUI::updateCourt);
     connect(ui->courtsTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
-            this, &TerrainUI::loadTerrainDetails);
+            this, &CourtUI::loadCourtDetails);
 }
 
-TerrainUI::~TerrainUI()
+CourtUI::~CourtUI()
 {
     delete ui;
     delete courtsModel;
 }
 
-void TerrainUI::addTerrain()
+void CourtUI::addCourt()
 {
     QString name = ui->nameLineEdit->text();
     QString type = ui->typeLineEdit->text(); // Adjust based on your Court class
 
-    emit terrainAdded(name, type); // Emit the signal with the correct parameters
+    emit CourtAdded(name, type); // Emit the signal with the correct parameters
 
     // Clear input fields
     ui->nameLineEdit->clear();
     ui->typeLineEdit->clear(); // Clear the type field
 
-    // Update the terrains list
-    updateTerrainsList();
+    // Update the Courts list
+    updateCourtsList();
 }
 
-void TerrainUI::deleteTerrain()
+void CourtUI::deleteCourt()
 {
     QModelIndexList selectedIndexes = ui->courtsTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty())
@@ -58,7 +58,7 @@ void TerrainUI::deleteTerrain()
         return;
     }
 
-    int terrainId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get terrain ID
+    int CourtId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get Court ID
 
     // Confirmation Dialog
     QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Court",
@@ -66,9 +66,9 @@ void TerrainUI::deleteTerrain()
                                                               QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes)
     {
-        emit terrainDeleted(terrainId);
-        updateTerrainsList();
-        clearTerrainDetails();
+        emit CourtDeleted(CourtId);
+        updateCourtsList();
+        clearCourtDetails();
 
         // Status Bar Message (you need access to MainWindow's status bar)
         MainWindow *mainWindow = dynamic_cast<MainWindow *>(parent());
@@ -79,33 +79,33 @@ void TerrainUI::deleteTerrain()
     }
 }
 
-void TerrainUI::searchTerrain(const QString& searchTerm) {
+void CourtUI::searchCourt(const QString& searchTerm) {
        courtsModel->clear(); // Clear the existing model data
     courtsModel->setHorizontalHeaderLabels({"ID", "Name", "Type"}); // Adjust if needed
 
-    // Get courts from CourtManager (or wherever you store terrain data)
-    QList<Court> terrains = courtManager->getCourts(db); // Adjust to your actual method
+    // Get courts from CourtManager (or wherever you store Court data)
+    QList<Court> Courts = courtManager->getCourts(db); // Adjust to your actual method
 
-    for (const Court &terrain : terrains)
+    for (const Court &Court : Courts)
     {
-        if (terrain.getName().contains(searchTerm, Qt::CaseInsensitive) ||
-            QString::number(terrain.getId()).contains(searchTerm)) { // Search ID as well
+        if (Court.getName().contains(searchTerm, Qt::CaseInsensitive) ||
+            QString::number(Court.getId()).contains(searchTerm)) { // Search ID as well
             int row = courtsModel->rowCount();
             courtsModel->insertRow(row);
 
             // Use the correct data from your Court class
-            courtsModel->setData(courtsModel->index(row, 0), terrain.getId());
-            courtsModel->setData(courtsModel->index(row, 1), terrain.getName());
-            courtsModel->setData(courtsModel->index(row, 2), terrain.getType());
+            courtsModel->setData(courtsModel->index(row, 0), Court.getId());
+            courtsModel->setData(courtsModel->index(row, 1), Court.getName());
+            courtsModel->setData(courtsModel->index(row, 2), Court.getType());
 
-            // Optional: Store the terrain ID in the Qt::UserRole of the first column
-            courtsModel->setData(courtsModel->index(row, 0), terrain.getId(), Qt::UserRole);
+            // Optional: Store the Court ID in the Qt::UserRole of the first column
+            courtsModel->setData(courtsModel->index(row, 0), Court.getId(), Qt::UserRole);
         }
     }
 }
 
 
-void TerrainUI::updateTerrain()
+void CourtUI::updateCourt()
 {
     QModelIndexList selectedIndexes = ui->courtsTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty())
@@ -114,84 +114,84 @@ void TerrainUI::updateTerrain()
         return;
     }
 
-    int terrainId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get terrain ID
+    int CourtId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get Court ID
     QString newName = ui->nameLineEdit->text();
     QString newType = ui->typeLineEdit->text(); // Adjust based on your Court class
 
-    emit terrainUpdated(terrainId, newName, newType); // Emit the signal with the correct parameters
+    emit CourtUpdated(CourtId, newName, newType); // Emit the signal with the correct parameters
 
-    // Update the terrains list
-    updateTerrainsList();
+    // Update the Courts list
+    updateCourtsList();
 }
 
-void TerrainUI::loadTerrainDetails(const QModelIndex &index)
+void CourtUI::loadCourtDetails(const QModelIndex &index)
 {
     if (!index.isValid())
     {
-        clearTerrainDetails();
+        clearCourtDetails();
         return;
     }
 
     int row = index.row();
 
-    // Get the selected terrain from your CourtManager (or wherever you store terrain data)
-    Court selectedTerrain = courtManager->getCourts(db)[row]; // Adjust to your actual method
+    // Get the selected Court from your CourtManager (or wherever you store Court data)
+    Court selectedCourt = courtManager->getCourts(db)[row]; // Adjust to your actual method
 
-    ui->idLineEdit->setText(QString::number(selectedTerrain.getId())); // Assuming your Court class has an getId() method
-    ui->nameLineEdit->setText(selectedTerrain.getName());               // Adjust based on your Court class
-    ui->typeLineEdit->setText(selectedTerrain.getType());              // Adjust based on your Court class
+    ui->idLineEdit->setText(QString::number(selectedCourt.getId())); // Assuming your Court class has an getId() method
+    ui->nameLineEdit->setText(selectedCourt.getName());               // Adjust based on your Court class
+    ui->typeLineEdit->setText(selectedCourt.getType());              // Adjust based on your Court class
 
-    // ... (Set values for other terrain detail fields) ...
+    // ... (Set values for other Court detail fields) ...
 }
 
-void TerrainUI::loadTerrainDetails(const QModelIndex &index)
+void CourtUI::loadCourtDetails(const QModelIndex &index)
 {
     if (!index.isValid())
     {
-        clearTerrainDetails();
+        clearCourtDetails();
         return;
     }
 
     int row = index.row();
 
-    // Get the selected terrain from your CourtManager (or wherever you store terrain data)
-    Court selectedTerrain = courtManager->getCourts(db)[row]; // Adjust to your actual method
+    // Get the selected Court from your CourtManager (or wherever you store Court data)
+    Court selectedCourt = courtManager->getCourts(db)[row]; // Adjust to your actual method
 
-    ui->idLineEdit->setText(QString::number(selectedTerrain.getId())); // Assuming your Court class has an getId() method
-    ui->nameLineEdit->setText(selectedTerrain.getName());               // Adjust based on your Court class
-    ui->typeLineEdit->setText(selectedTerrain.getType());              // Adjust based on your Court class
+    ui->idLineEdit->setText(QString::number(selectedCourt.getId())); // Assuming your Court class has an getId() method
+    ui->nameLineEdit->setText(selectedCourt.getName());               // Adjust based on your Court class
+    ui->typeLineEdit->setText(selectedCourt.getType());              // Adjust based on your Court class
 
-    // ... (Set values for other terrain detail fields) ...
+    // ... (Set values for other Court detail fields) ...
 }
 
-void TerrainUI::clearTerrainDetails()
+void CourtUI::clearCourtDetails()
 {
     ui->idLineEdit->clear();
     ui->nameLineEdit->clear();
     ui->typeLineEdit->clear();
-    // ... (Clear other terrain detail fields) ...
+    // ... (Clear other Court detail fields) ...
 }
 
-void TerrainUI::updateTerrainsList()
+void CourtUI::updateCourtsList()
 {
     courtsModel->clear();
     courtsModel->setHorizontalHeaderLabels({"ID", "Name", "Type"}); // Adjust if needed
 
-    // Get terrains from CourtManager (or wherever you store terrain data)
-    QList<Court> terrains = courtManager->getCourts(db); // Adjust to your actual method
+    // Get Courts from CourtManager (or wherever you store Court data)
+    QList<Court> Courts = courtManager->getCourts(db); // Adjust to your actual method
 
-    for (const Court &terrain : terrains)
+    for (const Court &Court : Courts)
     {
         int row = courtsModel->rowCount();
         courtsModel->insertRow(row);
 
         // Use the correct data from your Court class
-        courtsModel->setData(courtsModel->index(row, 0), terrain.getId());
-        courtsModel->setData(courtsModel->index(row, 1), terrain.getName());
-        courtsModel->setData(courtsModel->index(row, 2), terrain.getType());
+        courtsModel->setData(courtsModel->index(row, 0), Court.getId());
+        courtsModel->setData(courtsModel->index(row, 1), Court.getName());
+        courtsModel->setData(courtsModel->index(row, 2), Court.getType());
 
-        // Optional: Store the terrain ID in the Qt::UserRole of the first column
-        courtsModel->setData(courtsModel->index(row, 0), terrain.getId(), Qt::UserRole);
+        // Optional: Store the Court ID in the Qt::UserRole of the first column
+        courtsModel->setData(courtsModel->index(row, 0), Court.getId(), Qt::UserRole);
     }
 }
 

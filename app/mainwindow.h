@@ -50,7 +50,7 @@ public:
     ClientManager* getGestionClients() const { return clientManager; }
     SeatManager* getGestionPlaces() const { return seatManager; }
     ReservationManager* getGestionReservations() const { return reservationManager; }
-    CourtManager* getGestionTerrains() const { return courtManager; }
+    CourtManager* getGestionCourts() const { return courtManager; }
     TicketManager* getGestionTickets() const { return ticketManager; }
     ScoreManager* getGestionScores()   const { return gestionScores; }
     ClientManager* getGestionPaiements() const { return paymentManager; }
@@ -81,10 +81,10 @@ private slots:
     void handleReservationDeleted(int reservationId);
     void handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
 
-    // Terrains Slots
-    void handleTerrainAdded(const QString& name, const QString& type);
-    void handleTerrainDeleted(int terrainId);
-    void handleTerrainUpdated(int terrainId, const QString& newName, const QString& newType);
+    // Courts Slots
+    void handleCourtAdded(const QString& name, const QString& type);
+    void handleCourtDeleted(int CourtId);
+    void handleCourtUpdated(int CourtId, const QString& newName, const QString& newType);
 
     // Tickets Slots
     void handleTicketAdded(int clientId, int matchId, int seatId, double price, const QString& status);
@@ -146,7 +146,7 @@ private:
     ScoreboardMatchDetailsUI* scoreboardMatchDetailsUI;
     PlacesUI* placesUI;
     ReservationsUI* reservationsUI;
-    TerrainUI* terrainsUI;
+    CourtUI* CourtsUI;
     TicketsUI* ticketsUI;
     ScoreUI* scoreUI;
     ClientsUI* clientsUI;

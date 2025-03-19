@@ -49,9 +49,9 @@ private slots:
     void handleReservationDeleted(int reservationId);
     void handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
 
-    void handleTerrainAdded(const QString& name, const QString& type);
-    void handleTerrainDeleted(int terrainId);
-    void handleTerrainUpdated(int terrainId, const QString& newName, const QString& newType);
+    void handleCourtAdded(const QString& name, const QString& type);
+    void handleCourtDeleted(int CourtId);
+    void handleCourtUpdated(int CourtId, const QString& newName, const QString& newType);
 
     void handleTicketAdded(int clientId, int matchId, int seatId, double price, const QString& status);
     void handleTicketDeleted(int ticketId);
@@ -77,7 +77,7 @@ private:
     ScoreboardMatchDetailsUI* scoreboardMatchDetailsUI;
     PlacesUI* placesUI;
     ReservationsUI* reservationsUI;
-    TerrainsUI* terrainsUI;
+    CourtsUI* CourtsUI;
     TicketsUI* ticketsUI;
     ScoreUI* scoreUI;
     ClientsUI* clientsUI; // Add ClientsUI

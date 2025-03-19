@@ -123,9 +123,9 @@ int main(int argc, char *argv[])
     ReservationsUI* reservationsUI = new ReservationsUI(&mainWindow, db);
     tournamentTabWidget->addTab(reservationsUI, "Reservations");
 
-    // Terrains Mini-Tab
-    TerrainUI* courtsUI = new TerrainUI(&mainWindow, db);
-    tournamentTabWidget->addTab(terrainsUI, "Terrains");
+    // Courts Mini-Tab
+    CourtUI* courtsUI = new CourtUI(&mainWindow, db);
+    tournamentTabWidget->addTab(CourtsUI, "Courts");
 
     // Tickets Mini-Tab
     TicketsUI* ticketsUI = new TicketsUI(&mainWindow, db);

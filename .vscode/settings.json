@@ -106,5 +106,5 @@
     "fstream": "cpp",
     "sstream": "cpp"
   },
-  "cmake.sourceDirectory": "a:/workspace/special-broccoli/app"
+  "cmake.sourceDirectory": "K:/AceMatch/app"
 }
