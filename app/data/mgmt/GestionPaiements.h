@@ -4,19 +4,32 @@
 #include <QString>
 #include <QList>
 #include <QSqlDatabase>
+#include <QObject>
 #include "..\Paiement.h"
 
-class GestionPaiements
+class GestionPaiements : public QObject
 {
+    Q_OBJECT
+
 public:
     GestionPaiements(const QSqlDatabase& db);
     ~GestionPaiements();
 
-    bool ajouterPaiement(const QSqlDatabase& db, int ticketId, double montant, const QString& modePaiement);
-    bool supprimerPaiement(const QSqlDatabase& db, int paiementId); 
-    bool modifierPaiement(const QSqlDatabase& db, int paiementId, double newMontant, const QString& newModePaiement);
-    QList<Paiement> getPaiements(const QSqlDatabase& db) const; 
-    Paiement getPaiementById(const QSqlDatabase& db, int paiementId) const; 
+    bool ajouterPaiement(int ticketId, double montant, const QString& modePaiement);
+    bool supprimerPaiement(int paiementId); 
+    bool modifierPaiement(int paiementId, double newMontant, const QString& newModePaiement);
+    QList<Paiement> getPaiements() const;
+    Paiement getPaiementById(int paiementId) const;
+    QList<Paiement> searchPaiements(const QString& searchTerm) const;
+
+signals:
+    void paiementAdded(int id, int ticketId, double montant, const QString& modePaiement);
+    void paiementDeleted(int id);
+    void paiementUpdated(int id, double newMontant, const QString& newModePaiement);
+    void paiementFound(int id, int ticketId, double montant, const QString& modePaiement);
+
+private:
+    QSqlDatabase db;
 };
 
 #endif // GESTIONPAIEMENTS_H
