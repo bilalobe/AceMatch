@@ -17,7 +17,7 @@
    <item>
     <widget class="QGroupBox" name="groupBox">
      <property name="title">
-      <string>Terrain Details</string>
+      <string>Court Details</string>
      </property>
      <layout class="QFormLayout" name="formLayout">
       <item row="0" column="0">
@@ -54,28 +54,28 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="terrainsTableView"/>
+    <widget class="QTableView" name="courtsTableView"/>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QPushButton" name="addTerrainButton">
+      <widget class="QPushButton" name="addCourtButton">
        <property name="text">
-        <string>Add Terrain</string>
+        <string>Add Court</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="deleteTerrainButton">
+      <widget class="QPushButton" name="deleteCourtButton">
        <property name="text">
-        <string>Delete Terrain</string>
+        <string>Delete Court</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="updateTerrainButton">
+      <widget class="QPushButton" name="updateCourtButton">
        <property name="text">
-        <string>Update Terrain</string>
+        <string>Update Court</string>
        </property>
       </widget>
      </item>

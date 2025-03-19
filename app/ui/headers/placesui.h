@@ -18,8 +18,8 @@ public:
 
 signals:
     void placeAdded(const QString& name, int capacity);
-    void placeDeleted(int placeId);
-    void placeUpdated(int placeId, const QString& newName, int newCapacity);
+    void placeDeleted(int seatId);
+    void placeUpdated(int seatId, const QString& newName, int newCapacity);
     void placeSearched(const QString& searchTerm); // Add this signal
 
 private slots:
@@ -33,7 +33,7 @@ private slots:
 private:
     Ui::PlacesUI *ui;
     QSqlDatabase db;
-    QStandardItemModel* placesModel;
+    QStandardItemModel* seatsModel;
 
     void updatePlacesList(); 
 };

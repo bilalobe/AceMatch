@@ -19,8 +19,8 @@ public:
 
 private slots:
     void addScore();
-    bool supprimerScore(const QSqlDatabase& db, int scoreId);
-    bool modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2);
+    bool removeScore(const QSqlDatabase& db, int scoreId);
+    bool updateScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2);
     void loadScoreDetails(const QModelIndex& index);
     void clearScoreDetails();
 

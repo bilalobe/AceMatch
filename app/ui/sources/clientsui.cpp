@@ -105,11 +105,11 @@ void ClientsUI::loadClientDetails(const QModelIndex& index) {
 
     int row = index.row();
 
-    // Get the selected client from your GestionClients (or wherever you store client data)
-    Client selectedClient = gestionClients->getClients(db)[row];
+    // Get the selected client from your ClientManager (or wherever you store client data)
+    Client selectedClient = clientManager->getClients(db)[row];
 
     ui->idLineEdit->setText(QString::number(selectedClient.getId()));
-    ui->nameLineEdit->setText(selectedClient.getNom());
+    ui->nameLineEdit->setText(selectedClient.getName());
     ui->emailLineEdit->setText(selectedClient.getEmail());
     ui->phoneNumberLineEdit->setText(selectedClient.getPhoneNumber());
 
@@ -126,7 +126,7 @@ void ClientsUI::updateClientsList() {
     clientsModel->clear();
     clientsModel->setHorizontalHeaderLabels({"ID", "Name", "Email", "Phone Number"});
 
-    QList<Client> clients = gestionClients->getClients(db);
+    QList<Client> clients = clientManager->getClients(db);
 
     for (const Client& client : clients) {
         int row = clientsModel->rowCount();
@@ -134,7 +134,7 @@ void ClientsUI::updateClientsList() {
 
         // Use the correct data from your Client class
         clientsModel->setData(clientsModel->index(row, 0), client.getId());
-        clientsModel->setData(clientsModel->index(row, 1), client.getNom());
+        clientsModel->setData(clientsModel->index(row, 1), client.getName());
         clientsModel->setData(clientsModel->index(row, 2), client.getEmail());
         clientsModel->setData(clientsModel->index(row, 3), client.getPhoneNumber());
 
@@ -147,12 +147,12 @@ void ClientsUI::searchClient(const QString& searchTerm) {
     clientsModel->clear(); // Clear the existing model data
     clientsModel->setHorizontalHeaderLabels({"ID", "Name", "Email", "Phone Number"});
 
-    // Get clients from GestionClients (or wherever you store client data)
-    QList<Client> clients = gestionClients->getClients(db); // Adjust to your actual method
+    // Get clients from ClientManager (or wherever you store client data)
+    QList<Client> clients = clientManager->getClients(db); // Adjust to your actual method
 
     for (const Client &client : clients)
     {
-        if (client.getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+        if (client.getName().contains(searchTerm, Qt::CaseInsensitive) ||
             client.getEmail().contains(searchTerm, Qt::CaseInsensitive) ||
             client.getPhoneNumber().contains(searchTerm, Qt::CaseInsensitive) ||
             QString::number(client.getId()).contains(searchTerm)) { // Search ID as well
@@ -161,7 +161,7 @@ void ClientsUI::searchClient(const QString& searchTerm) {
 
             // Use the correct data from your Client class
             clientsModel->setData(clientsModel->index(row, 0), client.getId());
-            clientsModel->setData(clientsModel->index(row, 1), client.getNom());
+            clientsModel->setData(clientsModel->index(row, 1), client.getName());
             clientsModel->setData(clientsModel->index(row, 2), client.getEmail());
             clientsModel->setData(clientsModel->index(row, 3), client.getPhoneNumber());
 

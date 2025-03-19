@@ -39,8 +39,8 @@ void PlayerUI::addPlayer() {
         return;
     }
 
-    // Create a Joueur object
-    Tournament::Joueur newJoueur(name, ranking);
+    // Create a Player object
+    Tournament::Player newJoueur(name, ranking);
 
     // Emit signal to notify MainWindow
     emit playerAdded(newJoueur);
@@ -89,8 +89,8 @@ void PlayerUI::updatePlayer() {
         return;
     }
 
-    // Create a Joueur object
-    Tournament::Joueur updatedJoueur(name, ranking);
+    // Create a Player object
+    Tournament::Player updatedJoueur(name, ranking);
 
     // Emit signal to notify MainWindow
     emit playerUpdated(updatedJoueur);
@@ -120,14 +120,14 @@ void PlayerUI::clearPlayerDetails() {
 }
 
 void PlayerUI::updatePlayerList() {
-    // Get players from MainWindow's GestionJoueurs
-    QList<Tournament::Joueur> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getJoueurs(db);
+    // Get players from MainWindow's PlayerManager
+    QList<Tournament::Player> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getPlayers(db);
 
     playersModel->clear();
-    for (const Tournament::Joueur& joueur : players) {
+    for (const Tournament::Player& joueur : players) {
         int row = playersModel->rowCount();
         playersModel->insertRow(row);
-        playersModel->setData(playersModel->index(row, 0), joueur.getNom());
+        playersModel->setData(playersModel->index(row, 0), joueur.getName());
         playersModel->setData(playersModel->index(row, 1), joueur.getRang());
     }
 }

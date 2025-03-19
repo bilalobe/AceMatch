@@ -6,16 +6,16 @@
 class Client
 {
 public:
-    Client(int id = -1, const QString& nom = "", const QString& email = "", const QString& phoneNumber = "")
-        : id(id), nom(nom), email(email), phoneNumber(phoneNumber) {} // Inline constructor
+    Client(int id = -1, const QString& name = "", const QString& email = "", const QString& phoneNumber = "")
+        : id(id), name(name), email(email), phoneNumber(phoneNumber) {} // Inline constructor
     int getId() const { return id; }
-    QString getNom() const { return nom; }
+    QString getName() const { return name; }
     QString getEmail() const { return email; }
     QString getPhoneNumber() const { return phoneNumber; }
 
 private:
     int id;
-    QString nom;
+    QString name;
     QString email;
     QString phoneNumber;
 };

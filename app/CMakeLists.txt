@@ -10,8 +10,8 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Find Qt
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql LinguistTools)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql LinguistTools)
+# find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql LinguistTools)
+# find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql LinguistTools)
 
 # Translation Files
 set(TS_FILES 
@@ -27,7 +27,7 @@ set(UI_FILES
     ui/scoreboardmatchdetailsui.ui
     ui/placesui.ui
     ui/reservationsui.ui 
-    ui/terrainsui.ui
+    ui/courtsui.ui
     ui/ticketsui.ui
     ui/scoreui.ui
     ui/clientsui.ui
@@ -43,7 +43,7 @@ set(UI_HEADERS
     ui/headers/scoreboardmatchdetailsui.h
     ui/headers/placesui.h
     ui/headers/reservationsui.h
-    ui/headers/terrainsui.h
+    ui/headers/courtsui.h
     ui/headers/ticketsui.h
     ui/headers/scoreui.h
     ui/headers/clientsui.h
@@ -59,7 +59,7 @@ set(UI_SOURCES
     ui/sources/scoreboardmatchdetailsui.cpp
     ui/sources/placesui.cpp
     ui/sources/reservationsui.cpp
-    ui/sources/terrainsui.cpp
+    ui/sources/courtsui.cpp
     ui/sources/ticketsui.cpp
     ui/sources/scoreui.cpp
     ui/sources/clientsui.cpp
@@ -69,42 +69,42 @@ set(UI_SOURCES
 
 # Data Class Header Files (No .cpp files as constructors are inline)
 set(DATA_HEADERS
-    data/Joueur.h
+    data/Player.h
     data/Match.h
     data/Client.h
-    data/Place.h
+    data/Seat.h
     data/Reservation.h
-    data/Terrain.h
+    data/Court.h
     data/Ticket.h
     data/Score.h
-    data/Paiement.h
+    data/Payment.h
 )
 
 # Gestion Class Header and Source Files
 set(GESTION_HEADERS
-    data/mgmt/GestionJoueurs.h
-    data/mgmt/GestionMatch.h
-    data/mgmt/GestionClients.h
-    data/mgmt/GestionPlaces.h
-    data/mgmt/GestionReservations.h
-    data/mgmt/GestionTerrains.h
-    data/mgmt/GestionTickets.h
-    data/mgmt/GestionPaiements.h
-    data/mgmt/GestionSeats.h
-    data/mgmt/GestionScores.h
+    data/mgmt/PlayerManager.h
+    data/mgmt/MatchManager.h
+    data/mgmt/ClientManager.h
+    data/mgmt/SeatManager.h
+    data/mgmt/ReservationManager.h
+    data/mgmt/CourtManager.h
+    data/mgmt/TicketManager.h
+    data/mgmt/PaymentManager.h
+    data/mgmt/SeatManager.h
+    data/mgmt/ScoreManager.h
 )
 
 set(GESTION_SOURCES
-    data/mgmt/GestionJoueurs.cpp
-    data/mgmt/GestionMatch.cpp
-    data/mgmt/GestionClients.cpp
-    data/mgmt/GestionPlaces.cpp
-    data/mgmt/GestionReservations.cpp
-    data/mgmt/GestionTerrains.cpp
-    data/mgmt/GestionTickets.cpp
-    data/mgmt/GestionPaiements.cpp
-    data/mgmt/GestionScores.cpp
-    data/mgmt/GestionSeats.cpp
+    data/mgmt/PlayerManager.cpp
+    data/mgmt/MatchManager.cpp
+    data/mgmt/ClientManager.cpp
+    data/mgmt/SeatManager.cpp
+    data/mgmt/ReservationManager.cpp
+    data/mgmt/CourtManager.cpp
+    data/mgmt/TicketManager.cpp
+    data/mgmt/PaymentManager.cpp
+    data/mgmt/ScoreManager.cpp
+    data/mgmt/SeatManager.cpp
 )
 
 # All Source Files
@@ -127,20 +127,20 @@ set(PROJECT_SOURCES
 )
 
 # Add the executable
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(app
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-    target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
+# if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
+#     qt_add_executable(app
+#         MANUAL_FINALIZATION
+#         ${PROJECT_SOURCES}
+#     )
+#     target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
 
-    qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-else()
-    add_executable(app ${PROJECT_SOURCES})
-    target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
+#     qt_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+# else()
+#     add_executable(app ${PROJECT_SOURCES})
+#     target_link_libraries(app PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt${QT_VERSION_MAJOR}::Sql) 
 
-    qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
-endif()
+#     qt5_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
+# endif()
 
 # Add Resources (Make sure to create the resources.qrc file)
 #set(RESOURCES_FILES resources.qrc)
@@ -148,26 +148,26 @@ endif()
 #target_sources(app PRIVATE resources.qrc)
 
 # Bundle Identifiers (Adjust based on your project)
-if(${QT_VERSION} VERSION_LESS 6.1.0)
-    set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.yourcompany.app)
-endif()
-set_target_properties(app PROPERTIES 
-    ${BUNDLE_ID_OPTION}
-    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
-)
+# if(${QT_VERSION} VERSION_LESS 6.1.0)
+#     set(BUNDLE_ID_OPTION MACOSX_BUNDLE_GUI_IDENTIFIER com.yourcompany.app)
+# endif()
+# set_target_properties(app PROPERTIES 
+#     ${BUNDLE_ID_OPTION}
+#     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+#     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+#     MACOSX_BUNDLE TRUE
+#     WIN32_EXECUTABLE TRUE
+# )
 
 # Installation (Adjust based on your preferences)
 include(GNUInstallDirs)
-install(TARGETS app
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-)
+# install(TARGETS app
+#     BUNDLE DESTINATION .
+#     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+#     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# )
 
 # Finalize Executable (Qt 6)
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(app)
-endif()
+# if(QT_VERSION_MAJOR EQUAL 6)
+#     qt_finalize_executable(app)
+# endif()

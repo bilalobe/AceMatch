@@ -1,10 +1,10 @@
 #include "mainwindow.h"
-#include "data/mgmt/GestionClients.h"
-#include "data/mgmt/GestionPaiements.h"
-#include "data/mgmt/GestionPlaces.h"
-#include "data/mgmt/GestionReservations.h"
-#include "data/mgmt/GestionTerrains.h"
-#include "data/mgmt/GestionTickets.h"
+#include "data/mgmt/ClientManager.h"
+#include "data/mgmt/PaymentManager.h"
+#include "data/mgmt/SeatManager.h"
+#include "data/mgmt/ReservationManager.h"
+#include "data/mgmt/CourtManager.h"
+#include "data/mgmt/TicketManager.h"
 #include "qtoolbar.h"
 #include "ui/headers/SettingsDialog.h"
 #include "qsqlerror.h"
@@ -83,15 +83,15 @@ void MainWindow::loadStylesheet() {
 }
 
 void MainWindow::initializeGestionClasses() {
-    gestionJoueurs = new GestionJoueurs(db);
-    gestionMatch = new GestionMatch(db);
-    gestionClients = new GestionClients(db);
-    gestionPlaces = new GestionPlaces(db);
-    gestionReservations = new GestionReservations(db);
-    gestionTerrains = new GestionTerrains(db);
-    gestionTickets = new GestionTickets(db);
-    gestionScore = new GestionScores(db);
-    gestionPaiements = new GestionPaiements(db);
+    playerManager = new PlayerManager(db);
+    matchManager = new MatchManager(db);
+    clientManager = new ClientManager(db);
+    seatManager = new SeatManager(db);
+    reservationManager = new ReservationManager(db);
+    courtManager = new CourtManager(db);
+    ticketManager = new TicketManager(db);
+    scoreManager = new ScoreManager(db);
+    paymentManager = new PaymentManager(db);
 }
 
 void MainWindow::createUIComponents() {
@@ -99,9 +99,9 @@ void MainWindow::createUIComponents() {
     matchUI = new MatchUI(this, db);
     playerProfileUI = new PlayerProfileUI(this, db);
     scoreboardMatchDetailsUI = new ScoreboardMatchDetailsUI(this, db);
-    placesUI = new PlacesUI(this, db);
+    seatsUI = new PlacesUI(this, db);
     reservationsUI = new ReservationsUI(this, db);
-    terrainsUI = new TerrainUI(this, db);
+    courtsUI = new TerrainUI(this, db);
     ticketsUI = new TicketsUI(this, db);
     scoreUI = new ScoreUI(this, db);
     clientsUI = new ClientsUI(this, db);
@@ -137,9 +137,9 @@ void MainWindow::setupTabs() {
     tabWidget->addTab(tournamentTab, tr("Tournament Management"));
 
     tournamentTabWidget->addTab(clientsUI, tr("Clients"));
-    tournamentTabWidget->addTab(placesUI, tr("Places"));
+    tournamentTabWidget->addTab(seatsUI, tr("Places"));
     tournamentTabWidget->addTab(reservationsUI, tr("Reservations"));
-    tournamentTabWidget->addTab(terrainsUI, tr("Terrains"));
+    tournamentTabWidget->addTab(courtsUI, tr("Terrains"));
     tournamentTabWidget->addTab(ticketsUI, tr("Tickets"));
     tournamentTabWidget->addTab(scoreUI, tr("Scores"));
     tournamentTabWidget->addTab(seatsUI, tr("Seats"));
@@ -226,7 +226,7 @@ void MainWindow::connectSignalsAndSlots() {
 
     connect(playerProfileUI, &PlayerProfileUI::playerProfileUpdated, this, &MainWindow::handlePlayerProfileUpdated);
 
-    connect(placesUI, &PlacesUI::placeAdded, this, &MainWindow::handlePlaceAdded);
+    connect(seatsUI, &PlacesUI::placeAdded, this, &MainWindow::handlePlaceAdded);
     connect(placesUI, &PlacesUI::placeDeleted, this, &MainWindow::handlePlaceDeleted);
     connect(placesUI, &PlacesUI::placeUpdated, this, &MainWindow::handlePlaceUpdated);
 
@@ -234,7 +234,7 @@ void MainWindow::connectSignalsAndSlots() {
     connect(reservationsUI, &ReservationsUI::reservationDeleted, this, &MainWindow::handleReservationDeleted);
     connect(reservationsUI, &ReservationsUI::reservationUpdated, this, &MainWindow::handleReservationUpdated);
 
-    connect(terrainsUI, &TerrainUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
+    connect(courtsUI, &TerrainUI::terrainAdded, this, &MainWindow::handleTerrainAdded);
     connect(terrainsUI, &TerrainUI::terrainDeleted, this, &MainWindow::handleTerrainDeleted);
     connect(terrainsUI, &TerrainUI::terrainUpdated, this, &MainWindow::handleTerrainUpdated);
 
@@ -271,14 +271,14 @@ MainWindow::~MainWindow()
     delete ui;
 
     // Delete Gestion* objects
-    delete gestionJoueurs;
-    delete gestionPlaces;
-    delete gestionReservations;
-    delete gestionTerrains;
-    delete gestionTickets;
-    delete gestionScore;
-    delete gestionClients;
-    delete gestionPaiements;
+    delete playerManager;
+    delete seatManager;
+    delete reservationManager;
+    delete courtManager;
+    delete ticketManager;
+    delete scoreManager;
+    delete clientManager;
+    delete paymentManager;
 
     // Delete UI components
     delete playerBox;
@@ -350,11 +350,11 @@ void MainWindow::updateAllUI() {
     matchUI->updatePlayerComboBoxes();
     playerProfileUI->updatePlayerComboBox();
     scoreboardMatchDetailsUI->updateMatchComboBox();
-    placesUI->updatePlacesList();
+    seatsUI->updatePlacesList();
     reservationsUI->updateReservationsList();
     reservationsUI->updateClientComboBox();
     reservationsUI->updatePlaceComboBox();
-    terrainsUI->updateTerrainsList();
+    courtsUI->updateTerrainsList();
     ticketsUI->updateTicketsList();
     ticketsUI->updateClientComboBox();
     ticketsUI->updateMatchComboBox();
@@ -466,10 +466,10 @@ void MainWindow::handleSearchTextChanged(const QString &searchTerm)
 {
     playerBox->searchPlayer(searchTerm);
     matchUI->searchMatch(searchTerm);
-    placesUI->searchPlace(searchTerm);
+    seatsUI->searchPlace(searchTerm);
     playerProfileUI->searchPlayerProfile(searchTerm);
     reservationsUI->searchReservations(searchTerm);
-    terrainsUI->searchTerrains(searchTerm);
+    courtsUI->searchTerrains(searchTerm);
     ticketsUI->searchTickets(searchTerm);
     scoreUI->searchScores(searchTerm);
 
@@ -478,38 +478,38 @@ void MainWindow::handleSearchTextChanged(const QString &searchTerm)
 
 void MainWindow::handleMatchSelected(int matchId)
 {
-    Match match = gestionMatch->getMatch(db, matchId);
+    Match match = matchManager->getMatch(db, matchId);
     // Update other UI elements based on the selected match, like "Match Details" in another tab
     matchUI->displayMatchDetails(match);
-    placesUI->displayAvailablePlaces(match);
-    playerProfileUI->displayPlayerProfile(match.getJoueur1());
-    playerProfileUI->displayPlayerProfile(match.getJoueur2());
+    seatsUI->displayAvailablePlaces(match);
+    playerProfileUI->displayPlayerProfile(match.getPlayer1());
+    playerProfileUI->displayPlayerProfile(match.getPlayer2());
     ticketsUI->displayTickets(match);
     scoreUI->displayScore(match);
 }
 
 void MainWindow::updateStandings()
 {
-    QList<Joueur> players = gestionJoueurs->getJoueurs(db);
+    QList<Player> players = playerManager->getPlayers(db);
     QMap<QString, int> playerWins;
 
     // Calculate wins from match data
-    QList<Match> matches = gestionMatch->getMatches(db);
+    QList<Match> matches = matchManager->getMatches(db);
     for (const Match &match : matches)
     {
         if (match.getScore1() > match.getScore2())
         {
-            playerWins[match.getJoueur1().getNom()]++;
+            playerWins[match.getPlayer1().getName()]++;
         }
         else if (match.getScore2() > match.getScore1())
         {
-            playerWins[match.getJoueur2().getNom()]++;
+            playerWins[match.getPlayer2().getName()]++;
         }
         else
         {
             // Tie:  award 0.5 points to both players
-            playerWins[match.getJoueur1().getNom()] += 0.5;
-            playerWins[match.getJoueur2().getNom()] += 0.5;
+            playerWins[match.getPlayer1().getName()] += 0.5;
+            playerWins[match.getPlayer2().getName()] += 0.5;
         }
     }
 
@@ -546,7 +546,7 @@ void MainWindow::updateStandings()
 
 void MainWindow::handlePlayerAdded(const QString &name, int ranking)
 {
-    if (gestionJoueurs->ajouterJoueur(db, name, ranking))
+    if (playerManager->addJoueur(db, name, ranking))
     {
         playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
@@ -559,9 +559,9 @@ void MainWindow::handlePlayerAdded(const QString &name, int ranking)
     }
 }
 
-void MainWindow::handlePlayerRemoved(const QString &nom)
+void MainWindow::handlePlayerRemoved(const QString &name)
 {
-    if (gestionJoueurs->supprimerJoueur(db, nom))
+    if (playerManager->removeJoueur(db, name))
     {
         playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
@@ -574,9 +574,9 @@ void MainWindow::handlePlayerRemoved(const QString &nom)
     }
 }
 
-void MainWindow::handlePlayerUpdated(const QString &nom, int newRanking)
+void MainWindow::handlePlayerUpdated(const QString &name, int newRanking)
 {
-    if (gestionJoueurs->modifierJoueur(db, nom, newRanking))
+    if (playerManager->updateJoueur(db, name, newRanking))
     {
         playerBox->updatePlayerList();
         playerProfileUI->updatePlayerComboBox();
@@ -596,7 +596,7 @@ void MainWindow::handlePlayerSearched(const QString &searchTerm)
 
 void MainWindow::handleMatchCreated(const QString &player1Name, const QString &player2Name, int score1, int score2)
 {
-    if (gestionMatch->creerMatch(db, player1Name, player2Name, score1, score2))
+    if (matchManager->createMatch(db, player1Name, player2Name, score1, score2))
     {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
@@ -610,7 +610,7 @@ void MainWindow::handleMatchCreated(const QString &player1Name, const QString &p
 
 void MainWindow::handleMatchDeleted(int matchId)
 {
-    if (gestionMatch->supprimerMatch(db, matchId))
+    if (matchManager->removeMatch(db, matchId))
     {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
@@ -624,7 +624,7 @@ void MainWindow::handleMatchDeleted(int matchId)
 
 void MainWindow::handleMatchUpdated(int matchId, int newScore1, int newScore2)
 {
-    if (gestionMatch->modifierMatch(db, matchId, newScore1, newScore2))
+    if (matchManager->updateMatch(db, matchId, newScore1, newScore2))
     {
         matchUI->updateMatchList();
         updateStandings(); // Update standings if needed
@@ -638,7 +638,7 @@ void MainWindow::handleMatchUpdated(int matchId, int newScore1, int newScore2)
 
 void MainWindow::handlePlayerProfileUpdated(const QString &playerName, int newRanking)
 {
-    if (gestionJoueurs->modifierJoueur(db, playerName, newRanking))
+    if (playerManager->updateJoueur(db, playerName, newRanking))
     {
         playerBox->updatePlayerList();           // Update player list
         playerProfileUI->updatePlayerComboBox(); // Update player profile combo box
@@ -653,46 +653,46 @@ void MainWindow::handlePlayerProfileUpdated(const QString &playerName, int newRa
 
 void MainWindow::handlePlaceAdded(const QString &name, int capacity)
 {
-    if (gestionPlaces->ajouterPlace(db, name, capacity))
+    if (seatManager->addPlace(db, name, capacity))
     {
-        placesUI->updatePlacesList();
-        statusBar()->showMessage("Place added successfully.");
+        seatsUI->updatePlacesList();
+        statusBar()->showMessage("Seat added successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to add place.");
+        QMessageBox::warning(this, "Error", "Failed to add seat.");
     }
 }
 
-void MainWindow::handlePlaceDeleted(int placeId)
+void MainWindow::handlePlaceDeleted(int seatId)
 {
-    if (gestionPlaces->supprimerPlace(db, placeId))
+    if (seatManager->removePlace(db, seatId))
     {
         placesUI->updatePlacesList();
-        statusBar()->showMessage("Place deleted successfully.");
+        statusBar()->showMessage("Seat deleted successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to delete place.");
+        QMessageBox::warning(this, "Error", "Failed to delete seat.");
     }
 }
 
-void MainWindow::handlePlaceUpdated(int placeId, const QString &newName, int newCapacity)
+void MainWindow::handlePlaceUpdated(int seatId, const QString &newName, int newCapacity)
 {
-    if (gestionPlaces->modifierPlace(db, placeId, newName, newCapacity))
+    if (seatManager->updatePlace(db, seatId, newName, newCapacity))
     {
         placesUI->updatePlacesList();
-        statusBar()->showMessage("Place updated successfully.");
+        statusBar()->showMessage("Seat updated successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to update place.");
+        QMessageBox::warning(this, "Error", "Failed to update seat.");
     }
 }
 
-void MainWindow::handleReservationAdded(int clientId, int placeId, const QDateTime &dateTime)
+void MainWindow::handleReservationAdded(int clientId, int seatId, const QDateTime &dateTime)
 {
-    if (gestionReservations->ajouterReservation(db, clientId, placeId, dateTime))
+    if (reservationManager->addReservation(db, clientId, seatId, dateTime))
     {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation added successfully.");
@@ -705,7 +705,7 @@ void MainWindow::handleReservationAdded(int clientId, int placeId, const QDateTi
 
 void MainWindow::handleReservationDeleted(int reservationId)
 {
-    if (gestionReservations->supprimerReservation(db, reservationId))
+    if (reservationManager->removeReservation(db, reservationId))
     {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation deleted successfully.");
@@ -718,7 +718,7 @@ void MainWindow::handleReservationDeleted(int reservationId)
 
 void MainWindow::handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime &newDateTime)
 {
-    if (gestionReservations->modifierReservation(db, reservationId, newClientId, newPlaceId, newDateTime))
+    if (reservationManager->updateReservation(db, reservationId, newClientId, newPlaceId, newDateTime))
     {
         reservationsUI->updateReservationsList();
         statusBar()->showMessage("Reservation updated successfully.");
@@ -731,46 +731,46 @@ void MainWindow::handleReservationUpdated(int reservationId, int newClientId, in
 
 void MainWindow::handleTerrainAdded(const QString &name, const QString &type)
 {
-    if (gestionTerrains->ajouterTerrain(db, name, type))
+    if (courtManager->addTerrain(db, name, type))
     {
-        terrainsUI->updateTerrainsList();
-        statusBar()->showMessage("Terrain added successfully.");
+        courtsUI->updateTerrainsList();
+        statusBar()->showMessage("Court added successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to add terrain.");
+        QMessageBox::warning(this, "Error", "Failed to add court.");
     }
 }
 
 void MainWindow::handleTerrainDeleted(int terrainId)
 {
-    if (gestionTerrains->supprimerTerrain(db, terrainId))
+    if (courtManager->removeTerrain(db, terrainId))
     {
         terrainsUI->updateTerrainsList();
-        statusBar()->showMessage("Terrain deleted successfully.");
+        statusBar()->showMessage("Court deleted successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to delete terrain.");
+        QMessageBox::warning(this, "Error", "Failed to delete court.");
     }
 }
 
 void MainWindow::handleTerrainUpdated(int terrainId, const QString &newName, const QString &newType)
 {
-    if (gestionTerrains->modifierTerrain(db, terrainId, newName, newType))
+    if (courtManager->updateTerrain(db, terrainId, newName, newType))
     {
         terrainsUI->updateTerrainsList();
-        statusBar()->showMessage("Terrain updated successfully.");
+        statusBar()->showMessage("Court updated successfully.");
     }
     else
     {
-        QMessageBox::warning(this, "Error", "Failed to update terrain.");
+        QMessageBox::warning(this, "Error", "Failed to update court.");
     }
 }
 
-void MainWindow::handleTicketAdded(int clientId, int matchId, int placeId, double price, const QString &status)
+void MainWindow::handleTicketAdded(int clientId, int matchId, int seatId, double price, const QString &status)
 {
-    if (gestionTickets->ajouterTicket(db, clientId, matchId, placeId, price, status))
+    if (ticketManager->addTicket(db, clientId, matchId, seatId, price, status))
     {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket added successfully.");
@@ -783,7 +783,7 @@ void MainWindow::handleTicketAdded(int clientId, int matchId, int placeId, doubl
 
 void MainWindow::handleTicketDeleted(int ticketId)
 {
-    if (gestionTickets->supprimerTicket(db, ticketId))
+    if (ticketManager->removeTicket(db, ticketId))
     {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket deleted successfully.");
@@ -796,7 +796,7 @@ void MainWindow::handleTicketDeleted(int ticketId)
 
 void MainWindow::handleTicketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString &newStatus)
 {
-    if (gestionTickets->modifierTicket(db, ticketId, newClientId, newMatchId, newPlaceId, newPrice, newStatus))
+    if (ticketManager->updateTicket(db, ticketId, newClientId, newMatchId, newPlaceId, newPrice, newStatus))
     {
         ticketsUI->updateTicketsList();
         statusBar()->showMessage("Ticket updated successfully.");
@@ -809,7 +809,7 @@ void MainWindow::handleTicketUpdated(int ticketId, int newClientId, int newMatch
 
 void MainWindow::handleScoreAdded(int matchId, int score1, int score2)
 {
-    if (gestionScore->ajouterScore(db, matchId, score1, score2))
+    if (scoreManager->addScore(db, matchId, score1, score2))
     {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score added successfully.");
@@ -822,7 +822,7 @@ void MainWindow::handleScoreAdded(int matchId, int score1, int score2)
 
 void MainWindow::handleScoreDeleted(int scoreId)
 {
-    if (gestionScore->supprimerScore(db, scoreId))
+    if (scoreManager->removeScore(db, scoreId))
     {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score deleted successfully.");
@@ -835,7 +835,7 @@ void MainWindow::handleScoreDeleted(int scoreId)
 
 void MainWindow::handleScoreUpdated(int scoreId, int newScore1, int newScore2)
 {
-    if (gestionScore->modifierScore(db, scoreId, newScore1, newScore2))
+    if (scoreManager->updateScore(db, scoreId, newScore1, newScore2))
     {
         scoreUI->updateScoresList();
         statusBar()->showMessage("Score updated successfully.");
@@ -846,9 +846,9 @@ void MainWindow::handleScoreUpdated(int scoreId, int newScore1, int newScore2)
     }
 }
 
-void MainWindow::handleClientAdded(const QString &nom, const QString &email, const QString &phoneNumber)
+void MainWindow::handleClientAdded(const QString &name, const QString &email, const QString &phoneNumber)
 {
-    if (gestionClients->ajouterClient(db, nom, email, phoneNumber))
+    if (clientManager->addClient(db, name, email, phoneNumber))
     {
         clientsUI->updateClientsList();
         statusBar()->showMessage(tr("Client added successfully."));
@@ -861,7 +861,7 @@ void MainWindow::handleClientAdded(const QString &nom, const QString &email, con
 
 void MainWindow::handleClientDeleted(int clientId)
 {
-    if (gestionClients->supprimerClient(db, clientId))
+    if (clientManager->removeClient(db, clientId))
     {
         clientsUI->updateClientsList();
         statusBar()->showMessage(tr("Client deleted successfully."));
@@ -874,7 +874,7 @@ void MainWindow::handleClientDeleted(int clientId)
 
 void MainWindow::handleClientUpdated(int clientId, const QString &newName, const QString &newEmail, const QString &newPhoneNumber)
 {
-    if (gestionClients->modifierClient(db, clientId, newName, newEmail, newPhoneNumber))
+    if (clientManager->updateClient(db, clientId, newName, newEmail, newPhoneNumber))
     {
         clientsUI->updateClientsList();
         statusBar()->showMessage(tr("Client updated successfully."));
@@ -928,7 +928,7 @@ void MainWindow::updateScoreboardMatchDetailsUI()
 
 void MainWindow::updatePlacesUI()
 {
-    placesUI->updatePlacesList();
+    seatsUI->updatePlacesList();
 }
 
 void MainWindow::updateReservationsUI()
@@ -940,7 +940,7 @@ void MainWindow::updateReservationsUI()
 
 void MainWindow::updateTerrainsUI()
 {
-    terrainsUI->updateTerrainsList();
+    courtsUI->updateTerrainsList();
 }
 
 void MainWindow::updateTicketsUI()
@@ -1080,7 +1080,7 @@ bool MainWindow::importDataFromCSV(const QString &fileName)
         QStringList fields = line.split(",");
         if (fields.size() == 3)
         {
-            gestionJoueurs->ajouterJoueur(db, fields[0], fields[1].toInt());
+            playerManager->addJoueur(db, fields[0], fields[1].toInt());
         }
     }
 

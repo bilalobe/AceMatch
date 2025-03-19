@@ -11,10 +11,10 @@ MatchUI::MatchUI(QWidget *parent, const QSqlDatabase& database)
 {
     ui->setupUi(this);
 
-    // Get access to your GestionJoueurs instance
-    gestionJoueurs = dynamic_cast<MainWindow*>(parent)->getGestionJoueurs();
-    if (!gestionJoueurs) {
-        qDebug() << "Error: Could not access GestionJoueurs.";
+    // Get access to your PlayerManager instance
+    playerManager = dynamic_cast<MainWindow*>(parent)->getGestionJoueurs();
+    if (!playerManager) {
+        qDebug() << "Error: Could not access PlayerManager.";
         return;
     }
 
@@ -73,16 +73,16 @@ void MatchUI::updateMatchList()
     matchModel->clear();
     matchModel->setHorizontalHeaderLabels({"Player 1", "Player 2", "Score 1", "Score 2"});
 
-    // Get matches from GestionJoueurs
-    QList<Match> matches = gestionJoueurs->getMatches(db);
+    // Get matches from PlayerManager
+    QList<Match> matches = playerManager->getMatches(db);
 
     for (const Match& match : matches) {
         int row = matchModel->rowCount();
         matchModel->insertRow(row);
 
         // Use the correct variable names and getter methods from your Match class
-        matchModel->setData(matchModel->index(row, 0), match.getJoueur1().getNom());
-        matchModel->setData(matchModel->index(row, 1), match.getJoueur2().getNom());
+        matchModel->setData(matchModel->index(row, 0), match.getPlayer1().getName());
+        matchModel->setData(matchModel->index(row, 1), match.getPlayer2().getName());
         matchModel->setData(matchModel->index(row, 2), match.getScore1());
         matchModel->setData(matchModel->index(row, 3), match.getScore2());
     }
@@ -96,11 +96,11 @@ void MatchUI::updateMatchDetails(const QModelIndex& index)
     }
 
     int row = index.row();
-    Match selectedMatch = gestionJoueurs->getMatches(db)[row];
+    Match selectedMatch = playerManager->getMatches(db)[row];
 
-    // Use the correct getter methods from your Match and Joueur classes
-    ui->player1NameLabel->setText(selectedMatch.getJoueur1().getNom());
-    ui->player2NameLabel->setText(selectedMatch.getJoueur2().getNom());
+    // Use the correct getter methods from your Match and Player classes
+    ui->player1NameLabel->setText(selectedMatch.getPlayer1().getName());
+    ui->player2NameLabel->setText(selectedMatch.getPlayer2().getName());
     ui->player1ScoreLabel->setText(QString::number(selectedMatch.getScore1()));
     ui->player2ScoreLabel->setText(QString::number(selectedMatch.getScore2()));
 }
@@ -160,11 +160,11 @@ void MatchUI::updatePlayerComboBoxes() {
     ui->player1ComboBox->clear();
     ui->player2ComboBox->clear();
 
-    QList<Joueur> players = gestionJoueurs->getJoueurs(db);
+    QList<Player> players = playerManager->getPlayers(db);
 
-    for (const Joueur& player : players) {
-        ui->player1ComboBox->addItem(player.getNom());
-        ui->player2ComboBox->addItem(player.getNom());
+    for (const Player& player : players) {
+        ui->player1ComboBox->addItem(player.getName());
+        ui->player2ComboBox->addItem(player.getName());
     }
 }
 
@@ -172,17 +172,17 @@ void MatchUI::searchMatch(const QString& searchTerm) {
     matchModel->clear();
     matchModel->setHorizontalHeaderLabels({"Player 1", "Player 2", "Score 1", "Score 2"});
 
-    QList<Match> matches = gestionJoueurs->getMatches(db);
+    QList<Match> matches = playerManager->getMatches(db);
 
     for (const Match& match : matches) {
-        if (match.getJoueur1().getNom().contains(searchTerm, Qt::CaseInsensitive) ||
-            match.getJoueur2().getNom().contains(searchTerm, Qt::CaseInsensitive)) {
+        if (match.getPlayer1().getName().contains(searchTerm, Qt::CaseInsensitive) ||
+            match.getPlayer2().getName().contains(searchTerm, Qt::CaseInsensitive)) {
 
             int row = matchModel->rowCount();
             matchModel->insertRow(row);
 
-            matchModel->setData(matchModel->index(row, 0), match.getJoueur1().getNom());
-            matchModel->setData(matchModel->index(row, 1), match.getJoueur2().getNom());
+            matchModel->setData(matchModel->index(row, 0), match.getPlayer1().getName());
+            matchModel->setData(matchModel->index(row, 1), match.getPlayer2().getName());
             matchModel->setData(matchModel->index(row, 2), match.getScore1());
             matchModel->setData(matchModel->index(row, 3), match.getScore2());
         }

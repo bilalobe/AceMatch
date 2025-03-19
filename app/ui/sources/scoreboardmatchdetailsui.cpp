@@ -8,10 +8,10 @@ ScoreboardMatchDetailsUI::ScoreboardMatchDetailsUI(QWidget *parent, const QSqlDa
 {
     ui->setupUi(this);
 
-    // Get access to GestionJoueurs
-    gestionJoueurs = dynamic_cast<MainWindow*>(parent)->getGestionJoueurs();
-    if (!gestionJoueurs) {
-        qDebug() << "Error: Could not access GestionJoueurs.";
+    // Get access to PlayerManager
+    playerManager = dynamic_cast<MainWindow*>(parent)->getGestionJoueurs();
+    if (!playerManager) {
+        qDebug() << "Error: Could not access PlayerManager.";
         return;
     }
 
@@ -34,16 +34,16 @@ ScoreboardMatchDetailsUI::~ScoreboardMatchDetailsUI()
 
 void ScoreboardMatchDetailsUI::updateMatchComboBox() {
     ui->matchComboBox->clear();
-    QList<Match> matches = gestionJoueurs->getMatches(db);
+    QList<Match> matches = playerManager->getMatches(db);
     for (const Match& match : matches) {
-        QString matchDescription = QString("%1 vs %2").arg(match.getJoueur1().getNom(), match.getJoueur2().getNom());
+        QString matchDescription = QString("%1 vs %2").arg(match.getPlayer1().getName(), match.getPlayer2().getName());
         ui->matchComboBox->addItem(matchDescription, match.getId()); // Store the match ID as user data
     }
 }
 
 void ScoreboardMatchDetailsUI::loadMatchDetails() {
     int matchId = ui->matchComboBox->currentData().toInt(); 
-    Match match = gestionJoueurs->getMatchById(db, matchId); 
+    Match match = playerManager->getMatchById(db, matchId); 
 
     if (match.getId() != -1) { // Assuming -1 means the match was not found
         displayMatchDetails(match);
@@ -55,14 +55,14 @@ void ScoreboardMatchDetailsUI::loadMatchDetails() {
 }
 
 void ScoreboardMatchDetailsUI::displayMatchDetails(const Match& match) {
-    ui->player1NameLabel->setText(match.getJoueur1().getNom());
-    ui->player2NameLabel->setText(match.getJoueur2().getNom());
+    ui->player1NameLabel->setText(match.getPlayer1().getName());
+    ui->player2NameLabel->setText(match.getPlayer2().getName());
     ui->player1ScoreLabel->setText(QString::number(match.getScore1()));
     ui->player2ScoreLabel->setText(QString::number(match.getScore2()));
 
     // Update scoreboard
-    scoreboard->setPlayer1Name(match.getJoueur1().getNom());
-    scoreboard->setPlayer2Name(match.getJoueur2().getNom());
+    scoreboard->setPlayer1Name(match.getPlayer1().getName());
+    scoreboard->setPlayer2Name(match.getPlayer2().getName());
     scoreboard->setScore1(match.getScore1());
     scoreboard->setScore2(match.getScore2());
 

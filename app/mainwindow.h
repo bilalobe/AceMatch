@@ -8,29 +8,29 @@
 
 // UI Classes
 
-#include "data/mgmt/GestionSeats.h"
+#include "data/mgmt/SeatManager.h"
 #include "ui/headers/matchui.h"
 #include "ui/headers/playerbox.h"
 #include "ui/headers/playerprofileui.h"
 #include "ui/headers/scoreboardmatchdetailsui.h"
-#include "ui/headers/placesui.h"
+#include "ui/headers/seatsui.h"
 #include "ui/headers/reservationsui.h"
-#include "ui/headers/terrainsui.h"
+#include "ui/headers/courtsui.h"
 #include "ui/headers/ticketsui.h"
 #include "ui/headers/scoreui.h"
 #include "ui/headers/clientsui.h"
 #include "ui/headers/seatsui.h"
 
 // Data Management Classes
-#include "data/mgmt/GestionJoueurs.h"
-#include "data/mgmt/GestionMatch.h"
-#include "data/mgmt/GestionClients.h"
-#include "data/mgmt/GestionPlaces.h"
-#include "data/mgmt/GestionReservations.h"
-#include "data/mgmt/GestionTerrains.h"
-#include "data/mgmt/GestionTickets.h"
-#include "data/mgmt/GestionScores.h"
-#include "data/mgmt/GestionPaiements.h"
+#include "data/mgmt/PlayerManager.h"
+#include "data/mgmt/MatchManager.h"
+#include "data/mgmt/ClientManager.h"
+#include "data/mgmt/SeatManager.h"
+#include "data/mgmt/ReservationManager.h"
+#include "data/mgmt/CourtManager.h"
+#include "data/mgmt/TicketManager.h"
+#include "data/mgmt/ScoreManager.h"
+#include "data/mgmt/PaymentManager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -45,22 +45,22 @@ public:
     ~MainWindow();
 
     // Getters for Gestion* objects (to be used in UI classes)
-    GestionJoueurs* getGestionJoueurs() const { return gestionJoueurs; }
-    GestionMatch* getGestionMatch() const { return gestionMatch; }
-    GestionClients* getGestionClients() const { return gestionClients; }
-    GestionPlaces* getGestionPlaces() const { return gestionPlaces; }
-    GestionReservations* getGestionReservations() const { return gestionReservations; }
-    GestionTerrains* getGestionTerrains() const { return gestionTerrains; }
-    GestionTickets* getGestionTickets() const { return gestionTickets; }
-    GestionScore* getGestionScores()   const { return gestionScores; }
-    GestionClients* getGestionPaiements() const { return gestionPaiements; }
-    GestionSeats* getGestionSeats() const { return gestionSeats; } // Add this getter
+    PlayerManager* getGestionJoueurs() const { return playerManager; }
+    MatchManager* getGestionMatch() const { return matchManager; }
+    ClientManager* getGestionClients() const { return clientManager; }
+    SeatManager* getGestionPlaces() const { return seatManager; }
+    ReservationManager* getGestionReservations() const { return reservationManager; }
+    CourtManager* getGestionTerrains() const { return courtManager; }
+    TicketManager* getGestionTickets() const { return ticketManager; }
+    ScoreManager* getGestionScores()   const { return gestionScores; }
+    ClientManager* getGestionPaiements() const { return paymentManager; }
+    SeatManager* getGestionSeats() const { return gestionSeats; } // Add this getter
 
 private slots:
     // Player Slots
     void handlePlayerAdded(const QString& name, int ranking);
-    void handlePlayerRemoved(const QString& nom);
-    void handlePlayerUpdated(const QString& nom, int newRanking);
+    void handlePlayerRemoved(const QString& name);
+    void handlePlayerUpdated(const QString& name, int newRanking);
     void handlePlayerSearched(const QString& searchTerm);
 
     // Match Slots
@@ -73,11 +73,11 @@ private slots:
 
     // Places Slots
     void handlePlaceAdded(const QString& name, int capacity);
-    void handlePlaceDeleted(int placeId);
-    void handlePlaceUpdated(int placeId, const QString& newName, int newCapacity);
+    void handlePlaceDeleted(int seatId);
+    void handlePlaceUpdated(int seatId, const QString& newName, int newCapacity);
 
     // Reservations Slots
-    void handleReservationAdded(int clientId, int placeId, const QDateTime& dateTime);
+    void handleReservationAdded(int clientId, int seatId, const QDateTime& dateTime);
     void handleReservationDeleted(int reservationId);
     void handleReservationUpdated(int reservationId, int newClientId, int newPlaceId, const QDateTime& newDateTime);
 
@@ -87,7 +87,7 @@ private slots:
     void handleTerrainUpdated(int terrainId, const QString& newName, const QString& newType);
 
     // Tickets Slots
-    void handleTicketAdded(int clientId, int matchId, int placeId, double price, const QString& status);
+    void handleTicketAdded(int clientId, int matchId, int seatId, double price, const QString& status);
     void handleTicketDeleted(int ticketId);
     void handleTicketUpdated(int ticketId, int newClientId, int newMatchId, int newPlaceId, double newPrice, const QString& newStatus);
 
@@ -97,7 +97,7 @@ private slots:
     void handleScoreUpdated(int scoreId, int newScore1, int newScore2);
 
     // Client Slots
-    void handleClientAdded(const QString& nom, const QString& email, const QString& phoneNumber);
+    void handleClientAdded(const QString& name, const QString& email, const QString& phoneNumber);
     void handleClientDeleted(int clientId);
     void handleClientUpdated(int clientId, const QString& newName, const QString& newEmail, const QString& newPhoneNumber);
 
@@ -157,16 +157,16 @@ private:
     QTableView* standingsTableView;
 
     // Data Management Classes
-    GestionJoueurs* gestionJoueurs;
-    GestionMatch* gestionMatch;
-    GestionClients* gestionClients;
-    GestionPlaces* gestionPlaces;
-    GestionReservations* gestionReservations;
-    GestionTerrains* gestionTerrains;
-    GestionTickets* gestionTickets;
-    GestionScores* gestionScores;
-    GestionPaiements* gestionPaiements;
-    GestionSeats* gestionSeats;
+    PlayerManager* playerManager;
+    MatchManager* matchManager;
+    ClientManager* clientManager;
+    SeatManager* seatManager;
+    ReservationManager* reservationManager;
+    CourtManager* courtManager;
+    TicketManager* ticketManager;
+    ScoreManager* gestionScores;
+    PaymentManager* paymentManager;
+    SeatManager* gestionSeats;
 
     // Menu items
     QMenu *fileMenu;

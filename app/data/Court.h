@@ -5,17 +5,17 @@
 #include <QList>
 #include <QSqlDatabase>
 
-class Terrain
+class Court
 {
 public:
-    Terrain(int id = -1, const QString& nom = "", const QString& type = "") : id(id), nom(nom), type(type) {} // Inline constructor
+    Court(int id = -1, const QString& name = "", const QString& type = "") : id(id), name(name), type(type) {} // Inline constructor
     int getId() const { return id; }
-    QString getNom() const { return nom; }
+    QString getName() const { return name; }
     QString getType() const { return type; }
 
 private:
     int id;
-    QString nom;
+    QString name;
     QString type;
 };
 

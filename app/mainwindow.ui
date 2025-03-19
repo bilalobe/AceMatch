@@ -90,13 +90,13 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="placesTab">
+          <widget class="QWidget" name="seatsTab">
            <attribute name="title">
             <string>Places</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_9">
             <item>
-             <widget class="QWidget" name="placesUI" native="true"/>
+             <widget class="QWidget" name="seatsUI" native="true"/>
             </item>
            </layout>
           </widget>
@@ -110,13 +110,13 @@
             </item>
            </layout>
           </widget>
-          <widget class="QWidget" name="terrainsTab">
+          <widget class="QWidget" name="courtsTab">
            <attribute name="title">
             <string>Terrains</string>
            </attribute>
            <layout class="QVBoxLayout" name="verticalLayout_11">
             <item>
-             <widget class="QWidget" name="terrainsUI" native="true"/>
+             <widget class="QWidget" name="courtsUI" native="true"/>
             </item>
            </layout>
           </widget>

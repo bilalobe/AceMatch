@@ -6,22 +6,22 @@
 #include <QSqlDatabase>
 #include <QDateTime>
 #include "Client.h"
-#include "Place.h"
+#include "Seat.h"
 
 class Reservation
 {
 public:
-    Reservation(int id = -1, const Client& client = Client(), const Place& place = Place(), const QDateTime& dateTime = QDateTime())
+    Reservation(int id = -1, const Client& client = Client(), const Seat& place = Seat(), const QDateTime& dateTime = QDateTime())
         : id(id), client(client), place(place), dateTime(dateTime) {} // Inline constructor
     int getId() const { return id; }
     const Client& getClient() const { return client; }
-    const Place& getPlace() const { return place; }
+    const Seat& getPlace() const { return place; }
     QDateTime getDateTime() const { return dateTime; }
 
 private:
     int id;
     Client client;
-    Place place;
+    Seat place;
     QDateTime dateTime;
 };
 

@@ -1,20 +1,20 @@
-#include "GestionScores.h"
+#include "ScoreManager.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
 
-GestionScore::GestionScore(const QSqlDatabase& db)
+ScoreManager::ScoreManager(const QSqlDatabase& db)
     // : db(db)  // No need for this initialization
 {
     // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
 }
 
-GestionScore::~GestionScore()
+ScoreManager::~ScoreManager()
 {
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionScore::ajouterScore(const QSqlDatabase& db, int matchId, int score1, int score2) {
+bool ScoreManager::addScore(const QSqlDatabase& db, int matchId, int score1, int score2) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Scores (matchId, score1, score2) VALUES (:matchId, :score1, :score2)");
     query.bindValue(":matchId", matchId);
@@ -28,7 +28,7 @@ bool GestionScore::ajouterScore(const QSqlDatabase& db, int matchId, int score1,
     return true;
 }
 
-bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
+bool ScoreManager::removeScore(const QSqlDatabase& db, int scoreId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Scores WHERE id = :scoreId");
     query.bindValue(":scoreId", scoreId);
@@ -40,7 +40,7 @@ bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
     return true;
 }
 
-bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
+bool ScoreManager::updateScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
     QSqlQuery query(db);
     query.prepare("UPDATE Scores SET score1 = :newScore1, score2 = :newScore2 WHERE id = :scoreId");
     query.bindValue(":newScore1", newScore1);
@@ -54,7 +54,7 @@ bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newSco
     return true;
 }
 
-QList<Score> GestionScore::getScores(const QSqlDatabase& db) const {
+QList<Score> ScoreManager::getScores(const QSqlDatabase& db) const {
     QList<Score> scores;
     QSqlQuery query(db);
     query.exec("SELECT * FROM Scores"); 
@@ -70,7 +70,7 @@ QList<Score> GestionScore::getScores(const QSqlDatabase& db) const {
     return scores;
 }
 
-Score GestionScore::getScoreById(const QSqlDatabase& db, int scoreId) const {
+Score ScoreManager::getScoreById(const QSqlDatabase& db, int scoreId) const {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Scores WHERE id = :scoreId"); 
     query.bindValue(":scoreId", scoreId);

@@ -3,8 +3,8 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
-#include "A:\workspace\special-broccoli\app\data\mgmt\GestionJoueurs.h"
-#include "A:\workspace\special-broccoli\app\data\mgmt\GestionMatch.h"
+#include "A:\workspace\special-broccoli\app\data\mgmt\PlayerManager.h"
+#include "A:\workspace\special-broccoli\app\data\mgmt\MatchManager.h"
 #include "A:\workspace\special-broccoli\app\ui\headers\ScoreboardUI.h"
 
 QT_BEGIN_NAMESPACE
@@ -28,8 +28,8 @@ private slots:
 private:
     Ui::ScoreboardMatchDetailsUI *ui;
     QSqlDatabase db;
-    GestionJoueurs* gestionJoueurs;
-    GestionMatch* gestionMatch;
+    PlayerManager* playerManager;
+    MatchManager* matchManager;
     Scoreboard* scoreboard; // Pointer to the scoreboard widget
 
     void updateMatchComboBox();

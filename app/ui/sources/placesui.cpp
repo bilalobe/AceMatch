@@ -1,6 +1,6 @@
-#include "placesui.h"
+#include "seatsui.h"
 #include "qsqldatabase.h"
-#include "ui_placesui.h"
+#include "ui_seatsui.h"
 #include <QMessageBox>
 
 PlacesUI::PlacesUI(QWidget *parent, const QSqlDatabase& database) 
@@ -8,30 +8,30 @@ PlacesUI::PlacesUI(QWidget *parent, const QSqlDatabase& database)
 {
     ui->setupUi(this);
 
-    // Initialize the placesModel
-    placesModel = new QStandardItemModel(0, 3, this); // 3 columns (ID, Name, Capacity)
-    placesModel->setHeaderData(0, Qt::Horizontal, tr("ID"));
-    placesModel->setHeaderData(1, Qt::Horizontal, tr("Name"));
-    placesModel->setHeaderData(2, Qt::Horizontal, tr("Capacity"));
-    ui->placesTableView->setModel(placesModel);
+    // Initialize the seatsModel
+    seatsModel = new QStandardItemModel(0, 3, this); // 3 columns (ID, Name, Capacity)
+    seatsModel->setHeaderData(0, Qt::Horizontal, tr("ID"));
+    seatsModel->setHeaderData(1, Qt::Horizontal, tr("Name"));
+    seatsModel->setHeaderData(2, Qt::Horizontal, tr("Capacity"));
+    ui->seatsTableView->setModel(seatsModel);
 
     // Set ID field to read-only
     ui->idLineEdit->setReadOnly(true);
 
-    // Update the places list
+    // Update the seats list
     updatePlacesList(); 
 
     // Connect signals and slots:
     connect(ui->addPlaceButton, &QPushButton::clicked, this, &PlacesUI::addPlace);
     connect(ui->deletePlaceButton, &QPushButton::clicked, this, &PlacesUI::deletePlace);
     connect(ui->updatePlaceButton, &QPushButton::clicked, this, &PlacesUI::updatePlace);
-    connect(ui->placesTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
+    connect(ui->seatsTableView->selectionModel(), &QItemSelectionModel::selectionChanged,
             this, &PlacesUI::loadPlaceDetails);
 }
 
 PlacesUI::~PlacesUI() {
     delete ui;
-    delete placesModel;
+    delete seatsModel;
 }
 
 void PlacesUI::addPlace() {
@@ -49,43 +49,43 @@ void PlacesUI::addPlace() {
 }
 
 void PlacesUI::deletePlace() {
-    QModelIndexList selectedIndexes = ui->placesTableView->selectionModel()->selectedIndexes();
+    QModelIndexList selectedIndexes = ui->seatsTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty()) {
-        QMessageBox::warning(this, "Error", "No place selected.");
+        QMessageBox::warning(this, "Error", "No seat selected.");
         return;
     }
 
-    int placeId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get place ID
+    int seatId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get place ID
 
     // Confirmation Dialog
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Place", 
-                                                                 "Are you sure you want to delete this place?",
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Delete Seat", 
+                                                                 "Are you sure you want to delete this seat?",
                                                                  QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
-        emit placeDeleted(placeId);
+        emit placeDeleted(seatId);
         updatePlacesList();
         clearPlaceDetails();
 
         // Status Bar Message (you need access to MainWindow's status bar)
         MainWindow* mainWindow = dynamic_cast<MainWindow*>(parent());
         if (mainWindow) {
-            mainWindow->statusBar()->showMessage("Place deleted successfully.");
+            mainWindow->statusBar()->showMessage("Seat deleted successfully.");
         }
     }
 }
 
 void PlacesUI::updatePlace() {
-    QModelIndexList selectedIndexes = ui->placesTableView->selectionModel()->selectedIndexes();
+    QModelIndexList selectedIndexes = ui->seatsTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty()) {
-        QMessageBox::warning(this, "Error", "No place selected.");
+        QMessageBox::warning(this, "Error", "No seat selected.");
         return;
     }
 
-    int placeId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get place ID
+    int seatId = selectedIndexes.at(0).data(Qt::UserRole).toInt(); // Get place ID
     QString newName = ui->nameLineEdit->text();
     int newCapacity = ui->capacitySpinBox->value();
 
-    emit placeUpdated(placeId, newName, newCapacity);
+    emit placeUpdated(seatId, newName, newCapacity);
 
     // Update the places list
     updatePlacesList();
@@ -98,11 +98,11 @@ void PlacesUI::loadPlaceDetails(const QModelIndex& index) {
     }
 
     int row = index.row();
-    Place selectedPlace = gestionPlaces->getPlaces(db)[row]; // Assuming you can access places by index
+    Seat selectedPlace = seatManager->getSeats(db)[row]; // Assuming you can access places by index
 
     ui->idLineEdit->setText(QString::number(selectedPlace.getId()));
-    ui->nameLineEdit->setText(selectedPlace.getNom());
-    ui->capacitySpinBox->setValue(selectedPlace.getCapacity()); // Assuming getCapacity() is a method in your Place class
+    ui->nameLineEdit->setText(selectedPlace.getName());
+    ui->capacitySpinBox->setValue(selectedPlace.getCapacity()); // Assuming getCapacity() is a method in your Seat class
 
     // ... (Set values for other place detail fields) ...
 }
@@ -115,39 +115,39 @@ void PlacesUI::clearPlaceDetails() {
 }
 
 void PlacesUI::updatePlacesList() {
-    placesModel->clear();
-    placesModel->setHorizontalHeaderLabels({"ID", "Name", "Capacity"}); 
+    seatsModel->clear();
+    seatsModel->setHorizontalHeaderLabels({"ID", "Name", "Capacity"}); 
 
-    QList<Place> places = gestionPlaces->getPlaces(db); 
+    QList<Seat> seats = seatManager->getSeats(db); 
 
-    for (const Place& place : places) {
-        int row = placesModel->rowCount();
-        placesModel->insertRow(row);
-        placesModel->setData(placesModel->index(row, 0), place.getId());
-        placesModel->setData(placesModel->index(row, 1), place.getNom());
-        placesModel->setData(placesModel->index(row, 2), place.getCapacity());
+    for (const Seat& place : places) {
+        int row = seatsModel->rowCount();
+        seatsModel->insertRow(row);
+        seatsModel->setData(seatsModel->index(row, 0), place.getId());
+        seatsModel->setData(seatsModel->index(row, 1), place.getName());
+        seatsModel->setData(seatsModel->index(row, 2), place.getCapacity());
 
         // Optional: Store the place ID in the Qt::UserRole of the first column
-        placesModel->setData(placesModel->index(row, 0), place.getId(), Qt::UserRole); 
+        seatsModel->setData(seatsModel->index(row, 0), place.getId(), Qt::UserRole); 
     }
 }
 
 void PlacesUI::searchPlace(const QString& searchTerm) {
-    placesModel->clear(); // Clear the existing model data
-    placesModel->setHorizontalHeaderLabels({"ID", "Name", "Capacity"});
+    seatsModel->clear(); // Clear the existing model data
+    seatsModel->setHorizontalHeaderLabels({"ID", "Name", "Capacity"});
 
-    QList<Place> places = gestionPlaces->getPlaces(db); 
+    QList<Seat> places = seatManager->getSeats(db); 
 
-    for (const Place& place : places) {
-        if (place.getNom().contains(searchTerm, Qt::CaseInsensitive) ||
+    for (const Seat& place : places) {
+        if (place.getName().contains(searchTerm, Qt::CaseInsensitive) ||
             QString::number(place.getId()).contains(searchTerm)) { // Search ID as well
-            int row = placesModel->rowCount();
-            placesModel->insertRow(row);
-            placesModel->setData(placesModel->index(row, 0), place.getId());
-            placesModel->setData(placesModel->index(row, 1), place.getNom());
-            placesModel->setData(placesModel->index(row, 2), place.getCapacity());
+            int row = seatsModel->rowCount();
+            seatsModel->insertRow(row);
+            seatsModel->setData(seatsModel->index(row, 0), place.getId());
+            seatsModel->setData(seatsModel->index(row, 1), place.getName());
+            seatsModel->setData(seatsModel->index(row, 2), place.getCapacity());
             // Optional: Store the place ID in the Qt::UserRole of the first column
-            placesModel->setData(placesModel->index(row, 0), place.getId(), Qt::UserRole); 
+            seatsModel->setData(seatsModel->index(row, 0), place.getId(), Qt::UserRole); 
         }
     }
 }

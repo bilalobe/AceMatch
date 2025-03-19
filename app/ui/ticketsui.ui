@@ -51,14 +51,14 @@
        <widget class="QComboBox" name="matchComboBox"/>
       </item>
       <item row="3" column="0">
-       <widget class="QLabel" name="placeLabel">
+       <widget class="QLabel" name="seatLabel">
         <property name="text">
-         <string>Place:</string>
+         <string>Seat:</string>
         </property>
        </widget>
       </item>
       <item row="3" column="1">
-       <widget class="QComboBox" name="placeComboBox"/>
+       <widget class="QComboBox" name="seatComboBox"/>
       </item>
       <item row="4" column="0">
        <widget class="QLabel" name="priceLabel">

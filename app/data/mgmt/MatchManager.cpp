@@ -1,22 +1,22 @@
-#include "GestionMatch.h"
-#include "GestionJoueurs.h"
+#include "MatchManager.h"
+#include "PlayerManager.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
 
 
-GestionMatch::GestionMatch(const QSqlDatabase& db)
+MatchManager::MatchManager(const QSqlDatabase& db)
     // : db(db)  // No need for this initialization
 {
     // You can add database initialization logic here if needed, but it's usually done in the MainWindow constructor
 }
 
-GestionMatch::~GestionMatch()
+MatchManager::~MatchManager()
 {
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionMatch::creerMatch(const QSqlDatabase& db, const QString& player1Name, const QString& player2Name, int score1, int score2) {
+bool MatchManager::createMatch(const QSqlDatabase& db, const QString& player1Name, const QString& player2Name, int score1, int score2) {
     QSqlQuery query(db);
     query.prepare("INSERT INTO Matches (player1, player2, score1, score2) "
                   "VALUES (:player1, :player2, :score1, :score2)");
@@ -32,7 +32,7 @@ bool GestionMatch::creerMatch(const QSqlDatabase& db, const QString& player1Name
     return true;
 }
 
-bool GestionMatch::supprimerMatch(const QSqlDatabase& db, int matchId) {
+bool MatchManager::removeMatch(const QSqlDatabase& db, int matchId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Matches WHERE id = :matchId");
     query.bindValue(":matchId", matchId);
@@ -44,7 +44,7 @@ bool GestionMatch::supprimerMatch(const QSqlDatabase& db, int matchId) {
     return true; 
 }
 
-QList<Match> GestionMatch::getMatches(const QSqlDatabase& db) const {
+QList<Match> MatchManager::getMatches(const QSqlDatabase& db) const {
     QList<Match> matches;
     QSqlQuery query(db);
     query.exec("SELECT * FROM matches");
@@ -60,7 +60,7 @@ QList<Match> GestionMatch::getMatches(const QSqlDatabase& db) const {
     return matches;
 }
 
-Match GestionMatch::getMatchById(const QSqlDatabase& db, int matchId) const {
+Match MatchManager::getMatchById(const QSqlDatabase& db, int matchId) const {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Matches WHERE id = :matchId"); 
     query.bindValue(":matchId", matchId);
@@ -80,7 +80,7 @@ Match GestionMatch::getMatchById(const QSqlDatabase& db, int matchId) const {
 }
  
 
-Score GestionMatch::getMatchScore(const QSqlDatabase& db, int matchId) const {
+Score MatchManager::getMatchScore(const QSqlDatabase& db, int matchId) const {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Scores WHERE matchId = :matchId");
     query.bindValue(":matchId", matchId);
@@ -93,8 +93,8 @@ Score GestionMatch::getMatchScore(const QSqlDatabase& db, int matchId) const {
     }
 }
 
-// GestionMatch.cpp
-bool GestionMatch::modifierMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2) {
+// MatchManager.cpp
+bool MatchManager::updateMatch(const QSqlDatabase& db, int matchId, int newScore1, int newScore2) {
     QSqlQuery query(db);
     query.prepare("UPDATE Matches SET score1 = :score1, score2 = :score2 WHERE id = :matchId");
     query.bindValue(":score1", newScore1);

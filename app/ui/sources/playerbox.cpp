@@ -35,25 +35,25 @@ PlayerBox::~PlayerBox() {
 }
 
 void PlayerBox::addPlayer() {
-    QString nom = ui->nomLineEdit->text();
+    QString name = ui->nomLineEdit->text();
     int classement = ui->classementSpinBox->value();
 
     // Basic input validation (you can add more)
-    if (nom.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Le nom du joueur ne peut pas être vide.");
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Le name du player ne peut pas être vide.");
         return;
     }
 
-    // Create a Joueur object
-    Tournament::Joueur newJoueur(nom, classement);
+    // Create a Player object
+    Tournament::Player newJoueur(name, classement);
 
     // Insert the player into the database
     QSqlQuery query(db);
-    query.prepare("INSERT INTO Joueurs (nom, classement) VALUES (:nom, :classement)");
-    query.bindValue(":nom", nom);
+    query.prepare("INSERT INTO Joueurs (name, classement) VALUES (:name, :classement)");
+    query.bindValue(":name", name);
     query.bindValue(":classement", classement);
     if (!query.exec()) {
-        QMessageBox::warning(this, "Erreur", "Erreur lors de l'insertion du joueur dans la base de données.");
+        QMessageBox::warning(this, "Erreur", "Erreur lors de l'insertion du player dans la base de données.");
         return;   }
 
     // Emit signal to notify MainWindow
@@ -70,27 +70,27 @@ void PlayerBox::addPlayer() {
 void PlayerBox::deletePlayer() {
     QModelIndexList selectedIndexes = ui->playerTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Aucun joueur sélectionné.");
+        QMessageBox::warning(this, "Erreur", "Aucun player sélectionné.");
         return;
     }
 
-    QString nom = selectedIndexes.at(0).data(Qt::DisplayRole).toString();
+    QString name = selectedIndexes.at(0).data(Qt::DisplayRole).toString();
 
     // Confirmation Dialog
-    QMessageBox::StandardButton reply = QMessageBox::question(this, "Supprimer le joueur",
-                                                              "Êtes-vous sûr de vouloir supprimer ce joueur?",
+    QMessageBox::StandardButton reply = QMessageBox::question(this, "Supprimer le player",
+                                                              "Êtes-vous sûr de vouloir supprimer ce player?",
                                                               QMessageBox::Yes | QMessageBox::No);
     if (reply == QMessageBox::Yes) {
         // Delete the player from the database
         QSqlQuery query(db);
-        query.prepare("DELETE FROM Joueurs WHERE nom = :nom");
-        query.bindValue(":nom", nom);
+        query.prepare("DELETE FROM Joueurs WHERE name = :name");
+        query.bindValue(":name", name);
         if (!query.exec()) {
-            QMessageBox::warning(this, "Erreur", "Erreur lors de la suppression du joueur de la base de données.");
+            QMessageBox::warning(this, "Erreur", "Erreur lors de la suppression du player de la base de données.");
             return;
         }
 
-        emit playerDeleted(nom);
+        emit playerDeleted(name);
         updatePlayerList();
         clearPlayerDetails();
     }
@@ -99,29 +99,29 @@ void PlayerBox::deletePlayer() {
 void PlayerBox::updatePlayer() {
     QModelIndexList selectedIndexes = ui->playerTableView->selectionModel()->selectedIndexes();
     if (selectedIndexes.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Aucun joueur sélectionné.");
+        QMessageBox::warning(this, "Erreur", "Aucun player sélectionné.");
         return;
     }
 
-    QString nom = ui->nomLineEdit->text();
+    QString name = ui->nomLineEdit->text();
     int classement = ui->classementSpinBox->value();
 
     // Basic input validation (you can add more)
-    if (nom.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Le nom du joueur ne peut pas être vide.");
+    if (name.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Le name du player ne peut pas être vide.");
         return;
     }
 
-    // Create a Joueur object
-    Tournament::Joueur updatedJoueur(nom, classement);
+    // Create a Player object
+    Tournament::Player updatedJoueur(name, classement);
 
     // Update the player in the database
     QSqlQuery query(db);
-    query.prepare("UPDATE Joueurs SET nom = :nom, classement = :classement WHERE nom = :oldNom");   query.bindValue(":nom", nom);
+    query.prepare("UPDATE Joueurs SET name = :name, classement = :classement WHERE name = :oldNom");   query.bindValue(":name", name);
     query.bindValue(":classement", classement);
     query.bindValue(":oldNom", selectedIndexes.at(0).data(Qt::DisplayRole).toString());
     if (!query.exec()) {
-        QMessageBox::warning(this, "Erreur", "Erreur lors de la mise à jour du joueur dans la base de données.");
+        QMessageBox::warning(this, "Erreur", "Erreur lors de la mise à jour du player dans la base de données.");
         return;
     }
 
@@ -139,11 +139,11 @@ void PlayerBox::loadPlayerDetails(const QModelIndex& index) {
     }
 
     // Get the data from the selected row
-    QString nom = index.siblingAtColumn(0).data(Qt::DisplayRole).toString();
+    QString name = index.siblingAtColumn(0).data(Qt::DisplayRole).toString();
     int classement = index.siblingAtColumn(1).data(Qt::DisplayRole).toInt();
 
     // Display the data in the details section
-    ui->nomLineEdit->setText(nom);
+    ui->nomLineEdit->setText(name);
     ui->classementSpinBox->setValue(classement);
 }
 
@@ -153,14 +153,14 @@ void PlayerBox::clearPlayerDetails() {
 }
 
 void PlayerBox::updatePlayerList() {
-    // Get players from MainWindow's GestionJoueurs
-    QList<Tournament::Joueur> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getJoueurs(db);
+    // Get players from MainWindow's PlayerManager
+    QList<Tournament::Player> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getPlayers(db);
 
     playersModel->clear();
-    for (const Tournament::Joueur& joueur : players) {
+    for (const Tournament::Player& player : players) {
         int row = playersModel->rowCount();
         playersModel->insertRow(row);
-        playersModel->setData(playersModel->index(row, 0), joueur.getNom());
+        playersModel->setData(playersModel->index(row, 0), joueur.getName());
         playersModel->setData(playersModel->index(row, 1), joueur.getClassement());
     }
 }
@@ -169,13 +169,13 @@ void PlayerBox::searchPlayer(const QString& searchTerm) {
     playersModel->clear(); // Clear the existing model data
     playersModel->setHorizontalHeaderLabels({"Nom", "Classement"});
 
-    QList<Tournament::Joueur> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getJoueurs(db); 
+    QList<Tournament::Player> players = dynamic_cast<MainWindow*>(parent())->getGestionJoueurs()->getPlayers(db); 
 
-    for (const Tournament::Joueur& joueur : players) {
-        if (joueur.getNom().contains(searchTerm, Qt::CaseInsensitive)){
+    for (const Tournament::Player& joueur : players) {
+        if (joueur.getName().contains(searchTerm, Qt::CaseInsensitive)){
             int row = playersModel->rowCount();
             playersModel->insertRow(row);
-            playersModel->setData(playersModel->index(row, 0), joueur.getNom());
+            playersModel->setData(playersModel->index(row, 0), joueur.getName());
             playersModel->setData(playersModel->index(row, 1), joueur.getClassement());
         }
     }

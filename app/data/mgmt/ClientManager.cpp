@@ -1,23 +1,23 @@
-#include "GestionClients.h"
+#include "ClientManager.h"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
 
-GestionClients::GestionClients(const QSqlDatabase& db)
+ClientManager::ClientManager(const QSqlDatabase& db)
     : db(db)
 {
     // Database is now stored as a member variable
 }
 
-GestionClients::~GestionClients()
+ClientManager::~ClientManager()
 {
     // No need to close the database connection, as it's managed in MainWindow
 }
 
-bool GestionClients::ajouterClient(const QString& nom, const QString& email, const QString& phoneNumber) {
+bool ClientManager::addClient(const QString& name, const QString& email, const QString& phoneNumber) {
     QSqlQuery query(db);
-    query.prepare("INSERT INTO Clients (nom, email, phoneNumber) VALUES (:nom, :email, :phoneNumber)");
-    query.bindValue(":nom", nom);
+    query.prepare("INSERT INTO Clients (name, email, phoneNumber) VALUES (:name, :email, :phoneNumber)");
+    query.bindValue(":name", name);
     query.bindValue(":email", email);
     query.bindValue(":phoneNumber", phoneNumber);
 
@@ -28,7 +28,7 @@ bool GestionClients::ajouterClient(const QString& nom, const QString& email, con
     return true;
 }
 
-bool GestionClients::supprimerClient(int clientId) {
+bool ClientManager::removeClient(int clientId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Clients WHERE id = :clientId");
     query.bindValue(":clientId", clientId);
@@ -40,9 +40,9 @@ bool GestionClients::supprimerClient(int clientId) {
     return true;
 }
 
-bool GestionClients::modifierClient(int clientId, const QString& newName, const QString& newEmail, const QString& newPhoneNumber) {
+bool ClientManager::updateClient(int clientId, const QString& newName, const QString& newEmail, const QString& newPhoneNumber) {
     QSqlQuery query(db);
-    query.prepare("UPDATE Clients SET nom = :newName, email = :newEmail, phoneNumber = :newPhoneNumber WHERE id = :clientId");
+    query.prepare("UPDATE Clients SET name = :newName, email = :newEmail, phoneNumber = :newPhoneNumber WHERE id = :clientId");
     query.bindValue(":newName", newName);
     query.bindValue(":newEmail", newEmail);
     query.bindValue(":newPhoneNumber", newPhoneNumber);
@@ -55,39 +55,39 @@ bool GestionClients::modifierClient(int clientId, const QString& newName, const 
     return true;
 }
 
-QList<Client> GestionClients::getClients() const {
+QList<Client> ClientManager::getClients() const {
     QList<Client> clients;
     QSqlQuery query(db);
     query.exec("SELECT * FROM Clients");
 
     while (query.next()) {
         int id = query.value("id").toInt();
-        QString nom = query.value("nom").toString();
+        QString name = query.value("name").toString();
         QString email = query.value("email").toString();
         QString phoneNumber = query.value("phoneNumber").toString();
 
-        clients.append(Client(id, nom, email, phoneNumber));
+        clients.append(Client(id, name, email, phoneNumber));
     }
     return clients;
 }
 
-Client GestionClients::getClientById(int clientId) const {
+Client ClientManager::getClientById(int clientId) const {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Clients WHERE id = :clientId");
     query.bindValue(":clientId", clientId);
 
     if (query.exec() && query.next()) {
-        return Client(query.value("id").toInt(), query.value("nom").toString(), query.value("email").toString(), query.value("phoneNumber").toString());
+        return Client(query.value("id").toInt(), query.value("name").toString(), query.value("email").toString(), query.value("phoneNumber").toString());
     } else {
         qDebug() << "Error getting client by ID:" << query.lastError();
         return Client();
     }
 }
 
-QList<Client> GestionClients::searchClients(const QString& searchTerm) const {
+QList<Client> ClientManager::searchClients(const QString& searchTerm) const {
     QList<Client> results;
     QSqlQuery query(db);
-    query.prepare("SELECT * FROM Clients WHERE nom LIKE :term OR email LIKE :term OR phoneNumber LIKE :term");
+    query.prepare("SELECT * FROM Clients WHERE name LIKE :term OR email LIKE :term OR phoneNumber LIKE :term");
     query.bindValue(":term", "%" + searchTerm + "%");
     
     if (!query.exec()) {
@@ -97,10 +97,10 @@ QList<Client> GestionClients::searchClients(const QString& searchTerm) const {
     
     while (query.next()) {
         int id = query.value("id").toInt();
-        QString nom = query.value("nom").toString();
+        QString name = query.value("name").toString();
         QString email = query.value("email").toString();
         QString phoneNumber = query.value("phoneNumber").toString();
-        results.append(Client(id, nom, email, phoneNumber));
+        results.append(Client(id, name, email, phoneNumber));
     }
     
     return results;

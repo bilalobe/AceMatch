@@ -7,17 +7,17 @@
 #include <QObject>
 #include "..\Score.h"
 
-class GestionScore : public QObject
+class ScoreManager : public QObject
 {
     Q_OBJECT
 
 public:
-    GestionScore(const QSqlDatabase& db);
-    ~GestionScore();
+    ScoreManager(const QSqlDatabase& db);
+    ~ScoreManager();
 
-    bool ajouterScore(int matchId, int score1, int score2);
-    bool supprimerScore(int scoreId); 
-    bool modifierScore(int scoreId, int newScore1, int newScore2);
+    bool addScore(int matchId, int score1, int score2);
+    bool removeScore(int scoreId); 
+    bool updateScore(int scoreId, int newScore1, int newScore2);
     QList<Score> getScores() const;
     Score getScoreById(int scoreId) const;
     QList<Score> searchScores(const QString& searchTerm) const;

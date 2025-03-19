@@ -33,7 +33,7 @@ void SeatsUI::updateSeatsTable() {
     scene->clear(); // Clear the existing scene
 
     // Fetch seat data from your database
-    QList<Seat> seats = gestionSeats->getSeats(db); // Assuming you have a GestionSeats class
+    QList<Seat> seats = gestionSeats->getSeats(db); // Assuming you have a SeatManager class
 
     // Create the seats on the scene
     createSeats(seats);

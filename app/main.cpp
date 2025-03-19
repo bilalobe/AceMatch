@@ -15,9 +15,9 @@
 
 #include "ui/headers/scoreboardmatchdetailsui.h"
 #include "ui/headers/playerprofileui.h"
-#include "ui/headers/placesui.h"
+#include "ui/headers/seatsui.h"
 #include "ui/headers/reservationsui.h"
-#include "ui/headers/terrainsui.h"
+#include "ui/headers/courtsui.h"
 #include "ui/headers/ticketsui.h"
 #include "ui/headers/matchui.h"
 #include "ui/headers/playerbox.h"
@@ -116,7 +116,7 @@ int main(int argc, char *argv[])
     tabWidget->addTab(tournamentTab, "Tournament Management");
 
     // Places Mini-Tab
-    PlacesUI* placesUI = new PlacesUI(&mainWindow, db);
+    PlacesUI* seatsUI = new PlacesUI(&mainWindow, db);
     tournamentTabWidget->addTab(placesUI, "Places");
 
     // Reservations Mini-Tab
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
     tournamentTabWidget->addTab(reservationsUI, "Reservations");
 
     // Terrains Mini-Tab
-    TerrainUI* terrainsUI = new TerrainUI(&mainWindow, db);
+    TerrainUI* courtsUI = new TerrainUI(&mainWindow, db);
     tournamentTabWidget->addTab(terrainsUI, "Terrains");
 
     // Tickets Mini-Tab

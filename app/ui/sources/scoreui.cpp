@@ -51,7 +51,7 @@ void ScoreUI::addScore() {
     updateScoresList();
 }
 
-bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
+bool ScoreManager::removeScore(const QSqlDatabase& db, int scoreId) {
     QSqlQuery query(db);
     query.prepare("DELETE FROM Scores WHERE id = :scoreId");
     query.bindValue(":scoreId", scoreId);
@@ -63,7 +63,7 @@ bool GestionScore::supprimerScore(const QSqlDatabase& db, int scoreId) {
     return true;
 }
 
-bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
+bool ScoreManager::updateScore(const QSqlDatabase& db, int scoreId, int newScore1, int newScore2) {
     QSqlQuery query(db);
     query.prepare("UPDATE Scores SET score1 = :newScore1, score2 = :newScore2 WHERE id = :scoreId");
     query.bindValue(":newScore1", newScore1);
@@ -77,7 +77,7 @@ bool GestionScore::modifierScore(const QSqlDatabase& db, int scoreId, int newSco
     return true;
 }
 
-Score GestionScore::getScoreById(const QSqlDatabase& db, int scoreId) const {
+Score ScoreManager::getScoreById(const QSqlDatabase& db, int scoreId) const {
     QSqlQuery query(db);
     query.prepare("SELECT * FROM Scores WHERE id = :scoreId");
     query.bindValue(":scoreId", scoreId);
@@ -98,8 +98,8 @@ void ScoreUI::loadScoreDetails(const QModelIndex& index) {
 
     int row = index.row();
 
-    // Get the selected score from your GestionScore (or wherever you store score data)
-    Score selectedScore = gestionScore->getScores(db)[row]; 
+    // Get the selected score from your ScoreManager (or wherever you store score data)
+    Score selectedScore = scoreManager->getScores(db)[row]; 
 
     ui->idLineEdit->setText(QString::number(selectedScore.getId()));
     // Set selected match in matchComboBox
@@ -127,7 +127,7 @@ void ScoreUI::updateScoresList() {
     scoresModel->clear();
     scoresModel->setHorizontalHeaderLabels({"ID", "Match", "Score 1", "Score 2"});
 
-    QList<Score> scores = gestionScore->getScores(db);
+    QList<Score> scores = scoreManager->getScores(db);
 
     for (const Score& score : scores) {
         int row = scoresModel->rowCount();
@@ -135,7 +135,7 @@ void ScoreUI::updateScoresList() {
 
         // Use the correct data from your Score class
         scoresModel->setData(scoresModel->index(row, 0), score.getId());
-        scoresModel->setData(scoresModel->index(row, 1), gestionJoueurs->getMatchById(db, score.getMatchId()).getNom());
+        scoresModel->setData(scoresModel->index(row, 1), playerManager->getMatchById(db, score.getMatchId()).getName());
         scoresModel->setData(scoresModel->index(row, 2), score.getScore1());
         scoresModel->setData(scoresModel->index(row, 3), score.getScore2()); 
 
@@ -146,9 +146,9 @@ void ScoreUI::updateScoresList() {
 
 void ScoreUI::updateMatchComboBox() {
     ui->matchComboBox->clear();
-    QList<Match> matches = gestionJoueurs->getMatches(db);
+    QList<Match> matches = playerManager->getMatches(db);
     for (const Match& match : matches) {
-        QString matchDescription = QString("%1 vs %2").arg(match.getJoueur1().getNom(), match.getJoueur2().getNom());
+        QString matchDescription = QString("%1 vs %2").arg(match.getPlayer1().getName(), match.getPlayer2().getName());
         ui->matchComboBox->addItem(matchDescription, match.getId()); // Add match name and ID to combo box
     }
 }

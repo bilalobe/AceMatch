@@ -28,7 +28,7 @@ private slots:
 private:
     Ui::TerrainUI *ui;
     QSqlDatabase db;
-    QStandardItemModel* terrainsModel;
+    QStandardItemModel* courtsModel;
 
     void updateTerrainsList();
 };
